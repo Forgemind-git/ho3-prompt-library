@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HO3 · Customer Support Prompt Library</title>
+  <style>
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#F8F9FA; color:#1a1a2e; }
+:root { --color: #059669; }
+header { background: var(--color); color:#fff; padding:40px 32px 32px; position:relative; }
+header .badge { font-size:13px; font-weight:700; letter-spacing:.08em; opacity:.8; text-transform:uppercase; margin-bottom:8px; }
+header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
+header p { font-size:15px; opacity:.85; max-width:640px; line-height:1.6; }
+.sub-bar { background:#fff; border-left:4px solid var(--color); padding:14px 20px; margin:24px 32px; border-radius:4px; font-size:14px; color:#374151; line-height:1.6; box-shadow:0 1px 4px rgba(0,0,0,.07); }
+.sub-bar strong { color:var(--color); }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:0 32px 40px; }
+.card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
+.card:hover { box-shadow:0 4px 16px rgba(0,0,0,.13); }
+.card-top { background:var(--color); padding:14px 18px; display:flex; align-items:center; gap:10px; }
+.card-num { background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 9px; }
+.card-top h3 { color:#fff; font-size:14.5px; font-weight:700; }
+.card-body { padding:16px 18px; }
+.card-body p { font-size:13px; color:#4B5563; line-height:1.6; margin-bottom:14px; }
+.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:var(--color); color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; border:none; }
+.btn:hover { opacity:.88; }
+footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:8px; }
+@media(max-width:580px){ .grid{ grid-template-columns:1fr; padding:0 14px 28px; } header{ padding:24px 16px; } .sub-bar{ margin:14px 14px; } }
+
+
+.prompt-section { padding:0 32px 40px; display:flex; flex-direction:column; gap:28px; }
+.prompt-card { background:#fff; border-radius:12px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
+.prompt-card:hover { box-shadow:0 4px 18px rgba(0,0,0,.12); }
+.prompt-header { background:var(--color); padding:18px 22px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.prompt-title-wrap { flex:1; }
+.prompt-num { display:inline-block; background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 10px; margin-bottom:6px; }
+.prompt-header h2 { color:#fff; font-size:18px; font-weight:800; line-height:1.3; }
+.prompt-header .open-btn { background:rgba(255,255,255,.2); color:#fff; text-decoration:none; padding:8px 14px; border-radius:6px; font-size:13px; font-weight:600; white-space:nowrap; border:1px solid rgba(255,255,255,.4); flex-shrink:0; }
+.prompt-header .open-btn:hover { background:rgba(255,255,255,.35); }
+.prompt-body { padding:22px; }
+.prompt-purpose { font-size:14px; color:#374151; line-height:1.65; margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid #F3F4F6; }
+.crisp-section { margin-bottom:20px; }
+.crisp-section h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--color); margin-bottom:10px; }
+.crisp-table { width:100%; border-collapse:collapse; font-size:13px; }
+.crisp-table tr:nth-child(odd) td { background:#F9FAFB; }
+.crisp-table td { padding:8px 12px; vertical-align:top; border:1px solid #E5E7EB; line-height:1.55; }
+.crisp-table td:first-child { font-weight:700; color:#1f2937; white-space:nowrap; width:110px; }
+.crisp-table td:last-child { color:#374151; }
+.full-prompt-section h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#6B7280; margin-bottom:10px; }
+.prompt-code-wrap { position:relative; background:#1e1e2e; border-radius:8px; overflow:hidden; }
+.prompt-code-wrap pre { padding:18px 52px 18px 18px; font-family: 'Courier New', Courier, monospace; font-size:13px; line-height:1.65; color:#cdd6f4; overflow-x:auto; white-space:pre-wrap; word-break:break-word; max-height:340px; overflow-y:auto; }
+.copy-btn { position:absolute; top:10px; right:10px; background:rgba(255,255,255,.12); color:#cdd6f4; border:1px solid rgba(255,255,255,.2); border-radius:6px; padding:5px 11px; font-size:12px; font-weight:600; cursor:pointer; z-index:10; }
+.copy-btn:hover { background:rgba(255,255,255,.22); }
+.copy-btn.copied { background:var(--color); color:#fff; border-color:var(--color); }
+.before-after { margin-top:20px; padding-top:20px; border-top:1px solid #F3F4F6; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.ba-block h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px; }
+.ba-block.before h4 { color:#DC2626; }
+.ba-block.after h4 { color:var(--color); }
+.ba-block blockquote { font-size:13px; line-height:1.6; color:#374151; background:#F9FAFB; border-left:3px solid #E5E7EB; padding:10px 14px; border-radius:0 6px 6px 0; }
+.ba-block.before blockquote { border-left-color:#FCA5A5; }
+.ba-block.after blockquote { border-left-color:var(--color); }
+.header-actions { position:absolute; top:28px; right:32px; display:flex; gap:10px; align-items:center; }
+.back-btn { background:rgba(255,255,255,.18); color:#fff; text-decoration:none; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,.35); }
+.back-btn:hover { background:rgba(255,255,255,.28); }
+.open-claude-btn { background:#fff; color:var(--color); text-decoration:none; padding:9px 18px; border-radius:6px; font-size:13px; font-weight:700; }
+.open-claude-btn:hover { opacity:.9; }
+@media(max-width:680px){ .before-after{ grid-template-columns:1fr; } .prompt-section{ padding:0 14px 28px; } .prompt-header{ flex-direction:column; } .header-actions{ position:static; flex-wrap:wrap; margin-top:14px; } }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-actions">
+      <a href="../../index.html" class="back-btn">← All Libraries</a>
+      <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-claude-btn">Open Claude.ai →</a>
+    </div>
+    <div class="badge">HO3 · Prompt Engineering Library · Sample 01</div>
+    <h1>Customer Support Prompt Library</h1>
+    <p>Role: Customer Support Team Lead · 10 CRISP-structured prompts ready to copy into Claude.ai</p>
+  </header>
+
+  <div class="sub-bar">
+    <strong>No API key needed.</strong> Click "Open Claude.ai →" on any card, then copy the prompt, fill in the <code>[BRACKET]</code> placeholders, and paste it into your Claude.ai chat.
+  </div>
+
+  <div class="prompt-section">
+    
+    <div class="prompt-card" id="prompt-01">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#01</span>
+          <h2>Reply to Angry Customer</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Write an empathetic, professional reply to an angry or frustrated customer that acknowledges their pain, owns any mistake on our side, and provides a concrete next step — without being defensive or making promises we can&#x27;t keep.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>A customer has sent an angry message. They are upset about [specific issue]. They have been a customer for [X months/years] and their account tier is [free/pro/enterprise]. The issue [has been resolved / is still open / is under investigation].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are an experienced customer support specialist known for turning angry customers into loyal ones. You have 7 years of experience in SaaS support and a natural gift for empathy.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a reply email to this customer that: (1) opens with genuine acknowledgement of their frustration, (2) takes responsibility where appropriate without over-apologising, (3) explains what happened in plain language, (4) states the concrete next step with a timeline, (5) closes warmly.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Email format. 150–200 words. Subject line included. First-person singular (&quot;I&quot; not &quot;we&quot; — it feels more human). No corporate jargon. No passive voice. No hollow phrases like &quot;We apologise for any inconvenience.&quot;</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>The customer should feel genuinely heard, not handled. The next step must be specific and time-bound. A senior support manager should approve this without edits.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-0" onclick="copyPrompt("Context: I work as a Customer Support Team Lead at [Company Name]. A customer named [Customer Name] has just sent an angry message about [specific issue \u2014 e.g., \"their account was incorrectly charged twice for the Pro plan\"]. They have been with us for [X months/years] and are on our [free/pro/enterprise] plan. The issue [has been resolved / is still active / is under investigation \u2014 explain current status].\n\nRole: Act as an experienced SaaS customer support specialist who is exceptional at turning frustrated customers into loyal ones through genuine empathy and clear communication.\n\nInstruction: Write a reply email to [Customer Name] that:\n1. Opens with a genuine acknowledgement of their frustration (not a hollow \"sorry for the inconvenience\")\n2. Takes clear responsibility where we made a mistake\n3. Explains briefly and plainly what happened\n4. States one concrete next step with a specific timeline (e.g., \"refund processed within 3\u20135 business days\")\n5. Closes warmly and invites them to reply if anything else comes up\n\nSpec:\n- Email format with subject line\n- 150\u2013200 words\n- First person singular (I, not We)\n- No corporate jargon or passive voice\n- No hollow apology phrases\n\nPerformance bar: The customer should feel genuinely heard, not managed. The next step must be specific and time-bound. A support manager should approve this without changes.", 'copy-card-0')">Copy</button>
+            <pre>Context: I work as a Customer Support Team Lead at [Company Name]. A customer named [Customer Name] has just sent an angry message about [specific issue — e.g., &quot;their account was incorrectly charged twice for the Pro plan&quot;]. They have been with us for [X months/years] and are on our [free/pro/enterprise] plan. The issue [has been resolved / is still active / is under investigation — explain current status].
+
+Role: Act as an experienced SaaS customer support specialist who is exceptional at turning frustrated customers into loyal ones through genuine empathy and clear communication.
+
+Instruction: Write a reply email to [Customer Name] that:
+1. Opens with a genuine acknowledgement of their frustration (not a hollow &quot;sorry for the inconvenience&quot;)
+2. Takes clear responsibility where we made a mistake
+3. Explains briefly and plainly what happened
+4. States one concrete next step with a specific timeline (e.g., &quot;refund processed within 3–5 business days&quot;)
+5. Closes warmly and invites them to reply if anything else comes up
+
+Spec:
+- Email format with subject line
+- 150–200 words
+- First person singular (I, not We)
+- No corporate jargon or passive voice
+- No hollow apology phrases
+
+Performance bar: The customer should feel genuinely heard, not managed. The next step must be specific and time-bound. A support manager should approve this without changes.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Dear Customer, We apologise for any inconvenience this may have caused. We understand your frustration regarding the billing matter. Our team is looking into this and we will get back to you as soon as possible. Thank you for your patience. Best regards, Support Team</blockquote>
+            </div>
+          
+            <div class="ba-block after">
+              <h4>After — CRISP prompt output</h4>
+              <blockquote>**Subject: Your duplicate charge — here&#x27;s exactly what I&#x27;m doing about it** Hi Sarah, I&#x27;m really sorry about this — getting charged twice for your renewal is exactly the kind of thing that should never happen, and I completely understand why you&#x27;re frustrated. I&#x27;ve looked into your account and can confirm the duplicate charge was a processing error on our end that affected a small number of renewa…</blockquote>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-02">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#02</span>
+          <h2>Escalation Note</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Write a structured internal escalation note that hands off a complex or sensitive customer case to a senior agent or manager with full context — so the receiving agent can act immediately without having to read the entire ticket thread.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>You are escalating a case that has [number] of interactions, lasted [X days], and involves [issue type]. The customer&#x27;s sentiment is [frustrated/threatening to churn/escalating publicly]. Previous resolution attempts: [list what was tried].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a methodical senior support agent who writes internal escalation notes that are precise, jargon-free, and give the receiving agent everything they need in under 60 seconds of reading.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write an escalation note with these sections: (1) Case snapshot — one sentence summary, (2) Customer profile — tenure, plan, revenue, (3) Issue timeline — what happened and when, (4) What was tried — previous resolution attempts, (5) Why it&#x27;s being escalated, (6) Recommended next action with owner.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Internal document format. Bullet points for timeline and attempts. 200–250 words total. Bold the section headers. No customer-facing language — this is internal.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>The receiving agent should be fully briefed in under 60 seconds. No important detail should be buried. The recommended action must be specific and assign a named owner.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-1" onclick="copyPrompt("Context: I'm a Customer Support agent escalating a case to [Recipient Name / Senior Agent / Manager]. The case involves customer [Customer Name], [tenure] on [plan], regarding [issue description]. We've had [N] interactions over [X days]. The customer's current sentiment is [frustrated / threatening churn / asking for legal action / escalating on social media]. Previous resolution attempts: [list 2\u20134 things that were tried and why they didn't resolve the issue].\n\nRole: Act as a methodical senior support agent who writes internal escalation notes that give the receiving agent everything they need in under 60 seconds.\n\nInstruction: Write a structured escalation note with exactly these sections:\n1. Case Snapshot \u2014 one-sentence summary of the issue and urgency\n2. Customer Profile \u2014 name, plan, tenure, estimated monthly revenue\n3. Issue Timeline \u2014 bulleted chronology of what happened and when\n4. What Was Tried \u2014 bulleted list of resolution attempts and outcomes\n5. Reason for Escalation \u2014 why this case cannot be resolved at the current level\n6. Recommended Next Action \u2014 specific action, named owner, and deadline\n\nSpec:\n- Internal document only (not customer-facing)\n- Bold all section headers\n- Bullet points for Timeline and What Was Tried\n- 200\u2013250 words total\n\nPerformance bar: The receiving agent reads this in under 60 seconds and can act immediately. No critical detail is buried. The recommended action has a clear owner.", 'copy-card-1')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support agent escalating a case to [Recipient Name / Senior Agent / Manager]. The case involves customer [Customer Name], [tenure] on [plan], regarding [issue description]. We&#x27;ve had [N] interactions over [X days]. The customer&#x27;s current sentiment is [frustrated / threatening churn / asking for legal action / escalating on social media]. Previous resolution attempts: [list 2–4 things that were tried and why they didn&#x27;t resolve the issue].
+
+Role: Act as a methodical senior support agent who writes internal escalation notes that give the receiving agent everything they need in under 60 seconds.
+
+Instruction: Write a structured escalation note with exactly these sections:
+1. Case Snapshot — one-sentence summary of the issue and urgency
+2. Customer Profile — name, plan, tenure, estimated monthly revenue
+3. Issue Timeline — bulleted chronology of what happened and when
+4. What Was Tried — bulleted list of resolution attempts and outcomes
+5. Reason for Escalation — why this case cannot be resolved at the current level
+6. Recommended Next Action — specific action, named owner, and deadline
+
+Spec:
+- Internal document only (not customer-facing)
+- Bold all section headers
+- Bullet points for Timeline and What Was Tried
+- 200–250 words total
+
+Performance bar: The receiving agent reads this in under 60 seconds and can act immediately. No critical detail is buried. The recommended action has a clear owner.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Please escalate this ticket. The customer is very upset and we have tried to help but nothing is working. They want to speak to a manager. The issue is related to their account and we have been going back and forth for a few days. Please handle ASAP.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-03">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#03</span>
+          <h2>Bug Report Summary</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Convert a messy, emotional customer email thread into a clean, structured bug report that engineers can immediately act on — with steps to reproduce, environment details, expected vs actual behaviour, and severity.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>A customer reported a bug via support email. The thread contains [N] messages with [description of what customer described]. We have [confirmed / not yet confirmed] the issue. Affected customers: [number or &quot;unknown&quot;].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a technical support specialist who bridges customer-facing support and engineering teams. You write bug reports that engineers trust because they are precise, complete, and free of fluff.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Convert the customer thread (pasted below) into a structured bug report with: title, severity, summary, steps to reproduce, expected behaviour, actual behaviour, environment, affected customers, and any attached evidence.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Engineering ticket format. Use the exact section headers listed. Severity must be one of: P1-Critical / P2-High / P3-Medium / P4-Low with a one-sentence justification. Steps must be numbered. 300 words max.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>An engineer should be able to start investigating immediately using only this report. No ambiguity in steps to reproduce. Severity is justified.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-2" onclick="copyPrompt("Context: I'm a Customer Support agent at [Company Name]. A customer named [Customer Name] reported a bug in our [product/feature name]. Below is the raw customer email thread. I need to convert it into a clean bug report for our engineering team.\n\nKnown context:\n- Issue confirmed by: [us / not yet / another customer also reported]\n- Number of affected customers: [N or \"unknown\"]\n- Environment details if known: [browser, OS, plan type, etc.]\n\nRole: Act as a technical support specialist who writes precise, engineering-ready bug reports from customer emails. Engineers trust your reports because they are unambiguous and complete.\n\nInstruction: Read the thread below and produce a structured bug report with exactly these sections:\n1. Title \u2014 one-line description (verb + what + where)\n2. Severity \u2014 P1/P2/P3/P4 with one-sentence justification\n3. Summary \u2014 2\u20133 sentences describing the issue in plain technical language\n4. Steps to Reproduce \u2014 numbered, starting from a logged-out or clean state\n5. Expected Behaviour \u2014 what should happen\n6. Actual Behaviour \u2014 what actually happens\n7. Environment \u2014 browser, OS, account type, plan, any known conditions\n8. Affected Customers \u2014 count and tier\n9. Evidence Attached \u2014 list any screenshots, logs, or recordings mentioned\n\nSpec:\n- Engineering ticket format\n- No customer-facing language or emotional context\n- Steps must be numbered and start from a reproducible state\n- 300 words maximum\n\nPerformance bar: An engineer can start investigating immediately using only this report. No ambiguity in steps to reproduce. Severity rating is clearly justified.\n\n--- CUSTOMER THREAD ---\n[Paste the full customer email thread here]", 'copy-card-2')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support agent at [Company Name]. A customer named [Customer Name] reported a bug in our [product/feature name]. Below is the raw customer email thread. I need to convert it into a clean bug report for our engineering team.
+
+Known context:
+- Issue confirmed by: [us / not yet / another customer also reported]
+- Number of affected customers: [N or &quot;unknown&quot;]
+- Environment details if known: [browser, OS, plan type, etc.]
+
+Role: Act as a technical support specialist who writes precise, engineering-ready bug reports from customer emails. Engineers trust your reports because they are unambiguous and complete.
+
+Instruction: Read the thread below and produce a structured bug report with exactly these sections:
+1. Title — one-line description (verb + what + where)
+2. Severity — P1/P2/P3/P4 with one-sentence justification
+3. Summary — 2–3 sentences describing the issue in plain technical language
+4. Steps to Reproduce — numbered, starting from a logged-out or clean state
+5. Expected Behaviour — what should happen
+6. Actual Behaviour — what actually happens
+7. Environment — browser, OS, account type, plan, any known conditions
+8. Affected Customers — count and tier
+9. Evidence Attached — list any screenshots, logs, or recordings mentioned
+
+Spec:
+- Engineering ticket format
+- No customer-facing language or emotional context
+- Steps must be numbered and start from a reproducible state
+- 300 words maximum
+
+Performance bar: An engineer can start investigating immediately using only this report. No ambiguity in steps to reproduce. Severity rating is clearly justified.
+
+--- CUSTOMER THREAD ---
+[Paste the full customer email thread here]</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>The customer says the export button isn&#x27;t working. They are frustrated. Please look into this.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-04">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#04</span>
+          <h2>Refund Decision Template</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Draft a refund decision email that communicates the outcome clearly — whether approved, partial, or declined — explains the rationale without being defensive, and preserves customer goodwill regardless of the decision.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Customer [name] requested a refund of [amount] for [reason]. The decision is [approved / partial / declined]. Our refund policy states [key relevant policy point]. The customer&#x27;s account status: [active / cancelled / considering cancelling].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a senior customer support agent with authority to communicate refund decisions. You write these with the confidence of someone who owns the decision, not the hesitancy of someone passing on bad news.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a refund decision email that: states the decision clearly in the first sentence, explains the rationale in plain language, provides next steps for approved refunds or alternatives for declined ones, and closes in a way that preserves the relationship.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Email format with subject line. 150–180 words. Decision in the first sentence — no burying. If declined, offer one concrete alternative. No policy-quoting in legalistic language.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>The customer knows the decision after the first sentence. The rationale is understandable to a non-technical reader. A declined customer still feels respected.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-3" onclick="copyPrompt("Context: I'm a Customer Support Team Lead at [Company Name]. Customer [Customer Name] submitted a refund request for [amount] related to [specific reason \u2014 e.g., \"charged after cancellation\", \"feature not working as advertised\", \"accidental annual purchase\"]. The decision is: [APPROVED in full / APPROVED partially for $X / DECLINED]. Our refund policy relevant to this case: [state the key policy rule in one sentence]. Customer status: [active / cancelled / at churn risk].\n\nRole: Act as a senior customer support agent who owns refund decisions and communicates them with clarity and confidence \u2014 neither defensive nor apologetic, just honest and human.\n\nInstruction: Write a refund decision email that:\n1. States the decision clearly in the first sentence (no burying)\n2. Explains the rationale in plain, non-legalistic language\n3. For approved: gives the refund amount, method, and timeline\n4. For declined: offers one concrete alternative (credit, discount, plan downgrade)\n5. Closes in a way that preserves the relationship\n\nSpec:\n- Email with subject line\n- 150\u2013180 words\n- Decision in sentence one, always\n- No quoting policy in legal language\n- One concrete alternative if declined\n\nPerformance bar: Customer knows the decision after sentence one. Rationale is understandable to anyone. A declined customer still feels respected and has a clear next option.", 'copy-card-3')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support Team Lead at [Company Name]. Customer [Customer Name] submitted a refund request for [amount] related to [specific reason — e.g., &quot;charged after cancellation&quot;, &quot;feature not working as advertised&quot;, &quot;accidental annual purchase&quot;]. The decision is: [APPROVED in full / APPROVED partially for $X / DECLINED]. Our refund policy relevant to this case: [state the key policy rule in one sentence]. Customer status: [active / cancelled / at churn risk].
+
+Role: Act as a senior customer support agent who owns refund decisions and communicates them with clarity and confidence — neither defensive nor apologetic, just honest and human.
+
+Instruction: Write a refund decision email that:
+1. States the decision clearly in the first sentence (no burying)
+2. Explains the rationale in plain, non-legalistic language
+3. For approved: gives the refund amount, method, and timeline
+4. For declined: offers one concrete alternative (credit, discount, plan downgrade)
+5. Closes in a way that preserves the relationship
+
+Spec:
+- Email with subject line
+- 150–180 words
+- Decision in sentence one, always
+- No quoting policy in legal language
+- One concrete alternative if declined
+
+Performance bar: Customer knows the decision after sentence one. Rationale is understandable to anyone. A declined customer still feels respected and has a clear next option.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Dear Customer, thank you for contacting us. We have reviewed your refund request. After careful consideration and in accordance with our Terms of Service, we are unable to process a refund at this time. We appreciate your understanding. If you have further questions, please contact support.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-05">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#05</span>
+          <h2>Follow-Up Sequence Draft</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Draft a 3-email post-resolution follow-up sequence that checks in with the customer, drives CSAT survey responses, and reduces churn risk — without feeling spammy or scripted.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>A support issue for customer [name] was resolved [X days ago]. The issue was [brief description]. The customer&#x27;s sentiment at close was [satisfied / neutral / still slightly frustrated]. Our CSAT survey link: [URL or placeholder].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a customer success-oriented support lead who understands that the follow-up after a resolution is as important as the resolution itself — it&#x27;s where loyalty is built.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a 3-email sequence: Email 1 (Day 1 post-resolution) — check-in and CSAT ask. Email 2 (Day 4) — soft resurface and value nudge. Email 3 (Day 10) — final check-in with a resource offer.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Three separate email drafts with subject lines. Each email 80–120 words. Conversational, human tone — not marketing copy. No email should feel like a mass send. One clear call to action per email.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A customer who was frustrated should want to respond to Email 1. Each email feels personal, not automated. CTAs are clear and low-friction.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-4" onclick="copyPrompt("Context: I'm a Customer Support Team Lead at [Company Name]. We just resolved a support issue for [Customer Name] [N] day(s) ago. The issue was: [brief description of what went wrong and how it was fixed]. The customer's sentiment at close: [satisfied and grateful / neutral / still slightly frustrated but accepted the resolution]. Our CSAT survey link: [URL].\n\nRole: Act as a customer success-oriented support lead who sees the post-resolution follow-up as the moment where loyalty is actually built \u2014 not a checkbox task.\n\nInstruction: Write a 3-email follow-up sequence:\n- Email 1 (Day 1 after resolution): Warm check-in confirming everything is still working. Ask them to fill in the CSAT survey. One clear CTA.\n- Email 2 (Day 4): Resurface gently. Share one relevant tip or resource related to the feature they had trouble with. Soft CTA (reply if anything else comes up).\n- Email 3 (Day 10): Final check-in. Offer to schedule a call or connect them with a success resource if they want a deeper orientation.\n\nSpec:\n- Three separate emails with subject lines\n- Each email 80\u2013120 words\n- Conversational, personal tone \u2014 not marketing copy\n- One clear CTA per email\n- No email should feel like a mass-send\n\nPerformance bar: A frustrated customer wants to respond to Email 1. Each email feels individually written. CTAs are obvious and low-friction.", 'copy-card-4')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support Team Lead at [Company Name]. We just resolved a support issue for [Customer Name] [N] day(s) ago. The issue was: [brief description of what went wrong and how it was fixed]. The customer&#x27;s sentiment at close: [satisfied and grateful / neutral / still slightly frustrated but accepted the resolution]. Our CSAT survey link: [URL].
+
+Role: Act as a customer success-oriented support lead who sees the post-resolution follow-up as the moment where loyalty is actually built — not a checkbox task.
+
+Instruction: Write a 3-email follow-up sequence:
+- Email 1 (Day 1 after resolution): Warm check-in confirming everything is still working. Ask them to fill in the CSAT survey. One clear CTA.
+- Email 2 (Day 4): Resurface gently. Share one relevant tip or resource related to the feature they had trouble with. Soft CTA (reply if anything else comes up).
+- Email 3 (Day 10): Final check-in. Offer to schedule a call or connect them with a success resource if they want a deeper orientation.
+
+Spec:
+- Three separate emails with subject lines
+- Each email 80–120 words
+- Conversational, personal tone — not marketing copy
+- One clear CTA per email
+- No email should feel like a mass-send
+
+Performance bar: A frustrated customer wants to respond to Email 1. Each email feels individually written. CTAs are obvious and low-friction.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Email 1: Hi, we hope your issue is resolved. Please fill in our survey. Email 2: Hi, just checking in. Let us know if you need anything. Email 3: Hi, we hope you are enjoying the product. Contact us anytime.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-06">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#06</span>
+          <h2>Customer Onboarding Email</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Write a warm, structured welcome email to a new customer that sets clear expectations, surfaces the 3 most important first steps, and makes the customer feel like they made the right decision — without overwhelming them with every feature at once.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>A new customer just signed up for [Plan]. They came from [source: trial / migration / referral]. Their primary use case is [what they signed up to do]. Key resources: [login URL, getting-started guide, support email, community link].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a customer success specialist writing the very first email a new customer receives. This email sets the tone for the entire relationship.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a welcome email that: opens with one sentence of genuine welcome (not a feature list), surfaces exactly 3 first steps in numbered format, sets response-time expectations, and ends with a personal invitation to reach out.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Email with subject line. 180–220 words. Warm but professional. Three numbered first steps — no more. One hyperlink per step. Signed by a named human, not &quot;The Team.&quot;</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>The customer completes at least one first step within 24 hours of receiving this email. They don&#x27;t feel overwhelmed. The email feels written by a person.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-5" onclick="copyPrompt("Context: I'm a Customer Support Team Lead at [Company Name]. A new customer named [Customer Name] just signed up for our [Plan Name] plan. They came via [trial conversion / migration from competitor / referral]. Their primary use case based on their signup form: [what they said they want to use the product for]. \n\nKey links:\n- Login: [URL]\n- Getting Started Guide: [URL]\n- Help Centre: [URL]\n- Support email: [email]\n\nRole: Act as a customer success specialist writing the most important email in the customer relationship \u2014 the first one. This sets the tone and determines whether they engage deeply or churn within 30 days.\n\nInstruction: Write a welcome email that:\n1. Opens with one genuine welcoming sentence (not a feature list)\n2. Lists exactly 3 numbered first steps tailored to their use case\n3. Includes one link per step\n4. Sets clear response-time expectation for support\n5. Closes with a personal, low-pressure invitation to reach out\n\nSpec:\n- Email with subject line\n- 180\u2013220 words\n- Warm but professional \u2014 not corporate, not overly casual\n- Three first steps only \u2014 no feature dumping\n- Signed with a named person + title\n\nPerformance bar: Customer completes at least one step within 24 hours. They don't feel overwhelmed. The email reads like it was written by a person who knows their use case.", 'copy-card-5')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support Team Lead at [Company Name]. A new customer named [Customer Name] just signed up for our [Plan Name] plan. They came via [trial conversion / migration from competitor / referral]. Their primary use case based on their signup form: [what they said they want to use the product for]. 
+
+Key links:
+- Login: [URL]
+- Getting Started Guide: [URL]
+- Help Centre: [URL]
+- Support email: [email]
+
+Role: Act as a customer success specialist writing the most important email in the customer relationship — the first one. This sets the tone and determines whether they engage deeply or churn within 30 days.
+
+Instruction: Write a welcome email that:
+1. Opens with one genuine welcoming sentence (not a feature list)
+2. Lists exactly 3 numbered first steps tailored to their use case
+3. Includes one link per step
+4. Sets clear response-time expectation for support
+5. Closes with a personal, low-pressure invitation to reach out
+
+Spec:
+- Email with subject line
+- 180–220 words
+- Warm but professional — not corporate, not overly casual
+- Three first steps only — no feature dumping
+- Signed with a named person + title
+
+Performance bar: Customer completes at least one step within 24 hours. They don&#x27;t feel overwhelmed. The email reads like it was written by a person who knows their use case.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Welcome to [Company]! We are excited to have you on board. You now have access to all our amazing features including dashboards, reports, integrations, automations, and more. Check out our website for tutorials. Our support team is available 24/7. Welcome aboard!</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-07">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#07</span>
+          <h2>Feature Request Acknowledgement</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Acknowledge a customer feature request honestly — validating their use case, confirming it&#x27;s been logged, and setting accurate expectations — without making promises the product team hasn&#x27;t confirmed or dismissing the request with a hollow &quot;we&#x27;ll pass this along.&quot;</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Customer [name] has requested [feature]. Their use case: [what they&#x27;re trying to accomplish]. Current workaround (if any): [describe it]. Product team status on this feature: [on roadmap / not on roadmap / under review / already logged by multiple customers].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a support lead who is trusted by customers because you are honest about what&#x27;s on the roadmap and what isn&#x27;t — you never over-promise and you always follow through on what you say you&#x27;ll do.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a feature request acknowledgement that: confirms the request is logged with a specific reference, validates the use case genuinely, shares the honest product status without over-promising, and offers a workaround if one exists.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Email with subject line. 120–160 words. No &quot;great idea!&quot; hollow praise. No &quot;we&#x27;ll definitely build this&quot; over-commitment. If there&#x27;s no workaround, say so honestly.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>The customer feels heard and trusts that their request was actually logged. Expectations are calibrated correctly. No follow-up email asking &quot;did you get my request?&quot;</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-6" onclick="copyPrompt("Context: I'm a Customer Support Team Lead at [Company Name]. Customer [Customer Name] has submitted a feature request for: [describe the requested feature]. Their stated use case: [what they are trying to accomplish with this feature]. Current product status for this feature: [on roadmap Q3 / not on current roadmap / under review / already logged from 5+ other customers]. Existing workaround: [describe it, or \"no workaround currently exists\"].\n\nRole: Act as a support lead who is trusted because you are honest and accurate \u2014 you don't praise every idea as \"great\" and you don't over-commit on features the product team hasn't confirmed.\n\nInstruction: Write a feature request response email that:\n1. Thanks them briefly (one sentence, no hollow praise)\n2. Confirms the request has been logged with a ticket/reference number\n3. Validates their use case genuinely in one sentence\n4. Shares the honest status of the feature without over-promising\n5. Offers the workaround if one exists\n6. Tells them when/how they'll be updated\n\nSpec:\n- Email with subject line\n- 120\u2013160 words\n- No hollow phrases like \"great idea!\" or \"we'll definitely look into this\"\n- Be honest about roadmap status\n- One clear next step or update mechanism\n\nPerformance bar: Customer feels heard and has calibrated expectations. No follow-up asking \"did you log my request?\" Honest status communicated without burning trust.", 'copy-card-6')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support Team Lead at [Company Name]. Customer [Customer Name] has submitted a feature request for: [describe the requested feature]. Their stated use case: [what they are trying to accomplish with this feature]. Current product status for this feature: [on roadmap Q3 / not on current roadmap / under review / already logged from 5+ other customers]. Existing workaround: [describe it, or &quot;no workaround currently exists&quot;].
+
+Role: Act as a support lead who is trusted because you are honest and accurate — you don&#x27;t praise every idea as &quot;great&quot; and you don&#x27;t over-commit on features the product team hasn&#x27;t confirmed.
+
+Instruction: Write a feature request response email that:
+1. Thanks them briefly (one sentence, no hollow praise)
+2. Confirms the request has been logged with a ticket/reference number
+3. Validates their use case genuinely in one sentence
+4. Shares the honest status of the feature without over-promising
+5. Offers the workaround if one exists
+6. Tells them when/how they&#x27;ll be updated
+
+Spec:
+- Email with subject line
+- 120–160 words
+- No hollow phrases like &quot;great idea!&quot; or &quot;we&#x27;ll definitely look into this&quot;
+- Be honest about roadmap status
+- One clear next step or update mechanism
+
+Performance bar: Customer feels heard and has calibrated expectations. No follow-up asking &quot;did you log my request?&quot; Honest status communicated without burning trust.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Hi, thank you for your feedback! We think this is a great idea. We will pass this along to our product team for consideration. We appreciate your input and hope to implement this in the future. Thank you for being a valued customer!</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-08">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#08</span>
+          <h2>CSAT Score Analysis</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Analyse a batch of CSAT scores and comments to surface the top 3 actionable themes, identify what&#x27;s driving low scores, highlight what&#x27;s working, and produce a summary a manager can present in a team meeting without additional preparation.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>You have [N] CSAT responses from [time period]. Overall score: [X%]. Distribution: [% satisfied / % neutral / % dissatisfied]. The comments are pasted below.</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a customer experience analyst who turns raw CSAT data into clear, actionable insight. You don&#x27;t describe the data — you interpret it and recommend specific actions.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Analyse the CSAT responses and produce: an executive summary (3 sentences), top 3 negative themes with supporting quotes, top 2 positive themes with quotes, one root cause hypothesis for the lowest-scoring area, and 3 prioritised recommended actions.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Report format. Use headers. 400 words max. Each theme needs at least one direct quote from the data. Recommendations must be specific and assigned to a team/owner.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A team lead can present this in a Monday standup without having read the raw comments. Recommendations are specific enough to be turned into Jira tickets or team OKRs.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-7" onclick="copyPrompt("Context: I'm a Customer Support Team Lead at [Company Name]. I have [N] CSAT survey responses from [time period, e.g., \"June 2025\"]. Our overall CSAT score was [X%]. Score distribution: [Y% satisfied (4\u20135 stars) / Z% neutral (3 stars) / W% dissatisfied (1\u20132 stars)]. The comments are pasted below.\n\nRole: Act as a customer experience analyst who interprets CSAT data to produce actionable insight \u2014 not a description of what the data says, but what it means and what to do about it.\n\nInstruction: Analyse the comments below and produce a CSAT analysis report with these sections:\n1. Executive Summary \u2014 3 sentences: overall score, top problem, top strength\n2. Top 3 Negative Themes \u2014 each with: theme name, number of mentions, one direct quote\n3. Top 2 Positive Themes \u2014 each with: theme name, number of mentions, one direct quote\n4. Root Cause Hypothesis \u2014 for the top negative theme, what might be causing it (process / product / people)\n5. Recommended Actions \u2014 3 specific actions, each with: action, expected impact, owner, priority\n\nSpec:\n- Report format with bold headers\n- 400 words maximum\n- Each theme must include at least one direct quote from the data\n- Recommendations must be specific (not \"improve communication\") and assigned to a team\n- Priority: High / Medium / Low\n\nPerformance bar: A team lead can present this in a Monday meeting without reading the raw comments. Recommendations can be turned directly into action items or Jira tickets.\n\n--- CSAT COMMENTS ---\n[Paste all CSAT comments here, one per line, with score if available]", 'copy-card-7')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support Team Lead at [Company Name]. I have [N] CSAT survey responses from [time period, e.g., &quot;June 2025&quot;]. Our overall CSAT score was [X%]. Score distribution: [Y% satisfied (4–5 stars) / Z% neutral (3 stars) / W% dissatisfied (1–2 stars)]. The comments are pasted below.
+
+Role: Act as a customer experience analyst who interprets CSAT data to produce actionable insight — not a description of what the data says, but what it means and what to do about it.
+
+Instruction: Analyse the comments below and produce a CSAT analysis report with these sections:
+1. Executive Summary — 3 sentences: overall score, top problem, top strength
+2. Top 3 Negative Themes — each with: theme name, number of mentions, one direct quote
+3. Top 2 Positive Themes — each with: theme name, number of mentions, one direct quote
+4. Root Cause Hypothesis — for the top negative theme, what might be causing it (process / product / people)
+5. Recommended Actions — 3 specific actions, each with: action, expected impact, owner, priority
+
+Spec:
+- Report format with bold headers
+- 400 words maximum
+- Each theme must include at least one direct quote from the data
+- Recommendations must be specific (not &quot;improve communication&quot;) and assigned to a team
+- Priority: High / Medium / Low
+
+Performance bar: A team lead can present this in a Monday meeting without reading the raw comments. Recommendations can be turned directly into action items or Jira tickets.
+
+--- CSAT COMMENTS ---
+[Paste all CSAT comments here, one per line, with score if available]</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Customers are generally happy but some have concerns about response times. Many appreciate the helpfulness of agents. There are also comments about the product. Overall, feedback is mixed.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-09">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#09</span>
+          <h2>Out-of-Office Policy Note</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Write a clear, friendly communication to customers explaining support availability, response-time SLAs by plan tier, escalation paths for urgent issues, and what to do if they need help outside business hours — without making it sound like a legal disclaimer.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Your support team covers [hours]. You are [explaining new hours / communicating holiday coverage / setting expectations for a new customer segment]. SLAs by plan: [list them]. Emergency/urgent path: [describe it].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a support team lead communicating operationally important information in a way that&#x27;s clear and reassuring — not defensive or bureaucratic.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a policy note that: states availability hours upfront, lists response-time commitments by plan in a scannable format, explains what counts as &quot;urgent&quot; and how to escalate, and closes with a warm reassurance.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Email or help-centre format. 180–220 words. Scannable — use a small table for SLA tiers. Plain language, no jargon. Not a legal document.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A customer reading this in 30 seconds should know: when to expect a reply, how to escalate something urgent, and that the team is accessible. No anxiety-inducing ambiguity.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-8" onclick="copyPrompt("Context: I'm a Customer Support Team Lead at [Company Name]. I need to communicate our support availability and response-time SLAs to [new customers / all customers / customers asking about holiday hours]. Our current coverage:\n- Support hours: [e.g., Monday\u2013Friday, 9am\u20136pm UTC]\n- Holiday / out-of-office dates: [list any, or \"none currently\"]\n- Response SLAs by plan:\n  - Free: [X business days]\n  - Pro: [Y business hours]\n  - Enterprise: [Z hours, 24/5]\n- Urgent/emergency path: [e.g., \"mark subject line URGENT for priority triage\" or \"use in-app emergency chat\"]\n\nRole: Act as a support team lead communicating important operational information in a way that's reassuring and human \u2014 not a terms-of-service bot.\n\nInstruction: Write a clear availability and SLA communication that:\n1. States support hours and timezone upfront\n2. Presents response-time commitments in a scannable table by plan\n3. Explains what qualifies as \"urgent\" and how to escalate it\n4. Reassures customers on lower-tier plans that they still matter\n5. Closes warmly\n\nSpec:\n- Email or help-centre article format\n- 180\u2013220 words\n- SLA commitments in a small table (not buried in prose)\n- Plain language \u2014 no legal/compliance tone\n- Warm, accessible close\n\nPerformance bar: Customer reads this in 30 seconds and knows exactly when to expect a reply and how to escalate something urgent. No ambiguity.", 'copy-card-8')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support Team Lead at [Company Name]. I need to communicate our support availability and response-time SLAs to [new customers / all customers / customers asking about holiday hours]. Our current coverage:
+- Support hours: [e.g., Monday–Friday, 9am–6pm UTC]
+- Holiday / out-of-office dates: [list any, or &quot;none currently&quot;]
+- Response SLAs by plan:
+  - Free: [X business days]
+  - Pro: [Y business hours]
+  - Enterprise: [Z hours, 24/5]
+- Urgent/emergency path: [e.g., &quot;mark subject line URGENT for priority triage&quot; or &quot;use in-app emergency chat&quot;]
+
+Role: Act as a support team lead communicating important operational information in a way that&#x27;s reassuring and human — not a terms-of-service bot.
+
+Instruction: Write a clear availability and SLA communication that:
+1. States support hours and timezone upfront
+2. Presents response-time commitments in a scannable table by plan
+3. Explains what qualifies as &quot;urgent&quot; and how to escalate it
+4. Reassures customers on lower-tier plans that they still matter
+5. Closes warmly
+
+Spec:
+- Email or help-centre article format
+- 180–220 words
+- SLA commitments in a small table (not buried in prose)
+- Plain language — no legal/compliance tone
+- Warm, accessible close
+
+Performance bar: Customer reads this in 30 seconds and knows exactly when to expect a reply and how to escalate something urgent. No ambiguity.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Our support team is available during business hours. We aim to respond as quickly as possible. Please note that response times may vary. For urgent issues, please contact us and we will do our best to prioritise your request. Thank you for your patience.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-10">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#10</span>
+          <h2>KB Article Draft</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Turn a resolved support thread into a publishable knowledge base article that helps future customers solve the same problem themselves — reducing repeat tickets and improving self-serve deflection rates.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>A support ticket for [issue] was resolved by [solution]. The thread contains [N] messages. The issue appears [frequency — e.g., &quot;3+ times this month&quot;]. Target audience: [all users / Pro plan / technical admins].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a technical writer who specialises in customer-facing knowledge base content. You write articles that are clear enough for a non-technical user but precise enough for a technical one.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a knowledge base article with: a clear title optimised for search, a one-paragraph &quot;What this article covers&quot; intro, prerequisite or conditions, numbered step-by-step resolution instructions, a &quot;Why this happens&quot; explanation, and a &quot;Still having issues?&quot; closing section.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>KB article format. Use headers. Steps numbered. 350–450 words. Written for the customer, not the support agent. No internal jargon. SEO-friendly title (includes the error or symptom, not the internal ticket description).</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A customer who finds this article via search should be able to resolve the issue without contacting support. &quot;Still having issues?&quot; section reduces bounce-to-ticket rate.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-9" onclick="copyPrompt("Context: I'm a Customer Support Team Lead at [Company Name]. We've resolved a support ticket involving [issue description]. The fix was: [what the solution was]. This issue has come up [N times] in the past [30 days / 3 months]. Target readers: [all users / Pro plan users / workspace admins / developers]. \n\nThe original customer thread is pasted below for reference.\n\nRole: Act as a technical writer who writes knowledge base articles that help customers solve problems without contacting support. Your articles are clear for non-technical users and precise for technical ones.\n\nInstruction: Write a KB article with exactly these sections:\n1. Title \u2014 SEO-friendly, includes the symptom or error message the customer would search for (not internal ticket language)\n2. What This Article Covers \u2014 2\u20133 sentence intro describing who this is for and what they'll be able to do after reading\n3. Before You Start \u2014 any prerequisites, required permissions, or conditions\n4. Steps to Resolve \u2014 numbered steps from the customer's perspective, starting from where they'd naturally begin\n5. Why This Happens \u2014 a plain-language explanation of the root cause\n6. Still Having Issues? \u2014 2\u20133 options: try X, check Y, contact support at Z\n\nSpec:\n- KB article format with bold headers\n- 350\u2013450 words\n- Written for the customer, not internal agents\n- No internal terminology or ticket IDs\n- SEO-optimised title (use the words a customer would type into Google)\n\nPerformance bar: A customer who finds this via search solves the problem without emailing support. The \"Still Having Issues?\" section is specific enough to resolve 80% of edge cases without a ticket.\n\n--- SUPPORT THREAD ---\n[Paste the resolved support thread here]", 'copy-card-9')">Copy</button>
+            <pre>Context: I&#x27;m a Customer Support Team Lead at [Company Name]. We&#x27;ve resolved a support ticket involving [issue description]. The fix was: [what the solution was]. This issue has come up [N times] in the past [30 days / 3 months]. Target readers: [all users / Pro plan users / workspace admins / developers]. 
+
+The original customer thread is pasted below for reference.
+
+Role: Act as a technical writer who writes knowledge base articles that help customers solve problems without contacting support. Your articles are clear for non-technical users and precise for technical ones.
+
+Instruction: Write a KB article with exactly these sections:
+1. Title — SEO-friendly, includes the symptom or error message the customer would search for (not internal ticket language)
+2. What This Article Covers — 2–3 sentence intro describing who this is for and what they&#x27;ll be able to do after reading
+3. Before You Start — any prerequisites, required permissions, or conditions
+4. Steps to Resolve — numbered steps from the customer&#x27;s perspective, starting from where they&#x27;d naturally begin
+5. Why This Happens — a plain-language explanation of the root cause
+6. Still Having Issues? — 2–3 options: try X, check Y, contact support at Z
+
+Spec:
+- KB article format with bold headers
+- 350–450 words
+- Written for the customer, not internal agents
+- No internal terminology or ticket IDs
+- SEO-optimised title (use the words a customer would type into Google)
+
+Performance bar: A customer who finds this via search solves the problem without emailing support. The &quot;Still Having Issues?&quot; section is specific enough to resolve 80% of edge cases without a ticket.
+
+--- SUPPORT THREAD ---
+[Paste the resolved support thread here]</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>The CSV export bug has been fixed. To resolve this issue, clear your cache. If you still have problems, contact support.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Forgemind AI · Claude Course · HO3 · <a href="https://github.com/Forgemind-git/ho3-prompt-library" style="color:inherit">github.com/Forgemind-git/ho3-prompt-library</a></footer>
+
+  <script>
+    function copyPrompt(text, btnId) {
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById(btnId);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        // fallback
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        var btn = document.getElementById(btnId);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

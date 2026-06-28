@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HO3 · Financial Analyst Prompt Library</title>
+  <style>
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#F8F9FA; color:#1a1a2e; }
+:root { --color: #059669; }
+header { background: var(--color); color:#fff; padding:40px 32px 32px; position:relative; }
+header .badge { font-size:13px; font-weight:700; letter-spacing:.08em; opacity:.8; text-transform:uppercase; margin-bottom:8px; }
+header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
+header p { font-size:15px; opacity:.85; max-width:640px; line-height:1.6; }
+.sub-bar { background:#fff; border-left:4px solid var(--color); padding:14px 20px; margin:24px 32px; border-radius:4px; font-size:14px; color:#374151; line-height:1.6; box-shadow:0 1px 4px rgba(0,0,0,.07); }
+.sub-bar strong { color:var(--color); }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:0 32px 40px; }
+.card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
+.card:hover { box-shadow:0 4px 16px rgba(0,0,0,.13); }
+.card-top { background:var(--color); padding:14px 18px; display:flex; align-items:center; gap:10px; }
+.card-num { background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 9px; }
+.card-top h3 { color:#fff; font-size:14.5px; font-weight:700; }
+.card-body { padding:16px 18px; }
+.card-body p { font-size:13px; color:#4B5563; line-height:1.6; margin-bottom:14px; }
+.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:var(--color); color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; border:none; }
+.btn:hover { opacity:.88; }
+footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:8px; }
+@media(max-width:580px){ .grid{ grid-template-columns:1fr; padding:0 14px 28px; } header{ padding:24px 16px; } .sub-bar{ margin:14px 14px; } }
+
+
+.prompt-section { padding:0 32px 40px; display:flex; flex-direction:column; gap:28px; }
+.prompt-card { background:#fff; border-radius:12px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
+.prompt-card:hover { box-shadow:0 4px 18px rgba(0,0,0,.12); }
+.prompt-header { background:var(--color); padding:18px 22px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.prompt-title-wrap { flex:1; }
+.prompt-num { display:inline-block; background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 10px; margin-bottom:6px; }
+.prompt-header h2 { color:#fff; font-size:18px; font-weight:800; line-height:1.3; }
+.prompt-header .open-btn { background:rgba(255,255,255,.2); color:#fff; text-decoration:none; padding:8px 14px; border-radius:6px; font-size:13px; font-weight:600; white-space:nowrap; border:1px solid rgba(255,255,255,.4); flex-shrink:0; }
+.prompt-header .open-btn:hover { background:rgba(255,255,255,.35); }
+.prompt-body { padding:22px; }
+.prompt-purpose { font-size:14px; color:#374151; line-height:1.65; margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid #F3F4F6; }
+.crisp-section { margin-bottom:20px; }
+.crisp-section h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--color); margin-bottom:10px; }
+.crisp-table { width:100%; border-collapse:collapse; font-size:13px; }
+.crisp-table tr:nth-child(odd) td { background:#F9FAFB; }
+.crisp-table td { padding:8px 12px; vertical-align:top; border:1px solid #E5E7EB; line-height:1.55; }
+.crisp-table td:first-child { font-weight:700; color:#1f2937; white-space:nowrap; width:110px; }
+.crisp-table td:last-child { color:#374151; }
+.full-prompt-section h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#6B7280; margin-bottom:10px; }
+.prompt-code-wrap { position:relative; background:#1e1e2e; border-radius:8px; overflow:hidden; }
+.prompt-code-wrap pre { padding:18px 52px 18px 18px; font-family: 'Courier New', Courier, monospace; font-size:13px; line-height:1.65; color:#cdd6f4; overflow-x:auto; white-space:pre-wrap; word-break:break-word; max-height:340px; overflow-y:auto; }
+.copy-btn { position:absolute; top:10px; right:10px; background:rgba(255,255,255,.12); color:#cdd6f4; border:1px solid rgba(255,255,255,.2); border-radius:6px; padding:5px 11px; font-size:12px; font-weight:600; cursor:pointer; z-index:10; }
+.copy-btn:hover { background:rgba(255,255,255,.22); }
+.copy-btn.copied { background:var(--color); color:#fff; border-color:var(--color); }
+.before-after { margin-top:20px; padding-top:20px; border-top:1px solid #F3F4F6; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.ba-block h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px; }
+.ba-block.before h4 { color:#DC2626; }
+.ba-block.after h4 { color:var(--color); }
+.ba-block blockquote { font-size:13px; line-height:1.6; color:#374151; background:#F9FAFB; border-left:3px solid #E5E7EB; padding:10px 14px; border-radius:0 6px 6px 0; }
+.ba-block.before blockquote { border-left-color:#FCA5A5; }
+.ba-block.after blockquote { border-left-color:var(--color); }
+.header-actions { position:absolute; top:28px; right:32px; display:flex; gap:10px; align-items:center; }
+.back-btn { background:rgba(255,255,255,.18); color:#fff; text-decoration:none; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,.35); }
+.back-btn:hover { background:rgba(255,255,255,.28); }
+.open-claude-btn { background:#fff; color:var(--color); text-decoration:none; padding:9px 18px; border-radius:6px; font-size:13px; font-weight:700; }
+.open-claude-btn:hover { opacity:.9; }
+@media(max-width:680px){ .before-after{ grid-template-columns:1fr; } .prompt-section{ padding:0 14px 28px; } .prompt-header{ flex-direction:column; } .header-actions{ position:static; flex-wrap:wrap; margin-top:14px; } }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-actions">
+      <a href="../../index.html" class="back-btn">← All Libraries</a>
+      <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-claude-btn">Open Claude.ai →</a>
+    </div>
+    <div class="badge">HO3 · Prompt Engineering Library · Sample 05</div>
+    <h1>Financial Analyst Prompt Library</h1>
+    <p>Role: Financial Analyst / Finance Business Partner · 10 CRISP-structured prompts ready to copy into Claude.ai</p>
+  </header>
+
+  <div class="sub-bar">
+    <strong>No API key needed.</strong> Click "Open Claude.ai →" on any card, then copy the prompt, fill in the <code>[BRACKET]</code> placeholders, and paste it into your Claude.ai chat.
+  </div>
+
+  <div class="prompt-section">
+    
+    <div class="prompt-card" id="prompt-01">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#01</span>
+          <h2>Variance Analysis Explanation</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Translate a budget vs actual variance into plain language that a business leader (non-financial) can understand and act on — with root cause, business impact, and a recommended response — without turning it into a spreadsheet lecture.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Report period: [month/quarter]. Budget: $[X]. Actual: $[Y]. Variance: $[Z] ([favorable/unfavorable], [%]). Root cause breakdown: [list the drivers]. Audience: [department head / CEO / board].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a financial analyst who translates numbers into narrative — you know that a CFO doesn&#x27;t need the variance explained, but the operations director does, and you adjust accordingly.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a variance explanation with: headline finding in one sentence, root cause breakdown (quantified), business impact, and recommended management response.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Written explanation, not a table. 200–250 words. Numbers first, narrative second. Audience-calibrated language (adjust jargon level based on audience). Recommended response must be specific.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A non-financial department head reads this and understands what happened, why, and what they should do. No financial jargon unexplained. One specific recommendation they can act on this week.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-0" onclick="copyPrompt("Context: I'm a financial analyst at [Company Name] preparing a variance analysis explanation for [period \u2014 e.g., \"Q2 2025\" or \"June 2025\"]. \n- Budget: $[X]\n- Actual: $[Y]  \n- Variance: $[Z] [favorable (F) / unfavorable (U)]\n- Variance %: [X%]\n- Root causes of variance (be specific with $ amounts for each cause):\n  1. [Cause 1 \u2014 e.g., \"Higher than budgeted headcount costs: +$45,000 due to 2 unplanned contractor engagements\"]\n  2. [Cause 2]\n  3. [Cause 3 if applicable]\n- Audience: [e.g., \"Marketing department head with no formal finance background\" / \"CFO\" / \"Board of Directors\"]\n- What decision this analysis is informing: [e.g., \"Q3 budget reforecast\" / \"approving additional headcount\" / \"board budget review\"]\n\nRole: Act as a financial analyst who writes variance explanations for non-financial leaders \u2014 you translate numbers into business language without dumbing things down, and you always include a clear \"so what\" and \"what to do about it.\"\n\nInstruction: Write a variance explanation with:\n1. Headline \u2014 one sentence: what happened, how big, favorable or not\n2. Root Cause Breakdown \u2014 explain each driver in plain language, with the $ amount; use business language not accounting language\n3. Business Impact \u2014 what this variance means for the business (cash, headcount, future quarters)\n4. Recommended Response \u2014 one specific, actionable recommendation for the audience to consider\n5. Watch for Next Period \u2014 one thing to monitor that could affect the trend\n\nSpec:\n- Written explanation (not a table or slides)\n- 200\u2013250 words\n- Numbers before narrative in each section\n- Adjust jargon level to the audience described\n- Recommended response must be specific and actionable\n\nPerformance bar: Non-financial audience reads this and understands what happened without asking follow-up questions about the numbers. Recommended response is specific enough to discuss in a meeting.", 'copy-card-0')">Copy</button>
+            <pre>Context: I&#x27;m a financial analyst at [Company Name] preparing a variance analysis explanation for [period — e.g., &quot;Q2 2025&quot; or &quot;June 2025&quot;]. 
+- Budget: $[X]
+- Actual: $[Y]  
+- Variance: $[Z] [favorable (F) / unfavorable (U)]
+- Variance %: [X%]
+- Root causes of variance (be specific with $ amounts for each cause):
+  1. [Cause 1 — e.g., &quot;Higher than budgeted headcount costs: +$45,000 due to 2 unplanned contractor engagements&quot;]
+  2. [Cause 2]
+  3. [Cause 3 if applicable]
+- Audience: [e.g., &quot;Marketing department head with no formal finance background&quot; / &quot;CFO&quot; / &quot;Board of Directors&quot;]
+- What decision this analysis is informing: [e.g., &quot;Q3 budget reforecast&quot; / &quot;approving additional headcount&quot; / &quot;board budget review&quot;]
+
+Role: Act as a financial analyst who writes variance explanations for non-financial leaders — you translate numbers into business language without dumbing things down, and you always include a clear &quot;so what&quot; and &quot;what to do about it.&quot;
+
+Instruction: Write a variance explanation with:
+1. Headline — one sentence: what happened, how big, favorable or not
+2. Root Cause Breakdown — explain each driver in plain language, with the $ amount; use business language not accounting language
+3. Business Impact — what this variance means for the business (cash, headcount, future quarters)
+4. Recommended Response — one specific, actionable recommendation for the audience to consider
+5. Watch for Next Period — one thing to monitor that could affect the trend
+
+Spec:
+- Written explanation (not a table or slides)
+- 200–250 words
+- Numbers before narrative in each section
+- Adjust jargon level to the audience described
+- Recommended response must be specific and actionable
+
+Performance bar: Non-financial audience reads this and understands what happened without asking follow-up questions about the numbers. Recommended response is specific enough to discuss in a meeting.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>The budget variance for the period was $50,000 unfavorable. This was due to higher than expected costs across several line items. Management should review spending and implement cost controls to ensure future compliance with the budget.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-02">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#02</span>
+          <h2>Board Slide Narrative</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Write the spoken narrative script for financial board slides so the numbers tell a coherent, persuasive story — not a recitation of what&#x27;s already on the slide. The narrative should answer &quot;so what?&quot; for every number shown.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Board meeting: [date, context — Q2 review / budget approval / fundraising update]. Company stage: [startup / growth / mature]. Key slides to script: [describe what&#x27;s on each slide]. Target narrative tone: [confident and optimistic / cautious and transparent / turnaround story].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a CFO-calibre communicator who knows that board members don&#x27;t need you to read the slides — they need you to tell them what the numbers mean and what management plans to do about them.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a spoken narrative script for [N] financial slides, with: an opening statement that sets the financial story for the meeting, one paragraph per slide that adds insight beyond what&#x27;s visible, and a closing that frames the ask or key decision.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Script format. Each slide section clearly numbered. 60–90 seconds of spoken delivery per slide (130–160 words). Total narrative: [N slides x 150 words]. Opening 30 seconds sets the overall financial story.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A CFO delivering this script adds no unrehearsed insights — every key point is in the narrative. Board members leave understanding the headline for each slide and the one decision or implication to carry away.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-1" onclick="copyPrompt("Context: I'm preparing the narrative script for [N] financial slides for a board meeting on [date]. \n- Company: [name and stage \u2014 e.g., \"Series B SaaS, 3 years old, $8M ARR\"]\n- Meeting context: [Q2 financial review / budget approval / investor update / turnaround review]\n- Overall financial story for this meeting: [what is the one headline that should define this presentation \u2014 e.g., \"strong revenue growth with cost discipline\" / \"Q2 miss explained with clear path to recovery\" / \"requesting budget for strategic investment with clear ROI\"]\n\nSlides to script (describe each one):\nSlide 1: [what's on it \u2014 e.g., \"Revenue: $8.2M ARR, up 38% YoY; chart showing monthly revenue trend\"]\nSlide 2: [what's on it]\nSlide 3: [what's on it]\n[Add slides as needed]\n\nRole: Act as a CFO who scripts board presentations. You know board members have already seen the numbers \u2014 your script's job is to add the \"so what\" and the \"what we plan to do about it\" for each slide.\n\nInstruction: Write a board slide narrative with:\n1. Opening Statement (30 seconds / 80 words) \u2014 set the overall financial story for this meeting in a single clear narrative\n2. Slide Scripts (60\u201390 seconds each / 130\u2013160 words per slide) \u2014 for each slide: state the headline finding, explain what it means for the business, note any risk or nuance, and state management's response or implication\n3. Closing (30 seconds / 80 words) \u2014 frame the key ask, decision, or takeaway for this board meeting\n\nSpec:\n- Script format, slides numbered\n- 130\u2013160 words per slide\n- Opening and closing at 80 words each\n- Narrative adds insight beyond what's visible on the slide\n- No \"as you can see on this slide...\"\n\nPerformance bar: Script is deliverable with minimal rehearsal. Board members understand the financial story and key decision without seeing the slides. Every \"so what\" is answered.", 'copy-card-1')">Copy</button>
+            <pre>Context: I&#x27;m preparing the narrative script for [N] financial slides for a board meeting on [date]. 
+- Company: [name and stage — e.g., &quot;Series B SaaS, 3 years old, $8M ARR&quot;]
+- Meeting context: [Q2 financial review / budget approval / investor update / turnaround review]
+- Overall financial story for this meeting: [what is the one headline that should define this presentation — e.g., &quot;strong revenue growth with cost discipline&quot; / &quot;Q2 miss explained with clear path to recovery&quot; / &quot;requesting budget for strategic investment with clear ROI&quot;]
+
+Slides to script (describe each one):
+Slide 1: [what&#x27;s on it — e.g., &quot;Revenue: $8.2M ARR, up 38% YoY; chart showing monthly revenue trend&quot;]
+Slide 2: [what&#x27;s on it]
+Slide 3: [what&#x27;s on it]
+[Add slides as needed]
+
+Role: Act as a CFO who scripts board presentations. You know board members have already seen the numbers — your script&#x27;s job is to add the &quot;so what&quot; and the &quot;what we plan to do about it&quot; for each slide.
+
+Instruction: Write a board slide narrative with:
+1. Opening Statement (30 seconds / 80 words) — set the overall financial story for this meeting in a single clear narrative
+2. Slide Scripts (60–90 seconds each / 130–160 words per slide) — for each slide: state the headline finding, explain what it means for the business, note any risk or nuance, and state management&#x27;s response or implication
+3. Closing (30 seconds / 80 words) — frame the key ask, decision, or takeaway for this board meeting
+
+Spec:
+- Script format, slides numbered
+- 130–160 words per slide
+- Opening and closing at 80 words each
+- Narrative adds insight beyond what&#x27;s visible on the slide
+- No &quot;as you can see on this slide...&quot;
+
+Performance bar: Script is deliverable with minimal rehearsal. Board members understand the financial story and key decision without seeing the slides. Every &quot;so what&quot; is answered.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Good morning everyone. Today I&#x27;d like to present our financial results. As you can see on Slide 1, our revenue was $8.2 million. This is an increase from last year. On Slide 2, our costs were $6.5 million. We are working to control costs going forward.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-03">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#03</span>
+          <h2>Budget Commentary Draft</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Draft a monthly or quarterly budget commentary that gives department heads and senior leadership a clear picture of financial performance, the key drivers of variance, and management&#x27;s response — written for a business audience, not an accounting one.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Period: [month/quarter]. Company/division: [name]. Overall result: [budget vs actual, $ and %]. Key variance drivers: [list]. Significant events this period: [new hires, contracts, one-offs]. Audience: [leadership team / department heads / board].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a finance business partner who writes budget commentary that business leaders read — not a finance team memo that gets skimmed for the bottom line.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a budget commentary with: executive summary (3 sentences), P&amp;L headline results, key variance explanations by category, year-to-date tracking, and outlook for next period.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Management commentary format. 350–400 words. Numbers in bold where significant. Each major variance explained in 2–3 sentences maximum — business language, not accounting. No columns of numbers — this is narrative.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A department head reads this in 3 minutes and knows: the overall result, why variance occurred, and what to expect next month. No unexplained acronyms. No tables — pure narrative commentary.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-2" onclick="copyPrompt("Context: I'm a financial analyst at [Company / Division Name] preparing the [month / quarter] [year] budget commentary. Audience: [leadership team / department heads / board / investors].\n\nFinancial results for [period]:\n- Revenue: Budget $[X] | Actual $[Y] | Variance: $[Z] [F/U] ([%])\n- Operating costs: Budget $[X] | Actual $[Y] | Variance: $[Z] [F/U] ([%])\n- EBITDA / Net income: Budget $[X] | Actual $[Y] | Variance: $[Z] [F/U] ([%])\n- YTD revenue: $[X] vs Budget $[Y] (ahead / behind by $[Z])\n\nKey variance drivers (with $):\n1. [Driver 1 \u2014 e.g., \"Revenue: New Enterprise contract signed late \u2014 $40K deferred to July\"]\n2. [Driver 2 \u2014 e.g., \"Costs: R&D headcount +2 vs plan \u2014 $25K unfavorable\"]\n3. [Driver 3 if applicable]\n\nSignificant events this period: [e.g., new product launch, key customer loss, M&A, restructuring, one-off items]\nOutlook for next period: [describe expected changes \u2014 e.g., \"deferred revenue recognises in July; headcount spend stabilises\"]\n\nRole: Act as a finance business partner who writes budget commentary that business leaders actually read \u2014 narrative that explains performance in business terms, not accounting language.\n\nInstruction: Write a management budget commentary with:\n1. Executive Summary \u2014 3 sentences: overall result, headline driver, one forward-looking statement\n2. Revenue Commentary \u2014 2\u20133 sentences on revenue performance and key drivers\n3. Cost Commentary \u2014 2\u20133 sentences on the major cost variances and whether they are structural or one-off\n4. EBITDA / Bottom Line \u2014 1\u20132 sentences on the net result and what it means\n5. Year-to-Date Tracking \u2014 brief statement of YTD position and whether we're on track for the full year\n6. Outlook \u2014 2\u20133 sentences on what to expect next period and any key decisions or events that will affect performance\n\nSpec:\n- Management commentary narrative format (no tables)\n- 350\u2013400 words\n- Numbers in bold where significant\n- Business language \u2014 explain \"EBITDA\" if the audience isn't finance-trained\n- No unexplained acronyms\n\nPerformance bar: Department head reads this in 3 minutes and knows the overall result, why it happened, and what to expect next month. No financial jargon that a non-finance leader can't follow.", 'copy-card-2')">Copy</button>
+            <pre>Context: I&#x27;m a financial analyst at [Company / Division Name] preparing the [month / quarter] [year] budget commentary. Audience: [leadership team / department heads / board / investors].
+
+Financial results for [period]:
+- Revenue: Budget $[X] | Actual $[Y] | Variance: $[Z] [F/U] ([%])
+- Operating costs: Budget $[X] | Actual $[Y] | Variance: $[Z] [F/U] ([%])
+- EBITDA / Net income: Budget $[X] | Actual $[Y] | Variance: $[Z] [F/U] ([%])
+- YTD revenue: $[X] vs Budget $[Y] (ahead / behind by $[Z])
+
+Key variance drivers (with $):
+1. [Driver 1 — e.g., &quot;Revenue: New Enterprise contract signed late — $40K deferred to July&quot;]
+2. [Driver 2 — e.g., &quot;Costs: R&amp;D headcount +2 vs plan — $25K unfavorable&quot;]
+3. [Driver 3 if applicable]
+
+Significant events this period: [e.g., new product launch, key customer loss, M&amp;A, restructuring, one-off items]
+Outlook for next period: [describe expected changes — e.g., &quot;deferred revenue recognises in July; headcount spend stabilises&quot;]
+
+Role: Act as a finance business partner who writes budget commentary that business leaders actually read — narrative that explains performance in business terms, not accounting language.
+
+Instruction: Write a management budget commentary with:
+1. Executive Summary — 3 sentences: overall result, headline driver, one forward-looking statement
+2. Revenue Commentary — 2–3 sentences on revenue performance and key drivers
+3. Cost Commentary — 2–3 sentences on the major cost variances and whether they are structural or one-off
+4. EBITDA / Bottom Line — 1–2 sentences on the net result and what it means
+5. Year-to-Date Tracking — brief statement of YTD position and whether we&#x27;re on track for the full year
+6. Outlook — 2–3 sentences on what to expect next period and any key decisions or events that will affect performance
+
+Spec:
+- Management commentary narrative format (no tables)
+- 350–400 words
+- Numbers in bold where significant
+- Business language — explain &quot;EBITDA&quot; if the audience isn&#x27;t finance-trained
+- No unexplained acronyms
+
+Performance bar: Department head reads this in 3 minutes and knows the overall result, why it happened, and what to expect next month. No financial jargon that a non-finance leader can&#x27;t follow.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>June 2025 Budget Commentary. Revenue was $800K vs budget of $850K. Costs were $600K vs budget of $580K. EBITDA was $200K vs budget of $270K. Variances were driven by lower revenue and higher costs. The team will work to improve performance next month.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-04">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#04</span>
+          <h2>Forecast Assumption Document</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Document the assumptions underpinning a financial forecast in a structured, auditable format — so anyone who picks up the model in six months can understand why the numbers were set the way they were, and any change to an assumption can be traced back to its owner.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Forecast: [type — annual budget / quarterly reforecast / project model]. Company: [name, stage]. Period covered: [dates]. Key assumptions to document: [list the main drivers].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a financial planning analyst who knows that undocumented assumptions are a model risk — you document them with the rigour of someone who knows an auditor will review this in 12 months.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Create a forecast assumption document with: assumption name, category, value/range, basis for the assumption, owner, sensitivity (how much does the forecast change if this assumption is wrong by 10%?), and last reviewed date.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Assumption register format. Table for structured fields. Brief narrative justification per assumption (2–3 sentences). Sensitivity column is required — not optional.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>An auditor picks up this document 12 months after the forecast was built and can understand why every major assumption was made without interviewing anyone. Every assumption has an owner.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-3" onclick="copyPrompt("Context: I'm documenting the assumptions for [Company Name]'s [forecast type \u2014 e.g., \"FY2026 Annual Budget\" / \"Q3 2025 Reforecast\" / \"3-Year Strategic Plan\"]. The forecast covers [period]. \n\nKey assumptions to document (list each one \u2014 the AI will structure them, you provide the inputs):\n1. [Assumption 1 \u2014 e.g., \"Revenue growth rate: 35% YoY\"]\n2. [Assumption 2 \u2014 e.g., \"Gross margin: 78%\"]\n3. [Assumption 3 \u2014 e.g., \"Headcount additions: 12 FTEs across Sales and Engineering\"]\n4. [Continue for all major assumptions]\n\nFor each assumption, provide where possible:\n- The assumption value or range\n- The basis for it (historical trend / market data / management decision / contract)\n- Who owns it (which team or person is accountable)\n\nRole: Act as a financial planning analyst who documents assumptions with auditor-grade rigour \u2014 you treat undocumented assumptions as a model risk, not an administrative task.\n\nInstruction: Create a forecast assumption document with:\n1. Document Header \u2014 company, forecast name, period, author, date, version\n2. Assumption Register \u2014 for each assumption provided:\n   - Assumption name and category (Revenue / Costs / Headcount / Other)\n   - Value / range\n   - Basis (2\u20133 sentences: what data or rationale justifies this number)\n   - Owner (team or named individual)\n   - Sensitivity: what happens to the forecast if this assumption is 10% higher or lower\n   - Last reviewed date\n3. Key Risks Section \u2014 top 3 assumptions where the sensitivity impact is highest\n4. Revision Log \u2014 table for tracking future changes to assumptions\n\nSpec:\n- Assumption register as a table\n- Basis in 2\u20133 sentences per assumption (not a single word)\n- Sensitivity column required for all assumptions\n- 300\u2013350 words for the narrative sections\n- Formal document format with version control\n\nPerformance bar: An auditor 12 months from now understands why every assumption was made without interviewing anyone. Every assumption has an owner. Sensitivity is quantified, not described as \"high/low.\"", 'copy-card-3')">Copy</button>
+            <pre>Context: I&#x27;m documenting the assumptions for [Company Name]&#x27;s [forecast type — e.g., &quot;FY2026 Annual Budget&quot; / &quot;Q3 2025 Reforecast&quot; / &quot;3-Year Strategic Plan&quot;]. The forecast covers [period]. 
+
+Key assumptions to document (list each one — the AI will structure them, you provide the inputs):
+1. [Assumption 1 — e.g., &quot;Revenue growth rate: 35% YoY&quot;]
+2. [Assumption 2 — e.g., &quot;Gross margin: 78%&quot;]
+3. [Assumption 3 — e.g., &quot;Headcount additions: 12 FTEs across Sales and Engineering&quot;]
+4. [Continue for all major assumptions]
+
+For each assumption, provide where possible:
+- The assumption value or range
+- The basis for it (historical trend / market data / management decision / contract)
+- Who owns it (which team or person is accountable)
+
+Role: Act as a financial planning analyst who documents assumptions with auditor-grade rigour — you treat undocumented assumptions as a model risk, not an administrative task.
+
+Instruction: Create a forecast assumption document with:
+1. Document Header — company, forecast name, period, author, date, version
+2. Assumption Register — for each assumption provided:
+   - Assumption name and category (Revenue / Costs / Headcount / Other)
+   - Value / range
+   - Basis (2–3 sentences: what data or rationale justifies this number)
+   - Owner (team or named individual)
+   - Sensitivity: what happens to the forecast if this assumption is 10% higher or lower
+   - Last reviewed date
+3. Key Risks Section — top 3 assumptions where the sensitivity impact is highest
+4. Revision Log — table for tracking future changes to assumptions
+
+Spec:
+- Assumption register as a table
+- Basis in 2–3 sentences per assumption (not a single word)
+- Sensitivity column required for all assumptions
+- 300–350 words for the narrative sections
+- Formal document format with version control
+
+Performance bar: An auditor 12 months from now understands why every assumption was made without interviewing anyone. Every assumption has an owner. Sensitivity is quantified, not described as &quot;high/low.&quot;</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Forecast Assumptions: Revenue growth rate: 35%. Gross margin: 78%. Headcount: 12 new hires. These assumptions are based on historical performance and management expectations.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-05">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#05</span>
+          <h2>Cost-Saving Proposal</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Write a cost reduction proposal with a clear business case, quantified savings, implementation plan, and risk assessment — so the decision-maker can approve or reject it based on analysis, not instinct.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Company: [name]. Current annual spend in the category: $[X]. Proposed reduction: $[Y] ([%]). Method: [how the cost will be reduced — vendor renegotiation, process change, automation, headcount restructure, etc.]. Implementation time: [weeks/months].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a financial analyst making a business case for cost reduction — you present the savings clearly but you also surface the risks and trade-offs, because a proposal that ignores risks loses credibility.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a cost-saving proposal with: current state cost analysis, proposed saving and method, implementation plan with timeline, risk assessment, and a recommendation with decision required.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Business case format. 350–400 words. Savings quantified as annual run-rate. Implementation plan as a timeline. Risks table with likelihood and mitigation. Decision required clearly stated at the end.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>Decision-maker can approve or reject in a 15-minute meeting. The risk section is honest — no proposal should ignore downside. One clear decision requested at the end.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-4" onclick="copyPrompt("Context: I'm a financial analyst at [Company Name] proposing a cost reduction initiative in [cost category \u2014 e.g., \"software licencing\", \"vendor consolidation\", \"travel and expenses\", \"headcount restructuring\"]. \n\nCurrent state:\n- Annual spend in this category: $[X]\n- Current arrangement: [describe \u2014 who we pay, for what, for how long]\n- Number of users/beneficiaries: [N]\n\nProposed saving:\n- Annual saving: $[Y] ([%] reduction)\n- Method: [describe how \u2014 e.g., \"renegotiate vendor contract\", \"consolidate 3 tools into 1\", \"move to usage-based pricing\", \"automate process currently requiring 0.5 FTE\"]\n- Implementation cost (one-time): $[Z or \"none\"]\n- Time to first saving: [immediate / 30 days / 3 months]\n- Time to full run-rate saving: [date]\n\nKnown risks or trade-offs:\n1. [Risk 1 \u2014 e.g., \"Vendor may not agree to renegotiation \u2014 risk: no saving achieved\"]\n2. [Risk 2 if applicable]\n\nDecision needed from: [CFO / CEO / Procurement / Board]\nDecision deadline: [date]\n\nRole: Act as a financial analyst making a cost reduction business case. You are credible because you surface risks honestly \u2014 a proposal that ignores trade-offs loses the CFO's trust.\n\nInstruction: Write a cost-saving proposal with:\n1. Executive Summary \u2014 saving amount, method, timeline (3 sentences)\n2. Current State Analysis \u2014 what we currently spend and why\n3. Proposed Saving \u2014 the saving, how it's achieved, and what changes\n4. Implementation Timeline \u2014 4\u20136 milestones from approval to full run-rate saving\n5. Risk Assessment \u2014 table with 2\u20133 risks, likelihood, and mitigation\n6. ROI Summary \u2014 payback period if there is an implementation cost\n7. Decision Required \u2014 exactly what you need approved, from whom, by when\n\nSpec:\n- Business case format\n- 350\u2013400 words\n- Savings as annual run-rate\n- Risk table with likelihood and mitigation\n- One specific decision requested at the end\n- Not a presentation \u2014 a written proposal\n\nPerformance bar: CFO can approve or reject in a 15-minute meeting. Risk section is honest. Decision required is specific.", 'copy-card-4')">Copy</button>
+            <pre>Context: I&#x27;m a financial analyst at [Company Name] proposing a cost reduction initiative in [cost category — e.g., &quot;software licencing&quot;, &quot;vendor consolidation&quot;, &quot;travel and expenses&quot;, &quot;headcount restructuring&quot;]. 
+
+Current state:
+- Annual spend in this category: $[X]
+- Current arrangement: [describe — who we pay, for what, for how long]
+- Number of users/beneficiaries: [N]
+
+Proposed saving:
+- Annual saving: $[Y] ([%] reduction)
+- Method: [describe how — e.g., &quot;renegotiate vendor contract&quot;, &quot;consolidate 3 tools into 1&quot;, &quot;move to usage-based pricing&quot;, &quot;automate process currently requiring 0.5 FTE&quot;]
+- Implementation cost (one-time): $[Z or &quot;none&quot;]
+- Time to first saving: [immediate / 30 days / 3 months]
+- Time to full run-rate saving: [date]
+
+Known risks or trade-offs:
+1. [Risk 1 — e.g., &quot;Vendor may not agree to renegotiation — risk: no saving achieved&quot;]
+2. [Risk 2 if applicable]
+
+Decision needed from: [CFO / CEO / Procurement / Board]
+Decision deadline: [date]
+
+Role: Act as a financial analyst making a cost reduction business case. You are credible because you surface risks honestly — a proposal that ignores trade-offs loses the CFO&#x27;s trust.
+
+Instruction: Write a cost-saving proposal with:
+1. Executive Summary — saving amount, method, timeline (3 sentences)
+2. Current State Analysis — what we currently spend and why
+3. Proposed Saving — the saving, how it&#x27;s achieved, and what changes
+4. Implementation Timeline — 4–6 milestones from approval to full run-rate saving
+5. Risk Assessment — table with 2–3 risks, likelihood, and mitigation
+6. ROI Summary — payback period if there is an implementation cost
+7. Decision Required — exactly what you need approved, from whom, by when
+
+Spec:
+- Business case format
+- 350–400 words
+- Savings as annual run-rate
+- Risk table with likelihood and mitigation
+- One specific decision requested at the end
+- Not a presentation — a written proposal
+
+Performance bar: CFO can approve or reject in a 15-minute meeting. Risk section is honest. Decision required is specific.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>We could save money by reviewing our software subscriptions. Many companies pay for tools they don&#x27;t use. By auditing our tools, we could potentially save significant amounts. I recommend we do a software audit and cancel unused subscriptions.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-06">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#06</span>
+          <h2>Audit Prep Checklist</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Build a structured audit preparation checklist with task owners, evidence requirements, and deadlines — so the finance team walks into audit fieldwork with everything ready, rather than scrambling to produce documents during the audit itself.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Audit type: [statutory annual audit / internal audit / tax audit / SOC 2 / due diligence]. Company: [name, stage]. Audit period: [dates]. Auditor: [firm name]. Fieldwork dates: [start date]. Team: [who is responsible — finance team size and roles].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a financial controller who has been through multiple audits and knows that audit readiness is won or lost in the preparation phase, not during fieldwork.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Create an audit prep checklist with: categories of documents needed, specific evidence items per category, named owner per item, format required, and deadline (relative to fieldwork start date).</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Checklist table format. Categories: Financial Statements / Revenue / Costs / Payroll / Fixed Assets / Cash / Compliance / Other. Each item: description, format, owner, deadline. 300–350 words.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>Finance team enters audit fieldwork with 100% of items on the checklist complete. Auditor does not have to chase for standard documents. No item has &quot;TBD&quot; for owner.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-5" onclick="copyPrompt("Context: I'm a financial analyst preparing for [audit type \u2014 e.g., \"FY2025 statutory annual audit\" / \"Q2 internal audit\" / \"Series B due diligence\"]. \n- Company: [name, industry, stage]\n- Audit period: [dates being audited]\n- Auditor: [firm name or \"internal audit team\"]\n- Fieldwork start date: [date]\n- Finance team: [list roles available to own tasks \u2014 e.g., \"Controller, 2 analysts, 1 AP/AR coordinator\"]\n- Known areas of complexity or risk: [e.g., \"revenue recognition for multi-year contracts\", \"stock options accounting\", \"intercompany transactions\"]\n\nRole: Act as a financial controller who has run 10+ audits and knows that the preparation phase determines audit quality more than anything that happens during fieldwork.\n\nInstruction: Build an audit preparation checklist with:\n1. Task Categories \u2014 standard categories appropriate to the audit type\n2. Specific Tasks \u2014 for each category, list the specific documents or evidence items needed\n3. Format Required \u2014 what the auditor needs (PDF, Excel with formulas, signed copy, etc.)\n4. Named Owner \u2014 specific role from the team provided (no \"TBD\")\n5. Deadline \u2014 expressed as days before fieldwork start (e.g., \"D-10\" = 10 days before fieldwork)\n6. Status Column \u2014 for the team to track (Pending / In Progress / Complete)\n\nAlso include:\n- A pre-audit meeting agenda (15\u201320 min kick-off)\n- Top 3 things most commonly requested during fieldwork that teams forget to prepare\n\nSpec:\n- Checklist table format\n- Items per category: 3\u20136\n- Every item has an owner (role from provided team)\n- Deadlines expressed as D-minus days\n- 300\u2013350 words for non-table sections\n\nPerformance bar: Finance team enters fieldwork with 100% ready. Auditor doesn't chase for basic documents. No \"TBD\" owners.", 'copy-card-5')">Copy</button>
+            <pre>Context: I&#x27;m a financial analyst preparing for [audit type — e.g., &quot;FY2025 statutory annual audit&quot; / &quot;Q2 internal audit&quot; / &quot;Series B due diligence&quot;]. 
+- Company: [name, industry, stage]
+- Audit period: [dates being audited]
+- Auditor: [firm name or &quot;internal audit team&quot;]
+- Fieldwork start date: [date]
+- Finance team: [list roles available to own tasks — e.g., &quot;Controller, 2 analysts, 1 AP/AR coordinator&quot;]
+- Known areas of complexity or risk: [e.g., &quot;revenue recognition for multi-year contracts&quot;, &quot;stock options accounting&quot;, &quot;intercompany transactions&quot;]
+
+Role: Act as a financial controller who has run 10+ audits and knows that the preparation phase determines audit quality more than anything that happens during fieldwork.
+
+Instruction: Build an audit preparation checklist with:
+1. Task Categories — standard categories appropriate to the audit type
+2. Specific Tasks — for each category, list the specific documents or evidence items needed
+3. Format Required — what the auditor needs (PDF, Excel with formulas, signed copy, etc.)
+4. Named Owner — specific role from the team provided (no &quot;TBD&quot;)
+5. Deadline — expressed as days before fieldwork start (e.g., &quot;D-10&quot; = 10 days before fieldwork)
+6. Status Column — for the team to track (Pending / In Progress / Complete)
+
+Also include:
+- A pre-audit meeting agenda (15–20 min kick-off)
+- Top 3 things most commonly requested during fieldwork that teams forget to prepare
+
+Spec:
+- Checklist table format
+- Items per category: 3–6
+- Every item has an owner (role from provided team)
+- Deadlines expressed as D-minus days
+- 300–350 words for non-table sections
+
+Performance bar: Finance team enters fieldwork with 100% ready. Auditor doesn&#x27;t chase for basic documents. No &quot;TBD&quot; owners.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Audit Prep Checklist: 1. Gather financial statements 2. Prepare trial balance 3. Have bank statements ready 4. Ensure all documents are organized 5. Be ready to answer auditor questions.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-07">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#07</span>
+          <h2>KPI Definition Card</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Define a KPI with complete rigour — formula, data source, calculation frequency, owner, target, and interpretation guide — so every person in the organisation calculates it the same way and knows what to do when it moves.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>KPI name: [name]. Business function: [finance / sales / operations / CS]. Why this KPI matters: [what decision does it inform?]. Who uses it: [CFO / sales team / operations]. Current calculation method (if any): [describe or &quot;not formalised&quot;].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a finance analyst who documents KPIs with the precision of someone who has seen what happens when the same metric is calculated differently by different teams — you eliminate ambiguity before it causes a board meeting argument.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a KPI definition card with: name, definition, formula, data source, calculation frequency, owner, target/benchmark, interpretation guide, and example calculation.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>KPI card format. Each field clearly labelled. Formula in clear notation. Interpretation guide has three scenarios: good / concerning / critical. Example calculation with real numbers. 250–300 words.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>Two people in different teams calculate this KPI independently and get the same number. When the KPI moves, anyone reading the interpretation guide knows whether to act.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-6" onclick="copyPrompt("Context: I'm a financial analyst at [Company Name] formalising the definition of the following KPI: [KPI name]. This metric is used by [who \u2014 e.g., \"the CFO for board reporting and the Sales VP for pipeline management\"]. Currently, [describe how it's being calculated or \"it is not formally defined\"]. The business decision this KPI informs: [what changes when this number changes \u2014 e.g., \"hiring decisions\", \"pricing changes\", \"board reporting\"].\n\nProvide any known information about how this should be calculated:\n- Numerator: [what goes on top, or describe what you're measuring]\n- Denominator: [what you're dividing by, if applicable]\n- Inclusions / Exclusions: [any edge cases \u2014 e.g., \"exclude trial users\", \"include churned customers in the base?\"]\n- Data source: [where the data comes from \u2014 CRM, billing system, data warehouse, etc.]\n\nRole: Act as a finance analyst who documents KPIs with the precision needed to eliminate the \"we calculate it differently\" problem that surfaces in board meetings.\n\nInstruction: Write a complete KPI definition card with:\n1. KPI Name and Category\n2. Definition \u2014 plain language description of what this measures and why it matters\n3. Formula \u2014 clear notation (e.g., Metric = Numerator / Denominator \u00d7 100)\n4. Inclusions and Exclusions \u2014 what counts and what doesn't (specific, not vague)\n5. Data Source \u2014 where the data comes from, updated when\n6. Calculation Frequency \u2014 how often it's calculated and who does it\n7. Owner \u2014 who is responsible for the number's accuracy\n8. Target / Benchmark \u2014 current target and, if available, industry benchmark\n9. Interpretation Guide \u2014 three scenarios: good / concerning / critical with action implication\n10. Example Calculation \u2014 a worked example with real-seeming numbers\n\nSpec:\n- KPI card format with clearly labelled fields\n- Formula in explicit notation\n- Interpretation: 3 tiers with action implication\n- 250\u2013300 words total\n- One worked example with numbers\n\nPerformance bar: Two people calculate this independently and get the same number. Interpretation guide tells someone whether to act or monitor when the number moves.", 'copy-card-6')">Copy</button>
+            <pre>Context: I&#x27;m a financial analyst at [Company Name] formalising the definition of the following KPI: [KPI name]. This metric is used by [who — e.g., &quot;the CFO for board reporting and the Sales VP for pipeline management&quot;]. Currently, [describe how it&#x27;s being calculated or &quot;it is not formally defined&quot;]. The business decision this KPI informs: [what changes when this number changes — e.g., &quot;hiring decisions&quot;, &quot;pricing changes&quot;, &quot;board reporting&quot;].
+
+Provide any known information about how this should be calculated:
+- Numerator: [what goes on top, or describe what you&#x27;re measuring]
+- Denominator: [what you&#x27;re dividing by, if applicable]
+- Inclusions / Exclusions: [any edge cases — e.g., &quot;exclude trial users&quot;, &quot;include churned customers in the base?&quot;]
+- Data source: [where the data comes from — CRM, billing system, data warehouse, etc.]
+
+Role: Act as a finance analyst who documents KPIs with the precision needed to eliminate the &quot;we calculate it differently&quot; problem that surfaces in board meetings.
+
+Instruction: Write a complete KPI definition card with:
+1. KPI Name and Category
+2. Definition — plain language description of what this measures and why it matters
+3. Formula — clear notation (e.g., Metric = Numerator / Denominator × 100)
+4. Inclusions and Exclusions — what counts and what doesn&#x27;t (specific, not vague)
+5. Data Source — where the data comes from, updated when
+6. Calculation Frequency — how often it&#x27;s calculated and who does it
+7. Owner — who is responsible for the number&#x27;s accuracy
+8. Target / Benchmark — current target and, if available, industry benchmark
+9. Interpretation Guide — three scenarios: good / concerning / critical with action implication
+10. Example Calculation — a worked example with real-seeming numbers
+
+Spec:
+- KPI card format with clearly labelled fields
+- Formula in explicit notation
+- Interpretation: 3 tiers with action implication
+- 250–300 words total
+- One worked example with numbers
+
+Performance bar: Two people calculate this independently and get the same number. Interpretation guide tells someone whether to act or monitor when the number moves.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Net Revenue Retention (NRR) measures how much revenue we retain from existing customers. A high NRR is good. It should be calculated monthly. The target is above 100%.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-08">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#08</span>
+          <h2>Excel Formula Explainer</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Explain a complex Excel or Google Sheets formula in plain language — breaking down what each part does, why the formula is structured that way, and what to watch out for — so a non-technical colleague can use and maintain the formula confidently.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Formula: [paste the exact formula]. Spreadsheet context: [what the sheet is tracking, what the formula is supposed to calculate]. Audience: [someone who uses Excel but has never written this kind of formula].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a finance analyst who teaches Excel by breaking formulas into understandable parts — you don&#x27;t just say &quot;it works,&quot; you explain the logic so the person can modify it if needed.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Explain the formula with: plain language description of what it does, a component-by-component breakdown, the logic of how the components work together, common errors to watch for, and when you would use a different approach.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Explainer format. Component breakdown uses the exact formula syntax. No Excel jargon without explanation. One modification example to show the person how to adapt it. 300 words max.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>The person can read this explanation and modify the formula for a slightly different use case without asking for help. They understand why the formula is structured the way it is, not just what it produces.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-7" onclick="copyPrompt("Context: I need to explain the following Excel/Google Sheets formula to [audience \u2014 e.g., \"a marketing manager who uses Excel but hasn't written complex formulas\", \"a new finance analyst joining the team\", \"a business analyst who needs to maintain this model\"]. \n\nThe formula is:\n[PASTE THE EXACT FORMULA HERE]\n\nWhat the formula is trying to calculate:\n[Describe in plain English what this formula should produce \u2014 e.g., \"It should return the monthly recurring revenue for any customer that is currently active and on an annual plan\"]\n\nSpreadsheet context:\n- The formula is in column: [e.g., \"Column F \u2014 Monthly Revenue\"]\n- Key columns referenced: [e.g., \"Column A = Customer Name, Column B = Plan Type, Column C = Contract Value, Column D = Status\"]\n\nRole: Act as a finance analyst who explains Excel formulas as a teacher, not a manual. You explain the logic behind the structure, not just what each function is named.\n\nInstruction: Write an Excel formula explanation with:\n1. Plain English Summary \u2014 what does this formula do, in one sentence\n2. Component Breakdown \u2014 break the formula into parts, explain each one in plain language (what function, what it's looking for, what it returns)\n3. How the Parts Work Together \u2014 explain the logic of how the components combine to produce the result\n4. Common Errors \u2014 2\u20133 things that could break this formula or produce incorrect results, and how to spot them\n5. Modification Example \u2014 show how you'd change one thing about the formula to handle a slightly different scenario\n\nSpec:\n- Explainer format with bold headers\n- Component breakdown uses exact formula syntax in backticks\n- No Excel jargon without immediate plain-language explanation\n- 300 words maximum\n- One modification example\n\nPerformance bar: Reader can modify the formula for a similar use case without further help. They understand WHY it's structured this way, not just WHAT it does.", 'copy-card-7')">Copy</button>
+            <pre>Context: I need to explain the following Excel/Google Sheets formula to [audience — e.g., &quot;a marketing manager who uses Excel but hasn&#x27;t written complex formulas&quot;, &quot;a new finance analyst joining the team&quot;, &quot;a business analyst who needs to maintain this model&quot;]. 
+
+The formula is:
+[PASTE THE EXACT FORMULA HERE]
+
+What the formula is trying to calculate:
+[Describe in plain English what this formula should produce — e.g., &quot;It should return the monthly recurring revenue for any customer that is currently active and on an annual plan&quot;]
+
+Spreadsheet context:
+- The formula is in column: [e.g., &quot;Column F — Monthly Revenue&quot;]
+- Key columns referenced: [e.g., &quot;Column A = Customer Name, Column B = Plan Type, Column C = Contract Value, Column D = Status&quot;]
+
+Role: Act as a finance analyst who explains Excel formulas as a teacher, not a manual. You explain the logic behind the structure, not just what each function is named.
+
+Instruction: Write an Excel formula explanation with:
+1. Plain English Summary — what does this formula do, in one sentence
+2. Component Breakdown — break the formula into parts, explain each one in plain language (what function, what it&#x27;s looking for, what it returns)
+3. How the Parts Work Together — explain the logic of how the components combine to produce the result
+4. Common Errors — 2–3 things that could break this formula or produce incorrect results, and how to spot them
+5. Modification Example — show how you&#x27;d change one thing about the formula to handle a slightly different scenario
+
+Spec:
+- Explainer format with bold headers
+- Component breakdown uses exact formula syntax in backticks
+- No Excel jargon without immediate plain-language explanation
+- 300 words maximum
+- One modification example
+
+Performance bar: Reader can modify the formula for a similar use case without further help. They understand WHY it&#x27;s structured this way, not just WHAT it does.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>This formula uses SUMIFS to sum values. SUMIFS sums a range based on multiple criteria. It will sum column C where column B equals &quot;Annual&quot; and column D equals &quot;Active.&quot;</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-09">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#09</span>
+          <h2>Investor Update Bullet Points</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Write concise, credible investor update bullet points for a monthly or quarterly report — communicating the financial and operational highlights, low points, and asks in a format that builds investor confidence without overselling or hiding problems.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Company: [name, stage, last raise]. Period: [month/quarter]. Financial highlights: [key metrics]. Operational highlights: [key wins]. Challenges: [honest low points]. Asks: [what you need from investors].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a CFO who writes investor updates that build trust — because you share the real numbers, acknowledge challenges honestly, and make your asks specific. Investors who receive vague updates stop being helpful investors.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Write a structured investor update with: financial metrics (bullet format with data), operational highlights (3 bullets), challenges section (honest — 2 bullets), and a specific ask section.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Investor update format. Financial metrics as a table or structured bullets. Each highlight/challenge bullet: one sentence with a specific outcome or learning. Asks section has 1–3 numbered asks. 300 words max.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>An investor reads this in 5 minutes and has an accurate picture of where the company is. The challenges section does not read as spin. The asks are specific enough to act on without a follow-up call.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-8" onclick="copyPrompt("Context: I'm preparing the [month/quarter] investor update for [Company Name], a [stage \u2014 e.g., \"Series A B2B SaaS, raised $5M in Jan 2025\"]. Update audience: [your investor syndicate or specific investors].\n\nFinancial metrics for [period]:\n- ARR: $[X] (vs $[Y] last period / $[Z] at raise)\n- MRR: $[X]\n- Revenue (if recognised differently from ARR): $[X]\n- MoM/QoQ growth: [%]\n- Gross margin: [%]\n- Net burn: $[X]/month\n- Cash runway: [N months]\n- NRR: [%]\n- New logos: [N]\n\nOperational highlights (3\u20135 key wins or milestones):\n1. [e.g., \"Enterprise tier launched July 1; 4 paid pilots signed in first 30 days\"]\n2. [e.g., \"Key hire: VP Sales joined from Salesforce (start date Aug 1)\"]\n3. [Add others]\n\nChallenges (be honest \u2014 2\u20133 real issues):\n1. [e.g., \"Mid-market churn rate higher than modelled \u2014 3 customers churned in Q2 totalling $28K ARR\"]\n2. [e.g., \"VP Engineering hire taking longer than expected \u2014 8 candidates, 0 offers accepted\"]\n\nAsks from investors (specific, actionable):\n1. [e.g., \"Introductions to Series A CFOs who've built Enterprise sales motions \u2014 particularly looking for SaaS companies that sell to IT leaders\"]\n2. [Add others]\n\nRole: Act as a CFO who writes investor updates that build long-term trust because they are honest, specific, and make every investor feel like a well-informed partner \u2014 not a passive capital provider.\n\nInstruction: Write a structured investor update with:\n1. Subject line \u2014 month/quarter + one headline number\n2. Financial Snapshot \u2014 key metrics in a structured format, with brief context for any significant movement\n3. Operational Highlights \u2014 3 bullets, each with a specific outcome\n4. Challenges \u2014 2 honest bullets with what you're doing about each\n5. Asks \u2014 1\u20133 numbered specific asks\n6. Next Update \u2014 when the next update will come\n\nSpec:\n- Investor update format\n- 300 words maximum\n- Financial snapshot as structured bullets or table\n- Challenges: honest, not spin\n- Asks: specific and actionable\n- One next update date\n\nPerformance bar: Investor reads in 5 minutes and has an accurate picture. Challenges section does not read as minimisation. Asks are actionable without a follow-up call.", 'copy-card-8')">Copy</button>
+            <pre>Context: I&#x27;m preparing the [month/quarter] investor update for [Company Name], a [stage — e.g., &quot;Series A B2B SaaS, raised $5M in Jan 2025&quot;]. Update audience: [your investor syndicate or specific investors].
+
+Financial metrics for [period]:
+- ARR: $[X] (vs $[Y] last period / $[Z] at raise)
+- MRR: $[X]
+- Revenue (if recognised differently from ARR): $[X]
+- MoM/QoQ growth: [%]
+- Gross margin: [%]
+- Net burn: $[X]/month
+- Cash runway: [N months]
+- NRR: [%]
+- New logos: [N]
+
+Operational highlights (3–5 key wins or milestones):
+1. [e.g., &quot;Enterprise tier launched July 1; 4 paid pilots signed in first 30 days&quot;]
+2. [e.g., &quot;Key hire: VP Sales joined from Salesforce (start date Aug 1)&quot;]
+3. [Add others]
+
+Challenges (be honest — 2–3 real issues):
+1. [e.g., &quot;Mid-market churn rate higher than modelled — 3 customers churned in Q2 totalling $28K ARR&quot;]
+2. [e.g., &quot;VP Engineering hire taking longer than expected — 8 candidates, 0 offers accepted&quot;]
+
+Asks from investors (specific, actionable):
+1. [e.g., &quot;Introductions to Series A CFOs who&#x27;ve built Enterprise sales motions — particularly looking for SaaS companies that sell to IT leaders&quot;]
+2. [Add others]
+
+Role: Act as a CFO who writes investor updates that build long-term trust because they are honest, specific, and make every investor feel like a well-informed partner — not a passive capital provider.
+
+Instruction: Write a structured investor update with:
+1. Subject line — month/quarter + one headline number
+2. Financial Snapshot — key metrics in a structured format, with brief context for any significant movement
+3. Operational Highlights — 3 bullets, each with a specific outcome
+4. Challenges — 2 honest bullets with what you&#x27;re doing about each
+5. Asks — 1–3 numbered specific asks
+6. Next Update — when the next update will come
+
+Spec:
+- Investor update format
+- 300 words maximum
+- Financial snapshot as structured bullets or table
+- Challenges: honest, not spin
+- Asks: specific and actionable
+- One next update date
+
+Performance bar: Investor reads in 5 minutes and has an accurate picture. Challenges section does not read as minimisation. Asks are actionable without a follow-up call.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>Hi investors, we had a great month! Revenue is growing and the team is working hard. We faced some challenges but we are handling them. We will keep you updated. Thanks for your continued support.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="prompt-card" id="prompt-10">
+      <div class="prompt-header">
+        <div class="prompt-title-wrap">
+          <span class="prompt-num">#10</span>
+          <h2>Financial Model Assumption Check</h2>
+        </div>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-purpose">Review and document the assumptions in a financial model to identify which ones carry the most risk, which are well-supported vs weakly-justified, and what the sensitivity of the model output is to each key assumption — creating an assumption quality audit trail.</div>
+        <div class="crisp-section">
+          <h4>CRISP Breakdown</h4>
+          <table class="crisp-table">
+            <tbody>
+                <tr>
+                  <td>Context</td>
+                  <td>Model: [type and purpose — DCF / 3-year operating model / unit economics model]. Key assumptions to review: [list the main input assumptions]. Model output the assumptions drive: [what number is the final output — valuation, EBITDA, breakeven date].</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td>You are a finance analyst conducting a pre-distribution assumption review — you are the last line of quality control before this model goes to a CFO, investor, or board, and you take that seriously.</td>
+                </tr>
+                <tr>
+                  <td>Instruction</td>
+                  <td>Review the listed assumptions and produce: an assumption quality assessment (well-supported / partially supported / weakly supported), sensitivity analysis for the top 3 assumptions, and a list of assumptions that need strengthening before the model is distributed.</td>
+                </tr>
+                <tr>
+                  <td>Spec</td>
+                  <td>Assumption review table. Quality rating for each assumption with brief rationale. Sensitivity analysis: what happens to the output if the assumption changes by +/- 10%, +/- 20%. Flagged assumptions with recommended improvement.</td>
+                </tr>
+                <tr>
+                  <td>Performance</td>
+                  <td>A CFO reviewing this check can see immediately which assumptions are solid and which need more work. The sensitivity table shows which assumptions could sink or transform the model outcome.</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="full-prompt-section">
+          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
+          <div class="prompt-code-wrap">
+            <button class="copy-btn" id="copy-card-9" onclick="copyPrompt("Context: I'm conducting a pre-distribution review of a [model type \u2014 e.g., \"3-year revenue model\", \"LBO model\", \"unit economics model\", \"DCF valuation\"] for [Company Name]. The model's primary output is: [e.g., \"FY2027 EBITDA of $4.2M\" / \"Enterprise valuation of $42M\" / \"Breakeven date of Q3 2026\"].\n\nKey assumptions in the model (list each one I should review):\n1. [Assumption 1 \u2014 e.g., \"Revenue growth: 35% YoY for 3 years\"]\n2. [Assumption 2 \u2014 e.g., \"Gross margin: 78% stable across all 3 years\"]\n3. [Assumption 3 \u2014 e.g., \"CAC: $12,000 flat, with LTV of $48,000\"]\n4. [Add all major assumptions]\n\nFor each assumption, note:\n- What data or rationale backs it (or note \"not documented\")\n- Whether it has been sense-checked against industry benchmarks or historical actuals\n\nModel audience: [CFO only / investor presentation / board approval / M&A due diligence]\n\nRole: Act as a finance analyst doing a pre-distribution assumption quality review. You are the last quality gate before this model goes to an audience that will scrutinise every number \u2014 and you take that responsibility seriously.\n\nInstruction: Produce an assumption quality review with:\n1. Assumption Quality Table \u2014 for each assumption: rating (Well-Supported / Partially Supported / Weakly Supported), basis (what backs it), risk note (what could go wrong if this assumption is wrong)\n2. Top 3 Sensitivity Analysis \u2014 for the three most impactful assumptions: show model output if assumption is -20%, -10%, base case, +10%, +20%\n3. Assumptions Needing Strengthening \u2014 flagged list of assumptions rated Weakly Supported, with specific recommendations for how to improve the backing\n4. Reviewer Sign-Off Note \u2014 a summary statement suitable for including in the model documentation\n\nSpec:\n- Assumption quality table with ratings\n- Sensitivity table for top 3\n- Flagged list with specific improvement actions\n- 350\u2013400 words for non-table sections\n- Reviewer note: 50 words max\n\nPerformance bar: CFO can see which assumptions are solid and which need work in under 5 minutes. Sensitivity table shows which assumptions are model-threatening. Flagged items have specific improvement actions.", 'copy-card-9')">Copy</button>
+            <pre>Context: I&#x27;m conducting a pre-distribution review of a [model type — e.g., &quot;3-year revenue model&quot;, &quot;LBO model&quot;, &quot;unit economics model&quot;, &quot;DCF valuation&quot;] for [Company Name]. The model&#x27;s primary output is: [e.g., &quot;FY2027 EBITDA of $4.2M&quot; / &quot;Enterprise valuation of $42M&quot; / &quot;Breakeven date of Q3 2026&quot;].
+
+Key assumptions in the model (list each one I should review):
+1. [Assumption 1 — e.g., &quot;Revenue growth: 35% YoY for 3 years&quot;]
+2. [Assumption 2 — e.g., &quot;Gross margin: 78% stable across all 3 years&quot;]
+3. [Assumption 3 — e.g., &quot;CAC: $12,000 flat, with LTV of $48,000&quot;]
+4. [Add all major assumptions]
+
+For each assumption, note:
+- What data or rationale backs it (or note &quot;not documented&quot;)
+- Whether it has been sense-checked against industry benchmarks or historical actuals
+
+Model audience: [CFO only / investor presentation / board approval / M&amp;A due diligence]
+
+Role: Act as a finance analyst doing a pre-distribution assumption quality review. You are the last quality gate before this model goes to an audience that will scrutinise every number — and you take that responsibility seriously.
+
+Instruction: Produce an assumption quality review with:
+1. Assumption Quality Table — for each assumption: rating (Well-Supported / Partially Supported / Weakly Supported), basis (what backs it), risk note (what could go wrong if this assumption is wrong)
+2. Top 3 Sensitivity Analysis — for the three most impactful assumptions: show model output if assumption is -20%, -10%, base case, +10%, +20%
+3. Assumptions Needing Strengthening — flagged list of assumptions rated Weakly Supported, with specific recommendations for how to improve the backing
+4. Reviewer Sign-Off Note — a summary statement suitable for including in the model documentation
+
+Spec:
+- Assumption quality table with ratings
+- Sensitivity table for top 3
+- Flagged list with specific improvement actions
+- 350–400 words for non-table sections
+- Reviewer note: 50 words max
+
+Performance bar: CFO can see which assumptions are solid and which need work in under 5 minutes. Sensitivity table shows which assumptions are model-threatening. Flagged items have specific improvement actions.</pre>
+          </div>
+        </div>
+        
+        <div class="before-after">
+          
+            <div class="ba-block before">
+              <h4>Before — Weak prompt output</h4>
+              <blockquote>The assumptions in your model should be reviewed carefully. Make sure they are realistic and supported by data. Consider doing a sensitivity analysis on your key assumptions. It&#x27;s important that your model assumptions are defensible.</blockquote>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Forgemind AI · Claude Course · HO3 · <a href="https://github.com/Forgemind-git/ho3-prompt-library" style="color:inherit">github.com/Forgemind-git/ho3-prompt-library</a></footer>
+
+  <script>
+    function copyPrompt(text, btnId) {
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById(btnId);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        // fallback
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        var btn = document.getElementById(btnId);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

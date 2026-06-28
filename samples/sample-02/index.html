@@ -1,952 +1,313 @@
+<!-- 🎯 TODO: Fill in each prompt card with your CRISP prompts. One example card is completed for reference. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HO3 · Project Manager Prompt Library</title>
+  <title>Content Marketer — Prompt Library</title>
   <style>
-
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#F8F9FA; color:#1a1a2e; }
-:root { --color: #059669; }
-header { background: var(--color); color:#fff; padding:40px 32px 32px; position:relative; }
-header .badge { font-size:13px; font-weight:700; letter-spacing:.08em; opacity:.8; text-transform:uppercase; margin-bottom:8px; }
-header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
-header p { font-size:15px; opacity:.85; max-width:640px; line-height:1.6; }
-.sub-bar { background:#fff; border-left:4px solid var(--color); padding:14px 20px; margin:24px 32px; border-radius:4px; font-size:14px; color:#374151; line-height:1.6; box-shadow:0 1px 4px rgba(0,0,0,.07); }
-.sub-bar strong { color:var(--color); }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:0 32px 40px; }
-.card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
-.card:hover { box-shadow:0 4px 16px rgba(0,0,0,.13); }
-.card-top { background:var(--color); padding:14px 18px; display:flex; align-items:center; gap:10px; }
-.card-num { background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 9px; }
-.card-top h3 { color:#fff; font-size:14.5px; font-weight:700; }
-.card-body { padding:16px 18px; }
-.card-body p { font-size:13px; color:#4B5563; line-height:1.6; margin-bottom:14px; }
-.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:var(--color); color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; border:none; }
-.btn:hover { opacity:.88; }
-footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:8px; }
-@media(max-width:580px){ .grid{ grid-template-columns:1fr; padding:0 14px 28px; } header{ padding:24px 16px; } .sub-bar{ margin:14px 14px; } }
-
-
-.prompt-section { padding:0 32px 40px; display:flex; flex-direction:column; gap:28px; }
-.prompt-card { background:#fff; border-radius:12px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
-.prompt-card:hover { box-shadow:0 4px 18px rgba(0,0,0,.12); }
-.prompt-header { background:var(--color); padding:18px 22px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
-.prompt-title-wrap { flex:1; }
-.prompt-num { display:inline-block; background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 10px; margin-bottom:6px; }
-.prompt-header h2 { color:#fff; font-size:18px; font-weight:800; line-height:1.3; }
-.prompt-header .open-btn { background:rgba(255,255,255,.2); color:#fff; text-decoration:none; padding:8px 14px; border-radius:6px; font-size:13px; font-weight:600; white-space:nowrap; border:1px solid rgba(255,255,255,.4); flex-shrink:0; }
-.prompt-header .open-btn:hover { background:rgba(255,255,255,.35); }
-.prompt-body { padding:22px; }
-.prompt-purpose { font-size:14px; color:#374151; line-height:1.65; margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid #F3F4F6; }
-.crisp-section { margin-bottom:20px; }
-.crisp-section h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--color); margin-bottom:10px; }
-.crisp-table { width:100%; border-collapse:collapse; font-size:13px; }
-.crisp-table tr:nth-child(odd) td { background:#F9FAFB; }
-.crisp-table td { padding:8px 12px; vertical-align:top; border:1px solid #E5E7EB; line-height:1.55; }
-.crisp-table td:first-child { font-weight:700; color:#1f2937; white-space:nowrap; width:110px; }
-.crisp-table td:last-child { color:#374151; }
-.full-prompt-section h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#6B7280; margin-bottom:10px; }
-.prompt-code-wrap { position:relative; background:#1e1e2e; border-radius:8px; overflow:hidden; }
-.prompt-code-wrap pre { padding:18px 52px 18px 18px; font-family: 'Courier New', Courier, monospace; font-size:13px; line-height:1.65; color:#cdd6f4; overflow-x:auto; white-space:pre-wrap; word-break:break-word; max-height:340px; overflow-y:auto; }
-.copy-btn { position:absolute; top:10px; right:10px; background:rgba(255,255,255,.12); color:#cdd6f4; border:1px solid rgba(255,255,255,.2); border-radius:6px; padding:5px 11px; font-size:12px; font-weight:600; cursor:pointer; z-index:10; }
-.copy-btn:hover { background:rgba(255,255,255,.22); }
-.copy-btn.copied { background:var(--color); color:#fff; border-color:var(--color); }
-.before-after { margin-top:20px; padding-top:20px; border-top:1px solid #F3F4F6; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.ba-block h4 { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px; }
-.ba-block.before h4 { color:#DC2626; }
-.ba-block.after h4 { color:var(--color); }
-.ba-block blockquote { font-size:13px; line-height:1.6; color:#374151; background:#F9FAFB; border-left:3px solid #E5E7EB; padding:10px 14px; border-radius:0 6px 6px 0; }
-.ba-block.before blockquote { border-left-color:#FCA5A5; }
-.ba-block.after blockquote { border-left-color:var(--color); }
-.header-actions { position:absolute; top:28px; right:32px; display:flex; gap:10px; align-items:center; }
-.back-btn { background:rgba(255,255,255,.18); color:#fff; text-decoration:none; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,.35); }
-.back-btn:hover { background:rgba(255,255,255,.28); }
-.open-claude-btn { background:#fff; color:var(--color); text-decoration:none; padding:9px 18px; border-radius:6px; font-size:13px; font-weight:700; }
-.open-claude-btn:hover { opacity:.9; }
-@media(max-width:680px){ .before-after{ grid-template-columns:1fr; } .prompt-section{ padding:0 14px 28px; } .prompt-header{ flex-direction:column; } .header-actions{ position:static; flex-wrap:wrap; margin-top:14px; } }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#F8F9FA; color:#1a1a2e; }
+    header { background:#059669; color:#fff; padding:32px; }
+    .back { font-size:12px; opacity:.75; text-decoration:none; color:#fff; display:inline-block; margin-bottom:12px; }
+    h1 { font-size:22px; font-weight:800; margin-bottom:4px; }
+    header p { font-size:13px; opacity:.8; }
+    .starter-bar { background:#FEF3C7; border-left:4px solid #D97706; padding:12px 20px; margin:20px 32px; border-radius:4px; font-size:13px; color:#92400E; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px; padding:0 32px 40px; }
+    .card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
+    .card-header { padding:12px 16px; background:#059669; color:#fff; display:flex; justify-content:space-between; align-items:center; }
+    .card-header h3 { font-size:14px; font-weight:700; }
+    .example-tag { font-size:10px; background:rgba(255,255,255,.3); padding:2px 8px; border-radius:20px; font-weight:700; letter-spacing:.04em; }
+    .todo-tag { font-size:10px; background:#FEF3C7; color:#92400E; padding:2px 8px; border-radius:20px; font-weight:700; }
+    .card-body { padding:16px; }
+    .crisp-row { margin-bottom:10px; }
+    .crisp-label { font-size:10px; font-weight:700; letter-spacing:.06em; color:#059669; text-transform:uppercase; margin-bottom:3px; }
+    .crisp-value { font-size:13px; color:#374151; line-height:1.5; }
+    .crisp-empty { font-size:12px; color:#9CA3AF; font-style:italic; }
+    .prompt-block { background:#F1F5F9; border-radius:6px; padding:12px; font-size:12px; font-family:'SFMono-Regular',Consolas,monospace; color:#374151; white-space:pre-wrap; line-height:1.6; margin:12px 0; min-height:60px; }
+    .prompt-empty { color:#9CA3AF; font-style:italic; }
+    .copy-btn { width:100%; padding:9px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; }
+    .copy-btn:disabled { background:#D1FAE5; color:#6EE7B7; cursor:not-allowed; }
+    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-actions">
-      <a href="../../index.html" class="back-btn">← All Libraries</a>
-      <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-claude-btn">Open Claude.ai →</a>
-    </div>
-    <div class="badge">HO3 · Prompt Engineering Library · Sample 02</div>
-    <h1>Project Manager Prompt Library</h1>
-    <p>Role: Project Manager / Scrum Master · 10 CRISP-structured prompts ready to copy into Claude.ai</p>
+    <a href="../../" class="back">← Back to all samples</a>
+    <h1>Content Marketer — Prompt Library</h1>
+    <p>Sample 2 of 5 · 8 prompt areas · HO3: Prompt Engineering Library</p>
   </header>
 
-  <div class="sub-bar">
-    <strong>No API key needed.</strong> Click "Open Claude.ai →" on any card, then copy the prompt, fill in the <code>[BRACKET]</code> placeholders, and paste it into your Claude.ai chat.
+  <div class="starter-bar">
+    <strong>Starter branch.</strong> Fill in each TODO card below with your own CRISP prompt. The first card is a completed example showing the format.
   </div>
 
-  <div class="prompt-section">
-    
-    <div class="prompt-card" id="prompt-01">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#01</span>
-          <h2>Sprint Planning Agenda</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+  <div class="grid">
+
+    <!-- EXAMPLE CARD — completed to show the format -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Blog Post Ideation</h3>
+        <span class="example-tag">EXAMPLE</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Build a structured sprint planning meeting agenda with timeboxed sections, pre-read requirements, and facilitator notes — so every participant knows what to prepare and the meeting runs on time.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Sprint [N] planning for [project name]. Team size: [N]. Sprint duration: [2 weeks]. Ceremony duration: [2–4 hours]. Known priorities heading into this sprint: [top 2–3 themes from backlog]. Carryover from last sprint: [items].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are an experienced Scrum Master who runs planning sessions that start on time, stay focused, and end with the team confident in their sprint commitment.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a sprint planning agenda with: pre-meeting prep section, timebox per agenda item, facilitator notes for each section, and a clear close that confirms the sprint goal.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Agenda format. Each item has: title, timebox, facilitator, pre-read/prep required, and brief notes. Total duration must equal the ceremony duration provided. 300–350 words.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>A substitute Scrum Master could run this session with no other briefing. Every section has a clear output. The agenda closes with a committed sprint goal statement.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value">I'm a solo content marketer for a B2B SaaS company. I publish two blog posts per week and struggle to come up with fresh angles that haven't been done to death.</div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-0" onclick="copyPrompt("Context: I'm running Sprint [N] planning for [Project Name]. Team: [N developers, N QA, N designers]. Sprint duration: 2 weeks (starts [date], ends [date]). Ceremony timebox: [2 / 3 / 4 hours]. \n\nTop backlog priorities coming into this sprint:\n1. [Priority 1 \u2014 e.g., \"Complete user authentication module (4 stories, partially done)\"]\n2. [Priority 2 \u2014 e.g., \"Start dashboard MVP (6 stories, designs ready)\"]\n3. [Priority 3 \u2014 e.g., \"Bug bash \u2014 resolve top 5 open P2 bugs\"]\n\nCarryover from last sprint: [describe, or \"none\"]\nTeam velocity last sprint: [N story points]\nCapacity this sprint: [N \u2014 note any leave or constraints]\n\nRole: Act as an experienced Scrum Master who facilitates sprint planning sessions that run on time, keep the team engaged, and close with a clear, confident sprint commitment.\n\nInstruction: Write a sprint planning agenda with:\n1. Pre-meeting prep section (what each role needs to bring/prepare)\n2. Agenda items with timebox, facilitator, and brief facilitator notes\n3. A section for team capacity check\n4. Story point estimation round\n5. Sprint goal statement section\n6. Close and parking lot\n\nSpec:\n- Agenda table format (item | timebox | facilitator | notes)\n- Total timebox must match the ceremony duration provided\n- Pre-meeting prep listed separately at the top\n- 300\u2013350 words\n- Close must output a draft sprint goal statement\n\nPerformance bar: A substitute Scrum Master could run this session with no other context. Every section has a clear output. Agenda closes with a committed sprint goal the team co-owns.", 'copy-card-0')">Copy</button>
-            <pre>Context: I&#x27;m running Sprint [N] planning for [Project Name]. Team: [N developers, N QA, N designers]. Sprint duration: 2 weeks (starts [date], ends [date]). Ceremony timebox: [2 / 3 / 4 hours]. 
-
-Top backlog priorities coming into this sprint:
-1. [Priority 1 — e.g., &quot;Complete user authentication module (4 stories, partially done)&quot;]
-2. [Priority 2 — e.g., &quot;Start dashboard MVP (6 stories, designs ready)&quot;]
-3. [Priority 3 — e.g., &quot;Bug bash — resolve top 5 open P2 bugs&quot;]
-
-Carryover from last sprint: [describe, or &quot;none&quot;]
-Team velocity last sprint: [N story points]
-Capacity this sprint: [N — note any leave or constraints]
-
-Role: Act as an experienced Scrum Master who facilitates sprint planning sessions that run on time, keep the team engaged, and close with a clear, confident sprint commitment.
-
-Instruction: Write a sprint planning agenda with:
-1. Pre-meeting prep section (what each role needs to bring/prepare)
-2. Agenda items with timebox, facilitator, and brief facilitator notes
-3. A section for team capacity check
-4. Story point estimation round
-5. Sprint goal statement section
-6. Close and parking lot
-
-Spec:
-- Agenda table format (item | timebox | facilitator | notes)
-- Total timebox must match the ceremony duration provided
-- Pre-meeting prep listed separately at the top
-- 300–350 words
-- Close must output a draft sprint goal statement
-
-Performance bar: A substitute Scrum Master could run this session with no other context. Every section has a clear output. Agenda closes with a committed sprint goal the team co-owns.</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value">Act as a content strategist who specialises in B2B SaaS thought leadership and SEO-driven editorial planning.</div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Sprint Planning Agenda: 1. Welcome (5 min) 2. Review backlog (30 min) 3. Assign tasks (30 min) 4. Any other business (10 min) 5. Close.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value">Generate 10 blog post ideas on the topic I give you. Each idea should have a unique angle that hasn't been covered to death.</div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value">Return a numbered list. Each item: title + one-line rationale (why this angle is fresh). Keep each item under 30 words. No generic "ultimate guide" titles.</div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value">A great output gives me titles I haven't seen before, with angles grounded in real reader pain — not SEO-keyword stuffing.</div>
+        </div>
+        <pre class="prompt-block">I'm a solo content marketer for a B2B SaaS company publishing two posts/week. I need fresh angles, not recycled takes.
+
+Act as a content strategist specialising in B2B SaaS thought leadership and SEO-driven editorial planning.
+
+Generate 10 blog post ideas on the topic below. Each must have a distinct angle not commonly covered.
+
+Return a numbered list. Format per item:
+- Title (compelling, specific)
+- One-line rationale: why this angle is fresh and valuable (max 25 words)
+
+No "ultimate guides" or generic listicles. Avoid titles that start with "How to".
+
+Topic: [PASTE YOUR TOPIC]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-02">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#02</span>
-          <h2>Stakeholder Status Update</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+
+    <!-- TODO CARDS -->
+
+    <div class="card">
+      <div class="card-header">
+        <h3>SEO Title + Meta</h3>
+        <span class="todo-tag">⬜ TODO</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a concise, clearly-structured stakeholder status update that communicates RAG status, progress against milestones, risks on the horizon, and decisions needed — without overwhelming executives with detail or hiding problems in vague language.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Project [name], [week/sprint N]. RAG status: [Red/Amber/Green]. Key milestone status: [on track / delayed by X days / completed]. Risks to surface: [list]. Decisions needed from stakeholders: [list].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a senior PM who writes stakeholder updates that executives trust — because the updates are honest about risks and never bury bad news in positive framing.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a weekly status update with: RAG indicator with one-sentence justification, 3-bullet progress summary, risks and issues section, decisions needed, and next milestones.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Email or Confluence update format. 200–250 words. RAG status in the subject line. No more than 5 bullets total. Decisions needed must be specific — not &quot;input required.&quot;</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>An executive reads this in 90 seconds and knows: current status, what&#x27;s at risk, and what they need to do. No follow-up questions about basic status.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-1" onclick="copyPrompt("Context: I'm the PM for [Project Name]. This is the Week [N] / Sprint [N] status update. Audience: [executive sponsor / steering committee / department head]. \n\nCurrent status:\n- RAG: [Red / Amber / Green] because [one-sentence reason]\n- Milestone status: [list 2\u20133 milestones with on-track / delayed / completed]\n- Progress this period: [3\u20134 bullet points of what was completed or advanced]\n- Risks on the horizon: [list 1\u20133 risks with likelihood and impact]\n- Blockers: [list any, or \"none currently\"]\n- Decisions needed from stakeholders: [list specific decisions with deadlines]\n- Next milestones: [what's coming in the next 2 weeks]\n\nRole: Act as a senior PM who writes executive status updates that are honest, scannable, and always surface bad news clearly rather than burying it.\n\nInstruction: Write a stakeholder status update with these exact sections:\n1. Subject line with RAG status indicator\n2. Status Summary (2\u20133 sentences max \u2014 the TLDR)\n3. Progress This Period (3 bullets max)\n4. Risks & Issues (each with: description, likelihood, mitigation owner)\n5. Decisions Needed (each with: decision, needed by, consequences of delay)\n6. Next Milestones (2\u20133, with dates)\n\nSpec:\n- Email format with subject line\n- 200\u2013250 words total\n- RAG in subject line (use emoji: green circle, amber circle, red circle)\n- 3 bullets max per section \u2014 force prioritisation\n- Decisions must be specific and actionable\n\nPerformance bar: Executive reads this in 90 seconds and knows current status, top risk, and what action they need to take. No follow-up questions needed for basic status.", 'copy-card-1')">Copy</button>
-            <pre>Context: I&#x27;m the PM for [Project Name]. This is the Week [N] / Sprint [N] status update. Audience: [executive sponsor / steering committee / department head]. 
-
-Current status:
-- RAG: [Red / Amber / Green] because [one-sentence reason]
-- Milestone status: [list 2–3 milestones with on-track / delayed / completed]
-- Progress this period: [3–4 bullet points of what was completed or advanced]
-- Risks on the horizon: [list 1–3 risks with likelihood and impact]
-- Blockers: [list any, or &quot;none currently&quot;]
-- Decisions needed from stakeholders: [list specific decisions with deadlines]
-- Next milestones: [what&#x27;s coming in the next 2 weeks]
-
-Role: Act as a senior PM who writes executive status updates that are honest, scannable, and always surface bad news clearly rather than burying it.
-
-Instruction: Write a stakeholder status update with these exact sections:
-1. Subject line with RAG status indicator
-2. Status Summary (2–3 sentences max — the TLDR)
-3. Progress This Period (3 bullets max)
-4. Risks &amp; Issues (each with: description, likelihood, mitigation owner)
-5. Decisions Needed (each with: decision, needed by, consequences of delay)
-6. Next Milestones (2–3, with dates)
-
-Spec:
-- Email format with subject line
-- 200–250 words total
-- RAG in subject line (use emoji: green circle, amber circle, red circle)
-- 3 bullets max per section — force prioritisation
-- Decisions must be specific and actionable
-
-Performance bar: Executive reads this in 90 seconds and knows current status, top risk, and what action they need to take. No follow-up questions needed for basic status.</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Hi all, just wanted to give a quick update on the project. Things are progressing well. The team has been working hard on several deliverables. We have encountered some challenges but are working through them. Please let me know if you have any questions. More updates to follow.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+        </div>
+        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
+        <button class="copy-btn" disabled>Add your prompt first</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-03">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#03</span>
-          <h2>Risk Register Entry</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>LinkedIn Carousel Script</h3>
+        <span class="todo-tag">⬜ TODO</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Document a newly identified project risk with structured impact assessment, likelihood rating, risk score, mitigation plan, contingency plan, and a named owner — so the risk register is actionable, not just a list of worries.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Project [name] has a new risk: [describe the risk]. Current project phase: [planning / development / testing / go-live]. If this risk materialises, the impact would be [describe].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a PM with a PMI/PRINCE2 background who writes risk register entries that are specific enough to act on — not vague enough to ignore.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Create a risk register entry with: risk ID, category, description, likelihood score (1–5), impact score (1–5), risk score (L x I), mitigation plan, contingency plan, owner, and review date.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Risk register row format — use a table for the structured fields, followed by narrative sections for mitigation and contingency. Risk scoring must follow a standard 1–5 scale with definitions provided.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The risk owner should be able to start the mitigation this week using only this entry. The contingency plan is specific enough to execute if the risk materialises.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-2" onclick="copyPrompt("Context: I'm the PM for [Project Name], currently in [phase: planning / development / testing / go-live]. A new risk has been identified: [describe the risk in one sentence]. If this risk occurs, the impact would be: [describe \u2014 e.g., \"delay go-live by 3\u20134 weeks and increase costs by approximately $15,000\"]. Known early warning signs: [describe any signals that suggest this risk is starting to materialise, or \"none identified yet\"].\n\nRole: Act as a PM with a PMI/PRINCE2 background who writes risk register entries that are specific, action-oriented, and immediately usable by the risk owner.\n\nInstruction: Write a full risk register entry with:\n1. Risk ID (generate a placeholder: RISK-XXX)\n2. Risk Category (schedule / budget / resource / technical / external / compliance)\n3. Risk Description \u2014 2\u20133 sentences with full context\n4. Likelihood Score \u2014 rate 1\u20135 with brief justification (1=rare, 3=possible, 5=almost certain)\n5. Impact Score \u2014 rate 1\u20135 with brief justification (1=negligible, 3=significant, 5=project-threatening)\n6. Risk Score \u2014 Likelihood x Impact (with severity label: Low 1\u20138 / Medium 9\u201315 / High 16\u201325)\n7. Mitigation Plan \u2014 3 specific actions to reduce likelihood or impact, with owner per action\n8. Contingency Plan \u2014 what we do if the risk materialises despite mitigation\n9. Risk Owner \u2014 named individual responsible for monitoring and mitigation\n10. Review Date \u2014 next checkpoint to re-assess\n\nSpec:\n- Structured fields in a table\n- Mitigation and Contingency as numbered lists\n- Each mitigation action has a named owner\n- 300\u2013350 words\n- No vague language (\"monitor the situation\" without specifics)\n\nPerformance bar: The risk owner can start mitigation this week. The contingency plan is executable as-written if the risk fires. A PMO audit would not flag this entry as incomplete.", 'copy-card-2')">Copy</button>
-            <pre>Context: I&#x27;m the PM for [Project Name], currently in [phase: planning / development / testing / go-live]. A new risk has been identified: [describe the risk in one sentence]. If this risk occurs, the impact would be: [describe — e.g., &quot;delay go-live by 3–4 weeks and increase costs by approximately $15,000&quot;]. Known early warning signs: [describe any signals that suggest this risk is starting to materialise, or &quot;none identified yet&quot;].
-
-Role: Act as a PM with a PMI/PRINCE2 background who writes risk register entries that are specific, action-oriented, and immediately usable by the risk owner.
-
-Instruction: Write a full risk register entry with:
-1. Risk ID (generate a placeholder: RISK-XXX)
-2. Risk Category (schedule / budget / resource / technical / external / compliance)
-3. Risk Description — 2–3 sentences with full context
-4. Likelihood Score — rate 1–5 with brief justification (1=rare, 3=possible, 5=almost certain)
-5. Impact Score — rate 1–5 with brief justification (1=negligible, 3=significant, 5=project-threatening)
-6. Risk Score — Likelihood x Impact (with severity label: Low 1–8 / Medium 9–15 / High 16–25)
-7. Mitigation Plan — 3 specific actions to reduce likelihood or impact, with owner per action
-8. Contingency Plan — what we do if the risk materialises despite mitigation
-9. Risk Owner — named individual responsible for monitoring and mitigation
-10. Review Date — next checkpoint to re-assess
-
-Spec:
-- Structured fields in a table
-- Mitigation and Contingency as numbered lists
-- Each mitigation action has a named owner
-- 300–350 words
-- No vague language (&quot;monitor the situation&quot; without specifics)
-
-Performance bar: The risk owner can start mitigation this week. The contingency plan is executable as-written if the risk fires. A PMO audit would not flag this entry as incomplete.</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Risk: Third-party vendor may be late. Likelihood: Medium. Impact: High. Mitigation: Follow up with vendor regularly. Owner: PM.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+        </div>
+        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
+        <button class="copy-btn" disabled>Add your prompt first</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-04">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#04</span>
-          <h2>Retrospective Summary</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Email Newsletter</h3>
+        <span class="todo-tag">⬜ TODO</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Synthesise raw retrospective notes (sticky notes, FigJam comments, Miro boards) into a structured summary with clear themes, voted actions, owners, and sprint-over-sprint tracking — so the retro produces change, not just conversation.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Sprint [N] retrospective for [project/team]. Format used: [Start/Stop/Continue / 4Ls / Mad-Sad-Glad]. Number of participants: [N]. Raw notes pasted below.</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a Scrum Master who turns retrospective sessions into durable improvement actions — not just a feel-good summary that gets forgotten by next sprint.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Synthesise the raw notes into: top 3 themes per category, one &quot;headline&quot; insight, a voted action list (max 3 actions for next sprint), and a satisfaction score check.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Retrospective report format. Themes as grouped bullet points. Actions in a table with owner, success metric, and review sprint. 300–350 words.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The 3 actions can be turned into Jira tickets today. Each action has a measurable success criterion. The headline insight is one sentence a VP could quote.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-3" onclick="copyPrompt("Context: I'm the Scrum Master for [Team Name / Project Name]. We just completed Sprint [N] retrospective with [N] participants. We used the [Start/Stop/Continue / Mad-Sad-Glad / 4Ls] format. Raw retrospective notes are pasted below.\n\nRole: Act as a Scrum Master who synthesises retrospective notes into clear, action-oriented summaries that produce sprint-over-sprint improvement \u2014 not just documentation.\n\nInstruction: Read the raw notes below and produce a retrospective summary with:\n1. Headline Insight \u2014 one sentence that captures the single most important thing this team learned or confirmed this sprint\n2. Key Themes \u2014 group the notes into 3\u20135 themes; for each theme: name, supporting points (2\u20133 bullets), category (positive / needs improvement)\n3. Voted Actions \u2014 the top 3 improvements for next sprint, formatted as a table with: action, owner, success metric (how we'll know it worked), review date\n4. Team Pulse \u2014 a one-sentence summary of overall team sentiment based on the notes\n5. Carry Forward \u2014 any actions from last retro that were not completed\n\nSpec:\n- Retrospective report format\n- Bold all section headers\n- Actions in a table (not prose)\n- Each action must have a measurable success criterion\n- 300\u2013350 words\n- No corporate jargon \u2014 write like a human who was in the room\n\nPerformance bar: The 3 actions can be added to Jira as tickets this afternoon. Success metrics are measurable by next retro. The headline insight can be quoted in a team meeting.\n\n--- RAW RETRO NOTES ---\n[Paste all sticky notes or comments here, grouped by category if possible]", 'copy-card-3')">Copy</button>
-            <pre>Context: I&#x27;m the Scrum Master for [Team Name / Project Name]. We just completed Sprint [N] retrospective with [N] participants. We used the [Start/Stop/Continue / Mad-Sad-Glad / 4Ls] format. Raw retrospective notes are pasted below.
-
-Role: Act as a Scrum Master who synthesises retrospective notes into clear, action-oriented summaries that produce sprint-over-sprint improvement — not just documentation.
-
-Instruction: Read the raw notes below and produce a retrospective summary with:
-1. Headline Insight — one sentence that captures the single most important thing this team learned or confirmed this sprint
-2. Key Themes — group the notes into 3–5 themes; for each theme: name, supporting points (2–3 bullets), category (positive / needs improvement)
-3. Voted Actions — the top 3 improvements for next sprint, formatted as a table with: action, owner, success metric (how we&#x27;ll know it worked), review date
-4. Team Pulse — a one-sentence summary of overall team sentiment based on the notes
-5. Carry Forward — any actions from last retro that were not completed
-
-Spec:
-- Retrospective report format
-- Bold all section headers
-- Actions in a table (not prose)
-- Each action must have a measurable success criterion
-- 300–350 words
-- No corporate jargon — write like a human who was in the room
-
-Performance bar: The 3 actions can be added to Jira as tickets this afternoon. Success metrics are measurable by next retro. The headline insight can be quoted in a team meeting.
-
---- RAW RETRO NOTES ---
-[Paste all sticky notes or comments here, grouped by category if possible]</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>The team discussed what went well and what could be improved. Key themes included communication and processes. The team will work on improving these areas in the next sprint.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+        </div>
+        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
+        <button class="copy-btn" disabled>Add your prompt first</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-05">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#05</span>
-          <h2>Meeting Action Items</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Twitter/X Thread</h3>
+        <span class="todo-tag">⬜ TODO</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Extract and structure action items from raw meeting notes into a formatted table with clear ownership, deadlines, and dependencies — so nothing falls through the cracks and every attendee leaves knowing exactly what they&#x27;re responsible for.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Meeting: [type and name]. Date: [date]. Attendees: [list]. Duration: [X minutes]. Raw notes pasted below.</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a chief-of-staff-calibre note taker who never lets an action item get lost and always assigns a specific owner — never &quot;the team.&quot;</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Extract all action items from the notes, assign a specific owner per item, set a deadline based on context clues or urgency, flag dependencies, and surface any decision that was made but not documented.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Action items in a table: action</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Every person in the meeting can identify their own actions in under 10 seconds. No action is vague enough to be misinterpreted. All decisions made in the meeting are captured.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-4" onclick="copyPrompt("Context: I'm documenting the outputs of a [meeting type \u2014 e.g., sprint review / project kickoff / vendor call] held on [date] for [project name]. Attendees: [list names and roles]. Meeting duration: [X minutes]. Raw notes are pasted below.\n\nRole: Act as a chief-of-staff-level note taker who produces action item summaries where nothing falls through the cracks. Every action has exactly one named owner \u2014 never \"the team\" or \"TBD.\"\n\nInstruction: Read the raw notes below and:\n1. Extract all action items (include any that were implied but not explicitly stated)\n2. Assign one named owner per action (use attendee names from the list)\n3. Set a deadline for each action \u2014 use context clues (e.g., \"before the next sprint\", \"EOD Friday\") and flag any items with no clear deadline as [NEEDS DATE]\n4. Identify any dependencies between actions\n5. Capture all decisions that were made in the meeting (even informal ones)\n6. Flag any items where agreement was unclear or deferred\n\nSpec:\n- Action items in a table: Action | Owner | Deadline | Depends On | Status (Open)\n- Decisions in a separate bulleted list\n- Items with unclear ownership: flag as [OWNER NEEDED]\n- 250 words maximum\n- One person per action, always\n\nPerformance bar: Every attendee can find their actions in under 10 seconds. Nothing is vague. All meeting decisions are captured so there's no \"I thought we decided...\" next week.\n\n--- RAW MEETING NOTES ---\n[Paste your raw notes here]", 'copy-card-4')">Copy</button>
-            <pre>Context: I&#x27;m documenting the outputs of a [meeting type — e.g., sprint review / project kickoff / vendor call] held on [date] for [project name]. Attendees: [list names and roles]. Meeting duration: [X minutes]. Raw notes are pasted below.
-
-Role: Act as a chief-of-staff-level note taker who produces action item summaries where nothing falls through the cracks. Every action has exactly one named owner — never &quot;the team&quot; or &quot;TBD.&quot;
-
-Instruction: Read the raw notes below and:
-1. Extract all action items (include any that were implied but not explicitly stated)
-2. Assign one named owner per action (use attendee names from the list)
-3. Set a deadline for each action — use context clues (e.g., &quot;before the next sprint&quot;, &quot;EOD Friday&quot;) and flag any items with no clear deadline as [NEEDS DATE]
-4. Identify any dependencies between actions
-5. Capture all decisions that were made in the meeting (even informal ones)
-6. Flag any items where agreement was unclear or deferred
-
-Spec:
-- Action items in a table: Action | Owner | Deadline | Depends On | Status (Open)
-- Decisions in a separate bulleted list
-- Items with unclear ownership: flag as [OWNER NEEDED]
-- 250 words maximum
-- One person per action, always
-
-Performance bar: Every attendee can find their actions in under 10 seconds. Nothing is vague. All meeting decisions are captured so there&#x27;s no &quot;I thought we decided...&quot; next week.
-
---- RAW MEETING NOTES ---
-[Paste your raw notes here]</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Action items: 1. Follow up on the API issue. 2. Update the stakeholders. 3. Review the timeline. 4. The team should look at the vendor proposal.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+        </div>
+        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
+        <button class="copy-btn" disabled>Add your prompt first</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-06">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#06</span>
-          <h2>Scope Change Impact Note</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Video Script Outline</h3>
+        <span class="todo-tag">⬜ TODO</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Document a scope change request with a clear assessment of timeline, cost, and risk implications — so stakeholders can make an informed decision to approve, reject, or defer the change rather than treating scope creep as &quot;just one more thing.&quot;</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Project [name], currently [phase]. A scope change has been requested by [requester/stakeholder]. The requested change: [describe it]. The project&#x27;s original scope, budget, and timeline: [summarise].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a PM who advocates for project integrity and always presents scope change requests with their full implications — never minimising impact to keep stakeholders happy in the short term.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a scope change impact note that: describes the requested change clearly, assesses timeline impact (days/weeks), estimates cost impact, identifies risks introduced, recommends approval/rejection/deferral with rationale, and requests a sign-off decision.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Change request document format. 250–300 words. Sections: change description, impact assessment table, risk assessment, recommendation, sign-off required. Do not recommend approval unless the impacts are genuinely acceptable.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The decision-maker can approve or reject in a 10-minute meeting with no additional information needed. The impacts are stated precisely, not as ranges wider than 20%.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-5" onclick="copyPrompt("Context: I'm the PM for [Project Name], currently in [phase]. A scope change has been requested by [requester \u2014 name and role]. Original project parameters: budget $[X], timeline end date [date], team [N people]. \n\nChange requested: [describe the addition or modification in detail]\nRequester's stated reason: [why they want this]\nCurrent project status: [on track / amber / delayed \u2014 briefly]\n\nRole: Act as a PM who presents scope change impacts honestly \u2014 you never downplay the cost of scope changes to avoid conflict, because you know the project pays for it later.\n\nInstruction: Write a scope change impact assessment with:\n1. Change Description \u2014 clear restatement of what is being requested and why\n2. Impact Assessment \u2014 table with: timeline impact (added days), cost impact (estimated $), team impact (who is affected and how), quality/risk impact\n3. Risk if Approved \u2014 1\u20132 risks this change introduces to the existing project\n4. Risk if Rejected \u2014 1 risk if the change is NOT made (be fair to the requester)\n5. Recommendation \u2014 approve / reject / defer to Phase 2 \u2014 with a one-paragraph rationale\n6. Decision Required \u2014 what needs to be signed off, by whom, and by when\n\nSpec:\n- Change request document format\n- Impact in a table\n- 250\u2013300 words\n- Recommendation must be clearly stated (not \"it depends\")\n- Sign-off section with named approver\n\nPerformance bar: Decision-maker can approve or reject in a 10-minute meeting. No additional analysis needed. Impacts are specific, not vague ranges.", 'copy-card-5')">Copy</button>
-            <pre>Context: I&#x27;m the PM for [Project Name], currently in [phase]. A scope change has been requested by [requester — name and role]. Original project parameters: budget $[X], timeline end date [date], team [N people]. 
-
-Change requested: [describe the addition or modification in detail]
-Requester&#x27;s stated reason: [why they want this]
-Current project status: [on track / amber / delayed — briefly]
-
-Role: Act as a PM who presents scope change impacts honestly — you never downplay the cost of scope changes to avoid conflict, because you know the project pays for it later.
-
-Instruction: Write a scope change impact assessment with:
-1. Change Description — clear restatement of what is being requested and why
-2. Impact Assessment — table with: timeline impact (added days), cost impact (estimated $), team impact (who is affected and how), quality/risk impact
-3. Risk if Approved — 1–2 risks this change introduces to the existing project
-4. Risk if Rejected — 1 risk if the change is NOT made (be fair to the requester)
-5. Recommendation — approve / reject / defer to Phase 2 — with a one-paragraph rationale
-6. Decision Required — what needs to be signed off, by whom, and by when
-
-Spec:
-- Change request document format
-- Impact in a table
-- 250–300 words
-- Recommendation must be clearly stated (not &quot;it depends&quot;)
-- Sign-off section with named approver
-
-Performance bar: Decision-maker can approve or reject in a 10-minute meeting. No additional analysis needed. Impacts are specific, not vague ranges.</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>The stakeholder has requested adding a mobile app to the project. This will require additional time and resources. The team should evaluate this and provide an estimate. Please review and decide accordingly.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+        </div>
+        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
+        <button class="copy-btn" disabled>Add your prompt first</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-07">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#07</span>
-          <h2>Project Kickoff Brief</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Content Repurposer</h3>
+        <span class="todo-tag">⬜ TODO</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a one-page project kickoff brief that aligns the project team and stakeholders on scope, objectives, team roles, constraints, and success criteria before Day 1 of delivery — eliminating the &quot;I didn&#x27;t know that was in scope&quot; conversations that derail projects in Week 2.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>New project: [name and description]. Sponsor: [name]. Team: [roles and names]. Budget: [$X]. Timeline: [start – end]. Key constraints or dependencies: [list].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a PM who has started 20+ projects and knows that a weak kickoff is the leading cause of mid-project confusion. You write briefs that answer every question before it&#x27;s asked.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a project kickoff brief with: project summary, objectives and success criteria, team RACI, in-scope/out-of-scope table, timeline milestones, constraints, and first actions.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Single-page brief format. Objectives must have measurable success criteria. RACI must be a table. In/out-of-scope as side-by-side list. 400 words max.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>A team member joining this project on Day 1 with no prior context should understand what we&#x27;re building, their role, and what success looks like. No ambiguity in scope or responsibilities.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-6" onclick="copyPrompt("Context: I'm the PM kicking off [Project Name] for [Organisation/Department]. \n- Project sponsor: [name and title]\n- Project description: [2-sentence summary of what we're building and why]\n- Team: [list names and roles]\n- Budget: $[X]\n- Timeline: Start [date] | Go-live [date] | Total duration: [N weeks/months]\n- Key constraints: [e.g., \"must use existing vendor contracts\", \"no new headcount\", \"launch before Q4 budget freeze\"]\n- Dependencies: [e.g., \"requires IT infrastructure provisioned by Jul 1\", \"legal sign-off on data agreement\"]\n- Known risks at kickoff: [list 1\u20132]\n\nRole: Act as a PM who has led 20+ project kickoffs and knows that clarity at the start saves weeks of rework in the middle. You write briefs that pre-answer every common confusion point.\n\nInstruction: Write a project kickoff brief with exactly these sections:\n1. Project Summary \u2014 3 sentences: what, why, when\n2. Objectives \u2014 3 bullet points, each with a measurable success criterion\n3. Team and Responsibilities \u2014 RACI table (Responsible / Accountable / Consulted / Informed) for the top 5 decision types\n4. Scope \u2014 side-by-side table: In Scope | Out of Scope\n5. Key Milestones \u2014 4\u20135 milestone dates\n6. Constraints and Dependencies \u2014 bulleted list\n7. First Actions \u2014 top 3 things that must happen in Week 1, with named owners\n\nSpec:\n- Single-page brief format (dense but structured)\n- RACI in a table\n- In/Out of Scope side-by-side\n- Objectives MUST have measurable criteria\n- 400 words maximum\n\nPerformance bar: Day-1 team member understands what we're building, their role, and success criteria. The \"Out of Scope\" section prevents the top 3 scope creep conversations.", 'copy-card-6')">Copy</button>
-            <pre>Context: I&#x27;m the PM kicking off [Project Name] for [Organisation/Department]. 
-- Project sponsor: [name and title]
-- Project description: [2-sentence summary of what we&#x27;re building and why]
-- Team: [list names and roles]
-- Budget: $[X]
-- Timeline: Start [date] | Go-live [date] | Total duration: [N weeks/months]
-- Key constraints: [e.g., &quot;must use existing vendor contracts&quot;, &quot;no new headcount&quot;, &quot;launch before Q4 budget freeze&quot;]
-- Dependencies: [e.g., &quot;requires IT infrastructure provisioned by Jul 1&quot;, &quot;legal sign-off on data agreement&quot;]
-- Known risks at kickoff: [list 1–2]
-
-Role: Act as a PM who has led 20+ project kickoffs and knows that clarity at the start saves weeks of rework in the middle. You write briefs that pre-answer every common confusion point.
-
-Instruction: Write a project kickoff brief with exactly these sections:
-1. Project Summary — 3 sentences: what, why, when
-2. Objectives — 3 bullet points, each with a measurable success criterion
-3. Team and Responsibilities — RACI table (Responsible / Accountable / Consulted / Informed) for the top 5 decision types
-4. Scope — side-by-side table: In Scope | Out of Scope
-5. Key Milestones — 4–5 milestone dates
-6. Constraints and Dependencies — bulleted list
-7. First Actions — top 3 things that must happen in Week 1, with named owners
-
-Spec:
-- Single-page brief format (dense but structured)
-- RACI in a table
-- In/Out of Scope side-by-side
-- Objectives MUST have measurable criteria
-- 400 words maximum
-
-Performance bar: Day-1 team member understands what we&#x27;re building, their role, and success criteria. The &quot;Out of Scope&quot; section prevents the top 3 scope creep conversations.</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Project Brief: CRM Migration. We will migrate our existing CRM to a new system. The project will involve multiple teams and stakeholders. The goal is to improve efficiency. The project will begin soon and end when complete.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+        </div>
+        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
+        <button class="copy-btn" disabled>Add your prompt first</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-08">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#08</span>
-          <h2>Vendor Evaluation Scorecard</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Performance Debrief</h3>
+        <span class="todo-tag">⬜ TODO</span>
       </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Create a weighted vendor evaluation scorecard from a requirements list and vendor information — so vendor selection is defensible, objective, and documented rather than based on who gave the best demo.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Evaluating vendors for [product/service]. Budget: [$X/year]. Vendors being evaluated: [list 2–4]. Key requirements: [list]. Evaluation team: [roles who will score].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a PM who runs vendor evaluations that procurement teams trust because they are structured, weighted by business priority, and produce a clear recommendation with a documented rationale.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Create a weighted scorecard with criteria derived from the requirements, score each vendor on 1–5 scale, calculate weighted scores, produce a ranked result table, and write a one-paragraph recommendation.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Scorecard table format. Criteria must have weights that total 100%. Scores 1–5 with definitions (1=does not meet, 3=meets, 5=exceeds). Weighted score = score x weight. Recommendation in one paragraph.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>A procurement team can use this scorecard in a vendor selection meeting. The recommendation is supported by the scores and explains any trade-offs.</td>
-                </tr>
-            </tbody>
-          </table>
+      <div class="card-body">
+        <div class="crisp-row">
+          <div class="crisp-label">C — Context</div>
+          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
         </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-7" onclick="copyPrompt("Context: I'm evaluating vendors for [product/service] at [Company]. Budget: $[X] per year. Contract duration: [N years]. Decision needed by: [date].\n\nVendors being evaluated:\n1. [Vendor A name] \u2014 brief description\n2. [Vendor B name] \u2014 brief description\n3. [Vendor C name] \u2014 brief description\n\nKey requirements (I'll provide these \u2014 you assign weights based on business priority):\n- [Requirement 1]\n- [Requirement 2]\n- [Requirement 3]\n- [Requirement 4]\n- [Requirement 5]\n\nInformation about each vendor:\n[Paste vendor information here \u2014 from demos, RFP responses, or your notes]\n\nRole: Act as a PM who runs objective vendor evaluations that produce defensible, documented recommendations. You assign criteria weights that reflect actual business priorities, not equal weighting.\n\nInstruction: Using the requirements and vendor information above:\n1. Create weighted evaluation criteria (must total 100%) based on the requirements provided; explain the weight rationale briefly\n2. Score each vendor on each criterion (1\u20135 scale) with a one-line justification\n3. Calculate weighted scores for each vendor\n4. Produce a ranked results table\n5. Write a recommendation paragraph that: states the recommended vendor, explains why, and acknowledges the top trade-off\n\nSpec:\n- Scorecard as a table (criteria | weight | Vendor A | Vendor B | Vendor C)\n- Score definitions: 1=fails to meet, 2=partially meets, 3=meets, 4=exceeds in one area, 5=clearly exceeds\n- Weights must total 100%\n- Separate justification per score per vendor\n- Recommendation: one clear paragraph, 100 words max\n\nPerformance bar: A procurement panel can defend this selection to a CFO. The recommendation explains trade-offs honestly. Scoring rationale prevents \"we just liked their demo\" decisions.", 'copy-card-7')">Copy</button>
-            <pre>Context: I&#x27;m evaluating vendors for [product/service] at [Company]. Budget: $[X] per year. Contract duration: [N years]. Decision needed by: [date].
-
-Vendors being evaluated:
-1. [Vendor A name] — brief description
-2. [Vendor B name] — brief description
-3. [Vendor C name] — brief description
-
-Key requirements (I&#x27;ll provide these — you assign weights based on business priority):
-- [Requirement 1]
-- [Requirement 2]
-- [Requirement 3]
-- [Requirement 4]
-- [Requirement 5]
-
-Information about each vendor:
-[Paste vendor information here — from demos, RFP responses, or your notes]
-
-Role: Act as a PM who runs objective vendor evaluations that produce defensible, documented recommendations. You assign criteria weights that reflect actual business priorities, not equal weighting.
-
-Instruction: Using the requirements and vendor information above:
-1. Create weighted evaluation criteria (must total 100%) based on the requirements provided; explain the weight rationale briefly
-2. Score each vendor on each criterion (1–5 scale) with a one-line justification
-3. Calculate weighted scores for each vendor
-4. Produce a ranked results table
-5. Write a recommendation paragraph that: states the recommended vendor, explains why, and acknowledges the top trade-off
-
-Spec:
-- Scorecard as a table (criteria | weight | Vendor A | Vendor B | Vendor C)
-- Score definitions: 1=fails to meet, 2=partially meets, 3=meets, 4=exceeds in one area, 5=clearly exceeds
-- Weights must total 100%
-- Separate justification per score per vendor
-- Recommendation: one clear paragraph, 100 words max
-
-Performance bar: A procurement panel can defend this selection to a CFO. The recommendation explains trade-offs honestly. Scoring rationale prevents &quot;we just liked their demo&quot; decisions.</pre>
-          </div>
+        <div class="crisp-row">
+          <div class="crisp-label">R — Role</div>
+          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
         </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Vendor A, B, and C all offer CRM features. Vendor A is expensive but has good features. Vendor B is cheaper. Vendor C has mixed reviews. You should consider your budget and needs when making a decision.</blockquote>
-            </div>
-          
+        <div class="crisp-row">
+          <div class="crisp-label">I — Instruction</div>
+          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
         </div>
+        <div class="crisp-row">
+          <div class="crisp-label">S — Spec</div>
+          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+        </div>
+        <div class="crisp-row">
+          <div class="crisp-label">P — Performance</div>
+          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+        </div>
+        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
+        <button class="copy-btn" disabled>Add your prompt first</button>
       </div>
     </div>
-    <div class="prompt-card" id="prompt-09">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#09</span>
-          <h2>Budget Variance Explanation</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Explain a project budget variance (overspend or underspend) clearly to non-financial stakeholders — with root cause, impact on project completion, corrective actions, and a revised forecast — without hiding problems or over-engineering the explanation.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Project [name]. Approved budget: $[X]. Actual spend to date: $[Y]. Variance: $[Z] over/under ([%]). Root cause: [what drove the variance]. Phase: [what stage you&#x27;re at].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a PM who explains financial variance honestly — you don&#x27;t minimise overruns or pad underspend explanations. You make financial information accessible to non-financial audiences.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a budget variance explanation with: variance summary (numbers upfront), root cause breakdown, impact on project completion, corrective actions (if overspend) or reforecast (if underspend), and revised budget forecast.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Written explanation with a summary table at the top. 200–250 words. Numbers first, narrative second. Corrective actions are specific — not &quot;tighten spending.&quot;</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>A non-financial stakeholder understands the variance, its cause, and the team&#x27;s response in under 2 minutes. The revised forecast gives them a number they can report upward.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-8" onclick="copyPrompt("Context: I'm the PM for [Project Name]. Our approved budget was $[X]. Actual spend to date (as of [date], end of [phase/week]): $[Y]. Variance: $[Z] [over / under] budget, representing a [%] variance. We are [N%] through the project timeline.\n\nRoot cause of variance:\n- [Cause 1 and $amount \u2014 e.g., \"Vendor API integration required 40h extra dev time: +$6,000\"]\n- [Cause 2 and $amount]\n- [Cause 3 if applicable]\n\nRemaining budget needed to complete: $[estimated]\nRevised total forecast: $[X + variance needed]\n\nRole: Act as a PM who gives honest, clear budget variance explanations to non-financial stakeholders. You never hide overruns or obscure the numbers in technical language.\n\nInstruction: Write a budget variance explanation with:\n1. Variance Summary Table \u2014 approved vs actual vs forecast (3 rows, 3 columns)\n2. Root Cause \u2014 explain each cause in plain language, with the dollar amount\n3. Impact on Delivery \u2014 will this affect timeline, scope, or quality?\n4. Corrective Actions (if overrun) \u2014 2\u20133 specific actions with owner and expected savings/impact\n5. Revised Forecast \u2014 the new number to completion, clearly stated\n\nSpec:\n- Summary table at the top\n- 200\u2013250 words\n- Numbers always before narrative\n- Corrective actions specific (not \"reduce spend\")\n- One clear revised forecast number\n\nPerformance bar: Non-financial stakeholder understands the variance in 2 minutes. Revised forecast is a single specific number. Corrective actions are actionable this week.", 'copy-card-8')">Copy</button>
-            <pre>Context: I&#x27;m the PM for [Project Name]. Our approved budget was $[X]. Actual spend to date (as of [date], end of [phase/week]): $[Y]. Variance: $[Z] [over / under] budget, representing a [%] variance. We are [N%] through the project timeline.
 
-Root cause of variance:
-- [Cause 1 and $amount — e.g., &quot;Vendor API integration required 40h extra dev time: +$6,000&quot;]
-- [Cause 2 and $amount]
-- [Cause 3 if applicable]
-
-Remaining budget needed to complete: $[estimated]
-Revised total forecast: $[X + variance needed]
-
-Role: Act as a PM who gives honest, clear budget variance explanations to non-financial stakeholders. You never hide overruns or obscure the numbers in technical language.
-
-Instruction: Write a budget variance explanation with:
-1. Variance Summary Table — approved vs actual vs forecast (3 rows, 3 columns)
-2. Root Cause — explain each cause in plain language, with the dollar amount
-3. Impact on Delivery — will this affect timeline, scope, or quality?
-4. Corrective Actions (if overrun) — 2–3 specific actions with owner and expected savings/impact
-5. Revised Forecast — the new number to completion, clearly stated
-
-Spec:
-- Summary table at the top
-- 200–250 words
-- Numbers always before narrative
-- Corrective actions specific (not &quot;reduce spend&quot;)
-- One clear revised forecast number
-
-Performance bar: Non-financial stakeholder understands the variance in 2 minutes. Revised forecast is a single specific number. Corrective actions are actionable this week.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>We have experienced some unexpected costs on the project which have resulted in a budget variance. The team has been working hard to manage costs but there have been some challenges. We will continue to monitor the budget going forward.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-10">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#10</span>
-          <h2>Project Closure Report</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a project closure report that formally closes the project, captures what was delivered, documents lessons learned honestly, and gives the organisation something useful for the next similar project — not a self-congratulatory summary that buries the hard truths.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Project [name] is complete. Original objectives: [list]. What was actually delivered: [list]. Timeline: originally planned vs actual. Budget: planned vs actual. Team: [list].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a PM who writes closure reports that future PMs will actually read — because they are honest, specific, and contain lessons that prevent real mistakes from repeating.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a project closure report with: executive summary, deliverables vs original objectives, timeline performance, budget performance, lessons learned (positive and negative), and recommendations for future projects.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Formal document format with numbered sections. Lessons learned must include both what went well AND what didn&#x27;t, with equal space. Recommendations must be actionable by a future PM. 450–500 words.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>A PM starting a similar project 12 months from now should find at least 3 things in this document that change how they run their project. Lessons learned are honest, not political.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-9" onclick="copyPrompt("Context: Project [Name] has reached closure. Please write a project closure report using the following information:\n\nOriginal Objectives:\n1. [Objective 1 with measurable criterion]\n2. [Objective 2]\n3. [Objective 3]\n\nWhat Was Actually Delivered:\n- [Deliverable 1 \u2014 note any gap vs original objective]\n- [Deliverable 2]\n- [Deliverable 3]\n\nTimeline:\n- Planned start: [date] | Actual start: [date]\n- Planned go-live: [date] | Actual go-live: [date]\n- Variance: [N days over/under]\n\nBudget:\n- Approved: $[X] | Actual: $[Y] | Variance: $[Z] ([%])\n\nTeam: [list members and roles]\nSponsor: [name]\n\nLessons Learned (raw notes \u2014 you synthesise):\nPositive: [what worked well]\nNegative: [what didn't work / what you'd do differently]\n\nRole: Act as a PM who writes closure reports that future PMs actually find useful \u2014 because they contain honest, specific lessons that prevent real mistakes from repeating, not just a list of accomplishments.\n\nInstruction: Write a project closure report with:\n1. Executive Summary \u2014 3 sentences: what was delivered, how it performed vs plan, one headline lesson\n2. Deliverables vs Objectives \u2014 table comparing original objective to actual delivery\n3. Timeline Performance \u2014 planned vs actual with brief explanation of variance\n4. Budget Performance \u2014 planned vs actual with brief explanation\n5. What Worked Well \u2014 3 specific lessons (not generic praise)\n6. What to Do Differently \u2014 3 honest lessons with specific recommendations for future projects\n7. Recommendations for Future Projects \u2014 3 actionable recommendations with the audience who should read them\n\nSpec:\n- Formal document format, numbered sections\n- 450\u2013500 words\n- Lessons must be equally balanced positive and negative\n- Recommendations must address a named future audience (\"Future PMs should...\", \"Procurement should...\")\n- No political softening \u2014 write the hard truths\n\nPerformance bar: A future PM reads this and changes at least 3 things about how they run their next project. Lessons are specific enough to be actionable, not generic mantras.", 'copy-card-9')">Copy</button>
-            <pre>Context: Project [Name] has reached closure. Please write a project closure report using the following information:
-
-Original Objectives:
-1. [Objective 1 with measurable criterion]
-2. [Objective 2]
-3. [Objective 3]
-
-What Was Actually Delivered:
-- [Deliverable 1 — note any gap vs original objective]
-- [Deliverable 2]
-- [Deliverable 3]
-
-Timeline:
-- Planned start: [date] | Actual start: [date]
-- Planned go-live: [date] | Actual go-live: [date]
-- Variance: [N days over/under]
-
-Budget:
-- Approved: $[X] | Actual: $[Y] | Variance: $[Z] ([%])
-
-Team: [list members and roles]
-Sponsor: [name]
-
-Lessons Learned (raw notes — you synthesise):
-Positive: [what worked well]
-Negative: [what didn&#x27;t work / what you&#x27;d do differently]
-
-Role: Act as a PM who writes closure reports that future PMs actually find useful — because they contain honest, specific lessons that prevent real mistakes from repeating, not just a list of accomplishments.
-
-Instruction: Write a project closure report with:
-1. Executive Summary — 3 sentences: what was delivered, how it performed vs plan, one headline lesson
-2. Deliverables vs Objectives — table comparing original objective to actual delivery
-3. Timeline Performance — planned vs actual with brief explanation of variance
-4. Budget Performance — planned vs actual with brief explanation
-5. What Worked Well — 3 specific lessons (not generic praise)
-6. What to Do Differently — 3 honest lessons with specific recommendations for future projects
-7. Recommendations for Future Projects — 3 actionable recommendations with the audience who should read them
-
-Spec:
-- Formal document format, numbered sections
-- 450–500 words
-- Lessons must be equally balanced positive and negative
-- Recommendations must address a named future audience (&quot;Future PMs should...&quot;, &quot;Procurement should...&quot;)
-- No political softening — write the hard truths
-
-Performance bar: A future PM reads this and changes at least 3 things about how they run their next project. Lessons are specific enough to be actionable, not generic mantras.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>The CRM migration project has been completed successfully. The team worked hard and delivered the project. We learned many valuable lessons. The project will benefit the organisation going forward. Thank you to all team members.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
   </div>
-
-  <footer>Forgemind AI · Claude Course · HO3 · <a href="https://github.com/Forgemind-git/ho3-prompt-library" style="color:inherit">github.com/Forgemind-git/ho3-prompt-library</a></footer>
-
-  <script>
-    function copyPrompt(text, btnId) {
-      navigator.clipboard.writeText(text).then(function() {
-        var btn = document.getElementById(btnId);
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 2000);
-      }).catch(function() {
-        // fallback
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        var btn = document.getElementById(btnId);
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 2000);
-      });
-    }
-  </script>
+  <footer>Forgemind AI · Claude Course · HO3 Sample 2 · <a href="../../" style="color:#059669">← All samples</a></footer>
 </body>
 </html>

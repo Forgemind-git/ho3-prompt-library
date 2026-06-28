@@ -13,6 +13,17 @@ This prompt library gives content marketers a structured set of AI prompts that 
 
 ---
 
+## Use it with your Claude.ai subscription
+No API key needed. Just your normal Claude.ai login.
+
+1. Open the file **`index.html`** from this folder in your web browser (double-click it). You'll see every content prompt as a card.
+2. Find the prompt you need (for example, *Blog Post Outline*) and click its **Copy** button.
+3. Open **Claude.ai** in another tab and paste the prompt into the chat box.
+4. Replace the `[BRACKET]` placeholders (like `[TOPIC]` or `[TARGET KEYWORD]`) with your real details, then press Enter.
+5. Read Claude's draft, add your brand voice, and publish. If the voice is off, just tell Claude "more casual" or "tighten it up".
+
+Prefer reading the prompts as text? Open any file in the **`prompts/`** folder and copy the prompt from its **Full Prompt** section. No API key needed.
+
 ## What Is the CRISP Framework?
 
 | Letter | Stands For | What It Does |

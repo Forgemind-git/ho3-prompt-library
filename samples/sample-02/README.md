@@ -13,6 +13,17 @@ This prompt library gives PMs a structured set of AI prompts that produce first-
 
 ---
 
+## Use it with your Claude.ai subscription
+No API key needed. Just your normal Claude.ai login.
+
+1. Open the file **`index.html`** from this folder in your web browser (double-click it). You'll see every PM prompt as a card.
+2. Find the prompt you need (for example, *Stakeholder Status Update*) and click its **Copy** button.
+3. Open **Claude.ai** in another tab and paste the prompt into the chat box.
+4. Replace the `[BRACKET]` placeholders with your real project details, then press Enter.
+5. Read Claude's draft, adjust it with your PM judgement, and use it. If it's too long, tell Claude "make it tighter".
+
+Prefer reading the prompts as text? Open any file in the **`prompts/`** folder and copy the prompt from its **Full Prompt** section. No API key needed.
+
 ## What Is the CRISP Framework?
 
 Every prompt in this library is built on **CRISP** — a five-part structure that eliminates ambiguity:

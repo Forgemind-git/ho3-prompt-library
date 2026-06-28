@@ -13,6 +13,17 @@ This prompt library solves that. It gives your team a structured, reusable set o
 
 ---
 
+## Use it with your Claude.ai subscription
+No API key needed. Just your normal Claude.ai login.
+
+1. Open the file **`index.html`** from this folder in your web browser (double-click it). You'll see every support prompt as a card.
+2. Find the prompt you need (for example, *Reply to an Angry Customer*) and click its **Copy** button.
+3. Open **Claude.ai** in another tab and paste the prompt into the chat box.
+4. Replace the `[BRACKET]` placeholders (like `[CUSTOMER NAME]` or `[PASTE TICKET]`) with your real details, then press Enter.
+5. Read Claude's draft, tweak it, and send. If the tone is off, just tell Claude "warmer" or "shorter".
+
+Prefer reading the prompts as text? Open any file in the **`prompts/`** folder and copy the prompt from its **Full Prompt** section. No API key needed.
+
 ## What Is the CRISP Framework?
 
 Every prompt in this library is built on **CRISP** — a five-part structure that removes ambiguity and tells the AI exactly what you need:

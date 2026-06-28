@@ -15,6 +15,17 @@ This prompt library gives corporate finance analysts a structured set of AI prom
 
 ---
 
+## Use it with your Claude.ai subscription
+No API key needed. Just your normal Claude.ai login.
+
+1. Open the file **`index.html`** from this folder in your web browser (double-click it). You'll see every finance prompt as a card.
+2. Find the prompt you need (for example, *Variance Analysis Explanation*) and click its **Copy** button.
+3. Open **Claude.ai** in another tab and paste the prompt into the chat box.
+4. Replace the `[BRACKET]` placeholders with your real (and policy-approved) figures, then press Enter.
+5. Read Claude's draft, **check every number**, and have a qualified finance professional review it before sharing.
+
+Prefer reading the prompts as text? Open any file in the **`prompts/`** folder and copy the prompt from its **Full Prompt** section. No API key needed.
+
 ## What Is the CRISP Framework?
 
 | Letter | Stands For | What It Does |

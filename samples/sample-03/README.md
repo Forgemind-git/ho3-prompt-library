@@ -13,6 +13,17 @@ This prompt library gives people managers a structured set of AI prompts for eve
 
 ---
 
+## Use it with your Claude.ai subscription
+No API key needed. Just your normal Claude.ai login.
+
+1. Open the file **`index.html`** from this folder in your web browser (double-click it). You'll see every management prompt as a card.
+2. Find the prompt you need (for example, *1:1 Prep Notes*) and click its **Copy** button.
+3. Open **Claude.ai** in another tab and paste the prompt into the chat box.
+4. Replace the `[BRACKET]` placeholders with your real details about the person and situation, then press Enter.
+5. Read Claude's draft and add your own specific examples — the AI gives structure and language; you bring the real knowledge of the person.
+
+Prefer reading the prompts as text? Open any file in the **`prompts/`** folder and copy the prompt from its **Full Prompt** section. No API key needed.
+
 ## What Is the CRISP Framework?
 
 | Letter | Stands For | What It Does |

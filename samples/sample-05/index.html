@@ -39,7 +39,7 @@
   </header>
 
   <div class="starter-bar">
-    <strong>Starter branch.</strong> Fill in each TODO card below with your own CRISP prompt. The first card is a completed example showing the format.
+    <strong>Copy-and-use library.</strong> Every card below is a complete CRISP prompt. Click <strong>Copy prompt</strong> on any card, paste it into Claude.ai, swap the [PLACEHOLDERS] for your details, and go. No API key needed.
   </div>
 
   <div class="grid">
@@ -93,217 +93,324 @@ Team member context: [DESCRIBE their current project, any known stressors, recen
     <div class="card">
       <div class="card-header">
         <h3>Performance Review Draft</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">It's review season and I manage several people, but my notes are scattered across 1:1 logs, project retros, and Slack — I need help turning raw observations into a fair, evidence-based written review.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a seasoned people manager and HR partner who writes balanced performance reviews grounded in specific evidence rather than vague praise or criticism.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn the notes I paste below into a first-draft performance review covering strengths, areas for growth, and impact over the review period.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Use four headed sections (Summary, Key Strengths, Growth Areas, Goals for Next Period). Tie every point to a concrete example from my notes, keep the tone professional and warm, and flag anything you had to assume.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great draft reads like I wrote it, is specific enough that the report recognises themselves in it, and never invents achievements I didn't mention.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a people manager writing a performance review and my notes are scattered. Help me turn raw observations into a fair, evidence-based draft.
+
+Act as a seasoned people manager and HR partner who writes balanced reviews grounded in specific evidence — not vague praise or criticism.
+
+Turn the notes below into a first-draft performance review for the review period.
+
+Format:
+- Four sections: Summary, Key Strengths, Growth Areas, Goals for Next Period
+- Tie every point to a concrete example from my notes
+- Professional, warm tone
+- At the end, list any assumptions you had to make and any gaps where you need more input from me
+- Do NOT invent achievements or numbers I didn't provide
+
+Report name: [REPORT NAME]
+Role / level: [ROLE]
+Review period: [e.g. Jan–Jun 2026]
+My raw notes (1:1s, project outcomes, feedback received): [PASTE NOTES]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Constructive Feedback Framer</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I need to give a team member feedback about something that isn't working, and I tend to either soften it until the message is lost or come across harsher than I intend.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a calm, experienced manager and communication coach who frames difficult feedback so it's clear, specific, and easy to act on without damaging the relationship.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Help me rewrite the situation I describe into constructive feedback using a behaviour → impact → request structure that I can deliver in a 1:1.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Give me (1) a 3–4 sentence script using the SBI model and (2) two open questions to invite their perspective. Focus on observable behaviour, avoid labels like "lazy" or "difficult", and keep it respectful.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">Great feedback names the specific behaviour and its impact, makes a clear ask, and leaves the person feeling respected and clear on the next step — not attacked.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a people manager who needs to give a team member some difficult feedback, and I want it to be clear and humane — not vague, not harsh.
+
+Act as a calm, experienced manager and communication coach who frames feedback so it's specific, fair, and easy to act on without damaging trust.
+
+Rewrite the situation below into constructive feedback I can deliver in a 1:1.
+
+Format:
+- A 3–4 sentence script using Situation–Behaviour–Impact (SBI), describing observable behaviour only
+- Make one clear, reasonable request
+- Then two open questions that invite their side of the story
+- Avoid character labels (e.g. "lazy", "difficult"); stay respectful and assume good intent
+
+Who: [REPORT NAME], [ROLE]
+What happened (facts only): [DESCRIBE THE BEHAVIOUR AND ITS IMPACT]
+Outcome I'm hoping for: [WHAT GOOD LOOKS LIKE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Goal-Setting Session</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I'm sitting down with a team member to set goals for the next quarter, and I want goals that are ambitious but realistic and tied to both business needs and their own growth.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a manager and performance coach who helps shape vague intentions into clear, measurable goals the team member feels ownership over.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Take the rough priorities I describe and draft 3–4 quarterly goals, each written in SMART form with a suggested measure of success.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">For each goal give: a one-line title, a SMART statement, how we'll measure it, and one possible first step. Mix delivery goals with at least one development goal. Keep it to one page.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">Great goals are specific enough to track, motivating rather than imposed, and balanced between what the business needs and what helps the person grow.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a people manager preparing a quarterly goal-setting session and I want goals that are ambitious, measurable, and motivating — not boilerplate.
+
+Act as a manager and performance coach who turns rough priorities into clear goals the team member feels ownership over.
+
+Draft 3–4 quarterly goals from the priorities below.
+
+Format, for each goal:
+- One-line title
+- SMART statement (Specific, Measurable, Achievable, Relevant, Time-bound)
+- How we'll measure success
+- One suggested first step
+Include at least one growth/development goal alongside delivery goals. Keep the whole thing to about one page.
+
+Team member: [REPORT NAME], [ROLE]
+Their rough priorities / things they want to work on: [PASTE NOTES]
+Business priorities this quarter: [DESCRIBE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Coaching Question Set</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">A team member is stuck on a problem and my instinct is to jump in with answers, but I want to coach them to think it through themselves.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a professional coach trained in the GROW model who helps managers ask, not tell, so their people build problem-solving confidence.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Generate a set of open coaching questions I can use in a 1:1 to help the person work through the challenge I describe.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Group 8–10 questions under the GROW headings (Goal, Reality, Options, Will). Make them open (no yes/no), non-leading, and free of hidden advice. Add one line on how to listen between questions.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great set helps the person reach their own insight and next step — the manager talks less than they do and never sneaks advice in as a question.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a people manager and a team member is stuck. I want to coach them to solve it rather than hand them the answer.
+
+Act as a professional coach trained in the GROW model who helps managers ask, not tell.
+
+Generate a coaching question set I can use in a 1:1 for the challenge below.
+
+Format:
+- 8–10 questions grouped under GROW: Goal, Reality, Options, Will
+- All questions open-ended (no yes/no), non-leading, with no hidden advice
+- End with one tip on how to listen and follow up between questions
+
+The challenge they're facing: [DESCRIBE THE SITUATION]
+What I'd love them to walk away with: [e.g. a clear next step they chose themselves]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Promotion Case Writer</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I believe a team member is ready for promotion and I need to write a persuasive, evidence-backed case for a calibration or promotion committee.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a manager and HR business partner who writes promotion cases that map a person's real impact against the expectations of the next level.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn the evidence I provide into a structured promotion case arguing why this person is already operating at the next level.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Use sections: Summary recommendation, Evidence of next-level impact (3–4 examples), Scope & complexity, Peer/stakeholder signals, and Any gaps to address. Keep claims tied to facts I give you and quantify impact where possible.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A strong case shows the person is consistently working at the next level — not just performing well at their current one — using specific, verifiable examples a committee can trust.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a people manager building a promotion case for a committee and I want it persuasive and evidence-backed — not a list of adjectives.
+
+Act as a manager and HR business partner who maps a person's real impact against the expectations of the next level.
+
+Turn the evidence below into a structured promotion case.
+
+Format:
+- Summary recommendation (2–3 sentences)
+- Evidence of next-level impact: 3–4 specific examples
+- Scope & complexity they handle today
+- Peer / stakeholder signals
+- Any gaps to address before or after promotion
+Quantify impact wherever I've given numbers; do not invent metrics. Argue why they ALREADY operate at the next level, not just that they do their current job well.
+
+Person: [REPORT NAME]
+Current level: [CURRENT ROLE] → Proposed level: [TARGET ROLE]
+Next-level expectations (if I have them): [PASTE LADDER / LEAVE BLANK]
+Evidence — achievements, scope, feedback, metrics: [PASTE NOTES]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>PIP Summary</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">Performance concerns with a team member have not improved after informal conversations, and I need to draft a fair, clear performance improvement plan summary before involving HR.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as an experienced manager and HR partner who writes performance documentation that is specific, factual, humane, and focused on giving the person a genuine path to succeed.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn the concerns and examples I provide into a structured PIP summary stating the gaps, the expected standard, and concrete support and milestones.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Use sections: Areas of concern (with dated examples), Expected standard, Support offered, Review milestones & timeline, and Consequences if not met. Keep the tone neutral and non-punitive, describe behaviour not character, and remind me to have HR review it.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A fair PIP is specific and factual, sets a clearly measurable bar, offers real support, and reads as a sincere chance to improve — never as a paper trail for dismissal.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a people manager drafting a performance improvement plan after informal coaching hasn't closed the gap. I want it fair, specific, and humane — a real chance to succeed, not a paper trail.
+
+Act as an experienced manager and HR partner who writes performance documentation that is factual, respectful, and focused on a genuine path to improvement.
+
+Turn the concerns and examples below into a structured PIP summary.
+
+Format:
+- Areas of concern — each with at least one dated, observable example
+- Expected standard — what "good" looks like, measurably
+- Support offered — training, coaching, resources, check-in cadence
+- Review milestones & timeline (e.g. 30 / 60 / 90 days)
+- Consequences if the standard isn't met, stated plainly and without threat
+
+Rules: describe behaviour and impact, not character; use only facts I provide (don't invent incidents); keep the tone neutral and non-punitive. End by reminding me to have HR/legal review this before sharing.
+
+Team member: [REPORT NAME], [ROLE]
+Concerns and specific examples (with dates): [PASTE NOTES]
+Support I can realistically offer: [DESCRIBE]
+Proposed review period: [e.g. 60 days]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Team Health Check</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I want a regular read on how my team is really doing — morale, workload, collaboration, and clarity — beyond what surfaces in standups.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a manager and team-effectiveness coach who designs lightweight pulse checks that surface real signals without feeling like surveillance.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Design a short team health-check survey plus a plan for how I read and act on the results.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Produce 6–8 questions across morale, workload, clarity, collaboration, and growth — mostly 1–5 scale with one or two open questions. Add a short note on keeping it anonymous and what I should do with low scores. Keep it under 5 minutes to complete.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great health check is quick, psychologically safe, and gives me honest, actionable signal — and the follow-up plan makes sure the team sees something change as a result.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a people manager who wants a regular, honest read on how my team is doing — morale, workload, clarity, collaboration, growth — beyond standups.
+
+Act as a manager and team-effectiveness coach who designs lightweight pulse checks that surface real signals without feeling like surveillance.
+
+Design a team health-check survey plus a plan to act on it.
+
+Format:
+- 6–8 questions covering morale, workload, clarity, collaboration, and growth
+- Mostly 1–5 scale, with one or two open-text questions
+- A short note on keeping responses anonymous and safe
+- A "what to do next" section: how to read the results and how to respond to low scores so the team sees real follow-up
+Keep completion time under 5 minutes.
+
+Team size: [NUMBER]
+Anything specific I'm worried about right now: [DESCRIBE, OR "nothing specific"]
+How often I plan to run it: [e.g. monthly]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 

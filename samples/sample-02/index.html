@@ -39,7 +39,7 @@
   </header>
 
   <div class="starter-bar">
-    <strong>Starter branch.</strong> Fill in each TODO card below with your own CRISP prompt. The first card is a completed example showing the format.
+    <strong>Copy-and-use library.</strong> Every card below is a complete CRISP prompt. Click <strong>Copy prompt</strong> on any card, paste it into Claude.ai, swap the [PLACEHOLDERS] for your details, and go. No API key needed.
   </div>
 
   <div class="grid">
@@ -93,217 +93,311 @@ Topic: [PASTE YOUR TOPIC]</pre>
     <div class="card">
       <div class="card-header">
         <h3>SEO Title + Meta</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I've finished a blog post and need a search-optimised title tag and meta description that win the click on Google without misleading readers.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as an SEO copywriter who balances keyword targeting with human click-through psychology for B2B SaaS content.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Write 5 title-tag options and 3 meta-description options for the post and target keyword I provide below.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Titles under 60 characters, meta descriptions 140–155 characters; include the target keyword naturally near the front; no clickbait or all-caps.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great output reads like a person wrote it, earns the click with a clear benefit, and stays within character limits so nothing truncates in the SERP.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I've written a blog post and need SEO metadata that ranks and earns clicks without over-promising.
+
+Act as an SEO copywriter who balances keyword targeting with human click-through psychology for B2B SaaS.
+
+Write:
+- 5 title-tag options (under 60 characters each)
+- 3 meta-description options (140–155 characters each)
+
+Rules:
+- Include the target keyword naturally, ideally near the front
+- Lead with a concrete benefit, not hype
+- No clickbait, no ALL-CAPS, no truncation past the limits
+
+Target keyword: [TARGET KEYWORD]
+Post topic / summary: [PASTE BLOG POST OR SUMMARY]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>LinkedIn Carousel Script</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I want to turn one core idea into a swipeable LinkedIn carousel that stops the scroll and builds my authority in my niche.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a LinkedIn content creator who writes punchy, slide-by-slide carousels that earn saves and comments.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn the topic below into an 8–10 slide carousel script, writing the exact text for each slide.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Label each slide (Slide 1, Slide 2…), keep slide text under 20 words, open with a scroll-stopping hook and end with a clear CTA; conversational tone, no jargon.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great output has a hook I'd genuinely stop for, one idea per slide, and a final slide that prompts saves, comments, or a follow.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I want to turn one idea into a swipeable LinkedIn carousel that stops the scroll and builds authority in my niche.
+
+Act as a LinkedIn content creator who writes punchy, slide-by-slide carousels that earn saves and comments.
+
+Write an 8–10 slide carousel script. Format:
+- Slide 1: scroll-stopping hook
+- Slides 2–9: one idea each, max 20 words of slide text
+- Final slide: a clear call to action (comment, save, or follow)
+
+Tone: conversational, confident, no corporate jargon. Add a short caption suggestion under the slides.
+
+Topic / core idea: [TOPIC]
+My niche / audience: [YOUR NICHE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Email Newsletter</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I send a weekly newsletter to my list and want each issue to feel personal, get opened, and drive one clear action.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as an email copywriter who writes warm, plain-spoken newsletters that subscribers actually look forward to.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Draft a complete newsletter issue around the topic and one CTA I give you below.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Include 3 subject-line options, a preview line, and a 200–300 word body with short paragraphs; first-person, friendly tone; exactly one call to action.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great output sounds like me talking to one reader, has a subject line worth opening, and makes the single next step obvious.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I send a weekly newsletter and want each issue to feel personal, get opened, and drive one clear action.
+
+Act as an email copywriter who writes warm, plain-spoken newsletters subscribers look forward to.
+
+Draft a full issue. Include:
+- 3 subject-line options (under 50 characters)
+- 1 preview/preheader line
+- Body of 200–300 words, short paragraphs, first-person and friendly
+- Exactly ONE call to action
+
+Avoid hype, fake urgency, and corporate filler. Write to one reader, not a crowd.
+
+This week's topic: [TOPIC]
+The one action I want readers to take: [YOUR CTA]
+My audience / niche: [YOUR NICHE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Twitter/X Thread</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I want to break a useful idea into a tight X thread that hooks fast, keeps people reading, and earns reposts.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a writer who crafts high-retention X threads with strong hooks and crisp, scannable lines.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn the topic below into a 7–10 tweet thread, writing each tweet in full.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Number each tweet, keep every tweet under 280 characters, lead with a curiosity-driven hook, one idea per tweet, and close with a CTA to follow or repost.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great output has a first tweet I'd stop scrolling for, no fluff between points, and a payoff that makes the thread worth reposting.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I want to break one idea into a tight X thread that hooks fast, keeps people reading, and earns reposts.
+
+Act as a writer who crafts high-retention X threads with strong hooks and crisp, scannable lines.
+
+Write a 7–10 tweet thread. Rules:
+- Tweet 1 = a curiosity-driven hook (no link, no hashtags)
+- Number each tweet (1/, 2/, …)
+- Each tweet under 280 characters, one idea each
+- Short lines, plain language, no thread-bro clichés
+- Final tweet = a clear CTA to follow or repost
+
+Topic / core idea: [TOPIC]
+My niche / audience: [YOUR NICHE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Video Script Outline</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I'm scripting a short-form video (YouTube Short / Reel / TikTok) and need a structure that hooks in the first 3 seconds and retains viewers.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a short-form video scriptwriter who understands retention curves, pattern interrupts, and spoken-word pacing.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Build a section-by-section script outline for a 60–90 second video on the topic I provide below.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Break it into Hook, Setup, Value (2–3 beats), and CTA; give the spoken line plus a quick visual/B-roll note for each; conversational, say-it-out-loud tone.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great output has a hook worth 3 seconds, beats that flow when read aloud, and visual cues that make filming obvious.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm scripting a 60–90 second short-form video and need a structure that hooks in 3 seconds and keeps viewers watching.
+
+Act as a short-form video scriptwriter who understands retention, pattern interrupts, and spoken-word pacing.
+
+Build a section-by-section script outline with these sections:
+- Hook (first 3 seconds)
+- Setup (why this matters)
+- Value (2–3 punchy beats)
+- CTA
+
+For each section give:
+- The exact spoken line(s)
+- A short visual / B-roll note in brackets
+
+Keep it conversational and easy to say out loud. No teleprompter-stiff phrasing.
+
+Topic: [TOPIC]
+Platform: [YOUTUBE SHORT / REEL / TIKTOK]
+My niche / audience: [YOUR NICHE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Content Repurposer</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I publish one long piece a week and want to squeeze it into multiple platform-native posts instead of starting from scratch each time.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a content repurposing strategist who atomises long-form content into formats tuned to each platform.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Take the long-form content I paste below and repurpose it into a LinkedIn post, an X thread starter, and 3 short quote/graphic captions.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Keep the original's key points and voice; adapt length and tone per platform; label each output clearly; no invented facts beyond the source.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great output feels written for each platform — not copy-pasted — and lets me schedule a week of posts from one source piece.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I publish one long piece a week and want to repurpose it into several platform-native posts instead of starting from scratch.
+
+Act as a content repurposing strategist who atomises long-form content into formats tuned to each platform.
+
+From the content below, produce:
+1. LinkedIn post (150–200 words, hook + insight + soft CTA)
+2. X thread starter (hook tweet + 3 bullet beats)
+3. Three short captions for quote graphics (under 25 words each)
+
+Keep my key points and voice. Adapt tone and length per platform. Do not invent facts not in the source. Label each section.
+
+Source content: [PASTE BLOG POST / TRANSCRIPT]
+My niche / audience: [YOUR NICHE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Performance Debrief</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">At the end of each month I have raw content metrics but no time to analyse them, so I keep repeating what doesn't work.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a content analyst who turns messy performance numbers into clear, action-focused takeaways for a solo marketer.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Review the metrics I paste below and tell me what worked, what didn't, and what to do differently next month.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Return three sections — Wins, Misses, Next Month's 3 Priorities — using plain language and only conclusions the data supports; flag where data is missing.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great output gives me 3 concrete changes I can act on this week, each tied to a number, with no vague advice or invented trends.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">At month-end I have raw content metrics but no time to analyse them, so I keep repeating what doesn't work.
+
+Act as a content analyst who turns messy performance numbers into clear, action-focused takeaways for a solo marketer.
+
+Review the data below and return exactly three sections:
+- Wins: what performed best and the likely reason
+- Misses: what underperformed and the likely reason
+- Next Month's 3 Priorities: concrete, specific changes, each tied to a metric
+
+Only draw conclusions the data supports. If something important is missing, say so instead of guessing. Plain language, no fluff.
+
+My metrics (paste numbers, top/bottom posts, platforms): [PASTE METRICS]
+My goal for next month: [YOUR GOAL]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 

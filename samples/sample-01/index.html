@@ -39,7 +39,7 @@
   </header>
 
   <div class="starter-bar">
-    <strong>Starter branch.</strong> Fill in each TODO card below with your own CRISP prompt. The first card is a completed example showing the format.
+    <strong>Copy-and-use library.</strong> Every card below is a complete CRISP prompt. Click <strong>Copy prompt</strong> on any card, paste it into Claude.ai, swap the [PLACEHOLDERS] for your details, and go. No API key needed.
   </div>
 
   <div class="grid">
@@ -95,217 +95,322 @@ Company website: [PASTE URL]</pre>
     <div class="card">
       <div class="card-header">
         <h3>Cold Email First Line</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I'm an SDR sending a cold email to a prospect who has never heard of us, and the opening line decides whether the rest of the email gets read.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a cold-email copywriter who writes personalised opening lines that sound human and reference something specific about the prospect.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Write three different first-line options that hook this prospect by referencing their role, company, or a recent trigger event — not our product.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Each line is one sentence, under 20 words, written in a casual peer-to-peer tone, with no greeting, no "I hope this finds you well", and no pitch.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great line feels hand-written for this person — they could not imagine it being sent to anyone else on my list.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">Act as a cold-email copywriter who writes personalised opening lines that sound human, not templated.
+
+I'm an SDR cold-emailing a prospect who has never heard of us. The first line decides whether the rest of the email gets read.
+
+Write THREE different first-line options that hook this prospect by referencing their role, company, or a recent trigger event — never my product.
+
+Rules for each line:
+- One sentence, under 20 words
+- Casual, peer-to-peer tone
+- No greeting, no "I hope this finds you well", no pitch
+- Must feel hand-written for this specific person
+
+Prospect name: [PROSPECT NAME]
+Title / role: [TITLE]
+Company: [COMPANY]
+Trigger event or detail I noticed: [RECENT NEWS / POST / SIGNAL]
+What I sell (for my reference only): [YOUR PRODUCT]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Follow-up Sequence</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I sent a first cold email to a prospect and got no reply, and I need a short follow-up sequence that stays useful instead of just "bumping" the thread.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a B2B sales sequence writer who knows that every follow-up must add a new reason to reply, not repeat the last one.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Write a three-email follow-up sequence where each message takes a different angle: a useful resource, a relevant proof point, and a polite break-up email.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Each email is under 80 words with its own subject line and a single clear call to action, spaced across day 3, day 7, and day 12.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great sequence never says "just following up" — every email could stand alone and still earn a reply from a busy buyer.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">Act as a B2B sales sequence writer. Every follow-up must add a NEW reason to reply, never just bump the thread.
+
+Context: I sent a first cold email and got no response. Write a three-email follow-up sequence.
+
+Use a different angle for each email:
+1. Day 3 — share a genuinely useful resource (article, benchmark, template)
+2. Day 7 — a short, relevant proof point or customer result
+3. Day 12 — a polite break-up email that makes it easy to say "not now"
+
+Rules:
+- Each email under 80 words
+- Each has its own subject line and ONE clear call to action
+- Never write "just following up" or "circling back"
+
+Prospect name: [PROSPECT NAME]
+Company: [COMPANY]
+What I sell: [YOUR PRODUCT]
+The problem it solves for them: [PAIN POINT]
+Best proof point I have: [CASE STUDY / RESULT]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Objection Reframe</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">A prospect just pushed back on my outreach with an objection, and I need a calm, confident reply that keeps the conversation open instead of arguing.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a sales coach who teaches reps to acknowledge the objection, reframe it, and ask one question that moves the deal forward.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn the prospect's objection into a short reply that validates their concern, offers a new way to see it, and ends with a low-pressure question.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Reply in three short sentences, under 60 words total, with a warm and non-defensive tone, and absolutely no "but" at the start of the reframe.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great reframe makes the prospect feel heard first, so they stay curious and reply rather than feeling sold to or corrected.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">Act as a sales coach. Teach me to handle this objection by acknowledging it, reframing it, and asking ONE question that keeps the deal moving.
+
+A prospect pushed back on my outreach. Write a reply that:
+1. Validates their concern genuinely (no "but")
+2. Offers a new way to see it
+3. Ends with a low-pressure question
+
+Rules:
+- Three short sentences, under 60 words total
+- Warm, confident, never defensive
+- Make them feel heard before you reframe
+
+The objection they raised: [PASTE OBJECTION, e.g. "We already use a competitor" / "No budget right now" / "Send me an email"]
+What I sell: [YOUR PRODUCT]
+My honest counter-point: [WHY IT STILL MATTERS TO THEM]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>LinkedIn Connection Note</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I'm sending a LinkedIn connection request to a prospect and have only the 300-character note field to earn the accept without sounding like a pitch.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a social-selling expert who writes connection notes that feel genuine and give the person a real reason to accept.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Write a connection note that references something specific from their profile or recent activity and explains, in one line, why I want to connect.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Keep it under 300 characters, friendly and human, with no sales pitch, no "I'd love to pick your brain", and no link.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great note reads like one professional reaching out to a peer, so accepting feels natural and not like opening a sales funnel.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">Act as a social-selling expert. Write a LinkedIn connection note that earns the accept without sounding like a pitch.
+
+Reference something specific from their profile or recent activity, and explain in one line why I want to connect.
+
+Rules:
+- Under 300 characters (LinkedIn limit)
+- Friendly, human, peer-to-peer
+- No sales pitch, no "pick your brain", no link
+- Should feel like one professional reaching out to another
+
+Prospect name: [PROSPECT NAME]
+Title / company: [TITLE] at [COMPANY]
+Something specific I noticed (post, role, mutual interest): [DETAIL]
+Why I genuinely want to connect: [REASON]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Call Prep Sheet</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I have a discovery call booked with a prospect in 30 minutes and need a one-page prep sheet so I walk in sharp instead of winging it.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a senior sales manager who preps reps for discovery calls and knows which questions actually surface budget, pain, and timeline.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Build a focused call prep sheet with likely pain points, four strong discovery questions, two probable objections, and a clear next-step ask.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Use clear headers and short bullets that fit on one screen, written so I can scan them mid-call without losing the conversation.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great prep sheet gives me questions specific to this prospect's role and industry — not a generic discovery checklist I could find anywhere.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">Act as a senior sales manager prepping me for a discovery call. I have 30 minutes before it starts.
+
+Build a one-page call prep sheet with these sections:
+1. LIKELY PAIN POINTS — 3 bullets specific to this role and industry
+2. DISCOVERY QUESTIONS — 4 strong questions that surface budget, pain, and timeline
+3. LIKELY OBJECTIONS — 2 they may raise, plus a one-line reframe for each
+4. NEXT-STEP ASK — the specific commitment I should aim to close the call on
+
+Rules:
+- Short bullets, clear headers, fits on one screen
+- Scannable mid-call
+- Make it specific to this prospect, not a generic checklist
+
+Prospect: [NAME], [TITLE] at [COMPANY]
+Industry: [INDUSTRY]
+What I sell: [YOUR PRODUCT]
+What I already know about them: [NOTES / RESEARCH]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Win/Loss Debrief</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">A deal just closed as a win or a loss, and I want to debrief it honestly so I repeat what worked and stop repeating what didn't.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a sales analyst who runs blameless win/loss reviews and separates what I controlled from what I never could.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Analyse my notes on this deal and identify the key turning point, what I did well, what I'd change, and one habit to carry into the next deal.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Return four labelled sections — Turning Point, What Worked, What I'd Change, One Habit — each two or three bullets, direct and non-judgemental.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great debrief gives me one concrete, repeatable change for my next deal — not vague advice like "build more rapport".</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">Act as a sales analyst running a blameless win/loss review. Separate what I controlled from what I never could.
+
+Analyse my notes on a deal that just closed and return these four sections:
+1. TURNING POINT — the moment the deal was won or lost
+2. WHAT WORKED — 2-3 things I did well
+3. WHAT I'D CHANGE — 2-3 things to do differently next time
+4. ONE HABIT — a single repeatable change to carry into my next deal
+
+Rules:
+- Direct, honest, non-judgemental
+- Each section is 2-3 bullets
+- End with ONE concrete change, never vague advice like "build more rapport"
+
+Outcome: [WON / LOST]
+Deal / prospect: [COMPANY], [DEAL SIZE]
+What I sell: [YOUR PRODUCT]
+My notes on how it went: [PASTE NOTES — stages, objections, who decided, why]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Pipeline Update Summary</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">My manager wants a weekly pipeline update, and I have messy notes on each deal that I need to turn into a clear, scannable summary.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a sales operations lead who turns raw deal notes into a crisp pipeline report a busy manager can read in under a minute.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Summarise my deals by stage, flag which ones are at risk or need help, and surface the single most important thing my manager should know.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Group deals under stage headers with one line each (company, value, next step), then a short "Needs attention" list and a one-line headline.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great summary makes it obvious where my manager should spend their help — the risks and asks jump out without me explaining them live.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">Act as a sales operations lead. Turn my messy deal notes into a weekly pipeline summary my manager can read in under a minute.
+
+Produce the report in this structure:
+1. HEADLINE — one line: the single most important thing this week
+2. BY STAGE — group deals under stage headers (e.g. Qualifying, Demo, Proposal, Negotiation). One line per deal: company, value, next step + date
+3. NEEDS ATTENTION — deals at risk or where I need my manager's help, with the specific ask
+
+Rules:
+- Scannable, short lines, no fluff
+- Make risks and asks jump out
+- Keep my numbers exactly as I give them
+
+My deals this week (raw notes): [PASTE NOTES — company, stage, value, last activity, next step, any blockers]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 

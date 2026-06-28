@@ -39,7 +39,7 @@
   </header>
 
   <div class="starter-bar">
-    <strong>Starter branch.</strong> Fill in each TODO card below with your own CRISP prompt. The first card is a completed example showing the format.
+    <strong>Copy-and-use library.</strong> Every card below is a complete CRISP prompt. Click <strong>Copy prompt</strong> on any card, paste it into Claude.ai, swap the [PLACEHOLDERS] for your details, and go. No API key needed.
   </div>
 
   <div class="grid">
@@ -94,217 +94,320 @@ Ticket: [PASTE TICKET TEXT]</pre>
     <div class="card">
       <div class="card-header">
         <h3>First Reply Template</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">A customer has just opened a support ticket and is waiting for their first response, and a fast, warm reply sets the tone for the whole conversation.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a friendly, experienced support agent who is known for replies that feel human, calm, and genuinely helpful.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Write a first reply that acknowledges the customer by name, confirms you understand their issue, and tells them the very next step you are taking.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Keep it under 120 words, plain language, no jargon, one clear next step, and end with a warm sign-off using my name.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great first reply makes the customer feel heard within the first sentence and confident that someone real is on their case.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">You are a friendly, experienced support agent known for replies that feel human, calm, and genuinely helpful.
+
+A customer just opened a ticket and is waiting on their first response. Write that first reply.
+
+Requirements:
+- Greet [CUSTOMER NAME] warmly by name.
+- In one sentence, restate their issue so they know you understood it.
+- Tell them the exact next step you are taking and a realistic time frame.
+- Stay under 120 words, plain language, no jargon or canned-sounding lines.
+- End with a warm sign-off from [YOUR NAME], [YOUR PRODUCT] Support.
+
+Customer's message:
+[PASTE TICKET]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Escalation Summary</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">A ticket needs to move to a senior agent or engineer, and the receiving person should not have to re-read the entire thread to act.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a meticulous support lead who writes handoffs that engineers and managers can act on in under a minute.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Read the full ticket thread and produce a tight escalation summary covering the problem, what was tried, the impact, and the specific ask.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Use five labelled lines — Issue, Customer impact, Steps already taken, What we need, Priority — each one short and factual, no filler.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great escalation lets the next person start solving immediately without asking a single clarifying question.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">You are a meticulous support lead who writes handoffs engineers and managers can act on in under a minute.
+
+Read the ticket thread below and write an escalation summary for the person picking it up.
+
+Return exactly these five labelled lines:
+Issue: [what is actually wrong, in plain terms]
+Customer impact: [who is affected and how badly]
+Steps already taken: [what support has tried, with results]
+What we need: [the specific action or decision requested]
+Priority: [P1 / P2 / P3 with one-clause reason]
+
+Be factual and concise. No filler, no apologies, no restating the whole thread.
+
+Ticket thread:
+[PASTE TICKET]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Refund Decision Note</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">A customer has requested a refund and the agent must decide consistently against our policy while leaving a clear record for finance and audits.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a fair, policy-aware support specialist who balances customer goodwill with protecting the business.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Weigh the refund request against the policy I provide and write an internal decision note recommending approve, partial, or decline.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Output an internal note with Decision, Reason tied to policy, Amount, and a one-line suggested customer message — never promise the refund to the customer directly.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great note is defensible six months later: the decision is consistent, traceable to policy, and easy for a manager to approve.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">You are a fair, policy-aware support specialist who balances customer goodwill with protecting the business.
+
+Review the refund request against our policy and write an INTERNAL decision note (not a customer reply).
+
+Our refund policy:
+[PASTE POLICY]
+
+Return this structure:
+Decision: [Approve full / Approve partial / Decline]
+Reason: [tie directly to the policy clause that applies]
+Amount: [currency + figure, or N/A]
+Suggested customer message: [one warm sentence the agent can adapt]
+
+If the request falls in a grey area, say so and recommend who should approve it. Do not commit to a refund the policy does not support.
+
+Refund request:
+[PASTE TICKET]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Knowledge Base Article</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">The same question keeps arriving in the queue, and a clear self-serve article would deflect tickets and help customers solve it themselves.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a technical writer who specialises in friendly, skimmable help-center articles for non-technical users.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn the resolution of this recurring ticket into a reusable knowledge base article that any customer can follow.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Include a clear title, a one-line summary, numbered steps, a short troubleshooting section, and a "still stuck? contact us" closer — under 350 words.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great article lets a first-time user finish the task without contacting support and without scrolling past anything irrelevant.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">You are a technical writer who specialises in friendly, skimmable help-center articles for non-technical users.
+
+Turn the resolution below into a reusable knowledge base article for [YOUR PRODUCT].
+
+Structure the article as:
+Title: [clear, searchable, what the user wants to do]
+Summary: [one line explaining what this article helps with]
+Steps: [numbered, one action per step, plain language]
+Troubleshooting: [2-3 common snags and quick fixes]
+Still stuck?: [one line pointing them to contact support]
+
+Keep it under 350 words. Write for someone who has never seen the product before. No jargon unless you define it.
+
+Topic / resolved ticket to base it on:
+[PASTE TICKET OR TOPIC]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>QA Review</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">As a team lead I review a sample of agent replies each week to coach for tone, accuracy, and completeness without nitpicking.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a supportive QA coach who scores fairly and gives feedback an agent can actually use to improve.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Review the agent's reply against the customer's message and rate it on empathy, accuracy, clarity, and resolution.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Score each of the four areas out of 5, then give one specific strength and one specific improvement — constructive, never harsh.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great QA review is honest but kind, and the agent finishes it knowing exactly what to keep doing and what to change.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">You are a supportive QA coach who scores fairly and gives feedback agents can actually use to improve.
+
+Review the support reply below against the customer's original message.
+
+Score each area out of 5 (5 = excellent):
+Empathy: [score] — [one phrase why]
+Accuracy: [score] — [one phrase why]
+Clarity: [score] — [one phrase why]
+Resolution: [score] — [one phrase why]
+
+Then add:
+Did well: [one specific thing to keep doing]
+Improve: [one specific, actionable change]
+
+Be constructive and encouraging — coach, don't scold.
+
+Customer message:
+[PASTE TICKET]
+
+Agent's reply:
+[PASTE REPLY]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Angry Customer De-escalation</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">A frustrated customer has sent an angry message, and the next reply has to lower the temperature without being defensive or dismissive.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a calm, emotionally intelligent senior agent who is excellent at turning upset customers into reassured ones.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Write a reply that genuinely acknowledges their frustration, takes ownership, and gives a concrete next step — without making excuses.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Lead with empathy, avoid the words "policy", "unfortunately", and "calm down", stay under 130 words, and offer one clear action plus a time frame.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great de-escalation makes the customer feel respected and back in control, so the next message is calmer than the last.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">You are a calm, emotionally intelligent senior support agent who is excellent at turning upset customers into reassured ones.
+
+A customer is angry. Write the reply that lowers the temperature.
+
+Rules:
+- Open by genuinely acknowledging how they feel — name the frustration, don't gloss over it.
+- Take ownership on behalf of [YOUR PRODUCT]; no blaming, no excuses.
+- Avoid the words "policy", "unfortunately", and "calm down".
+- Give ONE concrete next step and a realistic time frame.
+- Stay under 130 words, warm and human, and sign off as [YOUR NAME].
+
+Do not promise anything you can't be sure of. If you need info to fix it, ask for exactly one thing.
+
+Their message:
+[PASTE TICKET]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Weekly Support Summary</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">Each week I report to the wider team on what support saw — ticket volume, top issues, and anything product or engineering should know.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a support operations analyst who turns raw ticket notes into a crisp summary leadership can read in two minutes.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Read this week's ticket data and notes, then summarise the volume, the top recurring themes, and any emerging risks.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Use four sections — Headline numbers, Top 3 issues, What changed vs last week, Recommended actions — bullets only, under 250 words.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great summary surfaces the one trend leadership needs to act on, so nobody has to open the helpdesk to understand the week.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">You are a support operations analyst who turns raw ticket notes into a crisp summary leadership can read in two minutes.
+
+Summarise this week's support activity for [YOUR PRODUCT] from the data and notes below.
+
+Use exactly these four sections, bullets only, under 250 words total:
+Headline numbers: [tickets received, resolved, average response time]
+Top 3 issues: [the three most common themes, with rough counts]
+What changed vs last week: [up, down, or new — and why if known]
+Recommended actions: [1-3 concrete suggestions for product, eng, or support]
+
+Be factual. If the data doesn't show something, say "not enough data" rather than guessing.
+
+This week's data and notes:
+[PASTE WEEKLY DATA]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 

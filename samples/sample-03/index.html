@@ -39,7 +39,7 @@
   </header>
 
   <div class="starter-bar">
-    <strong>Starter branch.</strong> Fill in each TODO card below with your own CRISP prompt. The first card is a completed example showing the format.
+    <strong>Copy-and-use library.</strong> Every card below is a complete CRISP prompt. Click <strong>Copy prompt</strong> on any card, paste it into Claude.ai, swap the [PLACEHOLDERS] for your details, and go. No API key needed.
   </div>
 
   <div class="grid">
@@ -95,217 +95,332 @@ Hiring brief: [PASTE BRIEF]</pre>
     <div class="card">
       <div class="card-header">
         <h3>Screening Question Set</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I'm a recruiter doing a 15-minute phone screen for an open role, and I need a focused question set that quickly tells me whether a candidate is worth advancing to the hiring manager.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as an experienced recruiter who designs efficient phone-screen scripts that surface fit, motivation, and obvious red flags without wasting anyone's time.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Generate a screening question set tailored to the role, covering must-have skills, motivation, logistics (notice period, salary, location), and one role-specific competency probe.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">8–10 questions grouped under headings (Motivation, Must-have skills, Logistics, Red-flag check). Each question gets a one-line note on what a strong answer looks like. Plain, conversational language.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great set is short, non-leading, and every question earns its place by ruling candidates in or out — not generic filler like "tell me about yourself".</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a recruiter preparing a 15-minute phone screen and I need a sharp question set that tells me fast whether to advance the candidate.
+
+Act as an experienced recruiter who builds efficient phone-screen scripts that surface fit, motivation, and red flags.
+
+Create a screening question set for the role below.
+
+Cover these groups:
+- Motivation: why this role, why now (1–2 questions)
+- Must-have skills: probe the non-negotiables only (3–4 questions)
+- Logistics: notice period, salary expectation, work location (2–3 questions)
+- Red-flag check: one question that surfaces dealbreakers early
+
+For each question, add a one-line "Strong answer looks like..." note.
+Keep questions open and non-leading. 8–10 total.
+
+Role title: [ROLE TITLE]
+Must-have requirements: [LIST 3–5 MUST-HAVES]
+Deal-breakers / constraints: [E.G. ON-SITE, BUDGET, NOTICE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Candidate Scorecard</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I'm a recruiter who needs a consistent scorecard so every interviewer evaluates candidates against the same criteria instead of going on gut feel.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a structured-hiring expert who builds objective, bias-resistant scorecards aligned to a role's real success factors.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Create a candidate scorecard from the job description that lists the competencies to assess, a rating scale, and behavioural anchors describing what each score means.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">5–7 weighted competencies in a table (Competency, Weight, 1–4 anchors, Notes field). Include an overall recommendation line: Strong Yes / Yes / No / Strong No. Neutral, measurable wording.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great scorecard ties every competency to the job, uses observable behaviours for each rating, and makes it hard to hide a vague "I just liked them".</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm a recruiter standardising how my interview panel evaluates candidates, so everyone scores against the same criteria.
+
+Act as a structured-hiring expert who builds objective, bias-resistant scorecards.
+
+Build a candidate scorecard from the job description below.
+
+Include:
+- 5–7 competencies that genuinely predict success in this role
+- A weight for each (must total 100%)
+- A 1–4 rating scale with a behavioural anchor for each score (what a 1 vs a 4 actually looks like)
+- A free-text "Evidence / notes" column for the interviewer
+- An overall recommendation line: Strong Yes / Yes / No / Strong No
+
+Present it as a clean table. Use neutral, observable language — no vague traits like "good culture fit".
+
+Job description: [PASTE JOB DESCRIPTION]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Interview Debrief</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I've just finished interviewing a candidate and jotted down messy notes; I need them turned into a clear debrief I can share with the hiring manager and panel.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a recruiter who writes balanced, evidence-based interview debriefs that help a panel make a confident decision.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Turn my raw interview notes into a structured debrief covering strengths, concerns, evidence against each requirement, and a clear hiring recommendation.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Sections: Summary (2–3 sentences), Strengths (bullets with evidence), Concerns / gaps (bullets with evidence), Open questions for next round, Recommendation (Advance / Hold / Decline + one-line reason). Under 300 words, factual tone.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great debrief separates observation from opinion, cites what the candidate actually said or did, and flags assumptions so the panel isn't misled.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I just finished an interview and my notes are rough. Turn them into a clean debrief for the hiring panel.
+
+Act as a recruiter who writes balanced, evidence-based debriefs.
+
+Structure the debrief as:
+- Summary: 2–3 sentences on overall impression
+- Strengths: bullets, each backed by something the candidate said or did
+- Concerns / gaps: bullets, each backed by evidence (no vague worries)
+- Open questions to probe in the next round
+- Recommendation: Advance / Hold / Decline + a one-line reason
+
+Keep it under 300 words and factual. Separate observation from opinion, and flag anything I assumed rather than verified.
+
+Role: [ROLE TITLE]
+Candidate: [CANDIDATE NAME]
+My raw interview notes: [PASTE NOTES]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Rejection Email</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I need to tell a candidate they weren't selected after they invested real time in our process, and I want the email to be kind and respectful so they leave with a good impression of us.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a compassionate recruiter who writes warm, human rejection emails that protect the candidate's dignity and the company's reputation.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Write a respectful rejection email that thanks the candidate, delivers the decision clearly but gently, and leaves the door open where appropriate.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">120–160 words, warm and personal tone, no clichés or false praise. Address them by name, reference the role, be honest without harsh detail, and avoid legally risky specifics. Optionally invite them to apply again.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great rejection is unmistakably clear that it's a no, yet so considerate the candidate would still recommend us — never cold, robotic, or falsely encouraging.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I need to send a rejection email to a candidate who invested real effort in our process. It must be kind and respectful.
+
+Act as a compassionate recruiter who writes warm, human rejection emails that protect both the candidate's dignity and our reputation.
+
+Write the email so it:
+- Thanks them sincerely for their time and interest
+- States clearly and gently that we're not moving forward (no ambiguity)
+- Is honest but kind — no harsh detail, no false praise, no clichés like "we had many strong applicants"
+- Optionally invites them to apply for future roles if that's genuine
+- Closes warmly and wishes them well
+
+120–160 words. Use their name. Avoid legally risky specifics about why they weren't chosen.
+
+Candidate name: [CANDIDATE NAME]
+Role: [ROLE TITLE]
+Reach the final-round / earlier stage? [STAGE]
+Invite to reapply later? [YES/NO]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Offer Letter Draft</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">We've chosen a candidate and I need a warm, professional offer letter draft that states the key terms clearly and makes them excited to say yes.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a recruiter who drafts clear, welcoming offer letters that cover the essential terms while keeping an enthusiastic, human tone.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Draft an offer letter from the details I provide, covering title, compensation, start date, reporting line, and acceptance steps, with a warm welcome up front.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">One page. Friendly opening, a clearly formatted terms block (Title, Salary, Start date, Manager, Location/Type), next steps with an acceptance deadline, and a flag that it's a draft for legal/HR review. Leave bracketed placeholders for anything missing.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great offer letter is warm yet unambiguous on every key term, never over-promises beyond approved details, and clearly marks unverified items rather than inventing them.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">We've selected a candidate. Draft a warm, professional offer letter that states the key terms clearly and makes them excited to accept.
+
+Act as a recruiter who writes welcoming, accurate offer letters.
+
+Include:
+- A warm opening congratulating them and welcoming them to the team
+- A clearly formatted terms block: Title, Salary, Start date, Reporting manager, Location / work type
+- Any extras provided (bonus, equity, benefits) — only if I give them
+- Next steps: how and by when to accept (acceptance deadline)
+- A note that this is a draft pending formal HR/legal review and a signed contract
+
+Keep it to one page, warm but unambiguous. Do NOT invent any terms — if a detail is missing, leave a clearly marked [PLACEHOLDER].
+
+Candidate name: [CANDIDATE NAME]
+Role title: [ROLE TITLE]
+Salary: [AMOUNT + CURRENCY]
+Start date: [DATE]
+Manager: [MANAGER NAME]
+Location / type: [ON-SITE / HYBRID / REMOTE]
+Other terms: [BONUS / BENEFITS / NONE]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Sourcing Boolean String</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I'm sourcing passive candidates on LinkedIn and Google and need a precise Boolean search string so I find the right people without drowning in irrelevant profiles.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a sourcing specialist who is fluent in Boolean search and knows how to balance reach against precision for hard-to-fill roles.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Build a Boolean search string from the role's must-have skills, job titles (including synonyms), and exclusions, using AND, OR, NOT, quotes, and parentheses correctly.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Provide one ready-to-paste string plus a 2-line explanation of each block. Group title synonyms with OR, join skill groups with AND, exclude noise with NOT. Offer a "broaden" and a "tighten" variant. Note any platform-specific tweaks.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great string is syntactically valid, captures realistic title and skill variations a sourcer might forget, and is easy to widen or narrow when the result count is off.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I'm sourcing passive candidates and need a precise Boolean search string for LinkedIn / Google X-ray.
+
+Act as a sourcing specialist fluent in Boolean search who balances reach against precision.
+
+Build a Boolean string that:
+- Groups the target job title and its realistic synonyms with OR, in quotes
+- Joins the must-have skills/qualifications with AND (group related skills with OR + parentheses)
+- Excludes obvious noise with NOT (e.g. "intern", "student", agencies)
+
+Then give me:
+- One ready-to-paste string
+- A 2-line note explaining each block
+- A "broaden it" variant (looser) and a "tighten it" variant (stricter)
+- Any platform-specific tweaks (LinkedIn search vs Google site:linkedin.com X-ray)
+
+Role / title: [ROLE TITLE]
+Must-have skills: [LIST SKILLS]
+Nice-to-have skills: [LIST]
+Location: [LOCATION]
+Exclude: [TITLES / KEYWORDS TO AVOID]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
         <h3>Hiring Report Summary</h3>
-        <span class="todo-tag">⬜ TODO</span>
+        <span class="example-tag">READY</span>
       </div>
       <div class="card-body">
         <div class="crisp-row">
           <div class="crisp-label">C — Context</div>
-          <div class="crisp-value crisp-empty"><!-- CONTEXT: describe the situation --></div>
+          <div class="crisp-value">I have raw recruiting metrics for the month or quarter and need them turned into a concise hiring report that a hiring manager or leadership team can read in two minutes.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">R — Role</div>
-          <div class="crisp-value crisp-empty"><!-- ROLE: who should Claude act as? --></div>
+          <div class="crisp-value">Act as a talent analytics partner who translates recruiting numbers into a clear narrative with insights and next actions, not just a dump of figures.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">I — Instruction</div>
-          <div class="crisp-value crisp-empty"><!-- INSTRUCTION: what must Claude do? --></div>
+          <div class="crisp-value">Summarise my hiring data into a report covering pipeline health, key metrics (time-to-fill, offer-accept rate, source effectiveness), trends, and recommended actions.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">S — Spec</div>
-          <div class="crisp-value crisp-empty"><!-- SPEC: format, length, tone, constraints --></div>
+          <div class="crisp-value">Sections: Headline (1–2 sentences), Key metrics table, What's working, What's at risk, Recommended actions (max 3). Under 350 words, plain business English, call out anything that needs a decision. Don't invent numbers I didn't give.</div>
         </div>
         <div class="crisp-row">
           <div class="crisp-label">P — Performance</div>
-          <div class="crisp-value crisp-empty"><!-- PERFORMANCE: what does great look like? --></div>
+          <div class="crisp-value">A great report leads with the so-what, ties each metric to a hiring decision, and flags bottlenecks (e.g. slow stages, low accept rate) instead of just listing them.</div>
         </div>
-        <pre class="prompt-block prompt-empty"><!-- TODO: write your full prompt here --></pre>
-        <button class="copy-btn" disabled>Add your prompt first</button>
+        <pre class="prompt-block">I have raw recruiting metrics and need a concise hiring report that leadership can read in two minutes.
+
+Act as a talent analytics partner who turns recruiting numbers into a clear narrative with insights and actions.
+
+Structure the report as:
+- Headline: 1–2 sentences on overall hiring health this period
+- Key metrics table: time-to-fill, roles open/filled, offer-accept rate, top sources, etc.
+- What's working: 2–3 bullets
+- What's at risk: 2–3 bullets (bottlenecks, slow stages, drop-offs)
+- Recommended actions: max 3, each tied to a metric
+
+Under 350 words, plain business English, lead with the "so what". Do NOT invent any numbers — if data is missing, say "not provided".
+
+Reporting period: [MONTH / QUARTER]
+Raw metrics / data: [PASTE NUMBERS OR ATS EXPORT]</pre>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
       </div>
     </div>
 

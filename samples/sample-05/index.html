@@ -1,47 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>People Manager — Prompt Library</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#F8F9FA; color:#1a1a2e; }
-    header { background:#059669; color:#fff; padding:32px; }
-    .back { font-size:12px; opacity:.75; text-decoration:none; color:#fff; display:inline-block; margin-bottom:12px; }
-    h1 { font-size:22px; font-weight:800; margin-bottom:4px; }
-    header p { font-size:13px; opacity:.8; }
-    .starter-bar { background:#FEF3C7; border-left:4px solid #D97706; padding:12px 20px; margin:20px 32px; border-radius:4px; font-size:13px; color:#92400E; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px; padding:0 32px 40px; }
-    .card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
-    .card-header { padding:12px 16px; background:#059669; color:#fff; display:flex; justify-content:space-between; align-items:center; }
-    .card-header h3 { font-size:14px; font-weight:700; }
-    .example-tag { font-size:10px; background:rgba(255,255,255,.3); padding:2px 8px; border-radius:20px; font-weight:700; letter-spacing:.04em; }
-    .todo-tag { font-size:10px; background:#FEF3C7; color:#92400E; padding:2px 8px; border-radius:20px; font-weight:700; }
-    .card-body { padding:16px; }
-    .crisp-row { margin-bottom:10px; }
-    .crisp-label { font-size:10px; font-weight:700; letter-spacing:.06em; color:#059669; text-transform:uppercase; margin-bottom:3px; }
-    .crisp-value { font-size:13px; color:#374151; line-height:1.5; }
-    .crisp-empty { font-size:12px; color:#9CA3AF; font-style:italic; }
-    .prompt-block { background:#F1F5F9; border-radius:6px; padding:12px; font-size:12px; font-family:'SFMono-Regular',Consolas,monospace; color:#374151; white-space:pre-wrap; line-height:1.6; margin:12px 0; min-height:60px; }
-    .prompt-empty { color:#9CA3AF; font-style:italic; }
-    .copy-btn { width:100%; padding:9px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; }
-    .copy-btn:disabled { background:#D1FAE5; color:#6EE7B7; cursor:not-allowed; }
-    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>People Manager — Prompt Library</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root{
+    --pageBg:#F7F7F3; --headerBg:#0F0F10; --headerText:#F5F5F2; --headerMuted:#A1A1AA;
+    --headerBorder:rgba(255,255,255,.12); --cardBg:#fff; --border:#E5E5E0;
+    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626; --primaryHover:#b91c1c;
+    --hover:#EFEEE6; --green:#0F6E56; --purple:#534AB7; --amber:#854F0B;
+    --shadowSm:0 1px 2px rgba(0,0,0,.08); --shadowMd:0 8px 24px rgba(0,0,0,.06);
+    --font:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{font-family:var(--font);background:var(--pageBg);color:var(--text);}
+  a{color:inherit;}
+  header{height:56px;background:var(--headerBg);color:var(--headerText);display:flex;align-items:center;
+    padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--headerBorder);}
+  .wordmark{font-weight:900;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:2px;}
+  .wordmark .badge{background:var(--primary);color:#fff;padding:1px 6px;border-radius:5px;margin-left:2px;font-weight:800;}
+  .header-right{margin-left:auto;color:var(--headerMuted);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;}
+  .header-right .dot{width:6px;height:6px;border-radius:99px;background:var(--green);}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 24px 64px;}
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
+  h1{font-size:30px;font-weight:700;margin:8px 0 14px;letter-spacing:-.01em;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;font-family:var(--mono);}
+  .pill.wk{background:#E7F0FE;color:#1877F2;} .pill.mod{background:#EEEDFE;color:#3C3489;}
+  .pill.fmt{background:#E1F5EE;color:#0F6E56;} .pill.kind{background:#FAEEDA;color:#854F0B;}
+  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:20px;}
+  .done{display:flex;align-items:flex-start;gap:12px;margin-bottom:28px;}
+  .done .ic{width:34px;height:34px;border-radius:8px;background:#FCEBEB;color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .done .cap{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);}
+  .done .val{font-size:15px;font-weight:600;margin-top:3px;}
+  .section-h{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;margin:34px 0 14px;}
+  .section-h svg{color:var(--primary);}
+  .sub{font-size:13px;color:var(--textSec);margin:-8px 0 16px;line-height:1.6;}
+  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 18px;margin:22px 0;}
+  .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
+  .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.6;}
+  .tip p{margin:0;font-size:13px;color:var(--textSec);line-height:1.6;}
+  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
+  footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:2px 0 20px;}
+  .btn-ghost{font-family:var(--mono);font-size:12px;font-weight:500;padding:8px 14px;border:1px solid var(--border);border-radius:7px;background:#fff;text-decoration:none;color:var(--text);}
+  .btn-ghost:hover{background:var(--hover);}
+  .btn-red{font-family:var(--mono);font-size:12px;font-weight:500;padding:8px 14px;border-radius:7px;background:var(--primary);color:#fff;text-decoration:none;border:1px solid var(--primary);}
+  .btn-red:hover{background:var(--primaryHover);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-top:8px;}
+  .card-lib{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);overflow:hidden;display:flex;flex-direction:column;}
+  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);overflow:hidden;display:flex;flex-direction:column;padding:0;}
+  .card:hover{box-shadow:var(--shadowMd);}
+  .card-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;}
+  .card-header h3{font-size:14.5px;font-weight:600;color:var(--text);}
+  .example-tag,.todo-tag{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.06em;padding:2px 8px;border-radius:99px;white-space:nowrap;}
+  .example-tag{background:#E1F5EE;color:var(--green);}
+  .todo-tag{background:#FCEBEB;color:var(--primary);}
+  .card-body{padding:16px;display:flex;flex-direction:column;}
+  .crisp-row{margin-bottom:10px;}
+  .crisp-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;color:var(--primary);text-transform:uppercase;margin-bottom:3px;}
+  .crisp-value{font-size:13px;color:var(--textSec);line-height:1.55;}
+  .crisp-empty{font-size:12px;color:var(--textMuted);font-style:italic;}
+  .prompt-block{background:#1A1A1E;border:1px solid #26262b;border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;color:#E4E4E7;white-space:pre-wrap;line-height:1.6;margin:12px 0;min-height:60px;overflow-x:auto;}
+  .prompt-empty{color:#9CA3AF;font-style:italic;}
+  .copy-btn{margin-top:auto;width:100%;padding:9px;background:var(--primary);color:#fff;border:none;border-radius:7px;font-family:var(--mono);font-size:12px;font-weight:500;cursor:pointer;}
+  .copy-btn:hover{background:var(--primaryHover);}
+  .copy-btn:disabled{background:#F0C9C9;color:#fff;cursor:not-allowed;}
+  @media(max-width:680px){h1{font-size:24px;}}
+</style>
 </head>
 <body>
   <header>
-    <a href="../../" class="back">← Back to all samples</a>
-    <h1>People Manager — Prompt Library</h1>
-    <p>Sample 5 of 5 · 8 prompt areas · HO3: Prompt Engineering Library</p>
+    <span class="wordmark">FORGE<span class="badge">COURSE</span></span>
+    <span class="header-right"><span class="dot"></span>ForgeMind AI · Hands-On Portfolio</span>
   </header>
 
-  <div class="starter-bar">
-    <strong>Copy-and-use library.</strong> Every card below is a complete CRISP prompt. Click <strong>Copy prompt</strong> on any card, paste it into Claude.ai, swap the [PLACEHOLDERS] for your details, and go. No API key needed.
-  </div>
+  <div class="wrap">
+    <div class="eyebrow">Hands-On 3 · Week 2 · Module M6 — Prompt Engineering · Sample 05</div>
+    <h1>People Manager — Prompt Library</h1>
+    <div class="pills">
+      <span class="pill wk">Week 2</span>
+      <span class="pill mod">M6 · Prompt Engineering</span>
+      <span class="pill fmt">Peer-reviewed</span>
+      <span class="pill kind">Library</span>
+    </div>
+    <div class="actions">
+      <a class="btn-ghost" href="../../">‹ All libraries</a>
+      <a class="btn-red" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude.ai ›</a>
+    </div>
+    <div class="sub">Sample 5 of 5 · 8 prompt areas · HO3: Prompt Engineering Library</div>
 
-  <div class="grid">
+    <div class="tip">
+      <div class="th"><i data-lucide="wand-2"></i> Copy &amp; use</div>
+      <p><strong>Copy-and-use library.</strong> Every card below is a complete CRISP prompt. Click <strong>Copy prompt</strong> on any card, paste it into Claude.ai, swap the [PLACEHOLDERS] for your details, and go. No API key needed.</p>
+    </div>
+
+<div class="grid">
 
     <!-- EXAMPLE CARD — completed to show the format -->
     <div class="card">
@@ -413,6 +471,9 @@ How often I plan to run it: [e.g. monthly]</pre>
     </div>
 
   </div>
-  <footer>Forgemind AI · Claude Course · HO3 Sample 5 · <a href="../../" style="color:#059669">← All samples</a></footer>
+
+    <footer>HO3 · Peer-reviewed · ForgeMind AI — AI Productivity Essentials · Module M6 (Week 2)</footer>
+  </div>
+  <script>lucide.createIcons();</script>
 </body>
 </html>

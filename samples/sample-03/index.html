@@ -1,88 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HO3 · People Manager Prompt Library</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>People Manager Prompt Library · ForgeMind AI</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
   :root{
     --pageBg:#F7F7F3; --headerBg:#0F0F10; --headerText:#F5F5F2; --headerMuted:#A1A1AA;
     --headerBorder:rgba(255,255,255,.12); --cardBg:#fff; --border:#E5E5E0;
-    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626; --primaryHover:#b91c1c;
-    --hover:#EFEEE6; --green:#0F6E56; --purple:#534AB7; --amber:#854F0B;
+    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626;
+    --green:#0F6E56; --amber:#854F0B; --hover:#EFEEE6;
     --shadowSm:0 1px 2px rgba(0,0,0,.08); --shadowMd:0 8px 24px rgba(0,0,0,.06);
     --font:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+    --accent:#534AB7;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;}
+  html,body{margin:0;height:100%;}
   body{font-family:var(--font);background:var(--pageBg);color:var(--text);}
-  a{color:inherit;}
   header{height:56px;background:var(--headerBg);color:var(--headerText);display:flex;align-items:center;
-    padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--headerBorder);}
-  .wordmark{font-weight:900;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:2px;}
+    padding:0 20px;border-bottom:1px solid var(--headerBorder);flex-shrink:0;}
+  .wordmark{font-weight:900;font-size:16px;}
   .wordmark .badge{background:var(--primary);color:#fff;padding:1px 6px;border-radius:5px;margin-left:2px;font-weight:800;}
   .header-right{margin-left:auto;color:var(--headerMuted);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;}
   .header-right .dot{width:6px;height:6px;border-radius:99px;background:var(--green);}
-  .wrap{max-width:none;margin:0;padding:34px 48px 72px;}
+  .intro{max-width:1180px;margin:0 auto;padding:30px 26px 0;}
   .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
-  h1{font-size:30px;font-weight:700;margin:8px 0 14px;letter-spacing:-.01em;}
-  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
-  .pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;font-family:var(--mono);}
-  .pill.wk{background:#E7F0FE;color:#1877F2;} .pill.mod{background:#EEEDFE;color:#3C3489;}
-  .pill.fmt{background:#E1F5EE;color:#0F6E56;} .pill.kind{background:#FAEEDA;color:#854F0B;}
-  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:20px;}
-  .done{display:flex;align-items:flex-start;gap:12px;margin-bottom:28px;}
-  .done .ic{width:34px;height:34px;border-radius:8px;background:#FCEBEB;color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .done .cap{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);}
-  .done .val{font-size:15px;font-weight:600;margin-top:3px;}
-  .section-h{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;margin:34px 0 14px;}
-  .section-h svg{color:var(--primary);}
-  .sub{font-size:13px;color:var(--textSec);margin:-8px 0 16px;line-height:1.6;}
-  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 18px;margin:22px 0;}
-  .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
-  .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.6;}
-  .tip p{margin:0;font-size:13px;color:var(--textSec);line-height:1.6;}
-  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
-  footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;}
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:2px 0 20px;}
-  .btn-ghost{font-family:var(--mono);font-size:12px;font-weight:500;padding:8px 14px;border:1px solid var(--border);border-radius:7px;background:#fff;text-decoration:none;color:var(--text);}
-  .btn-ghost:hover{background:var(--hover);}
-  .btn-red{font-family:var(--mono);font-size:12px;font-weight:500;padding:8px 14px;border-radius:7px;background:var(--primary);color:#fff;text-decoration:none;border:1px solid var(--primary);}
-  .btn-red:hover{background:var(--primaryHover);}
-  .prompt-section{display:flex;flex-direction:column;gap:18px;margin-top:8px;}
-  .prompt-card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);overflow:hidden;}
-  .prompt-card:hover{box-shadow:var(--shadowMd);}
-  .prompt-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);background:#fff;}
-  .prompt-title-wrap{flex:1;}
-  .prompt-num{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;color:#fff;background:var(--primary);border-radius:99px;padding:2px 9px;margin-bottom:7px;}
-  .prompt-header h2{font-size:17px;font-weight:600;line-height:1.3;color:var(--text);}
-  .open-btn{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--primary);text-decoration:none;padding:6px 11px;border:1px solid var(--border);border-radius:7px;white-space:nowrap;flex-shrink:0;}
-  .open-btn:hover{background:var(--hover);}
-  .prompt-body{padding:20px;}
-  .prompt-purpose{font-size:13.5px;color:var(--textSec);line-height:1.65;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border);}
-  .crisp-section{margin-bottom:20px;}
-  .crisp-section h4{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:10px;}
-  .full-prompt-section h4{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--textMuted);margin-bottom:10px;}
-  .crisp-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .crisp-table td{padding:8px 12px;vertical-align:top;border:1px solid var(--border);line-height:1.55;}
-  .crisp-table tr:nth-child(odd) td{background:#FAFAF7;}
-  .crisp-table td:first-child{font-family:var(--mono);font-weight:500;color:var(--text);white-space:nowrap;width:104px;}
-  .crisp-table td:last-child{color:var(--textSec);}
-  .prompt-code-wrap{position:relative;background:#1A1A1E;border:1px solid #26262b;border-radius:8px;overflow:hidden;}
-  .prompt-code-wrap pre{padding:18px 52px 18px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.65;color:#E4E4E7;overflow-x:auto;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow-y:auto;margin:0;}
-  .copy-btn{position:absolute;top:10px;right:10px;font-family:var(--mono);background:rgba(255,255,255,.1);color:#E4E4E7;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:5px 11px;font-size:11px;font-weight:500;cursor:pointer;z-index:10;}
-  .copy-btn:hover{background:rgba(255,255,255,.2);}
-  .copy-btn.copied{background:var(--green);color:#fff;border-color:var(--green);}
-  .before-after{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .ba-block h4{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
-  .ba-block.before h4{color:var(--primary);}
-  .ba-block.after h4{color:var(--green);}
-  .ba-block blockquote{margin:0;font-size:13px;line-height:1.6;color:var(--textSec);background:#FAFAF7;border-left:3px solid var(--border);padding:10px 14px;border-radius:0 6px 6px 0;}
-  .ba-block.before blockquote{border-left-color:#F1B0B0;}
-  .ba-block.after blockquote{border-left-color:var(--green);}
-  @media(max-width:680px){.before-after{grid-template-columns:1fr;}.prompt-header{flex-direction:column;}h1{font-size:24px;}}
+  h1{font-size:30px;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em;}
+  .lead{font-size:14px;color:var(--textSec);line-height:1.75;margin:0;max-width:820px;}
+  .lead b{color:var(--text);}
+  /* two-pane library */
+  .lib{max-width:1180px;margin:26px auto 0;padding:0 26px 70px;display:grid;grid-template-columns:266px 1fr;gap:22px;align-items:start;}
+  .rail{background:var(--cardBg);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadowSm);
+    padding:10px;position:sticky;top:18px;}
+  .rail .rl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--textMuted);padding:8px 10px 6px;}
+  .rail button{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:none;border:none;
+    font-family:var(--font);font-size:13px;color:var(--text);padding:9px 10px;border-radius:7px;cursor:pointer;line-height:1.4;}
+  .rail button:hover{background:var(--hover);}
+  .rail button.on{background:var(--accent);color:#fff;font-weight:600;}
+  .rail button .n{font-family:var(--mono);font-size:10px;opacity:.65;flex-shrink:0;margin-top:2px;}
+  .pane{min-width:0;}
+  .ptitle{font-size:21px;font-weight:700;margin:2px 0 6px;}
+  .ppurpose{font-size:13.5px;color:var(--textSec);line-height:1.65;margin:0 0 16px;}
+  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadowSm);
+    padding:18px 20px;margin-bottom:16px;}
+  .ch{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;margin-bottom:10px;}
+  .ch svg{width:16px;height:16px;color:var(--accent);}
+  .ch .tag{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--textMuted);}
+  /* CRISP */
+  .crisp{display:grid;gap:8px;}
+  .cr{display:grid;grid-template-columns:104px 1fr;gap:12px;align-items:start;font-size:13px;line-height:1.6;}
+  .cr .k{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#fff;background:var(--accent);padding:3px 8px;border-radius:5px;text-align:center;}
+  .cr .v{color:var(--textSec);}
+  /* code */
+  .pre{position:relative;background:#17171A;border:1px solid #2A2A2E;border-radius:9px;}
+  .pre pre{margin:0;padding:15px 84px 15px 17px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;
+    line-height:1.65;color:#E6E6E6;white-space:pre-wrap;}
+  .pre .copy{position:absolute;top:9px;right:9px;font-family:var(--font);font-size:11px;font-weight:600;color:#E6E6E6;
+    background:#2A2A2E;border:1px solid #3A3A40;border-radius:5px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  .pre .copy:hover{background:#3A3A40;}
+  .pre .copy.copied{color:#7EE0C0;border-color:var(--green);}
+  .pre .copy svg{width:12px;height:12px;}
+  /* before / after */
+  .tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px;width:fit-content;}
+  .tabs button{font-family:var(--font);font-size:13px;font-weight:600;padding:9px 18px;border:none;cursor:pointer;
+    background:#fff;color:var(--textSec);display:flex;align-items:center;gap:7px;}
+  .tabs button svg{width:14px;height:14px;}
+  .tabs button:hover{background:var(--hover);}
+  .tabs button.on.bad{background:var(--primary);color:#fff;}
+  .tabs button.on.good{background:var(--green);color:#fff;}
+  .askedfor{font-size:12.5px;color:var(--textSec);line-height:1.6;margin-bottom:10px;}
+  .askedfor b{color:var(--text);}
+  .quote{border-left:3px solid var(--border);padding:2px 0 2px 14px;margin:0 0 12px;font-size:13.5px;
+    line-height:1.7;color:var(--text);}
+  .quote p{margin:0 0 9px;}
+  .quote p:last-child{margin:0;}
+  .out{background:#FAF9F5;border:1px solid var(--border);border-radius:8px;padding:15px 17px;margin-bottom:12px;}
+  .out .ol{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--textMuted);margin-bottom:9px;}
+  .verdict{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.6;border-radius:8px;padding:12px 14px;}
+  .verdict svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;}
+  .verdict.bad{background:#FDF6F6;border:1px solid #F3C6C6;}
+  .verdict.bad svg{color:var(--primary);}
+  .verdict.good{background:#E1F5EE;border:1px solid #A8DFCC;}
+  .verdict.good svg{color:var(--green);}
+  .verdict b{font-weight:600;}
+  .fills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .fills span{font-family:var(--mono);font-size:11px;background:#F1F0EA;color:var(--textSec);padding:4px 9px;border-radius:5px;}
+  footer{max-width:1180px;margin:0 auto;padding:24px 26px 40px;border-top:1px solid var(--border);
+    font-family:var(--mono);font-size:11px;color:var(--textMuted);text-align:center;line-height:1.9;}
+  @media(max-width:900px){.lib{grid-template-columns:1fr;} .rail{position:static;}}
 </style>
 </head>
 <body>
@@ -91,875 +101,108 @@
     <span class="header-right"><span class="dot"></span>ForgeMind AI · Hands-On Portfolio</span>
   </header>
 
-  <div class="wrap">
-    <div class="eyebrow">Hands-On 3 · Week 2 · Module M6 — Prompt Engineering · Sample 03</div>
+  <div class="intro">
+    <div class="eyebrow">HO3 · Sample 03 · People Manager</div>
     <h1>People Manager Prompt Library</h1>
-    <div class="pills">
-      <span class="pill wk">Week 2</span>
-      <span class="pill mod">M6 · Prompt Engineering</span>
-      <span class="pill fmt">Peer-reviewed</span>
-      <span class="pill kind">Library</span>
-    </div>
-    <div class="actions">
-      <a class="btn-ghost" href="../../">‹ All libraries</a>
-      <a class="btn-red" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude.ai ›</a>
-    </div>
-    <div class="sub">Role: People Manager / Team Lead · 10 CRISP-structured prompts ready to copy into Claude.ai</div>
-
-    <div class="tip">
-      <div class="th"><i data-lucide="clipboard-check"></i> No API key needed</div>
-      <p><strong>No API key needed.</strong> Click "Open Claude.ai →" on any card, then copy the prompt, fill in the <code>[BRACKET]</code> placeholders, and paste it into your Claude.ai chat.</p>
-    </div>
-
-<div class="prompt-section">
-    
-    <div class="prompt-card" id="prompt-01">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#01</span>
-          <h2>1:1 Prep Notes</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Prepare structured 1:1 preparation notes that surface the right talking points, track follow-ups from previous sessions, and ensure you walk into the meeting present and intentional — not scrambling for something to say.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Team member: [name, role, tenure]. Meeting cadence: [weekly / bi-weekly]. Last 1:1: [date, brief summary of topics]. What&#x27;s happened since then: [notable work, challenges, events]. Any HR or career context: [promotion conversation, performance concerns, etc.].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a thoughtful people manager who treats 1:1s as the most important meeting in your week — an opportunity to coach, unblock, and understand what&#x27;s really going on, not just a status check.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a 1:1 prep document with: 3 manager-led talking points, 2 suggested open questions to give the team member space, follow-ups from last session, and one &quot;deeper&quot; topic worth spending 10 minutes on.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Prep note format. Not a rigid agenda — a guide for you to refer to. 200 words. Talking points are starters, not scripts. Open questions should not have yes/no answers.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>You walk into the 1:1 feeling prepared and present. The meeting feels like a conversation, not a meeting. At least one question goes deeper than status.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-0" onclick="copyPrompt("Context: I'm preparing for a 1:1 with [Team Member Name], who is a [role] on my team and has been with the company [tenure]. We meet [weekly / bi-weekly]. Our last 1:1 was [date] \u2014 main topics were [brief summary]. Since then: [what has happened \u2014 completed work, a challenge they mentioned, something you observed, upcoming project pressure, any HR/career context]. My current concern or intention for this meeting: [what you most want to understand or address].\n\nRole: Act as a thoughtful people manager who treats 1:1s as the highest-leverage part of the management week \u2014 not a status meeting, but a coaching and connection session.\n\nInstruction: Write a 1:1 prep note with:\n1. Three manager-led talking points (things I want to cover or follow up on)\n2. Two open questions to give the team member space to lead (no yes/no questions)\n3. Follow-ups from last session (based on what I shared about last meeting)\n4. One \"deeper\" topic \u2014 a question or conversation worth spending 10 minutes on, based on what I know about this person right now\n\nSpec:\n- Prep note format (for manager use only \u2014 not a shared agenda)\n- 200 words\n- Talking points are starters, not scripts\n- Questions must be open (start with \"What\", \"How\", \"Tell me about\")\n- One deeper topic with brief rationale for why now\n\nPerformance bar: I walk in prepared and present. The session feels like a conversation, not a check-in. At least one question goes deeper than task status.", 'copy-card-0')">Copy</button>
-            <pre>Context: I&#x27;m preparing for a 1:1 with [Team Member Name], who is a [role] on my team and has been with the company [tenure]. We meet [weekly / bi-weekly]. Our last 1:1 was [date] — main topics were [brief summary]. Since then: [what has happened — completed work, a challenge they mentioned, something you observed, upcoming project pressure, any HR/career context]. My current concern or intention for this meeting: [what you most want to understand or address].
-
-Role: Act as a thoughtful people manager who treats 1:1s as the highest-leverage part of the management week — not a status meeting, but a coaching and connection session.
-
-Instruction: Write a 1:1 prep note with:
-1. Three manager-led talking points (things I want to cover or follow up on)
-2. Two open questions to give the team member space to lead (no yes/no questions)
-3. Follow-ups from last session (based on what I shared about last meeting)
-4. One &quot;deeper&quot; topic — a question or conversation worth spending 10 minutes on, based on what I know about this person right now
-
-Spec:
-- Prep note format (for manager use only — not a shared agenda)
-- 200 words
-- Talking points are starters, not scripts
-- Questions must be open (start with &quot;What&quot;, &quot;How&quot;, &quot;Tell me about&quot;)
-- One deeper topic with brief rationale for why now
-
-Performance bar: I walk in prepared and present. The session feels like a conversation, not a check-in. At least one question goes deeper than task status.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>1:1 Notes: 1. Check on project status 2. Any blockers? 3. Career development 4. Any other topics?</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-02">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#02</span>
-          <h2>Performance Review Draft</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Draft a balanced, specific, evidence-based performance review that fairly reflects the team member&#x27;s contributions, development areas, and trajectory — giving them something meaningful to read, not a generic evaluation that could apply to anyone.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Team member: [name, role, review period]. Review type: [mid-year / annual]. Rating (if applicable): [Exceeds/Meets/Below]. Key contributions this period: [list 3–5 examples with context]. Development areas: [list 1–3 specific behaviours or skills]. Career trajectory: [where they want to go, what&#x27;s next].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager who writes performance reviews that team members remember — because they are specific, honest, and show that the manager was actually paying attention.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a performance review with: overall summary, 3 evidence-based strengths, 2 specific development areas with actionable guidance, and a forward-looking section on next steps.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Performance review format. 400–450 words. Each strength backed by a specific example. Development areas framed as &quot;where to focus&quot; not &quot;what&#x27;s wrong.&quot; No vague descriptors like &quot;good communicator.&quot;</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The team member reads this and recognises their own work in it. They are not surprised by anything. The development areas give them something specific to work on.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-1" onclick="copyPrompt("Context: I'm writing a [mid-year / annual] performance review for [Team Member Name], a [role] who has been on my team for [tenure]. Review period: [start date \u2013 end date]. Their overall rating: [Exceeds Expectations / Meets Expectations / Below Expectations / Developing].\n\nKey contributions this period (be specific):\n1. [Example 1 \u2014 what they did, what the outcome was]\n2. [Example 2]\n3. [Example 3]\n4. [Optional: Example 4 or 5]\n\nDevelopment areas:\n1. [Specific behaviour or skill gap \u2014 what you've observed, not a personality judgement]\n2. [Second development area if applicable]\n\nCareer context: [Where they want to go / what they've expressed about their next step / any levelling or promotion discussion].\n\nRole: Act as a people manager who writes performance reviews that are specific enough that the team member recognises their own work in them \u2014 and honest enough that nothing comes as a surprise.\n\nInstruction: Write a full performance review with:\n1. Opening Summary \u2014 2\u20133 sentences: overall rating, one headline strength, one development theme\n2. Strengths \u2014 3 paragraphs, each with: specific example, outcome achieved, why this matters for their role\n3. Development Areas \u2014 2 paragraphs: specific observation, impact on team/work, concrete guidance on what to do differently\n4. Looking Ahead \u2014 career trajectory, next quarter priorities, manager commitment\n\nSpec:\n- Performance review narrative format\n- 400\u2013450 words\n- Each strength must reference a specific example (no generic praise)\n- Development framed as \"where to invest\" not \"what's wrong with you\"\n- Looking Ahead section must include one concrete manager commitment\n\nPerformance bar: Team member reads this and recognises their work in it. Development areas are specific enough to act on. Manager commitment in Looking Ahead is real, not a platitude.", 'copy-card-1')">Copy</button>
-            <pre>Context: I&#x27;m writing a [mid-year / annual] performance review for [Team Member Name], a [role] who has been on my team for [tenure]. Review period: [start date – end date]. Their overall rating: [Exceeds Expectations / Meets Expectations / Below Expectations / Developing].
-
-Key contributions this period (be specific):
-1. [Example 1 — what they did, what the outcome was]
-2. [Example 2]
-3. [Example 3]
-4. [Optional: Example 4 or 5]
-
-Development areas:
-1. [Specific behaviour or skill gap — what you&#x27;ve observed, not a personality judgement]
-2. [Second development area if applicable]
-
-Career context: [Where they want to go / what they&#x27;ve expressed about their next step / any levelling or promotion discussion].
-
-Role: Act as a people manager who writes performance reviews that are specific enough that the team member recognises their own work in them — and honest enough that nothing comes as a surprise.
-
-Instruction: Write a full performance review with:
-1. Opening Summary — 2–3 sentences: overall rating, one headline strength, one development theme
-2. Strengths — 3 paragraphs, each with: specific example, outcome achieved, why this matters for their role
-3. Development Areas — 2 paragraphs: specific observation, impact on team/work, concrete guidance on what to do differently
-4. Looking Ahead — career trajectory, next quarter priorities, manager commitment
-
-Spec:
-- Performance review narrative format
-- 400–450 words
-- Each strength must reference a specific example (no generic praise)
-- Development framed as &quot;where to invest&quot; not &quot;what&#x27;s wrong with you&quot;
-- Looking Ahead section must include one concrete manager commitment
-
-Performance bar: Team member reads this and recognises their work in it. Development areas are specific enough to act on. Manager commitment in Looking Ahead is real, not a platitude.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>[Name] is a valuable member of the team. They consistently deliver high-quality work and collaborate well with colleagues. They have shown good communication skills. For development, they should continue to improve their technical skills and work on time management. Overall a strong performer.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-03">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#03</span>
-          <h2>Constructive Feedback Script</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a specific, structured feedback script using the SBI (Situation–Behaviour–Impact) framework that prepares you for a real conversation about a behaviour that needs to change — not a script to read verbatim, but a guide that ensures you&#x27;re clear, fair, and opening a dialogue.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Team member: [name, role]. Behaviour to address: [describe the specific behaviour, not the person]. Situation: [when/where this happened]. Impact: [on team, project, stakeholders]. How many times has this happened: [once / a pattern].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager who gives feedback that lands — not because you&#x27;re harsh, but because you are specific, fair, and give the other person a chance to respond before you draw conclusions.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a feedback script using SBI structure: Situation (when/where), Behaviour (what they did — observable, not interpreted), Impact (what happened as a result), followed by a question to invite their perspective.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Script format, 200–250 words. Opening line should not start with &quot;So I wanted to talk about...&quot; SBI must be clearly separated. Script must end with an open question, not a demand.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>You could deliver this script in a 1:1 with minimal prep. The behaviour described is specific enough that the team member cannot say &quot;I don&#x27;t know what you mean.&quot; The question at the end invites dialogue.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-2" onclick="copyPrompt("Context: I'm a people manager preparing to give feedback to [Team Member Name], a [role], about [brief description of the behaviour \u2014 e.g., \"frequently interrupting colleagues in meetings\", \"not flagging blockers until they become problems\", \"dismissive responses to junior team members\"]. \n\nSpecific incident(s):\n- [Incident 1: date, situation, what they did, what happened as a result]\n- [Incident 2 if applicable]\n\nPattern or one-off: [This is the first time I'm addressing it / This is a recurring pattern I've raised before / This is a first observation I want to address early]\n\nMy goal for this conversation: [inform them / understand their perspective / agree on a change / document before formal process]\n\nRole: Act as a manager who gives feedback that lands because it is specific, fair, and opens a dialogue rather than delivering a verdict.\n\nInstruction: Write a feedback script that follows the SBI structure:\n1. Opening \u2014 1\u20132 sentences to set the tone and context (not \"So I wanted to chat...\")\n2. Situation \u2014 specific, factual description of when/where\n3. Behaviour \u2014 what the person did, observable and non-judgmental (no \"you were rude\", instead describe what was said/done)\n4. Impact \u2014 concrete effect on the team, project, or relationship\n5. Check-in Question \u2014 an open question that invites their perspective before any conclusion is drawn\n\nSpec:\n- Script format (for manager delivery in a 1:1)\n- 200\u2013250 words\n- Behaviour section: observable facts only, no personality judgements\n- Must end with an open question\n- Not a script to read verbatim \u2014 natural language\n\nPerformance bar: Deliverable in a 1:1 with minimal prep. Behaviour specific enough that \"I don't know what you mean\" is not a valid response. Ends with dialogue, not a verdict.", 'copy-card-2')">Copy</button>
-            <pre>Context: I&#x27;m a people manager preparing to give feedback to [Team Member Name], a [role], about [brief description of the behaviour — e.g., &quot;frequently interrupting colleagues in meetings&quot;, &quot;not flagging blockers until they become problems&quot;, &quot;dismissive responses to junior team members&quot;]. 
-
-Specific incident(s):
-- [Incident 1: date, situation, what they did, what happened as a result]
-- [Incident 2 if applicable]
-
-Pattern or one-off: [This is the first time I&#x27;m addressing it / This is a recurring pattern I&#x27;ve raised before / This is a first observation I want to address early]
-
-My goal for this conversation: [inform them / understand their perspective / agree on a change / document before formal process]
-
-Role: Act as a manager who gives feedback that lands because it is specific, fair, and opens a dialogue rather than delivering a verdict.
-
-Instruction: Write a feedback script that follows the SBI structure:
-1. Opening — 1–2 sentences to set the tone and context (not &quot;So I wanted to chat...&quot;)
-2. Situation — specific, factual description of when/where
-3. Behaviour — what the person did, observable and non-judgmental (no &quot;you were rude&quot;, instead describe what was said/done)
-4. Impact — concrete effect on the team, project, or relationship
-5. Check-in Question — an open question that invites their perspective before any conclusion is drawn
-
-Spec:
-- Script format (for manager delivery in a 1:1)
-- 200–250 words
-- Behaviour section: observable facts only, no personality judgements
-- Must end with an open question
-- Not a script to read verbatim — natural language
-
-Performance bar: Deliverable in a 1:1 with minimal prep. Behaviour specific enough that &quot;I don&#x27;t know what you mean&quot; is not a valid response. Ends with dialogue, not a verdict.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>&quot;I&#x27;ve noticed that you have been missing deadlines recently. This is not acceptable and needs to improve. Please make sure to manage your time better and communicate if you are going to be late.&quot;</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-04">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#04</span>
-          <h2>Team Recognition Note</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a specific, meaningful recognition note for an individual or team that names the exact contribution, explains why it mattered, and makes the person feel genuinely seen — not like they received a generic &quot;great job&quot; that took 30 seconds to write.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Recognising: [name(s) and role(s)]. What they did: [specific contribution or achievement]. Context: [what was difficult about it / what the stakes were]. Impact: [what it meant for the team, project, or customer]. Audience: [private 1:1 / team Slack / all-hands / peer nomination form].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager who knows that recognition lands differently when it is specific. You name what people actually did, not what you appreciate about them as a person.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a recognition note that: names the specific achievement, describes what made it difficult or impressive, explains the real-world impact, and lands with genuine warmth — not corporate enthusiasm.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Format matches the audience (Slack post / email / spoken note). 100–150 words. The achievement must be named in the first sentence. No hollow openers like &quot;I just wanted to take a moment to...&quot;</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The person who receives this knows you were paying attention. They could read it to their family and it would make sense. Other team members know what&#x27;s being celebrated and why.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-3" onclick="copyPrompt("Context: I want to recognise [Name(s)] for [brief description of what they did]. Here's the context:\n- What they did: [be specific \u2014 not \"did great work\" but what they actually did]\n- What made it impressive or difficult: [extra hours, technical challenge, stepping outside their role, crisis situation, etc.]\n- The real impact: [what would have happened without their contribution / what it enabled / how it helped the team or customer]\n- Audience: [private 1:1 / team Slack message / public all-hands shoutout / peer nomination form / manager feedback to HR]\n\nRole: Act as a manager who gives recognition that lands because it is specific and genuine. You avoid hollow corporate enthusiasm and name what the person actually did.\n\nInstruction: Write a recognition note that:\n1. Names the specific achievement in the first sentence \u2014 no warm-up\n2. Describes what made it impressive or hard (the context gives it meaning)\n3. States the real impact (what it enabled or prevented)\n4. Closes with genuine warmth appropriate to the relationship and audience\n5. Avoids: \"I just wanted to...\", \"amazing\", \"rockstar\", \"crushed it\" and similar hollow language\n\nSpec:\n- Format appropriate to the audience provided\n- 100\u2013150 words\n- Achievement named in sentence 1\n- Impact is concrete, not vague (\"the team could ship on time\" not \"we all benefited\")\n- Warmth without corporate hollowness\n\nPerformance bar: The recipient reads this and knows you were paying attention to their actual work. Other team members understand what's being celebrated. The note would make sense to someone who doesn't work here.", 'copy-card-3')">Copy</button>
-            <pre>Context: I want to recognise [Name(s)] for [brief description of what they did]. Here&#x27;s the context:
-- What they did: [be specific — not &quot;did great work&quot; but what they actually did]
-- What made it impressive or difficult: [extra hours, technical challenge, stepping outside their role, crisis situation, etc.]
-- The real impact: [what would have happened without their contribution / what it enabled / how it helped the team or customer]
-- Audience: [private 1:1 / team Slack message / public all-hands shoutout / peer nomination form / manager feedback to HR]
-
-Role: Act as a manager who gives recognition that lands because it is specific and genuine. You avoid hollow corporate enthusiasm and name what the person actually did.
-
-Instruction: Write a recognition note that:
-1. Names the specific achievement in the first sentence — no warm-up
-2. Describes what made it impressive or hard (the context gives it meaning)
-3. States the real impact (what it enabled or prevented)
-4. Closes with genuine warmth appropriate to the relationship and audience
-5. Avoids: &quot;I just wanted to...&quot;, &quot;amazing&quot;, &quot;rockstar&quot;, &quot;crushed it&quot; and similar hollow language
-
-Spec:
-- Format appropriate to the audience provided
-- 100–150 words
-- Achievement named in sentence 1
-- Impact is concrete, not vague (&quot;the team could ship on time&quot; not &quot;we all benefited&quot;)
-- Warmth without corporate hollowness
-
-Performance bar: The recipient reads this and knows you were paying attention to their actual work. Other team members understand what&#x27;s being celebrated. The note would make sense to someone who doesn&#x27;t work here.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>&quot;Shoutout to Sarah for all her hard work last week! You really went above and beyond and the team really appreciates everything you do. Keep up the amazing work! You&#x27;re a rockstar!&quot;</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-05">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#05</span>
-          <h2>PIP Outline</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Draft a Performance Improvement Plan (PIP) outline that defines the performance gap clearly, sets measurable improvement goals, establishes checkpoints, and documents the support the manager will provide — creating a fair, documented process that gives the employee a genuine opportunity to succeed.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Team member: [name, role, tenure]. Performance gap: [describe specifically what is below expectations]. Documentation history: [what has been discussed previously — dates, conversations]. PIP duration: [30 / 60 / 90 days]. HR involvement: [HR reviewed / HR will review before delivery].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager working with HR to create a PIP that is fair, documented, and gives the employee a genuine path to success — not a paper trail for a predetermined outcome.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a PIP outline with: performance gap statement, measurable improvement goals, weekly/bi-weekly check-in structure, manager support commitments, consequences if goals are not met, and sign-off section.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Formal HR document format. Goals must be SMART (Specific, Measurable, Achievable, Relevant, Time-bound). Consequences clearly stated — no vague &quot;further action.&quot; 400–450 words. Note: always have HR review before delivering a PIP.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>HR can approve this document without material changes. The employee understands exactly what they need to do, by when, and what happens if they don&#x27;t. The manager&#x27;s support commitments are concrete.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-4" onclick="copyPrompt("Context: I'm a people manager creating a Performance Improvement Plan (PIP) for [Team Member Name], a [role] who has been with the company [tenure]. This document will be reviewed by HR before delivery.\n\nPerformance gap (be specific \u2014 what is below expectations and for how long):\n[Describe the gap with 2\u20133 specific examples, including dates where possible]\n\nPrevious discussions (document the history):\n[List prior feedback conversations, dates, and what was agreed]\n\nPIP duration: [30 / 60 / 90 days]\nStart date: [date]\nEnd date: [date]\n\nRole: Act as a manager working in good faith with HR to create a PIP that is fair and gives the employee a genuine opportunity to improve \u2014 not a document designed to make exit easier.\n\nInstruction: Write a PIP outline with:\n1. Purpose Statement \u2014 why this PIP is being issued and what outcome it aims for\n2. Performance Gap \u2014 factual description of the gap with 2\u20133 documented examples\n3. Improvement Goals \u2014 3 SMART goals the employee must achieve during the PIP period\n4. Check-In Schedule \u2014 weekly or bi-weekly check-in structure with what will be reviewed\n5. Manager Support Commitments \u2014 concrete things you will do to support improvement\n6. Consequences \u2014 clear statement of what happens if goals are met / partially met / not met\n7. Signatures \u2014 employee, manager, HR sign-off section\n\nSpec:\n- Formal HR document format\n- 400\u2013450 words\n- SMART goals: specific, measurable, achievable, relevant, time-bound\n- Consequences must be explicit (not \"further action may be taken\")\n- Manager commitments must be specific and actionable\n- Note at top: \"Draft for HR review \u2014 do not deliver without HR sign-off\"\n\nPerformance bar: HR approves without material changes. Employee understands exactly what they need to do, by when, and what happens if they don't. Manager commitments are real.\n\nIMPORTANT: This is a structured planning tool. Always have a qualified HR professional review any PIP before it is delivered to an employee.", 'copy-card-4')">Copy</button>
-            <pre>Context: I&#x27;m a people manager creating a Performance Improvement Plan (PIP) for [Team Member Name], a [role] who has been with the company [tenure]. This document will be reviewed by HR before delivery.
-
-Performance gap (be specific — what is below expectations and for how long):
-[Describe the gap with 2–3 specific examples, including dates where possible]
-
-Previous discussions (document the history):
-[List prior feedback conversations, dates, and what was agreed]
-
-PIP duration: [30 / 60 / 90 days]
-Start date: [date]
-End date: [date]
-
-Role: Act as a manager working in good faith with HR to create a PIP that is fair and gives the employee a genuine opportunity to improve — not a document designed to make exit easier.
-
-Instruction: Write a PIP outline with:
-1. Purpose Statement — why this PIP is being issued and what outcome it aims for
-2. Performance Gap — factual description of the gap with 2–3 documented examples
-3. Improvement Goals — 3 SMART goals the employee must achieve during the PIP period
-4. Check-In Schedule — weekly or bi-weekly check-in structure with what will be reviewed
-5. Manager Support Commitments — concrete things you will do to support improvement
-6. Consequences — clear statement of what happens if goals are met / partially met / not met
-7. Signatures — employee, manager, HR sign-off section
-
-Spec:
-- Formal HR document format
-- 400–450 words
-- SMART goals: specific, measurable, achievable, relevant, time-bound
-- Consequences must be explicit (not &quot;further action may be taken&quot;)
-- Manager commitments must be specific and actionable
-- Note at top: &quot;Draft for HR review — do not deliver without HR sign-off&quot;
-
-Performance bar: HR approves without material changes. Employee understands exactly what they need to do, by when, and what happens if they don&#x27;t. Manager commitments are real.
-
-IMPORTANT: This is a structured planning tool. Always have a qualified HR professional review any PIP before it is delivered to an employee.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Performance Improvement Plan. Employee must improve their performance. Goals: 1. Be more productive. 2. Communicate better. 3. Meet deadlines. Duration: 90 days. Manager will check in regularly. If not improved, further action will be taken.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-06">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#06</span>
-          <h2>Job Levelling Rationale</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a promotion or levelling rationale that makes a compelling, evidence-based case for a team member&#x27;s advancement — giving the calibration committee enough to make a decision without needing to interview you about it.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Team member: [name, current level, proposed level]. Role: [job title]. Calibration date: [date]. Key evidence: [3–5 specific examples that demonstrate next-level criteria]. Levelling criteria for the target level: [list the criteria or describe your company&#x27;s framework].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager who writes promotion rationales that win in calibration — because they are structured, evidence-heavy, and pre-answer the committee&#x27;s standard objections.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a levelling rationale with: proposed level and summary case, evidence against each promotion criterion, scope and impact statement, and a &quot;why now&quot; argument.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Formal rationale document. Each criterion has its own section with a specific evidence example. 400 words max. End with a one-paragraph &quot;Why now&quot; that addresses timing.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>A calibration committee member who has never met this employee can vote confidently using only this document. The &quot;why now&quot; addresses the most common objection.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-5" onclick="copyPrompt("Context: I'm submitting a promotion rationale for [Team Member Name], currently a [Current Level/Title], for promotion to [Target Level/Title]. Calibration committee meeting: [date].\n\nEvidence (be as specific as possible \u2014 include outcomes, not just activities):\n1. [Example 1 \u2014 project, decision, or contribution that demonstrates next-level capability]\n2. [Example 2]\n3. [Example 3]\n4. [Example 4 if available]\n\nOur promotion criteria for [Target Level] (summarise or list the criteria your company uses):\n[E.g., \"Scope: leads cross-team initiatives independently\", \"Impact: decisions affect more than their immediate team\", \"Mentorship: actively develops others\", etc.]\n\nWhy now vs 6 months later: [Your honest assessment \u2014 are they already operating at the next level? Are there any concerns about timing?]\n\nRole: Act as a manager who writes promotion rationales that win in calibration because they are evidence-heavy, structured, and pre-answer the committee's standard objections.\n\nInstruction: Write a levelling rationale with:\n1. Proposed Promotion \u2014 one sentence summary of who, from what to what, and the headline case\n2. Evidence Against Criteria \u2014 one section per criterion with a specific evidence example\n3. Scope and Impact \u2014 paragraph describing the scope at which this person currently operates\n4. Why Now \u2014 one paragraph addressing timing: why this cycle, what changes if it's delayed\n\nSpec:\n- Formal promotion rationale format\n- 400 words maximum\n- Each criterion section has at least one named, specific example\n- \"Why now\" addresses the most common delay objection\n- No filler (\"hardworking\", \"always goes above and beyond\") \u2014 evidence only\n\nPerformance bar: A calibration committee member who doesn't know this employee can vote yes based solely on this document. The \"why now\" answers the question before it's asked.", 'copy-card-5')">Copy</button>
-            <pre>Context: I&#x27;m submitting a promotion rationale for [Team Member Name], currently a [Current Level/Title], for promotion to [Target Level/Title]. Calibration committee meeting: [date].
-
-Evidence (be as specific as possible — include outcomes, not just activities):
-1. [Example 1 — project, decision, or contribution that demonstrates next-level capability]
-2. [Example 2]
-3. [Example 3]
-4. [Example 4 if available]
-
-Our promotion criteria for [Target Level] (summarise or list the criteria your company uses):
-[E.g., &quot;Scope: leads cross-team initiatives independently&quot;, &quot;Impact: decisions affect more than their immediate team&quot;, &quot;Mentorship: actively develops others&quot;, etc.]
-
-Why now vs 6 months later: [Your honest assessment — are they already operating at the next level? Are there any concerns about timing?]
-
-Role: Act as a manager who writes promotion rationales that win in calibration because they are evidence-heavy, structured, and pre-answer the committee&#x27;s standard objections.
-
-Instruction: Write a levelling rationale with:
-1. Proposed Promotion — one sentence summary of who, from what to what, and the headline case
-2. Evidence Against Criteria — one section per criterion with a specific evidence example
-3. Scope and Impact — paragraph describing the scope at which this person currently operates
-4. Why Now — one paragraph addressing timing: why this cycle, what changes if it&#x27;s delayed
-
-Spec:
-- Formal promotion rationale format
-- 400 words maximum
-- Each criterion section has at least one named, specific example
-- &quot;Why now&quot; addresses the most common delay objection
-- No filler (&quot;hardworking&quot;, &quot;always goes above and beyond&quot;) — evidence only
-
-Performance bar: A calibration committee member who doesn&#x27;t know this employee can vote yes based solely on this document. The &quot;why now&quot; answers the question before it&#x27;s asked.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>I am pleased to recommend [Name] for promotion to Staff Engineer. She is a talented developer who always delivers high-quality work. She is a great team player and everyone likes working with her. She has shown strong leadership skills and technical excellence. I believe she is ready for the next le…</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-07">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#07</span>
-          <h2>Offboarding Checklist</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Create a structured, comprehensive offboarding plan for a departing team member that protects knowledge continuity, ensures proper access revocation, and treats the person with dignity — so they leave as an ambassador, not a critic.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Team member departing: [name, role, tenure]. Last day: [date]. Notice period: [2 weeks / 1 month]. Reason for departure: [resignation / redundancy / end of contract]. Key knowledge/systems they own: [list]. Replacement plan: [hired / in progress / not yet].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager who runs offboarding as professionally as onboarding — because how you handle departures shapes your team culture and your employer brand.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Create an offboarding checklist with: knowledge transfer tasks, system access revocation list, HR and admin tasks, team communication plan, and a personal appreciation touchpoint.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Checklist format with timeline (Day 1–14 or Day 1–30). Each item has: task, owner, due date slot. Grouped by category. 350–400 words. Must include a &quot;how are they leaving?&quot; culture moment.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Day 1 of the person&#x27;s absence, their replacement (or team) has everything they need to continue without disruption. The departing person tells their next employer good things about how they were treated.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-6" onclick="copyPrompt("Context: I'm managing the offboarding of [Team Member Name], a [role] who has been with the company [tenure]. Their last day is [date]. Notice period: [2 weeks / 1 month]. Reason for departure: [voluntary resignation / redundancy / end of contract / other]. \n\nKey knowledge/systems/relationships they own:\n- [Item 1 \u2014 e.g., \"Primary owner of the payment integration codebase\"]\n- [Item 2 \u2014 e.g., \"Main contact for Vendor X account\"]\n- [Item 3 \u2014 e.g., \"Only person who knows the legacy data migration script\"]\n\nReplacement status: [Replacement hired and starts [date] / Hiring underway / Work redistributed to team]\n\nRole: Act as a manager who treats offboarding as seriously as onboarding \u2014 because how someone leaves shapes team culture and your employer brand.\n\nInstruction: Create a structured offboarding plan with these sections:\n1. Knowledge Transfer \u2014 specific sessions, documents, and handover meetings needed; who receives the knowledge\n2. System Access Revocation \u2014 list of systems to revoke, with IT as owner and a final-day deadline\n3. HR and Admin \u2014 payroll, benefits, equipment return, reference letter, exit interview\n4. Team Communication \u2014 how and when to communicate the departure to the team and stakeholders\n5. Culture Moment \u2014 how you'll mark their departure with genuine appreciation (team farewell, written note, recommendation)\n\nSpec:\n- Checklist format with timeline (day-relative, e.g., \"Day 1\", \"Day 5\", \"Final Day\")\n- Each item: task | owner | timeline\n- Grouped by category with headers\n- 350\u2013400 words\n- Must include one specific culture/appreciation touchpoint\n\nPerformance bar: Day 1 after their departure, the team has what they need. The departing person tells their next employer they were treated well. Nothing falls through the cracks.", 'copy-card-6')">Copy</button>
-            <pre>Context: I&#x27;m managing the offboarding of [Team Member Name], a [role] who has been with the company [tenure]. Their last day is [date]. Notice period: [2 weeks / 1 month]. Reason for departure: [voluntary resignation / redundancy / end of contract / other]. 
-
-Key knowledge/systems/relationships they own:
-- [Item 1 — e.g., &quot;Primary owner of the payment integration codebase&quot;]
-- [Item 2 — e.g., &quot;Main contact for Vendor X account&quot;]
-- [Item 3 — e.g., &quot;Only person who knows the legacy data migration script&quot;]
-
-Replacement status: [Replacement hired and starts [date] / Hiring underway / Work redistributed to team]
-
-Role: Act as a manager who treats offboarding as seriously as onboarding — because how someone leaves shapes team culture and your employer brand.
-
-Instruction: Create a structured offboarding plan with these sections:
-1. Knowledge Transfer — specific sessions, documents, and handover meetings needed; who receives the knowledge
-2. System Access Revocation — list of systems to revoke, with IT as owner and a final-day deadline
-3. HR and Admin — payroll, benefits, equipment return, reference letter, exit interview
-4. Team Communication — how and when to communicate the departure to the team and stakeholders
-5. Culture Moment — how you&#x27;ll mark their departure with genuine appreciation (team farewell, written note, recommendation)
-
-Spec:
-- Checklist format with timeline (day-relative, e.g., &quot;Day 1&quot;, &quot;Day 5&quot;, &quot;Final Day&quot;)
-- Each item: task | owner | timeline
-- Grouped by category with headers
-- 350–400 words
-- Must include one specific culture/appreciation touchpoint
-
-Performance bar: Day 1 after their departure, the team has what they need. The departing person tells their next employer they were treated well. Nothing falls through the cracks.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>1. Return equipment. 2. Revoke access. 3. Exit interview. 4. Knowledge transfer. 5. Say goodbye.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-08">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#08</span>
-          <h2>Hiring Rubric</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Design a structured interview evaluation rubric for a specific role with weighted criteria, 1–4 scoring definitions, and example signals — so every interviewer is evaluating the same things, reducing bias and improving the quality of hiring decisions.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Hiring for: [role and seniority]. Team: [team description and what they&#x27;ll be working on]. Top 3–4 must-have criteria: [list]. Nice-to-haves: [list]. Interview panel: [N interviewers, each with a focus area].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a hiring manager who has built structured interview processes from scratch and knows that an unstructured interview predicts performance no better than a coin flip.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Create a hiring rubric with: weighted evaluation criteria, 1–4 score definitions per criterion, example &quot;strong signal&quot; and &quot;weak signal&quot; indicators, and a scoring guide for final decisions.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Rubric table format. Criteria must total 100% weight. Scores: 1=below bar, 2=meets partially, 3=meets, 4=exceeds. Each criterion has at least one positive and one negative signal example.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Any interviewer on the panel can use this rubric with no additional briefing. Scores from different interviewers are comparable. The rubric reduces &quot;I just liked them&quot; decisions.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-7" onclick="copyPrompt("Context: I'm building a hiring rubric for a [role + seniority] position on my [team description] team. They'll be primarily working on [main responsibilities]. \n\nMust-have criteria (the things someone must demonstrate to pass):\n1. [Criterion 1]\n2. [Criterion 2]\n3. [Criterion 3]\n4. [Criterion 4 if applicable]\n\nNice-to-have criteria (would differentiate candidates at the same level):\n1. [Nice-to-have 1]\n2. [Nice-to-have 2]\n\nInterview panel: [N interviewers and their areas \u2014 e.g., \"3 interviewers: technical (2 sessions), values/culture (1 session)\"]\n\nRole: Act as a hiring manager who builds structured interview rubrics that make hiring decisions defensible and reduce bias \u2014 because you know that without structure, every interviewer is evaluating something different.\n\nInstruction: Create a hiring rubric with:\n1. Evaluation Criteria Table \u2014 criteria name, weight (must total 100%), and which interview covers it\n2. Scoring Guide \u2014 for each criterion: score 1/2/3/4 definition + one example signal per level\n3. Strong Hire / Lean Hire / No Hire thresholds \u2014 based on weighted total score\n4. Debrief Instructions \u2014 how the panel should discuss scores before making a decision\n\nSpec:\n- Rubric table format\n- Criteria weights must total 100%\n- Score definitions: 1=does not meet, 2=partially meets, 3=meets, 4=exceeds\n- At least one positive and one negative example signal per criterion\n- 400 words maximum\n\nPerformance bar: Any panelist can use this rubric without a briefing call. Scores are comparable across interviewers. Final decision is based on the weighted score, not gut feel alone.", 'copy-card-7')">Copy</button>
-            <pre>Context: I&#x27;m building a hiring rubric for a [role + seniority] position on my [team description] team. They&#x27;ll be primarily working on [main responsibilities]. 
-
-Must-have criteria (the things someone must demonstrate to pass):
-1. [Criterion 1]
-2. [Criterion 2]
-3. [Criterion 3]
-4. [Criterion 4 if applicable]
-
-Nice-to-have criteria (would differentiate candidates at the same level):
-1. [Nice-to-have 1]
-2. [Nice-to-have 2]
-
-Interview panel: [N interviewers and their areas — e.g., &quot;3 interviewers: technical (2 sessions), values/culture (1 session)&quot;]
-
-Role: Act as a hiring manager who builds structured interview rubrics that make hiring decisions defensible and reduce bias — because you know that without structure, every interviewer is evaluating something different.
-
-Instruction: Create a hiring rubric with:
-1. Evaluation Criteria Table — criteria name, weight (must total 100%), and which interview covers it
-2. Scoring Guide — for each criterion: score 1/2/3/4 definition + one example signal per level
-3. Strong Hire / Lean Hire / No Hire thresholds — based on weighted total score
-4. Debrief Instructions — how the panel should discuss scores before making a decision
-
-Spec:
-- Rubric table format
-- Criteria weights must total 100%
-- Score definitions: 1=does not meet, 2=partially meets, 3=meets, 4=exceeds
-- At least one positive and one negative example signal per criterion
-- 400 words maximum
-
-Performance bar: Any panelist can use this rubric without a briefing call. Scores are comparable across interviewers. Final decision is based on the weighted score, not gut feel alone.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Evaluate candidates on: 1. Technical skills (rate 1–5). 2. Communication (rate 1–5). 3. Culture fit (rate 1–5). 4. Problem solving (rate 1–5). Take notes during the interview.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-09">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#09</span>
-          <h2>Team OKR Draft</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Draft quarterly OKRs for a team with ambitious but achievable Objectives and Key Results that are genuinely measurable — not the &quot;improve team performance&quot; objectives that make OKR coaches cry.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Team: [name and function]. Quarter: [Q# Year]. Company-level OKRs or priorities this quarter: [list them — team OKRs must ladder up]. Team size: [N]. Biggest challenges or focus areas: [list].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager who has written OKRs that actually drive behaviour — because the Key Results have real numbers, clear ownership, and a 60–70% target attainment expectation (they should be stretchy).</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write 3 Objectives with 3 Key Results each. Each KR must: have a baseline, a target, and a measurement method. Objectives should be qualitative and inspiring; KRs should be quantitative and specific.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>OKR format: Objective as a statement, Key Results as numbered bullets. KR format: &quot;[Metric] from [baseline] to [target] by [date], measured by [method].&quot; 250–300 words.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>At the end of the quarter, any team member can score each KR without asking the manager what it means. All three Objectives ladder to at least one company priority. None of the KRs are 100% achievable — they stretch.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-8" onclick="copyPrompt("Context: I'm drafting Q[N] [Year] OKRs for the [Team Name] team ([function description]). Team size: [N people]. Quarter runs: [start date] to [end date].\n\nCompany-level priorities this quarter (our OKRs must ladder to at least one of these):\n1. [Company priority 1]\n2. [Company priority 2]\n3. [Company priority 3]\n\nOur team's biggest focus areas or challenges this quarter:\n1. [Focus 1]\n2. [Focus 2]\n3. [Focus 3]\n\nLast quarter: we hit [X of Y] OKRs. Our weakest area was [describe]. Our strongest was [describe].\n\nRole: Act as a manager who writes OKRs that actually drive quarterly behaviour \u2014 with Key Results that have real numbers, clear measurement methods, and a 60\u201370% expected attainment (stretchy, not sandbagged).\n\nInstruction: Write 3 Objectives with 3 Key Results each, following these rules:\n- Objectives: qualitative, inspiring, 1 sentence\n- Key Results: quantitative, format = \"[Metric] from [baseline] to [target] by [end date], measured by [method]\"\n- Each Objective must ladder to at least one company priority (note which one)\n- No KR should be 100% guaranteed \u2014 they should require stretch\n- Baseline must be stated (not \"increase X\" without saying from what)\n\nSpec:\n- OKR format (Objective as header, KRs as numbered bullets)\n- 250\u2013300 words\n- Each KR: baseline \u2192 target \u2192 measurement method\n- Laddering note per Objective\n- No KR uses the word \"improve\" without a number\n\nPerformance bar: Any team member can self-score each KR at quarter-end without asking what it means. OKRs clearly ladder to company priorities. Targets require genuine effort to hit.", 'copy-card-8')">Copy</button>
-            <pre>Context: I&#x27;m drafting Q[N] [Year] OKRs for the [Team Name] team ([function description]). Team size: [N people]. Quarter runs: [start date] to [end date].
-
-Company-level priorities this quarter (our OKRs must ladder to at least one of these):
-1. [Company priority 1]
-2. [Company priority 2]
-3. [Company priority 3]
-
-Our team&#x27;s biggest focus areas or challenges this quarter:
-1. [Focus 1]
-2. [Focus 2]
-3. [Focus 3]
-
-Last quarter: we hit [X of Y] OKRs. Our weakest area was [describe]. Our strongest was [describe].
-
-Role: Act as a manager who writes OKRs that actually drive quarterly behaviour — with Key Results that have real numbers, clear measurement methods, and a 60–70% expected attainment (stretchy, not sandbagged).
-
-Instruction: Write 3 Objectives with 3 Key Results each, following these rules:
-- Objectives: qualitative, inspiring, 1 sentence
-- Key Results: quantitative, format = &quot;[Metric] from [baseline] to [target] by [end date], measured by [method]&quot;
-- Each Objective must ladder to at least one company priority (note which one)
-- No KR should be 100% guaranteed — they should require stretch
-- Baseline must be stated (not &quot;increase X&quot; without saying from what)
-
-Spec:
-- OKR format (Objective as header, KRs as numbered bullets)
-- 250–300 words
-- Each KR: baseline → target → measurement method
-- Laddering note per Objective
-- No KR uses the word &quot;improve&quot; without a number
-
-Performance bar: Any team member can self-score each KR at quarter-end without asking what it means. OKRs clearly ladder to company priorities. Targets require genuine effort to hit.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Objective 1: Improve code quality. KR1: Write better code. KR2: Reduce bugs. KR3: Improve review process. Objective 2: Ship faster. KR1: Deliver features on time. KR2: Improve sprint velocity.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-10">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#10</span>
-          <h2>Difficult Conversation Script</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a script for a genuinely difficult management conversation — delivering news the person won&#x27;t want to hear, addressing a sensitive situation, or navigating a conflict — that is honest, structured, and compassionate without being evasive.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Topic: [describe the difficult conversation — redundancy, not getting a promotion, behaviour pattern, performance, conflict]. Person: [role, tenure, relationship quality]. What they know going in: [nothing / some context / full context]. Desired outcome: [inform / agree on path / get acknowledgement].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a manager who has learned that difficult conversations done well are an act of respect — and difficult conversations avoided are an act of cowardice. You are honest without being cruel.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a conversation script with: an opening that gets to the point within 90 seconds, the core message delivered clearly (no burying), space for the person to respond, and a closing that gives them a clear next step.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Script format with stage directions in brackets. 300–350 words. Gets to the point within the first 5 sentences. Includes at least one &quot;pause and listen&quot; marker. Does not use the word &quot;unfortunately.&quot;</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The person leaves the conversation knowing the truth, what it means for them, and what happens next. The manager did not hide behind ambiguity to protect themselves.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-9" onclick="copyPrompt("Context: I'm a people manager preparing for a difficult conversation with [Team Member Name], a [role] with [tenure]. The topic: [describe the situation \u2014 e.g., \"their role is being made redundant\", \"they did not get the promotion they expected\", \"I need to address their pattern of dismissive behaviour toward junior team members\", \"we need to discuss taking a formal performance path\"]. \n\nWhat they know going in: [they have been given no indication / they may suspect / they have been told to expect this conversation]\nOur relationship: [good working relationship / strained / professional but distant]\nMy desired outcome for this conversation: [inform them of a decision / reach agreement on next steps / get acknowledgement and plan for change]\nSupport available: [HR present / HR briefed but not present / manager's manager available if needed]\n\nRole: Act as a manager who approaches difficult conversations as an act of respect \u2014 honest enough to tell the truth clearly, and compassionate enough to give the person space to process it.\n\nInstruction: Write a conversation script with:\n1. Opening \u2014 get to the topic within 90 seconds; no false warmup\n2. Core Message \u2014 deliver the main news or feedback clearly in plain language; no burying\n3. Pause Marker \u2014 [noted explicitly] where the manager should stop and give the person space\n4. Response Handling \u2014 2\u20133 ways the person might respond, and brief manager guidance for each\n5. Closing \u2014 what happens next, clearly stated; one specific next step\n\nSpec:\n- Script format with stage directions in [brackets]\n- 300\u2013350 words\n- Main message delivered by sentence 5 maximum\n- At least one [PAUSE \u2014 WAIT FOR RESPONSE] marker\n- Never uses the word \"unfortunately\"\n- Closes with a concrete next step, not \"take all the time you need\"\n\nPerformance bar: The person leaves knowing the truth, what it means, and what happens next. The manager did not protect themselves at the expense of clarity. The script is deliverable by a real human.", 'copy-card-9')">Copy</button>
-            <pre>Context: I&#x27;m a people manager preparing for a difficult conversation with [Team Member Name], a [role] with [tenure]. The topic: [describe the situation — e.g., &quot;their role is being made redundant&quot;, &quot;they did not get the promotion they expected&quot;, &quot;I need to address their pattern of dismissive behaviour toward junior team members&quot;, &quot;we need to discuss taking a formal performance path&quot;]. 
-
-What they know going in: [they have been given no indication / they may suspect / they have been told to expect this conversation]
-Our relationship: [good working relationship / strained / professional but distant]
-My desired outcome for this conversation: [inform them of a decision / reach agreement on next steps / get acknowledgement and plan for change]
-Support available: [HR present / HR briefed but not present / manager&#x27;s manager available if needed]
-
-Role: Act as a manager who approaches difficult conversations as an act of respect — honest enough to tell the truth clearly, and compassionate enough to give the person space to process it.
-
-Instruction: Write a conversation script with:
-1. Opening — get to the topic within 90 seconds; no false warmup
-2. Core Message — deliver the main news or feedback clearly in plain language; no burying
-3. Pause Marker — [noted explicitly] where the manager should stop and give the person space
-4. Response Handling — 2–3 ways the person might respond, and brief manager guidance for each
-5. Closing — what happens next, clearly stated; one specific next step
-
-Spec:
-- Script format with stage directions in [brackets]
-- 300–350 words
-- Main message delivered by sentence 5 maximum
-- At least one [PAUSE — WAIT FOR RESPONSE] marker
-- Never uses the word &quot;unfortunately&quot;
-- Closes with a concrete next step, not &quot;take all the time you need&quot;
-
-Performance bar: The person leaves knowing the truth, what it means, and what happens next. The manager did not protect themselves at the expense of clarity. The script is deliverable by a real human.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>&quot;Hi, I wanted to chat with you today. I have some news about the promotion. It was a really difficult decision and the calibration committee had a hard time because there are so many strong candidates. Unfortunately, we decided to go with someone else this time. We really value your contributions an…</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
+    <p class="lead">Ten <b>CRISP</b> prompts for the work a people manager actually repeats — each one written out in full,
+      with the <b>lazy version next to it</b> so you can see exactly what the structure buys you.
+      <b>Pick a prompt on the left, then flip between “Lazy prompt” and “CRISP prompt.”</b> Same task, same model —
+      the only thing that changes is what you told it.</p>
   </div>
 
-    <footer>HO3 · Peer-reviewed · ForgeMind AI — AI Productivity Essentials · Module M6 (Week 2)</footer>
+  <div class="lib">
+    <nav class="rail" id="rail"><div class="rl">The 10 prompts</div></nav>
+    <div class="pane" id="pane"></div>
   </div>
-  <script>
-    function copyPrompt(text, btnId) {
-      navigator.clipboard.writeText(text).then(function() {
-        var btn = document.getElementById(btnId);
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 2000);
-      }).catch(function() {
-        // fallback
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        var btn = document.getElementById(btnId);
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 2000);
-      });
+
+  <footer>
+    10 CRISP prompts · each with the lazy prompt it replaces, both outputs, and the bar it has to clear.<br>
+    HO3 · Solo · ForgeMind AI — AI Productivity Essentials · Module M6 (Week 2)
+  </footer>
+
+<script>
+  const PROMPTS = [{"title": "1:1 Prep Notes", "purpose": "Prepare structured 1:1 preparation notes that surface the right talking points, track follow-ups from previous sessions, and ensure you walk into the meeting present and intentional — not scrambling for something to say.", "crisp": [["Context", "Team member: [name, role, tenure]. Meeting cadence: [weekly / bi-weekly]. Last 1:1: [date, brief summary of topics]. What's happened since then: [notable work, challenges, events]. Any HR or career context: [promotion conversation, performance concerns, etc.]."], ["Role", "You are a thoughtful people manager who treats 1:1s as the most important meeting in your week — an opportunity to coach, unblock, and understand what's really going on, not just a status check."], ["Instruction", "Write a 1:1 prep document with: 3 manager-led talking points, 2 suggested open questions to give the team member space, follow-ups from last session, and one \"deeper\" topic worth spending 10 minutes on."], ["Spec", "Prep note format. Not a rigid agenda — a guide for you to refer to. 200 words. Talking points are starters, not scripts. Open questions should not have yes/no answers."], ["Performance", "You walk into the 1:1 feeling prepared and present. The meeting feels like a conversation, not a meeting. At least one question goes deeper than status."]], "prompt": "Context: I'm preparing for a 1:1 with [Team Member Name], who is a [role] on my team and has been with the company [tenure]. We meet [weekly / bi-weekly]. Our last 1:1 was [date] — main topics were [brief summary]. Since then: [what has happened — completed work, a challenge they mentioned, something you observed, upcoming project pressure, any HR/career context]. My current concern or intention for this meeting: [what you most want to understand or address].\n\nRole: Act as a thoughtful people manager who treats 1:1s as the highest-leverage part of the management week — not a status meeting, but a coaching and connection session.\n\nInstruction: Write a 1:1 prep note with:\n1. Three manager-led talking points (things I want to cover or follow up on)\n2. Two open questions to give the team member space to lead (no yes/no questions)\n3. Follow-ups from last session (based on what I shared about last meeting)\n4. One \"deeper\" topic — a question or conversation worth spending 10 minutes on, based on what I know about this person right now\n\nSpec:\n- Prep note format (for manager use only — not a shared agenda)\n- 200 words\n- Talking points are starters, not scripts\n- Questions must be open (start with \"What\", \"How\", \"Tell me about\")\n- One deeper topic with brief rationale for why now\n\nPerformance bar: I walk in prepared and present. The session feels like a conversation, not a check-in. At least one question goes deeper than task status.", "before": {"prompt": "Prepare notes for my 1:1 with my team member.", "output": ["1:1 Notes: 1. Check on project status 2. Any blockers? 3. Career development 4. Any other topics?"], "why": "These are the same four things at every 1:1 with every person. No context, no personalisation, no open questions. This is a meeting template, not prep."}, "after": {"fills": ["Team member: Ana Sousa, Senior Developer, 2 years tenure", "Last 1:1: Ana mentioned she felt overlooked for the new architecture initiative; she's leading the payment module migration", "Since then: Payment module had a major bug that Ana fixed over the weekend; she's been quieter in standups"], "output": ["<b>1:1 Prep — Ana Sousa | June 27</b>", "<b>Talking Points (Manager-Led)</b> 1. Acknowledge the weekend fix directly and specifically — name what she did, not just \"thanks for the effort\" 2. Follow up on the architecture initiative conversation — did she feel heard after our chat? What's her read on where things stand? 3. Check in on the payment module timeline — is she comfortable with the remaining scope?", "<b>Open Questions</b> - \"What's taking up the most mental energy for you right now — inside or outside of work?\" - \"How are you feeling about the payment module after last weekend? What would help most heading into next week?\"", "<b>Follow-Ups from Last Session</b> - I said I'd speak to the architecture team lead about Ana's involvement — did I follow through? Update her either way.", "<b>Deeper Topic: Recognition and Belonging</b><br>Ana fixed a critical production bug over a weekend and has been quiet since. This could be exhaustion, frustration at the lack of recognition, or something personal. Spend 10 minutes here — not to fix anything, just to listen and understand her state of mind before I draw any conclusions."], "why": ""}}, {"title": "Performance Review Draft", "purpose": "Draft a balanced, specific, evidence-based performance review that fairly reflects the team member's contributions, development areas, and trajectory — giving them something meaningful to read, not a generic evaluation that could apply to anyone.", "crisp": [["Context", "Team member: [name, role, review period]. Review type: [mid-year / annual]. Rating (if applicable): [Exceeds/Meets/Below]. Key contributions this period: [list 3–5 examples with context]. Development areas: [list 1–3 specific behaviours or skills]. Career trajectory: [where they want to go, what's next]."], ["Role", "You are a manager who writes performance reviews that team members remember — because they are specific, honest, and show that the manager was actually paying attention."], ["Instruction", "Write a performance review with: overall summary, 3 evidence-based strengths, 2 specific development areas with actionable guidance, and a forward-looking section on next steps."], ["Spec", "Performance review format. 400–450 words. Each strength backed by a specific example. Development areas framed as \"where to focus\" not \"what's wrong.\" No vague descriptors like \"good communicator.\""], ["Performance", "The team member reads this and recognises their own work in it. They are not surprised by anything. The development areas give them something specific to work on."]], "prompt": "Context: I'm writing a [mid-year / annual] performance review for [Team Member Name], a [role] who has been on my team for [tenure]. Review period: [start date – end date]. Their overall rating: [Exceeds Expectations / Meets Expectations / Below Expectations / Developing].\n\nKey contributions this period (be specific):\n1. [Example 1 — what they did, what the outcome was]\n2. [Example 2]\n3. [Example 3]\n4. [Optional: Example 4 or 5]\n\nDevelopment areas:\n1. [Specific behaviour or skill gap — what you've observed, not a personality judgement]\n2. [Second development area if applicable]\n\nCareer context: [Where they want to go / what they've expressed about their next step / any levelling or promotion discussion].\n\nRole: Act as a people manager who writes performance reviews that are specific enough that the team member recognises their own work in them — and honest enough that nothing comes as a surprise.\n\nInstruction: Write a full performance review with:\n1. Opening Summary — 2–3 sentences: overall rating, one headline strength, one development theme\n2. Strengths — 3 paragraphs, each with: specific example, outcome achieved, why this matters for their role\n3. Development Areas — 2 paragraphs: specific observation, impact on team/work, concrete guidance on what to do differently\n4. Looking Ahead — career trajectory, next quarter priorities, manager commitment\n\nSpec:\n- Performance review narrative format\n- 400–450 words\n- Each strength must reference a specific example (no generic praise)\n- Development framed as \"where to invest\" not \"what's wrong with you\"\n- Looking Ahead section must include one concrete manager commitment\n\nPerformance bar: Team member reads this and recognises their work in it. Development areas are specific enough to act on. Manager commitment in Looking Ahead is real, not a platitude.", "before": {"prompt": "Write a performance review for my software developer.", "output": ["[Name] is a valuable member of the team. They consistently deliver high-quality work and collaborate well with colleagues. They have shown good communication skills. For development, they should continue to improve their technical skills and work on time management. Overall a strong performer."], "why": "Could apply to anyone on any team. \"Continue to improve technical skills\" is not development guidance. No specific examples. \"Valuable team member\" is noise."}, "after": {"fills": ["Ana Sousa, Senior Developer, 2 years, Annual review, Meets Expectations with Exceeds in one area", "Contributions: Led payment module architecture; fixed weekend production P1 bug solo; mentored two junior devs", "Development: Hesitates to push back on scope creep in planning; could share more in architecture discussions"], "output": ["<b>Performance Review — Ana Sousa | Annual Review | Jan–Jun 2025</b><br>Rating: Meets Expectations (with Exceeds in Technical Leadership)", "<b>Summary</b><br>Ana has had a strong first half, with particular standout performance in technical leadership of the payment module. Her development focus for H2 is building more confident influence in planning and cross-team discussions — an area where her technical depth isn't yet translating into impact.", "<b>Strengths</b>", "<i>Technical Leadership on Payment Module</i><br>Ana led the architecture design for our most complex Q1 initiative — the payment processing module migration. She made the call to rebuild the transaction queue rather than patch it, a decision that required significant pushback internally. That call proved right: the module has had zero P1 incidents since launch, compared to four in the prior system in the same period. This was genuine technical leadership, not just execution.", "<i>Reliability Under Pressure</i><br>When a misconfiguration caused a P1 outage on Saturday evening in March, Ana diagnosed and fixed the issue solo in under 2 hours, with no escalation needed. What impressed me was not just the technical response but the clear incident summary she posted in #engineering at midnight — giving the team confidence without creating panic.", "<i>Mentoring Junior Developers</i><br>Ana has informally taken on mentoring responsibility for two junior developers this half. Both have cited her directly in their own reviews as the person who most helped them grow. This is impact beyond her own output and I want to see it formalised in H2.", "<b>Development Areas</b>", "<i>Building Influence in Planning Discussions</i><br>In sprint planning and architecture reviews, Ana often has a perspective but holds it back unless directly asked. In one instance, she told me after a planning session that she'd had concerns about the scope of Story DEV-441 — but hadn't raised them. The team made a decision that cost two days of rework. Ana's technical instincts are sound; the development area is trusting them enough to surface them in the room.", "<i>Pushing Back on Scope Creep</i><br>When scope was added mid-sprint twice in Q2, Ana absorbed it without flagging the capacity impact. This led to two missed stories and additional pressure on QA. In H2, I'd like her to be the person who says \"this changes our sprint commitment — let's talk\" in the moment rather than after.", "<b>Looking Ahead</b><br>Ana is tracking toward a Staff Engineer nomination in H2 if the influence growth comes. I'll sponsor her for the cross-team architecture review group starting September as a concrete development vehicle. My commitment: monthly calibration check-ins on the Staff Engineer criteria, starting August."], "why": ""}}, {"title": "Constructive Feedback Script", "purpose": "Write a specific, structured feedback script using the SBI (Situation–Behaviour–Impact) framework that prepares you for a real conversation about a behaviour that needs to change — not a script to read verbatim, but a guide that ensures you're clear, fair, and opening a dialogue.", "crisp": [["Context", "Team member: [name, role]. Behaviour to address: [describe the specific behaviour, not the person]. Situation: [when/where this happened]. Impact: [on team, project, stakeholders]. How many times has this happened: [once / a pattern]."], ["Role", "You are a manager who gives feedback that lands — not because you're harsh, but because you are specific, fair, and give the other person a chance to respond before you draw conclusions."], ["Instruction", "Write a feedback script using SBI structure: Situation (when/where), Behaviour (what they did — observable, not interpreted), Impact (what happened as a result), followed by a question to invite their perspective."], ["Spec", "Script format, 200–250 words. Opening line should not start with \"So I wanted to talk about...\" SBI must be clearly separated. Script must end with an open question, not a demand."], ["Performance", "You could deliver this script in a 1:1 with minimal prep. The behaviour described is specific enough that the team member cannot say \"I don't know what you mean.\" The question at the end invites dialogue."]], "prompt": "Context: I'm a people manager preparing to give feedback to [Team Member Name], a [role], about [brief description of the behaviour — e.g., \"frequently interrupting colleagues in meetings\", \"not flagging blockers until they become problems\", \"dismissive responses to junior team members\"]. \n\nSpecific incident(s):\n- [Incident 1: date, situation, what they did, what happened as a result]\n- [Incident 2 if applicable]\n\nPattern or one-off: [This is the first time I'm addressing it / This is a recurring pattern I've raised before / This is a first observation I want to address early]\n\nMy goal for this conversation: [inform them / understand their perspective / agree on a change / document before formal process]\n\nRole: Act as a manager who gives feedback that lands because it is specific, fair, and opens a dialogue rather than delivering a verdict.\n\nInstruction: Write a feedback script that follows the SBI structure:\n1. Opening — 1–2 sentences to set the tone and context (not \"So I wanted to chat...\")\n2. Situation — specific, factual description of when/where\n3. Behaviour — what the person did, observable and non-judgmental (no \"you were rude\", instead describe what was said/done)\n4. Impact — concrete effect on the team, project, or relationship\n5. Check-in Question — an open question that invites their perspective before any conclusion is drawn\n\nSpec:\n- Script format (for manager delivery in a 1:1)\n- 200–250 words\n- Behaviour section: observable facts only, no personality judgements\n- Must end with an open question\n- Not a script to read verbatim — natural language\n\nPerformance bar: Deliverable in a 1:1 with minimal prep. Behaviour specific enough that \"I don't know what you mean\" is not a valid response. Ends with dialogue, not a verdict.", "before": {"prompt": "Write feedback for an employee who keeps missing deadlines.", "output": ["\"I've noticed that you have been missing deadlines recently. This is not acceptable and needs to improve. Please make sure to manage your time better and communicate if you are going to be late.\""], "why": "No specific situation, \"not acceptable\" is a verdict not feedback, \"manage your time better\" is vague advice that doesn't address root cause. There's no question — just a demand. This script will create defensiveness, not change."}, "after": {"fills": ["Team member: Marcus Webb, Product Designer", "Behaviour: Not raising blockers until they become missed commitments", "Incident 1: Marcus didn't flag that the design tool subscription lapsed until the day before handoff to dev — 2-day delay", "Incident 2: In sprint planning, he committed to 3 designs but didn't mention he hadn't received the content brief — missed all 3", "Pattern: First time addressing explicitly, but third time the pattern has occurred", "Goal: Understand his perspective and agree on a change"], "output": ["<b>Feedback Script — Marcus Webb | 1:1 June 27</b>", "\"Marcus, I wanted to make some time to talk through something I've been noticing — I want to share my perspective and hear yours, because I think there's something useful here for both of us.", "<b>Situation:</b> In sprint 13, you committed to delivering three UI designs by Friday. When Friday came, none were ready.", "<b>Behaviour:</b> When I looked back at the week, you hadn't flagged at any point during the sprint that you were missing the content brief those designs depend on. You had that information by Monday, but it didn't surface in standups, messages to the PO, or our 1:1 on Wednesday.", "<b>Impact:</b> The dev team lost two days waiting for designs. QA had to compress their timeline, and we ended up shipping one story without proper design review. That's the kind of thing that creates technical debt down the road.", "This is the third time I've seen a version of this pattern — a blocker you're aware of that doesn't surface until it becomes a missed commitment.", "Before I draw any conclusions, I'd really like to understand your experience: <b>what was going on from your side during that sprint, and what got in the way of flagging the missing brief earlier?</b>\""], "why": ""}}, {"title": "Team Recognition Note", "purpose": "Write a specific, meaningful recognition note for an individual or team that names the exact contribution, explains why it mattered, and makes the person feel genuinely seen — not like they received a generic \"great job\" that took 30 seconds to write.", "crisp": [["Context", "Recognising: [name(s) and role(s)]. What they did: [specific contribution or achievement]. Context: [what was difficult about it / what the stakes were]. Impact: [what it meant for the team, project, or customer]. Audience: [private 1:1 / team Slack / all-hands / peer nomination form]."], ["Role", "You are a manager who knows that recognition lands differently when it is specific. You name what people actually did, not what you appreciate about them as a person."], ["Instruction", "Write a recognition note that: names the specific achievement, describes what made it difficult or impressive, explains the real-world impact, and lands with genuine warmth — not corporate enthusiasm."], ["Spec", "Format matches the audience (Slack post / email / spoken note). 100–150 words. The achievement must be named in the first sentence. No hollow openers like \"I just wanted to take a moment to...\""], ["Performance", "The person who receives this knows you were paying attention. They could read it to their family and it would make sense. Other team members know what's being celebrated and why."]], "prompt": "Context: I want to recognise [Name(s)] for [brief description of what they did]. Here's the context:\n- What they did: [be specific — not \"did great work\" but what they actually did]\n- What made it impressive or difficult: [extra hours, technical challenge, stepping outside their role, crisis situation, etc.]\n- The real impact: [what would have happened without their contribution / what it enabled / how it helped the team or customer]\n- Audience: [private 1:1 / team Slack message / public all-hands shoutout / peer nomination form / manager feedback to HR]\n\nRole: Act as a manager who gives recognition that lands because it is specific and genuine. You avoid hollow corporate enthusiasm and name what the person actually did.\n\nInstruction: Write a recognition note that:\n1. Names the specific achievement in the first sentence — no warm-up\n2. Describes what made it impressive or hard (the context gives it meaning)\n3. States the real impact (what it enabled or prevented)\n4. Closes with genuine warmth appropriate to the relationship and audience\n5. Avoids: \"I just wanted to...\", \"amazing\", \"rockstar\", \"crushed it\" and similar hollow language\n\nSpec:\n- Format appropriate to the audience provided\n- 100–150 words\n- Achievement named in sentence 1\n- Impact is concrete, not vague (\"the team could ship on time\" not \"we all benefited\")\n- Warmth without corporate hollowness\n\nPerformance bar: The recipient reads this and knows you were paying attention to their actual work. Other team members understand what's being celebrated. The note would make sense to someone who doesn't work here.", "before": {"prompt": "Write a recognition message for my employee who worked hard last week.", "output": ["\"Shoutout to Sarah for all her hard work last week! You really went above and beyond and the team really appreciates everything you do. Keep up the amazing work! You're a rockstar!\""], "why": "No specific achievement named, \"hard work\" is vague, \"rockstar\" and \"amazing\" are hollow filler. Someone reading this doesn't know what Sarah did or why it mattered. Sarah doesn't feel genuinely seen."}, "after": {"fills": ["Recognising: Ana Sousa (Senior Developer)", "What she did: Diagnosed and fixed a P1 production outage solo on a Saturday night, in under 2 hours", "Difficult because: Not her on-call rotation, she spotted the alert in personal time and jumped in", "Impact: 40,000 users would have been affected by morning; she prevented it silently while the team slept", "Audience: Team Slack"], "output": ["\"@anaSousa I want to call out something that happened Saturday night that most of the team didn't see.", "At 11:30pm, Ana noticed a misconfiguration alert in personal time — not her on-call rotation, not her obligation. She diagnosed the root cause, patched it, tested the fix, and had 40,000 user sessions back to normal by 1:15am. Then she wrote up a clear incident summary in #engineering so the Monday team had full context without needing to ask.", "Without that, we'd have woken up Monday morning to a full-scale incident.", "That kind of reliability — technical and personal — is what makes this team work. Thank you, Ana.\""], "why": ""}}, {"title": "PIP Outline", "purpose": "Draft a Performance Improvement Plan (PIP) outline that defines the performance gap clearly, sets measurable improvement goals, establishes checkpoints, and documents the support the manager will provide — creating a fair, documented process that gives the employee a genuine opportunity to succeed.", "crisp": [["Context", "Team member: [name, role, tenure]. Performance gap: [describe specifically what is below expectations]. Documentation history: [what has been discussed previously — dates, conversations]. PIP duration: [30 / 60 / 90 days]. HR involvement: [HR reviewed / HR will review before delivery]."], ["Role", "You are a manager working with HR to create a PIP that is fair, documented, and gives the employee a genuine path to success — not a paper trail for a predetermined outcome."], ["Instruction", "Write a PIP outline with: performance gap statement, measurable improvement goals, weekly/bi-weekly check-in structure, manager support commitments, consequences if goals are not met, and sign-off section."], ["Spec", "Formal HR document format. Goals must be SMART (Specific, Measurable, Achievable, Relevant, Time-bound). Consequences clearly stated — no vague \"further action.\" 400–450 words. Note: always have HR review before delivering a PIP."], ["Performance", "HR can approve this document without material changes. The employee understands exactly what they need to do, by when, and what happens if they don't. The manager's support commitments are concrete."]], "prompt": "Context: I'm a people manager creating a Performance Improvement Plan (PIP) for [Team Member Name], a [role] who has been with the company [tenure]. This document will be reviewed by HR before delivery.\n\nPerformance gap (be specific — what is below expectations and for how long):\n[Describe the gap with 2–3 specific examples, including dates where possible]\n\nPrevious discussions (document the history):\n[List prior feedback conversations, dates, and what was agreed]\n\nPIP duration: [30 / 60 / 90 days]\nStart date: [date]\nEnd date: [date]\n\nRole: Act as a manager working in good faith with HR to create a PIP that is fair and gives the employee a genuine opportunity to improve — not a document designed to make exit easier.\n\nInstruction: Write a PIP outline with:\n1. Purpose Statement — why this PIP is being issued and what outcome it aims for\n2. Performance Gap — factual description of the gap with 2–3 documented examples\n3. Improvement Goals — 3 SMART goals the employee must achieve during the PIP period\n4. Check-In Schedule — weekly or bi-weekly check-in structure with what will be reviewed\n5. Manager Support Commitments — concrete things you will do to support improvement\n6. Consequences — clear statement of what happens if goals are met / partially met / not met\n7. Signatures — employee, manager, HR sign-off section\n\nSpec:\n- Formal HR document format\n- 400–450 words\n- SMART goals: specific, measurable, achievable, relevant, time-bound\n- Consequences must be explicit (not \"further action may be taken\")\n- Manager commitments must be specific and actionable\n- Note at top: \"Draft for HR review — do not deliver without HR sign-off\"\n\nPerformance bar: HR approves without material changes. Employee understands exactly what they need to do, by when, and what happens if they don't. Manager commitments are real.\n\nIMPORTANT: This is a structured planning tool. Always have a qualified HR professional review any PIP before it is delivered to an employee.", "before": {"prompt": "Write a performance improvement plan for an underperforming employee.", "output": ["Performance Improvement Plan. Employee must improve their performance. Goals: 1. Be more productive. 2. Communicate better. 3. Meet deadlines. Duration: 90 days. Manager will check in regularly. If not improved, further action will be taken."], "why": "\"Be more productive\" and \"Communicate better\" are not SMART goals. \"Further action will be taken\" is vague. \"Check in regularly\" is not a schedule. This document would not survive HR review."}, "after": {"fills": ["Employee: David Kim, Software Developer, 14 months", "Gap: Code reviews consistently incomplete, 4+ missed PR deadlines in 8 weeks, feedback not incorporated", "History: Verbal feedback at 1:1 (Apr 15), written follow-up email (May 2), 1:1 review (Jun 10)", "Duration: 60 days"], "output": ["<b>DRAFT — FOR HR REVIEW BEFORE DELIVERY</b><br><b>Performance Improvement Plan</b><br>Employee: David Kim | Role: Software Developer | Manager: James Reid | HR: [Name]<br>PIP Period: July 1 – August 29, 2025", "<b>Purpose</b><br>This PIP is issued to support David in meeting the performance expectations of the Software Developer role in the areas of code review completion and delivery commitments. The goal is for David to demonstrate sustained improvement in these areas by August 29, 2025.", "<b>Performance Gap</b><br>Over the past 8 weeks (May–June 2025), David has: - Completed 3 of 11 assigned code reviews within the 24-hour SLA (vs team average of 9 of 11) - Missed 4 pull request deadlines by 2+ days without prior notification (PR-312, PR-318, PR-324, PR-331) - Received written feedback on code structure in May 2025; the same patterns recurred in June 2025 PRs without documented change", "These gaps were discussed verbally on April 15, in writing on May 2, and in a formal 1:1 review on June 10.", "<b>Improvement Goals</b>", "1. <b>Code Review Completion:</b> Complete 90% of assigned code reviews within 24 hours of assignment during the PIP period (baseline: 27%). Measured weekly by team lead report.", "2. <b>Delivery Commitments:</b> Zero sprint story misses without prior notification during the PIP period. \"Prior notification\" defined as flagging a blocker at least 24 hours before deadline in Jira or #dev-blockers Slack channel.", "3. <b>Feedback Incorporation:</b> All written code review feedback incorporated within one revision cycle. Tracked by code review audit at 30-day and 60-day check-ins.", "<b>Check-In Schedule</b><br>- Weekly 30-minute 1:1 with manager (Fridays) reviewing goal progress - Formal mid-PIP review at Day 30 (July 31) — written summary shared with HR - Final PIP review at Day 60 (August 29) — outcome decision", "<b>Manager Support Commitments</b><br>- Pair David with senior developer for 2 code review sessions per week in July - Provide written examples of \"acceptable\" vs \"below standard\" code review feedback by July 5 - Share weekly goal progress data so David can self-monitor", "<b>Consequences</b><br>- Goals met by Aug 29: PIP closed; return to standard performance management - Partial progress: Extended PIP or role reassignment discussion with HR - Goals not met: Employment may be terminated. This decision will involve HR.", "<b>Signatures</b><br>Employee: _________________ Date: _______<br>Manager: _________________ Date: _______<br>HR Representative: _________ Date: _______"], "why": ""}}, {"title": "Job Levelling Rationale", "purpose": "Write a promotion or levelling rationale that makes a compelling, evidence-based case for a team member's advancement — giving the calibration committee enough to make a decision without needing to interview you about it.", "crisp": [["Context", "Team member: [name, current level, proposed level]. Role: [job title]. Calibration date: [date]. Key evidence: [3–5 specific examples that demonstrate next-level criteria]. Levelling criteria for the target level: [list the criteria or describe your company's framework]."], ["Role", "You are a manager who writes promotion rationales that win in calibration — because they are structured, evidence-heavy, and pre-answer the committee's standard objections."], ["Instruction", "Write a levelling rationale with: proposed level and summary case, evidence against each promotion criterion, scope and impact statement, and a \"why now\" argument."], ["Spec", "Formal rationale document. Each criterion has its own section with a specific evidence example. 400 words max. End with a one-paragraph \"Why now\" that addresses timing."], ["Performance", "A calibration committee member who has never met this employee can vote confidently using only this document. The \"why now\" addresses the most common objection."]], "prompt": "Context: I'm submitting a promotion rationale for [Team Member Name], currently a [Current Level/Title], for promotion to [Target Level/Title]. Calibration committee meeting: [date].\n\nEvidence (be as specific as possible — include outcomes, not just activities):\n1. [Example 1 — project, decision, or contribution that demonstrates next-level capability]\n2. [Example 2]\n3. [Example 3]\n4. [Example 4 if available]\n\nOur promotion criteria for [Target Level] (summarise or list the criteria your company uses):\n[E.g., \"Scope: leads cross-team initiatives independently\", \"Impact: decisions affect more than their immediate team\", \"Mentorship: actively develops others\", etc.]\n\nWhy now vs 6 months later: [Your honest assessment — are they already operating at the next level? Are there any concerns about timing?]\n\nRole: Act as a manager who writes promotion rationales that win in calibration because they are evidence-heavy, structured, and pre-answer the committee's standard objections.\n\nInstruction: Write a levelling rationale with:\n1. Proposed Promotion — one sentence summary of who, from what to what, and the headline case\n2. Evidence Against Criteria — one section per criterion with a specific evidence example\n3. Scope and Impact — paragraph describing the scope at which this person currently operates\n4. Why Now — one paragraph addressing timing: why this cycle, what changes if it's delayed\n\nSpec:\n- Formal promotion rationale format\n- 400 words maximum\n- Each criterion section has at least one named, specific example\n- \"Why now\" addresses the most common delay objection\n- No filler (\"hardworking\", \"always goes above and beyond\") — evidence only\n\nPerformance bar: A calibration committee member who doesn't know this employee can vote yes based solely on this document. The \"why now\" answers the question before it's asked.", "before": {"prompt": "Write a promotion recommendation for my senior developer.", "output": ["I am pleased to recommend [Name] for promotion to Staff Engineer. She is a talented developer who always delivers high-quality work. She is a great team player and everyone likes working with her. She has shown strong leadership skills and technical excellence. I believe she is ready for the next level."], "why": "No specific evidence, no criteria mapping, \"everyone likes working with her\" is not a promotion criterion, \"ready for the next level\" is an assertion without support. This rationale would not survive a calibration session."}, "after": {"fills": ["Ana Sousa, Senior Developer II → Staff Engineer", "Criteria: Independent cross-team scope, impact beyond immediate team, technical leadership, mentorship", "Evidence: Payment module architecture decision, P1 solo fix, mentoring two junior devs who cited her in their reviews, caught a data processing compliance issue not in her domain"], "output": ["<b>Promotion Rationale — Ana Sousa</b><br>Proposed: Senior Developer II → Staff Engineer | Submitted by: James Reid | Calibration: July 15, 2025", "<b>Headline Case</b><br>Ana is already operating at the Staff Engineer level across scope, impact, and technical leadership. This rationale makes the case that she has been doing the Staff job for 6+ months without the title.", "<b>Evidence Against Criteria</b>", "<i>Independent Cross-Team Scope</i><br>Ana led the payment module architecture for Q1 — a project that required negotiating technical trade-offs with three separate teams (Backend, Infrastructure, Compliance) without direct manager involvement. She made the call to rebuild the transaction queue rather than patch it, defended it against pushback, and proved correct. This is Staff-scope decision-making.", "<i>Impact Beyond Immediate Team</i><br>In March, Ana identified a potential data residency compliance issue in the auth module that was not her remit — she was doing a routine code review. She flagged it to Legal and Infrastructure before it became a problem. This prevented a potential GDPR exposure that our Compliance team estimated would have taken 3 weeks to remediate.", "<i>Technical Leadership</i><br>Ana set the technical direction for how the team handles asynchronous queue failures — a pattern now used across three other modules. She documented it in the engineering handbook without being asked.", "<i>Mentorship</i><br>Two junior developers (Kenji and Yara) independently cited Ana as their most influential mentor in their H1 reviews. Ana has been running informal weekly pair sessions that management did not initiate or fund. Both developers improved measurably in code review quality in H1.", "<b>Scope and Impact</b><br>Ana currently operates at a scope that touches Backend, Compliance, and Infrastructure. Her decisions have system-level effects, not just feature-level effects. She is the person other engineers go to before coming to me.", "<b>Why Now</b><br>Ana has been at Senior Developer II for 24 months. She has operated at Staff scope for the last 6 of those months. Delaying creates retention risk — she has been approached by two other companies this quarter, and a title + comp alignment is the most credible retention signal available. Waiting for \"more time at level\" when she is already at the level is the argument we should not make here."], "why": ""}}, {"title": "Offboarding Checklist", "purpose": "Create a structured, comprehensive offboarding plan for a departing team member that protects knowledge continuity, ensures proper access revocation, and treats the person with dignity — so they leave as an ambassador, not a critic.", "crisp": [["Context", "Team member departing: [name, role, tenure]. Last day: [date]. Notice period: [2 weeks / 1 month]. Reason for departure: [resignation / redundancy / end of contract]. Key knowledge/systems they own: [list]. Replacement plan: [hired / in progress / not yet]."], ["Role", "You are a manager who runs offboarding as professionally as onboarding — because how you handle departures shapes your team culture and your employer brand."], ["Instruction", "Create an offboarding checklist with: knowledge transfer tasks, system access revocation list, HR and admin tasks, team communication plan, and a personal appreciation touchpoint."], ["Spec", "Checklist format with timeline (Day 1–14 or Day 1–30). Each item has: task, owner, due date slot. Grouped by category. 350–400 words. Must include a \"how are they leaving?\" culture moment."], ["Performance", "Day 1 of the person's absence, their replacement (or team) has everything they need to continue without disruption. The departing person tells their next employer good things about how they were treated."]], "prompt": "Context: I'm managing the offboarding of [Team Member Name], a [role] who has been with the company [tenure]. Their last day is [date]. Notice period: [2 weeks / 1 month]. Reason for departure: [voluntary resignation / redundancy / end of contract / other]. \n\nKey knowledge/systems/relationships they own:\n- [Item 1 — e.g., \"Primary owner of the payment integration codebase\"]\n- [Item 2 — e.g., \"Main contact for Vendor X account\"]\n- [Item 3 — e.g., \"Only person who knows the legacy data migration script\"]\n\nReplacement status: [Replacement hired and starts [date] / Hiring underway / Work redistributed to team]\n\nRole: Act as a manager who treats offboarding as seriously as onboarding — because how someone leaves shapes team culture and your employer brand.\n\nInstruction: Create a structured offboarding plan with these sections:\n1. Knowledge Transfer — specific sessions, documents, and handover meetings needed; who receives the knowledge\n2. System Access Revocation — list of systems to revoke, with IT as owner and a final-day deadline\n3. HR and Admin — payroll, benefits, equipment return, reference letter, exit interview\n4. Team Communication — how and when to communicate the departure to the team and stakeholders\n5. Culture Moment — how you'll mark their departure with genuine appreciation (team farewell, written note, recommendation)\n\nSpec:\n- Checklist format with timeline (day-relative, e.g., \"Day 1\", \"Day 5\", \"Final Day\")\n- Each item: task | owner | timeline\n- Grouped by category with headers\n- 350–400 words\n- Must include one specific culture/appreciation touchpoint\n\nPerformance bar: Day 1 after their departure, the team has what they need. The departing person tells their next employer they were treated well. Nothing falls through the cracks.", "before": {"prompt": "Create an offboarding checklist for a departing employee.", "output": ["1. Return equipment. 2. Revoke access. 3. Exit interview. 4. Knowledge transfer. 5. Say goodbye."], "why": "No ownership, no timeline, \"knowledge transfer\" is a category not a task, \"say goodbye\" is not a plan. The payment integration would be orphaned on Day 1 of their absence."}, "after": {"fills": ["Ana Sousa, Senior Developer, 2 years, last day August 15 (1-month notice)", "Owns: payment integration codebase, Migrex vendor relationship, async queue pattern documentation", "Replacement: Kenji (junior dev) absorbing payment work; new senior hire starting September"], "output": ["<b>Offboarding Plan — Ana Sousa | Last Day: August 15, 2025</b>", "<b>Knowledge Transfer</b>", "| Task | Owner | Timeline | |------|-------|----------| | Document payment integration architecture (Confluence) | Ana | By Jul 25 | | 2x pair sessions with Kenji on payment codebase | Ana + Kenji | Jul 28 + Aug 4 | | Record Loom walkthrough of async queue failure pattern | Ana | By Aug 1 | | Intro Migrex account team to James as primary contact | Ana + James | By Aug 8 | | Review all open PRs and add documentation comments | Ana | By Aug 12 | | Final questions session with full Backend team | Ana | Aug 14 |", "<b>System Access Revocation (Final Day)</b>", "| System | Owner | |--------|-------| | GitHub org access | IT | | AWS IAM roles (prod + staging) | IT + DevOps | | Jira + Confluence | IT | | Vendor portal (Migrex) | IT + James | | Slack workspace | IT | | Google Workspace (drive, email) | IT |", "<b>HR and Admin</b>", "| Task | Owner | Timeline | |------|-------|----------| | Exit interview scheduled | HR | By Aug 8 | | Final payslip and benefits close | HR | By Aug 15 | | Laptop return | Ana + IT | Aug 15 | | Written reference letter | James | By Sep 1 |", "<b>Team Communication</b> - Internal announcement: James shares news with team at next standup (Jul 16) — Ana present, framed positively - External stakeholders: Ana sends personal email to Migrex contact with James CC'd (Aug 8)", "<b>Culture Moment</b><br>Team farewell lunch Aug 14. James writes a personal LinkedIn recommendation before Ana's last day — no waiting to be asked. Recognition of her P1 fix and payment architecture leadership specifically named in team Slack."], "why": ""}}, {"title": "Hiring Rubric", "purpose": "Design a structured interview evaluation rubric for a specific role with weighted criteria, 1–4 scoring definitions, and example signals — so every interviewer is evaluating the same things, reducing bias and improving the quality of hiring decisions.", "crisp": [["Context", "Hiring for: [role and seniority]. Team: [team description and what they'll be working on]. Top 3–4 must-have criteria: [list]. Nice-to-haves: [list]. Interview panel: [N interviewers, each with a focus area]."], ["Role", "You are a hiring manager who has built structured interview processes from scratch and knows that an unstructured interview predicts performance no better than a coin flip."], ["Instruction", "Create a hiring rubric with: weighted evaluation criteria, 1–4 score definitions per criterion, example \"strong signal\" and \"weak signal\" indicators, and a scoring guide for final decisions."], ["Spec", "Rubric table format. Criteria must total 100% weight. Scores: 1=below bar, 2=meets partially, 3=meets, 4=exceeds. Each criterion has at least one positive and one negative signal example."], ["Performance", "Any interviewer on the panel can use this rubric with no additional briefing. Scores from different interviewers are comparable. The rubric reduces \"I just liked them\" decisions."]], "prompt": "Context: I'm building a hiring rubric for a [role + seniority] position on my [team description] team. They'll be primarily working on [main responsibilities]. \n\nMust-have criteria (the things someone must demonstrate to pass):\n1. [Criterion 1]\n2. [Criterion 2]\n3. [Criterion 3]\n4. [Criterion 4 if applicable]\n\nNice-to-have criteria (would differentiate candidates at the same level):\n1. [Nice-to-have 1]\n2. [Nice-to-have 2]\n\nInterview panel: [N interviewers and their areas — e.g., \"3 interviewers: technical (2 sessions), values/culture (1 session)\"]\n\nRole: Act as a hiring manager who builds structured interview rubrics that make hiring decisions defensible and reduce bias — because you know that without structure, every interviewer is evaluating something different.\n\nInstruction: Create a hiring rubric with:\n1. Evaluation Criteria Table — criteria name, weight (must total 100%), and which interview covers it\n2. Scoring Guide — for each criterion: score 1/2/3/4 definition + one example signal per level\n3. Strong Hire / Lean Hire / No Hire thresholds — based on weighted total score\n4. Debrief Instructions — how the panel should discuss scores before making a decision\n\nSpec:\n- Rubric table format\n- Criteria weights must total 100%\n- Score definitions: 1=does not meet, 2=partially meets, 3=meets, 4=exceeds\n- At least one positive and one negative example signal per criterion\n- 400 words maximum\n\nPerformance bar: Any panelist can use this rubric without a briefing call. Scores are comparable across interviewers. Final decision is based on the weighted score, not gut feel alone.", "before": {"prompt": "Create an interview rubric for a software developer.", "output": ["Evaluate candidates on: 1. Technical skills (rate 1–5). 2. Communication (rate 1–5). 3. Culture fit (rate 1–5). 4. Problem solving (rate 1–5). Take notes during the interview."], "why": "No weight differentiation, no score definitions, \"culture fit\" is a bias-prone category with no definition, no signal examples. Four interviewers rating \"technical skills 1–5\" will produce four incomparable scores."}, "after": {"fills": ["Role: Senior Frontend Developer | Team: 5-person product team building B2B SaaS", "Must-haves: React/TypeScript depth, system design judgment, communication, ownership", "Nice-to-haves: Design system experience, prior B2B SaaS exposure"], "output": ["<b>Hiring Rubric — Senior Frontend Developer</b>", "<b>Evaluation Criteria</b>", "| Criterion | Weight | Interview | |-----------|--------|-----------| | React/TypeScript Technical Depth | 35% | Technical interviews (2x) | | System Design Judgment | 25% | Technical interview 2 | | Communication and Collaboration | 20% | Values interview | | Ownership and Initiative | 20% | Values interview |", "<b>Scoring Guide</b>", "<b>React/TypeScript Technical Depth (35%)</b> - 4 (Exceeds): Explains trade-offs between approaches unprompted; catches edge cases in code review exercise - 3 (Meets): Writes clean, correct TypeScript; explains component architecture clearly - 2 (Partial): Works but relies on trial-and-error; can't explain why they made specific choices - 1 (Does Not Meet): Struggles with basic React patterns or TypeScript types in the exercise", "<b>System Design Judgment (25%)</b> - 4: Asks clarifying questions about scale and constraints before designing; flags trade-offs explicitly - 3: Produces a reasonable design with minor gaps when prompted - 2: Jumps to implementation without design; unclear on state management or data flow - 1: Design would not scale or has fundamental architectural issues", "<b>Communication and Collaboration (20%)</b> - 4: Explains technical concepts clearly to a non-technical interviewer; gives examples of conflict resolution - 3: Clear communicator; shares opinions when asked - 2: Responses are vague; struggles to give specific examples of collaboration - 1: Difficulty articulating past experiences or technical ideas", "<b>Ownership and Initiative (20%)</b> - 4: Examples of shipping work beyond spec; proactively identified and solved problems - 3: Delivers on commitments; escalates when needed - 2: Executes when directed but passive; no examples of self-initiated improvement - 1: Blames team/tools for failures; difficulty owning outcomes", "<b>Decision Thresholds (weighted total /4)</b> - Strong Hire: 3.4+ - Lean Hire: 2.8–3.3 (discuss in panel) - No Hire: Below 2.8", "<b>Debrief Protocol</b><br>Each interviewer submits their scored rubric before the debrief call. Panel shares scores without discussion first. Anyone with a 1 on any criterion must explain it. Final decision requires consensus on Strong Hire; split panels default to a second technical session."], "why": ""}}, {"title": "Team OKR Draft", "purpose": "Draft quarterly OKRs for a team with ambitious but achievable Objectives and Key Results that are genuinely measurable — not the \"improve team performance\" objectives that make OKR coaches cry.", "crisp": [["Context", "Team: [name and function]. Quarter: [Q# Year]. Company-level OKRs or priorities this quarter: [list them — team OKRs must ladder up]. Team size: [N]. Biggest challenges or focus areas: [list]."], ["Role", "You are a manager who has written OKRs that actually drive behaviour — because the Key Results have real numbers, clear ownership, and a 60–70% target attainment expectation (they should be stretchy)."], ["Instruction", "Write 3 Objectives with 3 Key Results each. Each KR must: have a baseline, a target, and a measurement method. Objectives should be qualitative and inspiring; KRs should be quantitative and specific."], ["Spec", "OKR format: Objective as a statement, Key Results as numbered bullets. KR format: \"[Metric] from [baseline] to [target] by [date], measured by [method].\" 250–300 words."], ["Performance", "At the end of the quarter, any team member can score each KR without asking the manager what it means. All three Objectives ladder to at least one company priority. None of the KRs are 100% achievable — they stretch."]], "prompt": "Context: I'm drafting Q[N] [Year] OKRs for the [Team Name] team ([function description]). Team size: [N people]. Quarter runs: [start date] to [end date].\n\nCompany-level priorities this quarter (our OKRs must ladder to at least one of these):\n1. [Company priority 1]\n2. [Company priority 2]\n3. [Company priority 3]\n\nOur team's biggest focus areas or challenges this quarter:\n1. [Focus 1]\n2. [Focus 2]\n3. [Focus 3]\n\nLast quarter: we hit [X of Y] OKRs. Our weakest area was [describe]. Our strongest was [describe].\n\nRole: Act as a manager who writes OKRs that actually drive quarterly behaviour — with Key Results that have real numbers, clear measurement methods, and a 60–70% expected attainment (stretchy, not sandbagged).\n\nInstruction: Write 3 Objectives with 3 Key Results each, following these rules:\n- Objectives: qualitative, inspiring, 1 sentence\n- Key Results: quantitative, format = \"[Metric] from [baseline] to [target] by [end date], measured by [method]\"\n- Each Objective must ladder to at least one company priority (note which one)\n- No KR should be 100% guaranteed — they should require stretch\n- Baseline must be stated (not \"increase X\" without saying from what)\n\nSpec:\n- OKR format (Objective as header, KRs as numbered bullets)\n- 250–300 words\n- Each KR: baseline → target → measurement method\n- Laddering note per Objective\n- No KR uses the word \"improve\" without a number\n\nPerformance bar: Any team member can self-score each KR at quarter-end without asking what it means. OKRs clearly ladder to company priorities. Targets require genuine effort to hit.", "before": {"prompt": "Write OKRs for my engineering team.", "output": ["Objective 1: Improve code quality. KR1: Write better code. KR2: Reduce bugs. KR3: Improve review process. Objective 2: Ship faster. KR1: Deliver features on time. KR2: Improve sprint velocity."], "why": "No baselines, no targets, no measurement methods. \"Write better code\" is not a KR. \"Deliver features on time\" — what percentage? From what baseline? These OKRs cannot be scored at quarter-end."}, "after": {"fills": ["Team: Backend Engineering (5 developers)", "Q3 2025 | Jul 1 – Sep 30", "Company priorities: Reliability, faster feature delivery, customer retention", "Focus areas: Reduce incident rate, ship payment v2, improve onboarding experience"], "output": ["<b>Q3 2025 OKRs — Backend Engineering Team</b>", "---", "<b>Objective 1: Make our platform so reliable that customers stop thinking about it</b><br><i>(Ladders to: Company Priority — Reliability)</i>", "1. Reduce P1/P2 incident rate from 3.2 incidents/month (Q2 avg) to 1.5 or fewer by Sep 30, measured by PagerDuty monthly report 2. Achieve mean time to recovery (MTTR) under 45 minutes for all P1 incidents by Sep 30, measured by incident log (baseline: 78 min in Q2) 3. Complete reliability review and remediation for 100% of \"single point of failure\" services identified in Q2 audit (6 services) by Aug 31", "---", "<b>Objective 2: Ship Payment v2 and prove we can deliver complex features without drama</b><br><i>(Ladders to: Company Priority — Faster Feature Delivery)</i>", "1. Payment v2 live in production by Aug 22, with zero P1 issues in the first 2 weeks post-launch 2. Reduce sprint story carryover rate from 18% (Q2 avg) to 8% or below by end of Q3, measured by Jira sprint reports 3. All Payment v2 features have automated regression test coverage of 90%+ before release, measured by coverage report in CI pipeline", "---", "<b>Objective 3: Make the first 30 days better for every new customer</b><br><i>(Ladders to: Company Priority — Customer Retention)</i>", "1. Reduce backend API errors on the onboarding flow from 4.2% error rate to under 1.5% by Aug 15, measured by error monitoring dashboard 2. Cut average onboarding setup time (time from signup to first active session) from 4.2 days to 2.5 days by Sep 30, measured by product analytics 3. Instrument 3 new onboarding funnel events in analytics by Jul 31 to give product team visibility into drop-off points"], "why": ""}}, {"title": "Difficult Conversation Script", "purpose": "Write a script for a genuinely difficult management conversation — delivering news the person won't want to hear, addressing a sensitive situation, or navigating a conflict — that is honest, structured, and compassionate without being evasive.", "crisp": [["Context", "Topic: [describe the difficult conversation — redundancy, not getting a promotion, behaviour pattern, performance, conflict]. Person: [role, tenure, relationship quality]. What they know going in: [nothing / some context / full context]. Desired outcome: [inform / agree on path / get acknowledgement]."], ["Role", "You are a manager who has learned that difficult conversations done well are an act of respect — and difficult conversations avoided are an act of cowardice. You are honest without being cruel."], ["Instruction", "Write a conversation script with: an opening that gets to the point within 90 seconds, the core message delivered clearly (no burying), space for the person to respond, and a closing that gives them a clear next step."], ["Spec", "Script format with stage directions in brackets. 300–350 words. Gets to the point within the first 5 sentences. Includes at least one \"pause and listen\" marker. Does not use the word \"unfortunately.\""], ["Performance", "The person leaves the conversation knowing the truth, what it means for them, and what happens next. The manager did not hide behind ambiguity to protect themselves."]], "prompt": "Context: I'm a people manager preparing for a difficult conversation with [Team Member Name], a [role] with [tenure]. The topic: [describe the situation — e.g., \"their role is being made redundant\", \"they did not get the promotion they expected\", \"I need to address their pattern of dismissive behaviour toward junior team members\", \"we need to discuss taking a formal performance path\"]. \n\nWhat they know going in: [they have been given no indication / they may suspect / they have been told to expect this conversation]\nOur relationship: [good working relationship / strained / professional but distant]\nMy desired outcome for this conversation: [inform them of a decision / reach agreement on next steps / get acknowledgement and plan for change]\nSupport available: [HR present / HR briefed but not present / manager's manager available if needed]\n\nRole: Act as a manager who approaches difficult conversations as an act of respect — honest enough to tell the truth clearly, and compassionate enough to give the person space to process it.\n\nInstruction: Write a conversation script with:\n1. Opening — get to the topic within 90 seconds; no false warmup\n2. Core Message — deliver the main news or feedback clearly in plain language; no burying\n3. Pause Marker — [noted explicitly] where the manager should stop and give the person space\n4. Response Handling — 2–3 ways the person might respond, and brief manager guidance for each\n5. Closing — what happens next, clearly stated; one specific next step\n\nSpec:\n- Script format with stage directions in [brackets]\n- 300–350 words\n- Main message delivered by sentence 5 maximum\n- At least one [PAUSE — WAIT FOR RESPONSE] marker\n- Never uses the word \"unfortunately\"\n- Closes with a concrete next step, not \"take all the time you need\"\n\nPerformance bar: The person leaves knowing the truth, what it means, and what happens next. The manager did not protect themselves at the expense of clarity. The script is deliverable by a real human.", "before": {"prompt": "Write a script for telling an employee they didn't get promoted.", "output": ["\"Hi, I wanted to chat with you today. I have some news about the promotion. It was a really difficult decision and the calibration committee had a hard time because there are so many strong candidates. Unfortunately, we decided to go with someone else this time. We really value your contributions and hope you'll understand. There will be other opportunities.\""], "why": "Buried the news in three sentences of warmup, used \"unfortunately,\" vague about what actually happened, \"other opportunities\" with no specifics, doesn't give the person anything to work with. The person leaves confused and hurt."}, "after": {"fills": ["Topic: Promotion to Staff Engineer not approved this cycle", "Person: Ana Sousa, 2 years, good working relationship", "She expects this conversation to be a decision call", "Outcome: inform her of the decision and agree on path to next cycle"], "output": ["<b>Conversation Script — Promotion Decision | Ana Sousa</b>", "[Settle in, no small talk beyond \"thanks for making time\"]", "\"Ana, I want to get straight to it because I know you've been waiting for this conversation. The promotion to Staff Engineer was not approved for this cycle.", "[PAUSE — let that land. Do not fill the silence immediately.]", "The calibration committee's decision came down to one gap: the scope of influence piece. Your technical contribution is at Staff level — that was not in question. What the committee couldn't see enough of yet is you shaping technical direction across teams, not just within ours. That's the specific thing that needs to be visible by the next cycle.\"", "[PAUSE — WAIT FOR RESPONSE. Listen fully before continuing.]", "<b>If she's upset or quiet:</b> \"I know this is disappointing — it should be. You've been doing Staff-level work in several areas. I want you to take a moment with this, and I want you to know I'm not going anywhere. I believe this is the right call for this cycle, and I believe you'll meet it next cycle if we're deliberate about it.\"", "<b>If she pushes back on the decision:</b> \"That's a fair reaction, and I want to hear your perspective. What I can tell you is the specific criteria, and I can walk you through the committee's rationale if that would help. I'm not asking you to agree with it today.\"", "<b>If she accepts it quietly:</b> \"Your quietness is okay — sit with it. I want you to know I actively advocated for you and will continue to.\"", "[Closing]", "\"Here's what I'd like to do: let's schedule a focused session next week — just us — where I walk you through exactly what the Staff criteria require and we map the next 6 months against those criteria specifically. Can we put something in the calendar for next Thursday?\""], "why": ""}}];
+  let sel = 0, tab = 'after';
+
+  function copyPre(btn){
+    const pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function(){
+      btn.classList.add('copied');
+      const s = btn.querySelector('span'), old = s.textContent;
+      s.textContent = 'Copied';
+      setTimeout(function(){ btn.classList.remove('copied'); s.textContent = old; }, 1600);
+    });
+  }
+  window.copyPre = copyPre;
+
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const paras = a => a.map(p => '<p>' + p + '</p>').join('');
+
+  function rail(){
+    const el = document.getElementById('rail');
+    el.innerHTML = '<div class="rl">The ' + PROMPTS.length + ' prompts</div>' + PROMPTS.map(function(p, i){
+      return '<button data-i="' + i + '" class="' + (i === sel ? 'on' : '') + '">' +
+             '<span class="n">' + String(i + 1).padStart(2, '0') + '</span><span>' + esc(p.title) + '</span></button>';
+    }).join('');
+    [].forEach.call(el.querySelectorAll('button'), function(b){
+      b.onclick = function(){ sel = +b.dataset.i; tab = 'after'; render(); };
+    });
+  }
+
+  function render(){
+    const p = PROMPTS[sel];
+    const before = p.before, after = p.after;
+    const perf = (p.crisp.find(c => c[0] === 'Performance') || [null, ''])[1];
+
+    let h = '<div class="ptitle">' + esc(p.title) + '</div>' +
+            '<p class="ppurpose">' + esc(p.purpose) + '</p>';
+
+    // CRISP breakdown
+    h += '<div class="card"><div class="ch"><i data-lucide="layers"></i> The CRISP breakdown' +
+         '<span class="tag">Context · Role · Instruction · Spec · Performance</span></div><div class="crisp">';
+    p.crisp.forEach(function(c){
+      h += '<div class="cr"><span class="k">' + c[0] + '</span><span class="v">' + c[1] + '</span></div>';
+    });
+    h += '</div></div>';
+
+    // the prompt itself
+    h += '<div class="card"><div class="ch"><i data-lucide="terminal"></i> The prompt — copy it and fill the brackets</div>' +
+         '<div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button>' +
+         '<pre>' + esc(p.prompt) + '</pre></div></div>';
+
+    // before / after — the whole point
+    h += '<div class="card"><div class="ch"><i data-lucide="git-compare"></i> Same task. Two prompts. Look at the difference.</div>' +
+         '<div class="tabs">' +
+         '<button id="tb" class="bad ' + (tab === 'before' ? 'on' : '') + '"><i data-lucide="thumbs-down"></i> Lazy prompt</button>' +
+         '<button id="ta" class="good ' + (tab === 'after' ? 'on' : '') + '"><i data-lucide="thumbs-up"></i> CRISP prompt</button>' +
+         '</div>';
+
+    if (tab === 'before'){
+      // before.prompt already comes through the parser as safe HTML — escaping again would
+      // print the tags. Only raw-text fields (title, purpose, the code block) get esc().
+      h += '<div class="askedfor"><b>What you asked for:</b></div>' +
+           '<div class="quote"><p>' + before.prompt + '</p></div>' +
+           '<div class="out"><div class="ol">What you got back</div><div class="quote">' + paras(before.output) + '</div></div>' +
+           '<div class="verdict bad"><i data-lucide="thumbs-down"></i><div><b>Why it is weak.</b> ' + before.why + '</div></div>';
+    } else {
+      if (after.fills.length)
+        h += '<div class="askedfor"><b>Placeholders filled in:</b></div><div class="fills">' +
+             after.fills.map(f => '<span>' + esc(f) + '</span>').join('') + '</div>';
+      h += '<div class="out"><div class="ol">What you got back</div><div class="quote">' + paras(after.output) + '</div></div>';
+      h += '<div class="verdict good"><i data-lucide="thumbs-up"></i><div>' +
+           (after.why ? '<b>Why it works.</b> ' + after.why
+                      : '<b>The bar it had to clear.</b> ' + perf) +
+           '</div></div>';
     }
-  </script>
-  <script>lucide.createIcons();</script>
+    h += '</div>';
+
+    document.getElementById('pane').innerHTML = h;
+    document.getElementById('tb').onclick = function(){ tab = 'before'; render(); };
+    document.getElementById('ta').onclick = function(){ tab = 'after';  render(); };
+    rail();
+    lucide.createIcons();
+  }
+  render();
+</script>
 </body>
 </html>

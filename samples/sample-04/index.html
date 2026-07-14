@@ -1,88 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HO3 · Content Marketer Prompt Library</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Content Marketer Prompt Library · ForgeMind AI</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
   :root{
     --pageBg:#F7F7F3; --headerBg:#0F0F10; --headerText:#F5F5F2; --headerMuted:#A1A1AA;
     --headerBorder:rgba(255,255,255,.12); --cardBg:#fff; --border:#E5E5E0;
-    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626; --primaryHover:#b91c1c;
-    --hover:#EFEEE6; --green:#0F6E56; --purple:#534AB7; --amber:#854F0B;
+    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626;
+    --green:#0F6E56; --amber:#854F0B; --hover:#EFEEE6;
     --shadowSm:0 1px 2px rgba(0,0,0,.08); --shadowMd:0 8px 24px rgba(0,0,0,.06);
     --font:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+    --accent:#854F0B;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;}
+  html,body{margin:0;height:100%;}
   body{font-family:var(--font);background:var(--pageBg);color:var(--text);}
-  a{color:inherit;}
   header{height:56px;background:var(--headerBg);color:var(--headerText);display:flex;align-items:center;
-    padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--headerBorder);}
-  .wordmark{font-weight:900;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:2px;}
+    padding:0 20px;border-bottom:1px solid var(--headerBorder);flex-shrink:0;}
+  .wordmark{font-weight:900;font-size:16px;}
   .wordmark .badge{background:var(--primary);color:#fff;padding:1px 6px;border-radius:5px;margin-left:2px;font-weight:800;}
   .header-right{margin-left:auto;color:var(--headerMuted);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;}
   .header-right .dot{width:6px;height:6px;border-radius:99px;background:var(--green);}
-  .wrap{max-width:none;margin:0;padding:34px 48px 72px;}
+  .intro{max-width:1180px;margin:0 auto;padding:30px 26px 0;}
   .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
-  h1{font-size:30px;font-weight:700;margin:8px 0 14px;letter-spacing:-.01em;}
-  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
-  .pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;font-family:var(--mono);}
-  .pill.wk{background:#E7F0FE;color:#1877F2;} .pill.mod{background:#EEEDFE;color:#3C3489;}
-  .pill.fmt{background:#E1F5EE;color:#0F6E56;} .pill.kind{background:#FAEEDA;color:#854F0B;}
-  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:20px;}
-  .done{display:flex;align-items:flex-start;gap:12px;margin-bottom:28px;}
-  .done .ic{width:34px;height:34px;border-radius:8px;background:#FCEBEB;color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .done .cap{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);}
-  .done .val{font-size:15px;font-weight:600;margin-top:3px;}
-  .section-h{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;margin:34px 0 14px;}
-  .section-h svg{color:var(--primary);}
-  .sub{font-size:13px;color:var(--textSec);margin:-8px 0 16px;line-height:1.6;}
-  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 18px;margin:22px 0;}
-  .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
-  .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.6;}
-  .tip p{margin:0;font-size:13px;color:var(--textSec);line-height:1.6;}
-  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
-  footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;}
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:2px 0 20px;}
-  .btn-ghost{font-family:var(--mono);font-size:12px;font-weight:500;padding:8px 14px;border:1px solid var(--border);border-radius:7px;background:#fff;text-decoration:none;color:var(--text);}
-  .btn-ghost:hover{background:var(--hover);}
-  .btn-red{font-family:var(--mono);font-size:12px;font-weight:500;padding:8px 14px;border-radius:7px;background:var(--primary);color:#fff;text-decoration:none;border:1px solid var(--primary);}
-  .btn-red:hover{background:var(--primaryHover);}
-  .prompt-section{display:flex;flex-direction:column;gap:18px;margin-top:8px;}
-  .prompt-card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);overflow:hidden;}
-  .prompt-card:hover{box-shadow:var(--shadowMd);}
-  .prompt-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);background:#fff;}
-  .prompt-title-wrap{flex:1;}
-  .prompt-num{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;color:#fff;background:var(--primary);border-radius:99px;padding:2px 9px;margin-bottom:7px;}
-  .prompt-header h2{font-size:17px;font-weight:600;line-height:1.3;color:var(--text);}
-  .open-btn{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--primary);text-decoration:none;padding:6px 11px;border:1px solid var(--border);border-radius:7px;white-space:nowrap;flex-shrink:0;}
-  .open-btn:hover{background:var(--hover);}
-  .prompt-body{padding:20px;}
-  .prompt-purpose{font-size:13.5px;color:var(--textSec);line-height:1.65;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border);}
-  .crisp-section{margin-bottom:20px;}
-  .crisp-section h4{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:10px;}
-  .full-prompt-section h4{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--textMuted);margin-bottom:10px;}
-  .crisp-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .crisp-table td{padding:8px 12px;vertical-align:top;border:1px solid var(--border);line-height:1.55;}
-  .crisp-table tr:nth-child(odd) td{background:#FAFAF7;}
-  .crisp-table td:first-child{font-family:var(--mono);font-weight:500;color:var(--text);white-space:nowrap;width:104px;}
-  .crisp-table td:last-child{color:var(--textSec);}
-  .prompt-code-wrap{position:relative;background:#1A1A1E;border:1px solid #26262b;border-radius:8px;overflow:hidden;}
-  .prompt-code-wrap pre{padding:18px 52px 18px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.65;color:#E4E4E7;overflow-x:auto;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow-y:auto;margin:0;}
-  .copy-btn{position:absolute;top:10px;right:10px;font-family:var(--mono);background:rgba(255,255,255,.1);color:#E4E4E7;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:5px 11px;font-size:11px;font-weight:500;cursor:pointer;z-index:10;}
-  .copy-btn:hover{background:rgba(255,255,255,.2);}
-  .copy-btn.copied{background:var(--green);color:#fff;border-color:var(--green);}
-  .before-after{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .ba-block h4{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
-  .ba-block.before h4{color:var(--primary);}
-  .ba-block.after h4{color:var(--green);}
-  .ba-block blockquote{margin:0;font-size:13px;line-height:1.6;color:var(--textSec);background:#FAFAF7;border-left:3px solid var(--border);padding:10px 14px;border-radius:0 6px 6px 0;}
-  .ba-block.before blockquote{border-left-color:#F1B0B0;}
-  .ba-block.after blockquote{border-left-color:var(--green);}
-  @media(max-width:680px){.before-after{grid-template-columns:1fr;}.prompt-header{flex-direction:column;}h1{font-size:24px;}}
+  h1{font-size:30px;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em;}
+  .lead{font-size:14px;color:var(--textSec);line-height:1.75;margin:0;max-width:820px;}
+  .lead b{color:var(--text);}
+  /* two-pane library */
+  .lib{max-width:1180px;margin:26px auto 0;padding:0 26px 70px;display:grid;grid-template-columns:266px 1fr;gap:22px;align-items:start;}
+  .rail{background:var(--cardBg);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadowSm);
+    padding:10px;position:sticky;top:18px;}
+  .rail .rl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--textMuted);padding:8px 10px 6px;}
+  .rail button{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:none;border:none;
+    font-family:var(--font);font-size:13px;color:var(--text);padding:9px 10px;border-radius:7px;cursor:pointer;line-height:1.4;}
+  .rail button:hover{background:var(--hover);}
+  .rail button.on{background:var(--accent);color:#fff;font-weight:600;}
+  .rail button .n{font-family:var(--mono);font-size:10px;opacity:.65;flex-shrink:0;margin-top:2px;}
+  .pane{min-width:0;}
+  .ptitle{font-size:21px;font-weight:700;margin:2px 0 6px;}
+  .ppurpose{font-size:13.5px;color:var(--textSec);line-height:1.65;margin:0 0 16px;}
+  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadowSm);
+    padding:18px 20px;margin-bottom:16px;}
+  .ch{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;margin-bottom:10px;}
+  .ch svg{width:16px;height:16px;color:var(--accent);}
+  .ch .tag{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--textMuted);}
+  /* CRISP */
+  .crisp{display:grid;gap:8px;}
+  .cr{display:grid;grid-template-columns:104px 1fr;gap:12px;align-items:start;font-size:13px;line-height:1.6;}
+  .cr .k{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#fff;background:var(--accent);padding:3px 8px;border-radius:5px;text-align:center;}
+  .cr .v{color:var(--textSec);}
+  /* code */
+  .pre{position:relative;background:#17171A;border:1px solid #2A2A2E;border-radius:9px;}
+  .pre pre{margin:0;padding:15px 84px 15px 17px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;
+    line-height:1.65;color:#E6E6E6;white-space:pre-wrap;}
+  .pre .copy{position:absolute;top:9px;right:9px;font-family:var(--font);font-size:11px;font-weight:600;color:#E6E6E6;
+    background:#2A2A2E;border:1px solid #3A3A40;border-radius:5px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  .pre .copy:hover{background:#3A3A40;}
+  .pre .copy.copied{color:#7EE0C0;border-color:var(--green);}
+  .pre .copy svg{width:12px;height:12px;}
+  /* before / after */
+  .tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px;width:fit-content;}
+  .tabs button{font-family:var(--font);font-size:13px;font-weight:600;padding:9px 18px;border:none;cursor:pointer;
+    background:#fff;color:var(--textSec);display:flex;align-items:center;gap:7px;}
+  .tabs button svg{width:14px;height:14px;}
+  .tabs button:hover{background:var(--hover);}
+  .tabs button.on.bad{background:var(--primary);color:#fff;}
+  .tabs button.on.good{background:var(--green);color:#fff;}
+  .askedfor{font-size:12.5px;color:var(--textSec);line-height:1.6;margin-bottom:10px;}
+  .askedfor b{color:var(--text);}
+  .quote{border-left:3px solid var(--border);padding:2px 0 2px 14px;margin:0 0 12px;font-size:13.5px;
+    line-height:1.7;color:var(--text);}
+  .quote p{margin:0 0 9px;}
+  .quote p:last-child{margin:0;}
+  .out{background:#FAF9F5;border:1px solid var(--border);border-radius:8px;padding:15px 17px;margin-bottom:12px;}
+  .out .ol{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--textMuted);margin-bottom:9px;}
+  .verdict{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.6;border-radius:8px;padding:12px 14px;}
+  .verdict svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;}
+  .verdict.bad{background:#FDF6F6;border:1px solid #F3C6C6;}
+  .verdict.bad svg{color:var(--primary);}
+  .verdict.good{background:#E1F5EE;border:1px solid #A8DFCC;}
+  .verdict.good svg{color:var(--green);}
+  .verdict b{font-weight:600;}
+  .fills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .fills span{font-family:var(--mono);font-size:11px;background:#F1F0EA;color:var(--textSec);padding:4px 9px;border-radius:5px;}
+  footer{max-width:1180px;margin:0 auto;padding:24px 26px 40px;border-top:1px solid var(--border);
+    font-family:var(--mono);font-size:11px;color:var(--textMuted);text-align:center;line-height:1.9;}
+  @media(max-width:900px){.lib{grid-template-columns:1fr;} .rail{position:static;}}
 </style>
 </head>
 <body>
@@ -91,879 +101,108 @@
     <span class="header-right"><span class="dot"></span>ForgeMind AI · Hands-On Portfolio</span>
   </header>
 
-  <div class="wrap">
-    <div class="eyebrow">Hands-On 3 · Week 2 · Module M6 — Prompt Engineering · Sample 04</div>
+  <div class="intro">
+    <div class="eyebrow">HO3 · Sample 04 · Content Marketer</div>
     <h1>Content Marketer Prompt Library</h1>
-    <div class="pills">
-      <span class="pill wk">Week 2</span>
-      <span class="pill mod">M6 · Prompt Engineering</span>
-      <span class="pill fmt">Peer-reviewed</span>
-      <span class="pill kind">Library</span>
-    </div>
-    <div class="actions">
-      <a class="btn-ghost" href="../../">‹ All libraries</a>
-      <a class="btn-red" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude.ai ›</a>
-    </div>
-    <div class="sub">Role: Content Marketer / SEO Writer · 10 CRISP-structured prompts ready to copy into Claude.ai</div>
-
-    <div class="tip">
-      <div class="th"><i data-lucide="clipboard-check"></i> No API key needed</div>
-      <p><strong>No API key needed.</strong> Click "Open Claude.ai →" on any card, then copy the prompt, fill in the <code>[BRACKET]</code> placeholders, and paste it into your Claude.ai chat.</p>
-    </div>
-
-<div class="prompt-section">
-    
-    <div class="prompt-card" id="prompt-01">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#01</span>
-          <h2>Blog Post Outline</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Create a SEO-structured blog post outline with H2/H3 hierarchy, estimated section word counts, and notes for each section — so a writer can produce a complete draft without needing to think about structure, and every section earns its place.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Topic: [blog post topic]. Target keyword: [primary keyword]. Search intent: [informational / commercial / navigational]. Target audience: [who reads this and what problem are they solving]. Brand: [company name, voice — e.g., &quot;authoritative but not stuffy&quot;].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are an SEO content strategist who builds outlines that rank AND convert — you don&#x27;t optimise for Google at the expense of the reader, or for the reader at the expense of ranking.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Create a detailed blog post outline with: SEO title options (3), intro hook approach, H2 sections with H3 sub-sections, section notes, and a conclusion with CTA approach.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Outline format. Total target word count: [800 / 1200 / 2000 words]. Each H2 has an estimated word count allocation. Section notes tell the writer what to include, not how to write it.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>A writer with no additional briefing can produce a complete first draft from this outline. The keyword appears in the title, meta description hint, and at least 2 H2s naturally.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-0" onclick="copyPrompt("Context: I'm a content marketing manager at [Company Name], a [brief company description \u2014 what you do and for whom]. I'm writing a blog post on: [topic]. \n- Primary target keyword: [keyword]\n- Secondary keywords: [list 2\u20133]\n- Search intent: [informational \u2014 \"how to X\" / commercial \u2014 \"best X\" / comparison \u2014 \"X vs Y\"]\n- Target audience: [describe who reads this and what problem they're trying to solve]\n- Ideal reader outcome: [what should the reader be able to do or understand after reading?]\n- Brand voice: [describe tone \u2014 e.g., \"practical, direct, no fluff; expertise without jargon\"]\n- Word count target: [800 / 1200 / 2000 words]\n- Any competitors ranking for this topic I should be aware of: [list or \"I'll handle this separately\"]\n\nRole: Act as an SEO content strategist who builds outlines that rank for the target keyword AND genuinely help the reader \u2014 not keyword-stuffed content that embarrasses the brand.\n\nInstruction: Create a blog post outline with:\n1. Three SEO title options \u2014 one question-based, one \"how to\", one direct/list format\n2. Meta description hint \u2014 one sentence summary for the writer to refine\n3. Intro \u2014 describe the hook approach (problem / statistic / story / counter-intuitive claim) and what the intro must accomplish\n4. H2 Sections \u2014 4\u20136 H2s with: title, estimated word count, H3 sub-sections where needed, and 2\u20133 sentence notes for the writer\n5. Conclusion \u2014 approach for the closing section and CTA type\n\nSpec:\n- Outline format (not a draft \u2014 section notes only)\n- Word count must add up to the target\n- Primary keyword in at least 2 H2 titles naturally\n- Section notes: what to cover, not how to write it\n- Include a \"what to avoid\" note for the most common mistake in this type of post\n\nPerformance bar: Writer produces a complete, on-target draft from this outline without any additional briefing. Keyword appears naturally (not forced) in title, 2 H2s, and first paragraph.", 'copy-card-0')">Copy</button>
-            <pre>Context: I&#x27;m a content marketing manager at [Company Name], a [brief company description — what you do and for whom]. I&#x27;m writing a blog post on: [topic]. 
-- Primary target keyword: [keyword]
-- Secondary keywords: [list 2–3]
-- Search intent: [informational — &quot;how to X&quot; / commercial — &quot;best X&quot; / comparison — &quot;X vs Y&quot;]
-- Target audience: [describe who reads this and what problem they&#x27;re trying to solve]
-- Ideal reader outcome: [what should the reader be able to do or understand after reading?]
-- Brand voice: [describe tone — e.g., &quot;practical, direct, no fluff; expertise without jargon&quot;]
-- Word count target: [800 / 1200 / 2000 words]
-- Any competitors ranking for this topic I should be aware of: [list or &quot;I&#x27;ll handle this separately&quot;]
-
-Role: Act as an SEO content strategist who builds outlines that rank for the target keyword AND genuinely help the reader — not keyword-stuffed content that embarrasses the brand.
-
-Instruction: Create a blog post outline with:
-1. Three SEO title options — one question-based, one &quot;how to&quot;, one direct/list format
-2. Meta description hint — one sentence summary for the writer to refine
-3. Intro — describe the hook approach (problem / statistic / story / counter-intuitive claim) and what the intro must accomplish
-4. H2 Sections — 4–6 H2s with: title, estimated word count, H3 sub-sections where needed, and 2–3 sentence notes for the writer
-5. Conclusion — approach for the closing section and CTA type
-
-Spec:
-- Outline format (not a draft — section notes only)
-- Word count must add up to the target
-- Primary keyword in at least 2 H2 titles naturally
-- Section notes: what to cover, not how to write it
-- Include a &quot;what to avoid&quot; note for the most common mistake in this type of post
-
-Performance bar: Writer produces a complete, on-target draft from this outline without any additional briefing. Keyword appears naturally (not forced) in title, 2 H2s, and first paragraph.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>1. Introduction 2. What are project management tools? 3. Top tools 4. How to choose 5. Conclusion</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-02">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#02</span>
-          <h2>LinkedIn Thought Leadership Post</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a LinkedIn post that builds genuine professional authority on a topic relevant to your audience — without self-promotion, humble-bragging, or the kind of vague inspirational content that LinkedIn is already drowning in.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Author: [name, title, company]. Topic/angle: [specific insight or contrarian point of view]. Audience: [who you want to reach on LinkedIn]. Goal: [brand awareness / lead generation / talent attraction / community building].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a ghostwriter who specialises in LinkedIn content for B2B founders and executives — you write posts that sound like the person, not like a LinkedIn engagement pod.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a LinkedIn post that opens with a hook that earns the scroll, develops one clear idea with a specific insight, and closes with a genuine question or takeaway — not a CTA to DM or visit a link.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>LinkedIn format. 200–280 words. No bullet-point lists in the first 3 lines (LinkedIn hides them). Hook in the first line — no &quot;I&#x27;ve been thinking about...&quot; openings. No emoji overuse (max 2). No &quot;drop your thoughts in the comments&quot; close.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Someone in the target audience reads this and thinks &quot;that&#x27;s exactly what I&#x27;ve been thinking but couldn&#x27;t articulate.&quot; The post feels like it was written by a real person, not a content machine.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-1" onclick="copyPrompt("Context: I'm writing a LinkedIn thought leadership post for [Author Name], [Title] at [Company]. \n- Topic/angle: [the specific insight, observation, or contrarian view you want to share \u2014 be specific, not \"leadership tips\"]\n- Supporting evidence or example: [a data point, personal experience, or specific story that makes the argument real]\n- Target audience on LinkedIn: [who you want to reach \u2014 e.g., \"VPs of Customer Success at mid-market SaaS companies\"]\n- Brand voice: [describe the author's style \u2014 e.g., \"direct, data-driven, occasionally self-deprecating\"]\n- Goal of this post: [build authority / generate inbound / attract talent / start a conversation]\n\nRole: Act as a ghostwriter who specialises in LinkedIn content for B2B executives. You write posts that sound like the person said it in a meeting \u2014 not like they asked an AI to write their LinkedIn.\n\nInstruction: Write a LinkedIn post that:\n1. Opens with a single hook sentence that creates enough tension to earn a \"see more\" click (not a question, not \"I've been thinking about...\")\n2. Develops ONE idea with a specific angle \u2014 not a list of tips\n3. Uses a concrete example or data point to make the argument real\n4. Closes with either a genuine question OR one clear actionable takeaway \u2014 not a promotional CTA\n\nSpec:\n- 200\u2013280 words\n- No bullet lists in the first 3 lines\n- Hook in line 1 \u2014 no warm-up\n- Max 2 emoji total\n- No \"drop your thoughts below\" or \"DM me if you want to chat\"\n- Written in first person, author's voice\n\nPerformance bar: Target audience member reads this and thinks \"this is exactly what I've been thinking.\" Post feels like a human wrote it, not a content tool. No generic inspirational language.", 'copy-card-1')">Copy</button>
-            <pre>Context: I&#x27;m writing a LinkedIn thought leadership post for [Author Name], [Title] at [Company]. 
-- Topic/angle: [the specific insight, observation, or contrarian view you want to share — be specific, not &quot;leadership tips&quot;]
-- Supporting evidence or example: [a data point, personal experience, or specific story that makes the argument real]
-- Target audience on LinkedIn: [who you want to reach — e.g., &quot;VPs of Customer Success at mid-market SaaS companies&quot;]
-- Brand voice: [describe the author&#x27;s style — e.g., &quot;direct, data-driven, occasionally self-deprecating&quot;]
-- Goal of this post: [build authority / generate inbound / attract talent / start a conversation]
-
-Role: Act as a ghostwriter who specialises in LinkedIn content for B2B executives. You write posts that sound like the person said it in a meeting — not like they asked an AI to write their LinkedIn.
-
-Instruction: Write a LinkedIn post that:
-1. Opens with a single hook sentence that creates enough tension to earn a &quot;see more&quot; click (not a question, not &quot;I&#x27;ve been thinking about...&quot;)
-2. Develops ONE idea with a specific angle — not a list of tips
-3. Uses a concrete example or data point to make the argument real
-4. Closes with either a genuine question OR one clear actionable takeaway — not a promotional CTA
-
-Spec:
-- 200–280 words
-- No bullet lists in the first 3 lines
-- Hook in line 1 — no warm-up
-- Max 2 emoji total
-- No &quot;drop your thoughts below&quot; or &quot;DM me if you want to chat&quot;
-- Written in first person, author&#x27;s voice
-
-Performance bar: Target audience member reads this and thinks &quot;this is exactly what I&#x27;ve been thinking.&quot; Post feels like a human wrote it, not a content tool. No generic inspirational language.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Customer success is so important in today&#x27;s competitive landscape! As a CS leader, I&#x27;ve learned that putting the customer first is always the right move. Here are 5 tips for better customer success: 1. Listen to customers. 2. Be proactive. 3. Build relationships. 4. Use data. 5. Celebrate wins! What…</blockquote>
-            </div>
-          
-            <div class="ba-block after">
-              <h4>After — CRISP prompt output</h4>
-              <blockquote>Your customers are giving you 5-star CSAT scores and then churning 90 days later. We see this pattern constantly. Support interaction is excellent. The team is responsive, helpful, professional. CSAT scores are the highest they&#x27;ve ever been. And then the renewal conversation happens. Here&#x27;s what I think is happening: CSAT measures how customers feel about service interactions. It doesn&#x27;t measure w…</blockquote>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-03">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#03</span>
-          <h2>Email Newsletter Draft</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Draft a focused email newsletter with a clear editorial theme, one primary CTA, and a voice that readers actually want to receive — not a content dump of everything you published this month.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Newsletter: [name and description]. Frequency: [weekly / bi-weekly / monthly]. Audience: [who subscribes and why]. This edition&#x27;s theme: [the topic or angle for this issue]. Content to include: [links, stories, tips, product news]. Primary CTA: [what you want readers to do].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are an email editor who knows that a newsletter with one clear editorial point of view outperforms a newsletter that &quot;covers everything.&quot; You write editions people forward to colleagues.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Draft a newsletter with: a subject line that earns the open, a focused editorial opening, the main content section, and one clear CTA — not five different things to click.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Email format. 350–450 words of body copy. One subject line + one pre-header. One primary CTA (not three). Scannable — short paragraphs, one image placeholder noted, one pull quote.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Reader opens, reads to the end, and takes the one action you wanted them to take. The newsletter has a clear point of view, not a content digest. Open rate potential: the subject line is specific enough to stand out.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-2" onclick="copyPrompt("Context: I'm writing the [edition number / date] edition of [Newsletter Name], a [frequency] newsletter for [audience description]. \n\nThis edition's theme: [the single editorial focus for this issue]\n\nContent to include:\n- Main story/angle: [describe the main piece of content or idea you want to lead with]\n- Secondary item 1: [link, story, or tip]\n- Secondary item 2: [optional]\n- Product/company news to weave in: [optional \u2014 keep brief]\n\nPrimary CTA: [what you want the reader to do \u2014 one thing only]\nTone/voice: [describe the newsletter's voice \u2014 e.g., \"curious, slightly irreverent, always evidence-backed\"]\nPrevious edition topic: [so this one feels like a continuation, not a repeat]\n\nRole: Act as an email editor who writes newsletters with a clear editorial voice and one main idea per edition \u2014 not content aggregators disguised as newsletters.\n\nInstruction: Write a complete newsletter draft with:\n1. Subject line \u2014 specific enough to stand out in a busy inbox; not clickbait; includes the main idea\n2. Pre-header text \u2014 40\u201360 characters, extends the subject line\n3. Opening \u2014 2\u20133 sentences that set the editorial theme and give the reader a reason to keep reading; no \"Welcome to this week's edition of...\"\n4. Main Content \u2014 the primary story/angle, 200\u2013250 words, with the main insight clearly stated\n5. Quick Takes \u2014 1\u20132 secondary items as brief callouts (50 words each max)\n6. CTA Section \u2014 one clear, specific action with a short explanation of why this matters\n7. Sign-off \u2014 brief, human, consistent with the newsletter's voice\n\nSpec:\n- 350\u2013450 words body copy\n- One subject line + one pre-header\n- One primary CTA\n- No \"click here\" \u2014 specific link text\n- Short paragraphs (3 sentences max)\n- One [IMAGE PLACEHOLDER: description] note\n\nPerformance bar: Reader reads to the end. The subject line is specific enough that they know what they're getting before they open. One clear action they took after reading. The newsletter has a POV, not a topic list.", 'copy-card-2')">Copy</button>
-            <pre>Context: I&#x27;m writing the [edition number / date] edition of [Newsletter Name], a [frequency] newsletter for [audience description]. 
-
-This edition&#x27;s theme: [the single editorial focus for this issue]
-
-Content to include:
-- Main story/angle: [describe the main piece of content or idea you want to lead with]
-- Secondary item 1: [link, story, or tip]
-- Secondary item 2: [optional]
-- Product/company news to weave in: [optional — keep brief]
-
-Primary CTA: [what you want the reader to do — one thing only]
-Tone/voice: [describe the newsletter&#x27;s voice — e.g., &quot;curious, slightly irreverent, always evidence-backed&quot;]
-Previous edition topic: [so this one feels like a continuation, not a repeat]
-
-Role: Act as an email editor who writes newsletters with a clear editorial voice and one main idea per edition — not content aggregators disguised as newsletters.
-
-Instruction: Write a complete newsletter draft with:
-1. Subject line — specific enough to stand out in a busy inbox; not clickbait; includes the main idea
-2. Pre-header text — 40–60 characters, extends the subject line
-3. Opening — 2–3 sentences that set the editorial theme and give the reader a reason to keep reading; no &quot;Welcome to this week&#x27;s edition of...&quot;
-4. Main Content — the primary story/angle, 200–250 words, with the main insight clearly stated
-5. Quick Takes — 1–2 secondary items as brief callouts (50 words each max)
-6. CTA Section — one clear, specific action with a short explanation of why this matters
-7. Sign-off — brief, human, consistent with the newsletter&#x27;s voice
-
-Spec:
-- 350–450 words body copy
-- One subject line + one pre-header
-- One primary CTA
-- No &quot;click here&quot; — specific link text
-- Short paragraphs (3 sentences max)
-- One [IMAGE PLACEHOLDER: description] note
-
-Performance bar: Reader reads to the end. The subject line is specific enough that they know what they&#x27;re getting before they open. One clear action they took after reading. The newsletter has a POV, not a topic list.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Subject: Marketing Newsletter - June 2025. Hi everyone! Welcome to our June newsletter. This month we&#x27;ve been busy with lots of great content. Check out our new blog post! Also don&#x27;t forget about our upcoming webinar. And we have a new product feature. Thanks for reading and have a great summer!</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-04">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#04</span>
-          <h2>Case Study Interview Questions</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Generate targeted, open-ended interview questions for a customer case study that surface specific outcomes, memorable quotes, and emotional moments — rather than producing a story full of vague claims like &quot;we saved time&quot; with no proof.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Customer: [company name, industry, size]. What they use your product for: [use case]. Known outcome: [metrics you already know — e.g., &quot;they reduced support tickets by 40%&quot;]. Case study angle: [what story you want to tell]. Intended audience for the case study: [who will read it — prospects, specific role].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a B2B content writer who has conducted 100+ customer interviews. You know that the best case study quotes come from questions about the before-state, the decision moment, and the specific moment things changed — not from asking &quot;what do you like about our product?&quot;</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Generate 15 interview questions organised by phase: before (the problem), the decision, implementation, results, and emotional/personal. Prioritise questions that will surface quotable answers and specific numbers.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>15 questions organised into 5 phases (3 questions each). Each question is open-ended (no yes/no). Include a note on what each question is designed to surface. 300 words max for the question set.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The interviewer uses these 15 questions and walks away with at least 3 quotable moments and 2 specific metrics. No question can be answered with &quot;yes&quot; or &quot;no.&quot;</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-3" onclick="copyPrompt("Context: I'm conducting a case study interview with [Customer Name/Company] for [Your Company]'s case study program. \n- Customer: [company name], [industry], [company size]\n- What they use our product for: [primary use case]\n- Known outcomes we want to confirm/expand: [metrics you already know or suspect \u2014 e.g., \"we know they saved 40% on support costs; we want the story behind it\"]\n- Angle for this case study: [the narrative hook \u2014 e.g., \"from reactive to proactive support\" / \"scaling without hiring\" / \"migration success story\"]\n- Intended audience for the case study: [e.g., \"VP-level CS leaders at Series B SaaS companies\"]\n- What the customer has agreed to share: [public name and logo / anonymised / specific metrics only]\n\nRole: Act as an experienced B2B case study interviewer who knows that the best quotes and moments come from asking about the before-state, the turning point, and specific moments \u2014 not from asking customers to describe your product's features.\n\nInstruction: Generate 15 interview questions organised into 5 phases:\n1. The Before (3 questions) \u2014 surface the pain, the workarounds, the cost of not solving it\n2. The Decision (3 questions) \u2014 the evaluation process, what tipped the decision\n3. Implementation (3 questions) \u2014 what the rollout was like, surprises, team reaction\n4. Results (3 questions) \u2014 specific outcomes, what changed, what they measure now\n5. Emotional/Personal (3 questions) \u2014 moments of pride, recommendation, the human story\n\nSpec:\n- 15 questions, 5 phases, 3 per phase\n- Each question: open-ended only (no yes/no possible)\n- Include one-line note on what each question is designed to surface\n- 300 words for the question set\n- No question should include your product name (makes answers less authentic)\n\nPerformance bar: Interviewer walks away with 3+ quotable moments and 2+ specific metrics. Every question could produce a usable quote. No yes/no answers possible.", 'copy-card-3')">Copy</button>
-            <pre>Context: I&#x27;m conducting a case study interview with [Customer Name/Company] for [Your Company]&#x27;s case study program. 
-- Customer: [company name], [industry], [company size]
-- What they use our product for: [primary use case]
-- Known outcomes we want to confirm/expand: [metrics you already know or suspect — e.g., &quot;we know they saved 40% on support costs; we want the story behind it&quot;]
-- Angle for this case study: [the narrative hook — e.g., &quot;from reactive to proactive support&quot; / &quot;scaling without hiring&quot; / &quot;migration success story&quot;]
-- Intended audience for the case study: [e.g., &quot;VP-level CS leaders at Series B SaaS companies&quot;]
-- What the customer has agreed to share: [public name and logo / anonymised / specific metrics only]
-
-Role: Act as an experienced B2B case study interviewer who knows that the best quotes and moments come from asking about the before-state, the turning point, and specific moments — not from asking customers to describe your product&#x27;s features.
-
-Instruction: Generate 15 interview questions organised into 5 phases:
-1. The Before (3 questions) — surface the pain, the workarounds, the cost of not solving it
-2. The Decision (3 questions) — the evaluation process, what tipped the decision
-3. Implementation (3 questions) — what the rollout was like, surprises, team reaction
-4. Results (3 questions) — specific outcomes, what changed, what they measure now
-5. Emotional/Personal (3 questions) — moments of pride, recommendation, the human story
-
-Spec:
-- 15 questions, 5 phases, 3 per phase
-- Each question: open-ended only (no yes/no possible)
-- Include one-line note on what each question is designed to surface
-- 300 words for the question set
-- No question should include your product name (makes answers less authentic)
-
-Performance bar: Interviewer walks away with 3+ quotable moments and 2+ specific metrics. Every question could produce a usable quote. No yes/no answers possible.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>1. What do you think of our product? 2. What features do you use most? 3. Would you recommend us? 4. What results have you seen? 5. Any other feedback?</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-05">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#05</span>
-          <h2>Social Media Repurpose Pack</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Turn one long-form content piece into 5 platform-specific social media posts, each adapted for the norms of that platform — so one piece of content creates a week of social output without being copy-pasted five times.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Source content: [link or paste the main content piece]. Platforms to target: [LinkedIn / Twitter/X / Instagram / Facebook / Threads]. Brand: [company name, brand voice]. Campaign period: [when to post these].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a social media content specialist who knows that the same content on five platforms should feel native to each, not like a press release distributed everywhere.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Adapt the source content into 5 platform-specific posts, each using the conventions of that platform: LinkedIn (professional, paragraph-heavy), Twitter/X (punchy, under 280 characters or a thread), Instagram (visual hook, caption with hashtags), Facebook (community-focused), Threads (conversational, short).</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>5 posts, one per platform. Each must feel native to the platform format. Include character count where relevant. Include 3–5 suggested hashtags for Instagram only.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Each post would be appropriate to schedule without further editing. Posts don&#x27;t feel like they came from the same template. The main insight from the source piece is preserved in all five but expressed differently.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-4" onclick="copyPrompt("Context: I'm repurposing [content type \u2014 e.g., \"a blog post / podcast episode / case study / webinar recap\"] about [topic summary] for [Company Name]'s social channels. Brand voice: [describe \u2014 e.g., \"practical, direct, evidence-driven; we don't use jargon or inspirational platitudes\"].\n\nSource content summary (paste a summary OR the key insight/stats/quotes you want to use):\n[Paste 3\u20135 key points, stats, or quotes from the source content]\n\nTarget platforms: [LinkedIn / Twitter-X / Instagram / Facebook / Threads \u2014 list which ones you want]\nCampaign timing: [when these will be posted]\nCTA or destination link: [URL to send people to, if applicable]\n\nRole: Act as a social media content specialist who understands that LinkedIn readers want depth, Twitter/X readers want a punchy take, and Instagram audiences need a visual hook. You write each platform natively, not as a copy-paste job.\n\nInstruction: Write one post for each platform listed, following these conventions:\n- LinkedIn: 150\u2013250 words, paragraph format, one insight per post, close with a genuine question or one CTA\n- Twitter/X: Either one punchy post under 280 characters OR a 4-tweet thread where each tweet can stand alone\n- Instagram: Short visual hook (1\u20132 lines) + 100\u2013150 word caption + 5 relevant hashtags\n- Facebook: 100\u2013150 words, community/discussion framing, question to encourage comments\n- Threads: 2\u20133 short posts (under 500 chars each) in a conversational chain\n\nSpec:\n- Each post clearly labelled by platform\n- Character counts shown for Twitter/X and Threads\n- Instagram hashtags separated at end of caption\n- No post should feel like it was translated from another platform\n- All use the key insight from the source content but frame it differently\n\nPerformance bar: Any post from this pack can be scheduled without editing. Each feels native to its platform. The main insight is in all five but expressed in ways appropriate to each audience.", 'copy-card-4')">Copy</button>
-            <pre>Context: I&#x27;m repurposing [content type — e.g., &quot;a blog post / podcast episode / case study / webinar recap&quot;] about [topic summary] for [Company Name]&#x27;s social channels. Brand voice: [describe — e.g., &quot;practical, direct, evidence-driven; we don&#x27;t use jargon or inspirational platitudes&quot;].
-
-Source content summary (paste a summary OR the key insight/stats/quotes you want to use):
-[Paste 3–5 key points, stats, or quotes from the source content]
-
-Target platforms: [LinkedIn / Twitter-X / Instagram / Facebook / Threads — list which ones you want]
-Campaign timing: [when these will be posted]
-CTA or destination link: [URL to send people to, if applicable]
-
-Role: Act as a social media content specialist who understands that LinkedIn readers want depth, Twitter/X readers want a punchy take, and Instagram audiences need a visual hook. You write each platform natively, not as a copy-paste job.
-
-Instruction: Write one post for each platform listed, following these conventions:
-- LinkedIn: 150–250 words, paragraph format, one insight per post, close with a genuine question or one CTA
-- Twitter/X: Either one punchy post under 280 characters OR a 4-tweet thread where each tweet can stand alone
-- Instagram: Short visual hook (1–2 lines) + 100–150 word caption + 5 relevant hashtags
-- Facebook: 100–150 words, community/discussion framing, question to encourage comments
-- Threads: 2–3 short posts (under 500 chars each) in a conversational chain
-
-Spec:
-- Each post clearly labelled by platform
-- Character counts shown for Twitter/X and Threads
-- Instagram hashtags separated at end of caption
-- No post should feel like it was translated from another platform
-- All use the key insight from the source content but frame it differently
-
-Performance bar: Any post from this pack can be scheduled without editing. Each feels native to its platform. The main insight is in all five but expressed in ways appropriate to each audience.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Post for all channels: &quot;Check out our new blog post about customer support for small teams! We share 5 tips to help you manage support without a big team. Link in bio! #customerservice #smallbusiness #tips&quot;</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-06">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#06</span>
-          <h2>SEO Meta Description</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write SEO-optimised meta descriptions and title tags that stay within Google&#x27;s character limits, include the target keyword naturally, and are written to earn a click — not just describe the page.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Page: [URL or page description]. Target keyword: [primary keyword]. Search intent: [what the searcher wants — informational / commercial / navigational]. Current meta (if any): [paste current meta to improve].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are an SEO specialist who writes meta descriptions that treat the search result page as a conversion moment — you&#x27;re competing against 9 other results and every word counts.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write 3 variations each of: title tag and meta description. Each variation must include the target keyword, stay within character limits, and use a different click-trigger (curiosity, specificity, urgency, benefit).</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Title tag: 50–60 characters max. Meta description: 150–160 characters max. Keyword in first 30 characters of title tag. 3 variations of each. Character count shown next to each.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>All 6 pieces stay within character limits (checked). Keyword is in all 6 pieces. At least one variation for each uses a different click motivator. A/B testable.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-5" onclick="copyPrompt("Context: I'm writing SEO meta tags for a page at [URL or description of page content]. \n- Target keyword: [primary keyword]\n- Search intent: [informational / commercial / navigational / transactional]\n- Page content summary: [2\u20133 sentences describing what the page covers]\n- Brand name to include: [company name \u2014 include in title tag or not?]\n- Current meta description (if updating): [paste current version or \"none\"]\n- Top competitor title/meta example (optional): [paste a competitor's to differentiate from]\n\nRole: Act as an SEO specialist who treats the search result page as a conversion moment. Every character in a title tag and meta description is competing against 9 other results \u2014 you write to earn the click, not just describe the page.\n\nInstruction: Write 3 variations of each:\n1. Title Tag \u2014 3 variations (50\u201360 characters each)\n   - Variation A: Leads with the keyword, benefits-focused\n   - Variation B: Question or \"how to\" format\n   - Variation C: Specificity/number format\n2. Meta Description \u2014 3 variations (150\u2013160 characters each)\n   - Variation A: Benefit-led\n   - Variation B: Problem/solution format\n   - Variation C: Urgency or specificity\n\nSpec:\n- Title tag: 50\u201360 characters max (show character count in brackets)\n- Meta description: 150\u2013160 characters max (show character count in brackets)\n- Keyword must appear in all 6 pieces\n- Each variation uses a different click motivator (not the same opening word)\n- Show character count next to each piece\n\nPerformance bar: All pieces are within character limits. Keyword is in all 6. Each pair of title + meta variation works together. A/B testable \u2014 variations are meaningfully different, not just word-swap.", 'copy-card-5')">Copy</button>
-            <pre>Context: I&#x27;m writing SEO meta tags for a page at [URL or description of page content]. 
-- Target keyword: [primary keyword]
-- Search intent: [informational / commercial / navigational / transactional]
-- Page content summary: [2–3 sentences describing what the page covers]
-- Brand name to include: [company name — include in title tag or not?]
-- Current meta description (if updating): [paste current version or &quot;none&quot;]
-- Top competitor title/meta example (optional): [paste a competitor&#x27;s to differentiate from]
-
-Role: Act as an SEO specialist who treats the search result page as a conversion moment. Every character in a title tag and meta description is competing against 9 other results — you write to earn the click, not just describe the page.
-
-Instruction: Write 3 variations of each:
-1. Title Tag — 3 variations (50–60 characters each)
-   - Variation A: Leads with the keyword, benefits-focused
-   - Variation B: Question or &quot;how to&quot; format
-   - Variation C: Specificity/number format
-2. Meta Description — 3 variations (150–160 characters each)
-   - Variation A: Benefit-led
-   - Variation B: Problem/solution format
-   - Variation C: Urgency or specificity
-
-Spec:
-- Title tag: 50–60 characters max (show character count in brackets)
-- Meta description: 150–160 characters max (show character count in brackets)
-- Keyword must appear in all 6 pieces
-- Each variation uses a different click motivator (not the same opening word)
-- Show character count next to each piece
-
-Performance bar: All pieces are within character limits. Keyword is in all 6. Each pair of title + meta variation works together. A/B testable — variations are meaningfully different, not just word-swap.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>&quot;We offer customer support software for businesses of all sizes. Our platform helps you manage tickets and improve customer satisfaction. Learn more today!&quot;</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-07">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#07</span>
-          <h2>Competitor Content Gap Analysis</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Identify content topics and keywords that competitors rank for (or cover well) that you don&#x27;t — and prioritise them by estimated traffic potential and conversion relevance to your ICP.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Your company: [name, what you do]. Competitors: [list 2–4 competitors]. Your ICP: [who your ideal customer is]. Your current content strengths: [what topics you already cover well].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a content strategist who runs gap analyses that produce a prioritised content roadmap — not a list of every topic competitors mention, but the 10 topics worth actually creating.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Analyse the competitor content information provided and produce: top 10 gap topics with search intent, estimated priority (high/medium/low), and a content angle that would differentiate your version from the competitor&#x27;s.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Gap analysis table format. Each topic: keyword or topic, current owner (which competitor), search intent, priority, your differentiated angle. 10 topics, prioritised by high to low.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Content team can take this table and start briefing the top 3 pieces this week. Each differentiated angle is specific enough to be a content brief hook.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-6" onclick="copyPrompt("Context: I'm running a content gap analysis for [Company Name] ([what you do, 1 sentence]) against these competitors: [list competitor names and URLs]. Our ICP: [describe your ideal customer \u2014 industry, role, company size, pain point]. Our existing content strengths (topics we already cover well): [list 3\u20135 topics or categories].\n\nCompetitor content information (paste what you know \u2014 from SEMrush, Ahrefs, manual research, or just the topics you've seen them cover):\n[Paste competitor blog topics, categories, or keyword data here]\n\nRole: Act as a content strategist who turns gap analysis data into a prioritised content roadmap \u2014 not a list of everything competitors do, but the 10 topics most worth creating for your ICP.\n\nInstruction: Based on the competitor information provided, identify the top 10 content gaps \u2014 topics or keywords that competitors are covering that you are not. For each:\n1. Topic/Keyword \u2014 the content gap\n2. Who Owns It \u2014 which competitor ranks or covers it\n3. Search Intent \u2014 informational / commercial / comparison\n4. Priority \u2014 High / Medium / Low based on ICP relevance and estimated traffic\n5. Your Angle \u2014 how you'd approach this topic differently to create something better or more specific for your ICP (not \"write a better version\" \u2014 what specifically would you do differently)\n\nSpec:\n- Table format\n- 10 gaps, sorted by priority (High first)\n- Your Angle must be specific \u2014 not \"write a comprehensive guide\"\n- Note: this analysis is based on the information provided; validate with an SEO tool before investing in production\n\nPerformance bar: Content team can brief the top 3 pieces from this table this week. Each \"Your Angle\" is a real content hook, not a generic suggestion.", 'copy-card-6')">Copy</button>
-            <pre>Context: I&#x27;m running a content gap analysis for [Company Name] ([what you do, 1 sentence]) against these competitors: [list competitor names and URLs]. Our ICP: [describe your ideal customer — industry, role, company size, pain point]. Our existing content strengths (topics we already cover well): [list 3–5 topics or categories].
-
-Competitor content information (paste what you know — from SEMrush, Ahrefs, manual research, or just the topics you&#x27;ve seen them cover):
-[Paste competitor blog topics, categories, or keyword data here]
-
-Role: Act as a content strategist who turns gap analysis data into a prioritised content roadmap — not a list of everything competitors do, but the 10 topics most worth creating for your ICP.
-
-Instruction: Based on the competitor information provided, identify the top 10 content gaps — topics or keywords that competitors are covering that you are not. For each:
-1. Topic/Keyword — the content gap
-2. Who Owns It — which competitor ranks or covers it
-3. Search Intent — informational / commercial / comparison
-4. Priority — High / Medium / Low based on ICP relevance and estimated traffic
-5. Your Angle — how you&#x27;d approach this topic differently to create something better or more specific for your ICP (not &quot;write a better version&quot; — what specifically would you do differently)
-
-Spec:
-- Table format
-- 10 gaps, sorted by priority (High first)
-- Your Angle must be specific — not &quot;write a comprehensive guide&quot;
-- Note: this analysis is based on the information provided; validate with an SEO tool before investing in production
-
-Performance bar: Content team can brief the top 3 pieces from this table this week. Each &quot;Your Angle&quot; is a real content hook, not a generic suggestion.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>You should look at what your competitors are doing and find topics they cover that you don&#x27;t. Consider writing about common industry trends, how-to guides, and case studies. You could also do comparison posts and product reviews.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-08">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#08</span>
-          <h2>Content Calendar Brief</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Brief a month of content for a specific campaign or theme — providing a structured calendar with content types, angles, distribution channels, and an editorial through-line that makes the month feel cohesive rather than a random collection of posts.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Month: [month and year]. Campaign/theme: [the focus for this month]. Company: [name, product]. Key launch or event: [any product launch, webinar, campaign happening this month]. Channels active: [list — blog, LinkedIn, email, etc.].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a content director who plans monthly calendars that have an editorial theme running through them — so each piece reinforces the others, rather than being standalone isolated posts.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Create a month-long content brief with: editorial theme statement, one anchor piece, weekly content plan per channel, and a note on how each piece ladders to the anchor.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Calendar format with weekly table (Week 1–4). Each week: 1 blog topic / 2 social posts / 1 email send (or adjust to channels specified). Each piece has a one-line angle, not just a topic.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Content team can start briefing and producing immediately. Each piece has a clear editorial angle. The month tells a coherent story when read in sequence.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-7" onclick="copyPrompt("Context: I'm planning content for [Company Name] for [Month + Year]. \n- Campaign/theme for this month: [the main editorial focus \u2014 e.g., \"retention month\", \"new product launch\", \"thought leadership push\"]\n- Key event or launch: [any anchor event \u2014 product launch date, webinar, conference, or \"none\"]\n- Target audience this month: [who you're primarily targeting with this content]\n- Active channels: [list \u2014 blog / LinkedIn / email newsletter / Twitter / Instagram / YouTube]\n- Content team capacity: [how many pieces can be produced \u2014 e.g., \"4 blog posts, 12 social posts, 4 email sends\"]\n\nRole: Act as a content director who builds monthly calendars with a clear editorial through-line \u2014 so each piece reinforces the others and the month tells a coherent story, not a random selection of topics.\n\nInstruction: Create a monthly content brief with:\n1. Editorial Theme Statement \u2014 one sentence that describes the month's narrative arc\n2. Anchor Piece \u2014 the most important piece of content this month (usually a long-form blog or video) that everything else can reference\n3. Weekly Plan (Weeks 1\u20134) \u2014 for each week:\n   - One blog/long-form topic with angle\n   - 2\u20133 social post topics with platform and angle\n   - 1 email topic with subject line direction\n4. How It Ladders \u2014 brief note on how each week builds on the previous one\n5. Repurpose Map \u2014 which pieces can be turned into what (e.g., blog post \u2192 3 social posts \u2192 email section)\n\nSpec:\n- Calendar table format for the weekly plan\n- Each piece has an angle (one sentence), not just a topic title\n- Anchor piece defined upfront\n- Repurpose map at the end\n- Adapt to the channel list and capacity provided\n\nPerformance bar: Content team can start briefing the first week's pieces immediately. Each piece's angle is specific enough to be a brief. Month has a coherent narrative when consumed in sequence.", 'copy-card-7')">Copy</button>
-            <pre>Context: I&#x27;m planning content for [Company Name] for [Month + Year]. 
-- Campaign/theme for this month: [the main editorial focus — e.g., &quot;retention month&quot;, &quot;new product launch&quot;, &quot;thought leadership push&quot;]
-- Key event or launch: [any anchor event — product launch date, webinar, conference, or &quot;none&quot;]
-- Target audience this month: [who you&#x27;re primarily targeting with this content]
-- Active channels: [list — blog / LinkedIn / email newsletter / Twitter / Instagram / YouTube]
-- Content team capacity: [how many pieces can be produced — e.g., &quot;4 blog posts, 12 social posts, 4 email sends&quot;]
-
-Role: Act as a content director who builds monthly calendars with a clear editorial through-line — so each piece reinforces the others and the month tells a coherent story, not a random selection of topics.
-
-Instruction: Create a monthly content brief with:
-1. Editorial Theme Statement — one sentence that describes the month&#x27;s narrative arc
-2. Anchor Piece — the most important piece of content this month (usually a long-form blog or video) that everything else can reference
-3. Weekly Plan (Weeks 1–4) — for each week:
-   - One blog/long-form topic with angle
-   - 2–3 social post topics with platform and angle
-   - 1 email topic with subject line direction
-4. How It Ladders — brief note on how each week builds on the previous one
-5. Repurpose Map — which pieces can be turned into what (e.g., blog post → 3 social posts → email section)
-
-Spec:
-- Calendar table format for the weekly plan
-- Each piece has an angle (one sentence), not just a topic title
-- Anchor piece defined upfront
-- Repurpose map at the end
-- Adapt to the channel list and capacity provided
-
-Performance bar: Content team can start briefing the first week&#x27;s pieces immediately. Each piece&#x27;s angle is specific enough to be a brief. Month has a coherent narrative when consumed in sequence.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Week 1: Blog post about customer support tips. Week 2: Social media posts about customer service. Week 3: Email newsletter. Week 4: Another blog post.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-09">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#09</span>
-          <h2>Webinar Follow-Up Email</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a post-webinar follow-up email sequence that thanks attendees, delivers the promised content, drives the intended next step, and nurtures no-shows — without being a generic &quot;thanks for attending&quot; email that everyone ignores.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Webinar: [title, date, topic]. Attendees: [N attended / N registered but didn&#x27;t attend]. Content to include: [recording link, slides, resources promised]. Primary next step: [what you want them to do].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a demand generation specialist who treats post-webinar email as the highest-leverage moment in the webinar funnel — this is when interest is highest and the conversion window is short.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write two emails: Email 1 (to attendees, same day) — thanks + recording + primary CTA. Email 2 (to no-shows, next day) — re-engage with a hook from the webinar content + recording.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>Two separate emails. Each 150–200 words. Attendee email: personal, specific, one CTA. No-show email: starts with the most compelling insight from the webinar (not &quot;sorry you missed it&quot;).</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>Attendee email open rate potential: subject line references the webinar specifically. No-show email open rate potential: subject line gives them a reason to open even though they missed it. Both have one clear CTA.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-8" onclick="copyPrompt("Context: I ran a webinar titled \"[Webinar Title]\" on [date]. Topic: [brief description of what was covered]. \n- Attendees: [N] people attended live\n- No-shows: [N] registered but didn't attend\n- Top 2\u20133 insights from the webinar: [list the most valuable things covered \u2014 what attendees said was most useful]\n- Resources to share: [recording link / slides / template / guide]\n- Primary next step I want people to take: [free trial / book a demo / read blog post / download resource]\n- Company: [name and brief description]\n\nRole: Act as a demand generation specialist who treats post-webinar email as the highest-conversion moment in the funnel \u2014 interest peaks right after the session, and most teams waste it with a generic \"thanks for attending\" email.\n\nInstruction: Write two emails:\n\nEmail 1 \u2014 Attendee Follow-Up (send same day or next morning)\n- Thanks them for attending (specific, not generic)\n- Delivers the most memorable/valuable moment from the webinar in 1\u20132 sentences\n- Provides the recording and any promised resources\n- One clear CTA\n\nEmail 2 \u2014 No-Show Re-Engagement (send 24 hours after webinar)\n- Does NOT open with \"sorry you missed it\"\n- Opens with the most compelling insight from the webinar (give them value immediately)\n- Then reveals it came from the webinar and shares the recording\n- One clear CTA (same as attendee email)\n\nSpec:\n- Two separate emails, clearly labelled\n- 150\u2013200 words each\n- Subject lines that don't say \"Recording available\" or \"Missed the webinar?\"\n- One CTA per email\n- Attendee email: personal and specific about what was discussed\n- No-show email: leads with value, not guilt\n\nPerformance bar: Attendee subject line makes them want to open even though they were there. No-show subject line makes them want to open even though they missed it. Both have a single clear next step.", 'copy-card-8')">Copy</button>
-            <pre>Context: I ran a webinar titled &quot;[Webinar Title]&quot; on [date]. Topic: [brief description of what was covered]. 
-- Attendees: [N] people attended live
-- No-shows: [N] registered but didn&#x27;t attend
-- Top 2–3 insights from the webinar: [list the most valuable things covered — what attendees said was most useful]
-- Resources to share: [recording link / slides / template / guide]
-- Primary next step I want people to take: [free trial / book a demo / read blog post / download resource]
-- Company: [name and brief description]
-
-Role: Act as a demand generation specialist who treats post-webinar email as the highest-conversion moment in the funnel — interest peaks right after the session, and most teams waste it with a generic &quot;thanks for attending&quot; email.
-
-Instruction: Write two emails:
-
-Email 1 — Attendee Follow-Up (send same day or next morning)
-- Thanks them for attending (specific, not generic)
-- Delivers the most memorable/valuable moment from the webinar in 1–2 sentences
-- Provides the recording and any promised resources
-- One clear CTA
-
-Email 2 — No-Show Re-Engagement (send 24 hours after webinar)
-- Does NOT open with &quot;sorry you missed it&quot;
-- Opens with the most compelling insight from the webinar (give them value immediately)
-- Then reveals it came from the webinar and shares the recording
-- One clear CTA (same as attendee email)
-
-Spec:
-- Two separate emails, clearly labelled
-- 150–200 words each
-- Subject lines that don&#x27;t say &quot;Recording available&quot; or &quot;Missed the webinar?&quot;
-- One CTA per email
-- Attendee email: personal and specific about what was discussed
-- No-show email: leads with value, not guilt
-
-Performance bar: Attendee subject line makes them want to open even though they were there. No-show subject line makes them want to open even though they missed it. Both have a single clear next step.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>Subject: Thanks for attending our webinar! Hi, Thank you for attending our webinar. We hope you found it valuable. The recording is now available at [link]. Please let us know if you have any questions. Best regards.</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-    <div class="prompt-card" id="prompt-10">
-      <div class="prompt-header">
-        <div class="prompt-title-wrap">
-          <span class="prompt-num">#10</span>
-          <h2>YouTube Description</h2>
-        </div>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-btn">Open Claude.ai →</a>
-      </div>
-      <div class="prompt-body">
-        <div class="prompt-purpose">Write a YouTube video description optimised for search discovery (YouTube SEO), with timestamps for navigation, relevant keywords placed naturally, and a structured CTA section — because most YouTube descriptions are an afterthought that costs the video half its potential reach.</div>
-        <div class="crisp-section">
-          <h4>CRISP Breakdown</h4>
-          <table class="crisp-table">
-            <tbody>
-                <tr>
-                  <td>Context</td>
-                  <td>Video: [title and topic]. Channel: [channel name and niche]. Target keyword: [what people would search to find this]. Video length and timestamps: [list the sections and their start times]. Links to include: [resources, products, other videos].</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>You are a YouTube SEO specialist who knows that a description is not a transcript summary — it&#x27;s a search document and a navigation tool for the viewer.</td>
-                </tr>
-                <tr>
-                  <td>Instruction</td>
-                  <td>Write a YouTube description with: keyword-rich opening paragraph (first 2–3 lines visible before &quot;show more&quot;), a what-you&#x27;ll-learn section, timestamped chapters, resources section, and a CTA block.</td>
-                </tr>
-                <tr>
-                  <td>Spec</td>
-                  <td>YouTube description format. Opening paragraph 150 words (appears before &quot;show more&quot;). Timestamps in the standard YouTube format (0:00, 1:30, etc.). Total length: 300–400 words. Primary keyword in first 25 words.</td>
-                </tr>
-                <tr>
-                  <td>Performance</td>
-                  <td>The video gets discovered by search for the target keyword. Viewers navigate using the timestamps. One resource link or CTA is clicked by at least 3% of viewers.</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="full-prompt-section">
-          <h4>Full Prompt — copy, fill placeholders, paste into Claude.ai</h4>
-          <div class="prompt-code-wrap">
-            <button class="copy-btn" id="copy-card-9" onclick="copyPrompt("Context: I'm writing a YouTube description for a video on [Company/Channel Name]'s channel. \n- Video title: [exact title as it appears on YouTube]\n- Topic summary: [2\u20133 sentences about what the video covers]\n- Target keyword: [what people would search to find this video]\n- Video length: [total minutes]\n- Timestamps and sections: [list each section with its start time \u2014 e.g., \"0:00 Intro / 2:15 The CSAT problem / 8:30 The alternative metrics / ...\"]\n- Resources to link: [blog post, template, product page, related video \u2014 give titles and URLs]\n- Subscribe/social CTA: [your channel subscribe prompt and any social handles]\n- Primary CTA goal: [what you most want viewers to do after watching]\n\nRole: Act as a YouTube SEO specialist who treats video descriptions as discovery documents, not summaries. The first 150 words are indexed by YouTube's algorithm and set viewer expectations \u2014 they're too valuable to waste.\n\nInstruction: Write a YouTube description with:\n1. Opening Paragraph (150 words, before \"show more\") \u2014 keyword in first 25 words, explain the core value prop, tell the viewer what they'll learn, written to be read (not a keyword dump)\n2. What You'll Learn \u2014 4\u20136 bullet points of key takeaways\n3. Timestamps \u2014 all chapters in standard YouTube format\n4. Resources \u2014 labelled links with a one-line description of each\n5. CTA Block \u2014 subscribe ask, social follow, primary action link\n\nSpec:\n- YouTube description format\n- Opening paragraph: 150 words max (before \"show more\" fold)\n- Timestamps: standard format (0:00, 1:30, 10:45 etc.)\n- Primary keyword in first 25 words\n- Total length: 300\u2013400 words\n- CTA block at the end (most viewers don't see it; that's okay \u2014 it's for the ones who scroll)\n\nPerformance bar: Video ranks on page 1 for the target keyword within 30 days of publish. Timestamps are accurate and cover every major section. One external link gets clicked.", 'copy-card-9')">Copy</button>
-            <pre>Context: I&#x27;m writing a YouTube description for a video on [Company/Channel Name]&#x27;s channel. 
-- Video title: [exact title as it appears on YouTube]
-- Topic summary: [2–3 sentences about what the video covers]
-- Target keyword: [what people would search to find this video]
-- Video length: [total minutes]
-- Timestamps and sections: [list each section with its start time — e.g., &quot;0:00 Intro / 2:15 The CSAT problem / 8:30 The alternative metrics / ...&quot;]
-- Resources to link: [blog post, template, product page, related video — give titles and URLs]
-- Subscribe/social CTA: [your channel subscribe prompt and any social handles]
-- Primary CTA goal: [what you most want viewers to do after watching]
-
-Role: Act as a YouTube SEO specialist who treats video descriptions as discovery documents, not summaries. The first 150 words are indexed by YouTube&#x27;s algorithm and set viewer expectations — they&#x27;re too valuable to waste.
-
-Instruction: Write a YouTube description with:
-1. Opening Paragraph (150 words, before &quot;show more&quot;) — keyword in first 25 words, explain the core value prop, tell the viewer what they&#x27;ll learn, written to be read (not a keyword dump)
-2. What You&#x27;ll Learn — 4–6 bullet points of key takeaways
-3. Timestamps — all chapters in standard YouTube format
-4. Resources — labelled links with a one-line description of each
-5. CTA Block — subscribe ask, social follow, primary action link
-
-Spec:
-- YouTube description format
-- Opening paragraph: 150 words max (before &quot;show more&quot; fold)
-- Timestamps: standard format (0:00, 1:30, 10:45 etc.)
-- Primary keyword in first 25 words
-- Total length: 300–400 words
-- CTA block at the end (most viewers don&#x27;t see it; that&#x27;s okay — it&#x27;s for the ones who scroll)
-
-Performance bar: Video ranks on page 1 for the target keyword within 30 days of publish. Timestamps are accurate and cover every major section. One external link gets clicked.</pre>
-          </div>
-        </div>
-        
-        <div class="before-after">
-          
-            <div class="ba-block before">
-              <h4>Before — Weak prompt output</h4>
-              <blockquote>In this video, we talk about customer support metrics and how to improve them. Watch to learn more about how to measure customer satisfaction. Like and subscribe for more content!</blockquote>
-            </div>
-          
-        </div>
-      </div>
-    </div>
+    <p class="lead">Ten <b>CRISP</b> prompts for the work a content marketer actually repeats — each one written out in full,
+      with the <b>lazy version next to it</b> so you can see exactly what the structure buys you.
+      <b>Pick a prompt on the left, then flip between “Lazy prompt” and “CRISP prompt.”</b> Same task, same model —
+      the only thing that changes is what you told it.</p>
   </div>
 
-    <footer>HO3 · Peer-reviewed · ForgeMind AI — AI Productivity Essentials · Module M6 (Week 2)</footer>
+  <div class="lib">
+    <nav class="rail" id="rail"><div class="rl">The 10 prompts</div></nav>
+    <div class="pane" id="pane"></div>
   </div>
-  <script>
-    function copyPrompt(text, btnId) {
-      navigator.clipboard.writeText(text).then(function() {
-        var btn = document.getElementById(btnId);
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 2000);
-      }).catch(function() {
-        // fallback
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        var btn = document.getElementById(btnId);
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 2000);
-      });
+
+  <footer>
+    10 CRISP prompts · each with the lazy prompt it replaces, both outputs, and the bar it has to clear.<br>
+    HO3 · Solo · ForgeMind AI — AI Productivity Essentials · Module M6 (Week 2)
+  </footer>
+
+<script>
+  const PROMPTS = [{"title": "Blog Post Outline", "purpose": "Create a SEO-structured blog post outline with H2/H3 hierarchy, estimated section word counts, and notes for each section — so a writer can produce a complete draft without needing to think about structure, and every section earns its place.", "crisp": [["Context", "Topic: [blog post topic]. Target keyword: [primary keyword]. Search intent: [informational / commercial / navigational]. Target audience: [who reads this and what problem are they solving]. Brand: [company name, voice — e.g., \"authoritative but not stuffy\"]."], ["Role", "You are an SEO content strategist who builds outlines that rank AND convert — you don't optimise for Google at the expense of the reader, or for the reader at the expense of ranking."], ["Instruction", "Create a detailed blog post outline with: SEO title options (3), intro hook approach, H2 sections with H3 sub-sections, section notes, and a conclusion with CTA approach."], ["Spec", "Outline format. Total target word count: [800 / 1200 / 2000 words]. Each H2 has an estimated word count allocation. Section notes tell the writer what to include, not how to write it."], ["Performance", "A writer with no additional briefing can produce a complete first draft from this outline. The keyword appears in the title, meta description hint, and at least 2 H2s naturally."]], "prompt": "Context: I'm a content marketing manager at [Company Name], a [brief company description — what you do and for whom]. I'm writing a blog post on: [topic]. \n- Primary target keyword: [keyword]\n- Secondary keywords: [list 2–3]\n- Search intent: [informational — \"how to X\" / commercial — \"best X\" / comparison — \"X vs Y\"]\n- Target audience: [describe who reads this and what problem they're trying to solve]\n- Ideal reader outcome: [what should the reader be able to do or understand after reading?]\n- Brand voice: [describe tone — e.g., \"practical, direct, no fluff; expertise without jargon\"]\n- Word count target: [800 / 1200 / 2000 words]\n- Any competitors ranking for this topic I should be aware of: [list or \"I'll handle this separately\"]\n\nRole: Act as an SEO content strategist who builds outlines that rank for the target keyword AND genuinely help the reader — not keyword-stuffed content that embarrasses the brand.\n\nInstruction: Create a blog post outline with:\n1. Three SEO title options — one question-based, one \"how to\", one direct/list format\n2. Meta description hint — one sentence summary for the writer to refine\n3. Intro — describe the hook approach (problem / statistic / story / counter-intuitive claim) and what the intro must accomplish\n4. H2 Sections — 4–6 H2s with: title, estimated word count, H3 sub-sections where needed, and 2–3 sentence notes for the writer\n5. Conclusion — approach for the closing section and CTA type\n\nSpec:\n- Outline format (not a draft — section notes only)\n- Word count must add up to the target\n- Primary keyword in at least 2 H2 titles naturally\n- Section notes: what to cover, not how to write it\n- Include a \"what to avoid\" note for the most common mistake in this type of post\n\nPerformance bar: Writer produces a complete, on-target draft from this outline without any additional briefing. Keyword appears naturally (not forced) in title, 2 H2s, and first paragraph.", "before": {"prompt": "Outline a blog post about project management tools.", "output": ["1. Introduction 2. What are project management tools? 3. Top tools 4. How to choose 5. Conclusion"], "why": "No keyword strategy, no section notes, no word count allocation, no CTA approach. This outline gives a writer nothing to work with. The resulting post will be generic."}, "after": {"fills": ["Company: Helply (B2B SaaS customer support platform)", "Topic: How small teams can manage customer support without hiring a full team", "Keyword: \"customer support for small teams\"", "Search intent: Informational + commercial", "Audience: Founders and ops leads at startups (5–30 people), frustrated by support chaos", "Voice: Practical, direct, honest about trade-offs", "Word count: 1,200"], "output": ["<b>Blog Post Outline — Customer Support for Small Teams</b>", "<b>Title Options</b> 1. How to Handle Customer Support With a Small Team (Without Burning Out) 2. Customer Support for Small Teams: The Practical Playbook 3. 5 Things Small Teams Do Differently to Keep Customers Happy Without a Support Department", "<b>Meta Description Hint:</b><br>\"Small team, big support expectations? Here's how to build a system that handles volume without hiring a dedicated team — including the tools that actually make a difference.\"", "---", "<b>Intro (150 words) — Hook approach: Problem + Validation</b><br>Open with the specific frustration: the founder answering support emails at midnight, customer complaints falling through the cracks, \"we'll get back to you\" becoming a lie. Then validate that this is a solvable problem — small teams can punch above their weight on support if they build the right system. End with a clear statement of what this post will cover.", "---", "<b>H2 #1: Why Customer Support Breaks at 20+ Customers (200 words)</b><br><i>Notes:</i> Explain the inflection point where informal support stops working — no one owns it, tickets get lost, response times balloon. Use a concrete example scenario. Don't solve anything here — build the problem before the solution. Include \"customer support for small teams\" naturally.", "<b>H2 #2: The System That Works for Small Teams (250 words)</b><br><i>Notes:</i> Introduce the framework: single inbox, triage, templates, escalation path. This is the core value section. Be specific — name the actual components. - <b>H3: One Inbox to Rule Them All</b> — why centralisation is the first step - <b>H3: Triage Without a Triage Person</b> — how to use tags/labels to prioritise", "<b>H2 #3: Tools Worth Using (and What to Skip) (200 words)</b><br><i>Notes:</i> 3–4 tools with a one-line description and a \"best for\" note. Be honest about limitations. Don't just list every tool — make a judgment call.", "<b>H2 #4: Response Templates That Don't Sound Robotic (200 words)</b><br><i>Notes:</i> Give 2–3 example templates or template types. Explain why templates save time without killing the human touch when done right.", "<b>H2 #5: When to Hire vs When to Automate (150 words)</b><br><i>Notes:</i> Honest assessment of the decision point. When does the system break down and hiring becomes the right move?", "---", "<b>Conclusion (50 words) — CTA: Free trial or content download</b><br>Summarise in 2 sentences what the reader now has. CTA: \"Ready to centralise your support without adding headcount? [Company] helps small teams handle support at scale — try it free.\"", "<b>What to Avoid:</b> Don't write a \"tools comparison\" post in disguise. This should be a system/process post that happens to mention tools — not the other way around."], "why": ""}}, {"title": "LinkedIn Thought Leadership Post", "purpose": "Write a LinkedIn post that builds genuine professional authority on a topic relevant to your audience — without self-promotion, humble-bragging, or the kind of vague inspirational content that LinkedIn is already drowning in.", "crisp": [["Context", "Author: [name, title, company]. Topic/angle: [specific insight or contrarian point of view]. Audience: [who you want to reach on LinkedIn]. Goal: [brand awareness / lead generation / talent attraction / community building]."], ["Role", "You are a ghostwriter who specialises in LinkedIn content for B2B founders and executives — you write posts that sound like the person, not like a LinkedIn engagement pod."], ["Instruction", "Write a LinkedIn post that opens with a hook that earns the scroll, develops one clear idea with a specific insight, and closes with a genuine question or takeaway — not a CTA to DM or visit a link."], ["Spec", "LinkedIn format. 200–280 words. No bullet-point lists in the first 3 lines (LinkedIn hides them). Hook in the first line — no \"I've been thinking about...\" openings. No emoji overuse (max 2). No \"drop your thoughts in the comments\" close."], ["Performance", "Someone in the target audience reads this and thinks \"that's exactly what I've been thinking but couldn't articulate.\" The post feels like it was written by a real person, not a content machine."]], "prompt": "Context: I'm writing a LinkedIn thought leadership post for [Author Name], [Title] at [Company]. \n- Topic/angle: [the specific insight, observation, or contrarian view you want to share — be specific, not \"leadership tips\"]\n- Supporting evidence or example: [a data point, personal experience, or specific story that makes the argument real]\n- Target audience on LinkedIn: [who you want to reach — e.g., \"VPs of Customer Success at mid-market SaaS companies\"]\n- Brand voice: [describe the author's style — e.g., \"direct, data-driven, occasionally self-deprecating\"]\n- Goal of this post: [build authority / generate inbound / attract talent / start a conversation]\n\nRole: Act as a ghostwriter who specialises in LinkedIn content for B2B executives. You write posts that sound like the person said it in a meeting — not like they asked an AI to write their LinkedIn.\n\nInstruction: Write a LinkedIn post that:\n1. Opens with a single hook sentence that creates enough tension to earn a \"see more\" click (not a question, not \"I've been thinking about...\")\n2. Develops ONE idea with a specific angle — not a list of tips\n3. Uses a concrete example or data point to make the argument real\n4. Closes with either a genuine question OR one clear actionable takeaway — not a promotional CTA\n\nSpec:\n- 200–280 words\n- No bullet lists in the first 3 lines\n- Hook in line 1 — no warm-up\n- Max 2 emoji total\n- No \"drop your thoughts below\" or \"DM me if you want to chat\"\n- Written in first person, author's voice\n\nPerformance bar: Target audience member reads this and thinks \"this is exactly what I've been thinking.\" Post feels like a human wrote it, not a content tool. No generic inspirational language.", "before": {"prompt": "Write a LinkedIn post about customer success.", "output": ["Customer success is so important in today's competitive landscape! As a CS leader, I've learned that putting the customer first is always the right move. Here are 5 tips for better customer success: 1. Listen to customers. 2. Be proactive. 3. Build relationships. 4. Use data. 5. Celebrate wins! What are your top CS tips? Drop them below!"], "why": "Generic enough to be written by anyone. \"Listen to customers\" is not an insight. Five tips with zero evidence. \"Drop them below\" is a hollow engagement bait close. Nobody reads this and thinks \"I should follow this person.\""}, "after": {"fills": ["Author: Sarah Chen, VP Customer Success at Helply", "Angle: Companies that use CSAT surveys monthly are measuring the wrong thing — CSAT is a lagging indicator that tells you about service quality, not retention health", "Evidence: Helply's internal data — customers who churn gave 4+ star CSAT scores in their last 90 days", "Audience: CS leaders at B2B SaaS companies", "Voice: Direct, data-driven, comfortable challenging conventional wisdom"], "output": ["Your customers are giving you 5-star CSAT scores and then churning 90 days later.", "We see this pattern constantly. Support interaction is excellent. The team is responsive, helpful, professional. CSAT scores are the highest they've ever been.", "And then the renewal conversation happens.", "Here's what I think is happening: CSAT measures how customers feel about service interactions. It doesn't measure whether they're getting value from the product. These are completely different things, and we keep conflating them.", "A customer who had a frustrating experience that got resolved well will give you a 5. A customer who is quietly not achieving their core use case — but hasn't had any support issues — will also give you a 5. One of those customers is at serious churn risk and your CSAT score will not tell you which one.", "The signal we've found more predictive is product engagement patterns against the customer's stated goal at onboarding. Not \"are they logging in?\" but \"are they logging in to do the thing they bought the product to do?\"", "CSAT is useful for measuring support quality. It's a poor proxy for retention health.", "What leading indicator has your team found most predictive of renewals?"], "why": "Opens with a specific tension, makes a clear contrarian argument, uses real evidence, closes with a genuine question that will actually get CS leaders to respond with their own data."}}, {"title": "Email Newsletter Draft", "purpose": "Draft a focused email newsletter with a clear editorial theme, one primary CTA, and a voice that readers actually want to receive — not a content dump of everything you published this month.", "crisp": [["Context", "Newsletter: [name and description]. Frequency: [weekly / bi-weekly / monthly]. Audience: [who subscribes and why]. This edition's theme: [the topic or angle for this issue]. Content to include: [links, stories, tips, product news]. Primary CTA: [what you want readers to do]."], ["Role", "You are an email editor who knows that a newsletter with one clear editorial point of view outperforms a newsletter that \"covers everything.\" You write editions people forward to colleagues."], ["Instruction", "Draft a newsletter with: a subject line that earns the open, a focused editorial opening, the main content section, and one clear CTA — not five different things to click."], ["Spec", "Email format. 350–450 words of body copy. One subject line + one pre-header. One primary CTA (not three). Scannable — short paragraphs, one image placeholder noted, one pull quote."], ["Performance", "Reader opens, reads to the end, and takes the one action you wanted them to take. The newsletter has a clear point of view, not a content digest. Open rate potential: the subject line is specific enough to stand out."]], "prompt": "Context: I'm writing the [edition number / date] edition of [Newsletter Name], a [frequency] newsletter for [audience description]. \n\nThis edition's theme: [the single editorial focus for this issue]\n\nContent to include:\n- Main story/angle: [describe the main piece of content or idea you want to lead with]\n- Secondary item 1: [link, story, or tip]\n- Secondary item 2: [optional]\n- Product/company news to weave in: [optional — keep brief]\n\nPrimary CTA: [what you want the reader to do — one thing only]\nTone/voice: [describe the newsletter's voice — e.g., \"curious, slightly irreverent, always evidence-backed\"]\nPrevious edition topic: [so this one feels like a continuation, not a repeat]\n\nRole: Act as an email editor who writes newsletters with a clear editorial voice and one main idea per edition — not content aggregators disguised as newsletters.\n\nInstruction: Write a complete newsletter draft with:\n1. Subject line — specific enough to stand out in a busy inbox; not clickbait; includes the main idea\n2. Pre-header text — 40–60 characters, extends the subject line\n3. Opening — 2–3 sentences that set the editorial theme and give the reader a reason to keep reading; no \"Welcome to this week's edition of...\"\n4. Main Content — the primary story/angle, 200–250 words, with the main insight clearly stated\n5. Quick Takes — 1–2 secondary items as brief callouts (50 words each max)\n6. CTA Section — one clear, specific action with a short explanation of why this matters\n7. Sign-off — brief, human, consistent with the newsletter's voice\n\nSpec:\n- 350–450 words body copy\n- One subject line + one pre-header\n- One primary CTA\n- No \"click here\" — specific link text\n- Short paragraphs (3 sentences max)\n- One [IMAGE PLACEHOLDER: description] note\n\nPerformance bar: Reader reads to the end. The subject line is specific enough that they know what they're getting before they open. One clear action they took after reading. The newsletter has a POV, not a topic list.", "before": {"prompt": "Write a marketing newsletter.", "output": ["Subject: Marketing Newsletter - June 2025. Hi everyone! Welcome to our June newsletter. This month we've been busy with lots of great content. Check out our new blog post! Also don't forget about our upcoming webinar. And we have a new product feature. Thanks for reading and have a great summer!"], "why": "Subject line says nothing. No editorial theme. Three CTAs competing with each other. No voice. \"Lots of great content\" is meaningless. This newsletter will be ignored and unsubscribed from."}, "after": {"fills": ["Newsletter: The Support Brief (weekly, CS leaders at B2B SaaS)", "Theme: Why your CSAT score is lying to you", "Main story: Sarah's LinkedIn post (from Prompt 02) became a debate — wanted to expand it", "Secondary: New Helply feature (custom SLA alerts) + research link", "CTA: Sign up for live Q&A session on Thursday"], "output": ["<b>Subject:</b> Your CSAT is high. Your churn is too. Here's why.<br><b>Pre-header:</b> The metric everyone trusts that doesn't predict retention", "---", "Last week I made a claim that got some pushback: CSAT scores are almost useless for predicting churn. Nearly 500 comments later, I still think I'm right — and this week I want to explain why.", "<b>The CSAT Trap</b>", "Here's the pattern: a customer has a support issue. Your team handles it brilliantly. The customer gives you 5 stars. Three months later they cancel.", "What happened? Your service was great. Your product wasn't delivering the outcome they bought it for — but that never showed up in a support ticket, so CSAT never captured it.", "CSAT measures the quality of your service interactions. It says nothing about whether customers are achieving value. These are different things, and when you use one to proxy the other, you get a false sense of security.", "[IMAGE PLACEHOLDER: simple chart showing CSAT scores vs churn rate diverging over time]", "The teams doing this better have shifted their attention from \"how did we handle your last issue?\" to \"are you doing the thing you bought our product to do?\" That's a usage-pattern question, not a satisfaction question.", "<b>Quick Takes</b>", "<b>New: Custom SLA Alerts in Helply</b> — Set alerts based on your own SLA rules, not our defaults. [See how it works →](https://helply.io/updates/sla-alerts)", "<b>Worth reading:</b> Bessemer's new report on CS benchmarks — the retention data on Page 12 is genuinely useful. [Get it →](https://bvp.com/state-of-cloud-2025)", "---", "<b>This Thursday: Live Q&amp;A on retention metrics</b><br>I'm hosting a 45-minute live session on what to measure instead of CSAT — and taking questions from the audience. [Save your spot → Thursday Jun 30, 4pm ET](https://helply.io/events/retention-q-a)", "---", "Until next week,<br>Sarah<br><i>If someone forwarded this to you, you can [subscribe here →](https://helply.io/newsletter)</i>"], "why": ""}}, {"title": "Case Study Interview Questions", "purpose": "Generate targeted, open-ended interview questions for a customer case study that surface specific outcomes, memorable quotes, and emotional moments — rather than producing a story full of vague claims like \"we saved time\" with no proof.", "crisp": [["Context", "Customer: [company name, industry, size]. What they use your product for: [use case]. Known outcome: [metrics you already know — e.g., \"they reduced support tickets by 40%\"]. Case study angle: [what story you want to tell]. Intended audience for the case study: [who will read it — prospects, specific role]."], ["Role", "You are a B2B content writer who has conducted 100+ customer interviews. You know that the best case study quotes come from questions about the before-state, the decision moment, and the specific moment things changed — not from asking \"what do you like about our product?\""], ["Instruction", "Generate 15 interview questions organised by phase: before (the problem), the decision, implementation, results, and emotional/personal. Prioritise questions that will surface quotable answers and specific numbers."], ["Spec", "15 questions organised into 5 phases (3 questions each). Each question is open-ended (no yes/no). Include a note on what each question is designed to surface. 300 words max for the question set."], ["Performance", "The interviewer uses these 15 questions and walks away with at least 3 quotable moments and 2 specific metrics. No question can be answered with \"yes\" or \"no.\""]], "prompt": "Context: I'm conducting a case study interview with [Customer Name/Company] for [Your Company]'s case study program. \n- Customer: [company name], [industry], [company size]\n- What they use our product for: [primary use case]\n- Known outcomes we want to confirm/expand: [metrics you already know or suspect — e.g., \"we know they saved 40% on support costs; we want the story behind it\"]\n- Angle for this case study: [the narrative hook — e.g., \"from reactive to proactive support\" / \"scaling without hiring\" / \"migration success story\"]\n- Intended audience for the case study: [e.g., \"VP-level CS leaders at Series B SaaS companies\"]\n- What the customer has agreed to share: [public name and logo / anonymised / specific metrics only]\n\nRole: Act as an experienced B2B case study interviewer who knows that the best quotes and moments come from asking about the before-state, the turning point, and specific moments — not from asking customers to describe your product's features.\n\nInstruction: Generate 15 interview questions organised into 5 phases:\n1. The Before (3 questions) — surface the pain, the workarounds, the cost of not solving it\n2. The Decision (3 questions) — the evaluation process, what tipped the decision\n3. Implementation (3 questions) — what the rollout was like, surprises, team reaction\n4. Results (3 questions) — specific outcomes, what changed, what they measure now\n5. Emotional/Personal (3 questions) — moments of pride, recommendation, the human story\n\nSpec:\n- 15 questions, 5 phases, 3 per phase\n- Each question: open-ended only (no yes/no possible)\n- Include one-line note on what each question is designed to surface\n- 300 words for the question set\n- No question should include your product name (makes answers less authentic)\n\nPerformance bar: Interviewer walks away with 3+ quotable moments and 2+ specific metrics. Every question could produce a usable quote. No yes/no answers possible.", "before": {"prompt": "Write interview questions for a customer case study.", "output": ["1. What do you think of our product? 2. What features do you use most? 3. Would you recommend us? 4. What results have you seen? 5. Any other feedback?"], "why": "Question 1 will get \"it's great, we love it.\" Question 3 is yes/no. Question 4 is so vague the customer won't know where to start. These questions produce generic testimonials, not compelling case studies."}, "after": {"fills": ["Customer: TechCorp (B2B SaaS, 120 employees)", "Use case: Centralised customer support for a 3-person team handling 500 tickets/week", "Known outcome: 40% ticket reduction, team now handles volume without adding headcount", "Angle: \"Scaling support without scaling the team\"", "Audience: Ops leaders at fast-growing SaaS companies"], "output": ["<b>Case Study Interview Guide — TechCorp x Helply</b>", "<b>Phase 1: The Before (Pain + Context)</b> 1. \"Walk me through what your support setup looked like 18 months ago — who was responsible, what tools you were using, and what a typical day looked like.\" <i>(Surfaces the before-state in the customer's own words)</i> 2. \"What was the thing that was breaking down most often — the thing that made your team feel like they were losing control?\" <i>(Surfaces the emotional cost of the problem, not just the operational one)</i> 3. \"Can you put a number on what that was costing — time, team morale, customer complaints, anything that made the impact concrete?\" <i>(Surfaces a specific metric to anchor the story)</i>", "<b>Phase 2: The Decision</b> 4. \"What made you decide to change something at that particular moment — what was the trigger?\" <i>(The decision catalyst — often the most quotable moment)</i> 5. \"How did you evaluate your options — what were the 2 or 3 things you had to be confident about before committing?\" <i>(Surfaces evaluation criteria that resonate with prospects in the same position)</i> 6. \"What almost stopped you from moving forward?\" <i>(Surfaces the objection every prospect has — and how they overcame it)</i>", "<b>Phase 3: Implementation</b> 7. \"What was the first week of rollout actually like — what surprised you?\" <i>(Authentic, un-polished detail that makes the story real)</i> 8. \"How did your team react when they first used it in production?\" <i>(Team adoption story — often very quotable)</i> 9. \"What was harder than you expected, and what was easier?\" <i>(Honest balance that builds credibility)</i>", "<b>Phase 4: Results</b> 10. \"When did you first notice something meaningfully different — what did you see or measure?\" <i>(The turning point moment)</i> 11. \"What would the numbers look like if you'd stayed with your old approach through today?\" <i>(Forces a concrete comparison)</i> 12. \"What's your team able to do now that they simply couldn't do before?\" <i>(Surfaces qualitative outcomes)</i>", "<b>Phase 5: Emotional / Personal</b> 13. \"What's the moment from the last 12 months you'd be most proud to tell your CEO about?\" <i>(Pride quote — often the headline)</i> 14. \"If a peer asked why you made this change, what's the one thing you'd want them to know before they decide?\" <i>(The recommendation in their own words)</i> 15. \"Is there anything I haven't asked about that you think the next person in your position should know?\" <i>(The thing they've been wanting to say)</i>"], "why": ""}}, {"title": "Social Media Repurpose Pack", "purpose": "Turn one long-form content piece into 5 platform-specific social media posts, each adapted for the norms of that platform — so one piece of content creates a week of social output without being copy-pasted five times.", "crisp": [["Context", "Source content: [link or paste the main content piece]. Platforms to target: [LinkedIn / Twitter/X / Instagram / Facebook / Threads]. Brand: [company name, brand voice]. Campaign period: [when to post these]."], ["Role", "You are a social media content specialist who knows that the same content on five platforms should feel native to each, not like a press release distributed everywhere."], ["Instruction", "Adapt the source content into 5 platform-specific posts, each using the conventions of that platform: LinkedIn (professional, paragraph-heavy), Twitter/X (punchy, under 280 characters or a thread), Instagram (visual hook, caption with hashtags), Facebook (community-focused), Threads (conversational, short)."], ["Spec", "5 posts, one per platform. Each must feel native to the platform format. Include character count where relevant. Include 3–5 suggested hashtags for Instagram only."], ["Performance", "Each post would be appropriate to schedule without further editing. Posts don't feel like they came from the same template. The main insight from the source piece is preserved in all five but expressed differently."]], "prompt": "Context: I'm repurposing [content type — e.g., \"a blog post / podcast episode / case study / webinar recap\"] about [topic summary] for [Company Name]'s social channels. Brand voice: [describe — e.g., \"practical, direct, evidence-driven; we don't use jargon or inspirational platitudes\"].\n\nSource content summary (paste a summary OR the key insight/stats/quotes you want to use):\n[Paste 3–5 key points, stats, or quotes from the source content]\n\nTarget platforms: [LinkedIn / Twitter-X / Instagram / Facebook / Threads — list which ones you want]\nCampaign timing: [when these will be posted]\nCTA or destination link: [URL to send people to, if applicable]\n\nRole: Act as a social media content specialist who understands that LinkedIn readers want depth, Twitter/X readers want a punchy take, and Instagram audiences need a visual hook. You write each platform natively, not as a copy-paste job.\n\nInstruction: Write one post for each platform listed, following these conventions:\n- LinkedIn: 150–250 words, paragraph format, one insight per post, close with a genuine question or one CTA\n- Twitter/X: Either one punchy post under 280 characters OR a 4-tweet thread where each tweet can stand alone\n- Instagram: Short visual hook (1–2 lines) + 100–150 word caption + 5 relevant hashtags\n- Facebook: 100–150 words, community/discussion framing, question to encourage comments\n- Threads: 2–3 short posts (under 500 chars each) in a conversational chain\n\nSpec:\n- Each post clearly labelled by platform\n- Character counts shown for Twitter/X and Threads\n- Instagram hashtags separated at end of caption\n- No post should feel like it was translated from another platform\n- All use the key insight from the source content but frame it differently\n\nPerformance bar: Any post from this pack can be scheduled without editing. Each feels native to its platform. The main insight is in all five but expressed in ways appropriate to each audience.", "before": {"prompt": "Repurpose this blog post for social media.", "output": ["Post for all channels: \"Check out our new blog post about customer support for small teams! We share 5 tips to help you manage support without a big team. Link in bio! #customerservice #smallbusiness #tips\""], "why": "Same post for every platform, hashtag-heavy, \"link in bio\" is Instagram-only language used everywhere, \"check out our new blog post\" is the weakest possible hook. Nobody clicks this."}, "after": {"fills": [], "output": ["--- <b>LINKEDIN (180 words)</b>", "We analysed our churn data last quarter and found something that changed how we think about retention.", "63% of customers who cancelled had given us a 4 or 5-star CSAT score in the 90 days before cancelling.", "That means our support was excellent. Our product wasn't delivering the outcome they bought it for — but that never showed up as a support ticket, so it never showed up in CSAT.", "Here's what we think is a better question: \"Are customers doing the specific thing they bought our product to do?\" That's a usage-pattern question, not a satisfaction question.", "Companies that track usage-vs-intent (not just satisfaction) retain 20% more customers year-over-year in our dataset.", "If your CSAT is high but your renewals are uncertain, this might be worth thinking about.", "What retention signal has your team found most predictive? I'm genuinely curious what others are measuring.", "--- <b>TWITTER/X — Thread (4 tweets)</b>", "1/ CSAT is the metric everyone trusts. It doesn't predict churn. Here's the data that changed how we think about retention: (1/4) [217 chars]", "2/ We looked at customers who cancelled last quarter. 63% gave us 4–5 star CSAT in the 90 days before they left. Great service. Product wasn't delivering their core outcome. CSAT couldn't see it. (2/4) [194 chars]", "3/ The better question: \"Are customers doing the thing they bought the product to do?\" Usage-vs-intent is a better retention signal than satisfaction. Teams tracking it retain 20% more customers/year. (3/4) [196 chars]", "4/ If your CSAT is high and renewals are uncertain, the problem might not be service quality. What retention metric has your team found most predictive? (4/4) [155 chars]", "--- <b>INSTAGRAM (Caption + Hashtags)</b>", "Your CSAT is a 4.8. Your churn is rising. Something doesn't add up.", "We dug into our data and found that 63% of customers who cancelled had given us high satisfaction scores in the 90 days before leaving. Support was great. Product value wasn't landing. CSAT couldn't see it.", "The metric that actually predicts retention: are customers doing the specific thing they signed up to do? Not \"are they happy with service?\" but \"are they achieving their goal?\"", "Companies that track this retain 20% more customers per year. The shift from satisfaction tracking to intent tracking is one of the highest-leverage changes a CS team can make.", "Link in bio to read the full breakdown.", "#CustomerSuccess #ChurnPrevention #SaaS #B2BMarketing #CustomerRetention", "--- <b>FACEBOOK (120 words)</b>", "Question for CS leaders: What metric do you use to predict renewals before the QBR?", "We used to rely on CSAT — and it worked OK for measuring service quality. But we kept seeing a pattern where customers with high CSAT scores were churning. After digging into the data, we found that 63% of churned customers had given us 4+ stars in the 90 days before cancelling.", "The shift that helped us: tracking whether customers are achieving the outcome they bought the product for, not just whether they're happy with support.", "Curious what others are using. What's been the most predictive leading indicator of renewal for your team? Drop it in the comments — genuinely interested in what others are seeing.", "--- <b>THREADS (3 conversational posts)</b>", "Post 1: Hot take: CSAT scores are a poor predictor of churn. 63% of our churned customers gave us 4–5 stars in the 90 days before leaving. [136 chars]", "Post 2: The gap: CSAT measures service quality. Not whether the customer is achieving the outcome they paid for. Those are different things and most CS teams conflate them. [163 chars]", "Post 3: What's actually predictive: usage-vs-intent metrics. Are they doing the thing they bought the product to do? Teams tracking this retain 20% more customers year-over-year. [172 chars]"], "why": ""}}, {"title": "SEO Meta Description", "purpose": "Write SEO-optimised meta descriptions and title tags that stay within Google's character limits, include the target keyword naturally, and are written to earn a click — not just describe the page.", "crisp": [["Context", "Page: [URL or page description]. Target keyword: [primary keyword]. Search intent: [what the searcher wants — informational / commercial / navigational]. Current meta (if any): [paste current meta to improve]."], ["Role", "You are an SEO specialist who writes meta descriptions that treat the search result page as a conversion moment — you're competing against 9 other results and every word counts."], ["Instruction", "Write 3 variations each of: title tag and meta description. Each variation must include the target keyword, stay within character limits, and use a different click-trigger (curiosity, specificity, urgency, benefit)."], ["Spec", "Title tag: 50–60 characters max. Meta description: 150–160 characters max. Keyword in first 30 characters of title tag. 3 variations of each. Character count shown next to each."], ["Performance", "All 6 pieces stay within character limits (checked). Keyword is in all 6 pieces. At least one variation for each uses a different click motivator. A/B testable."]], "prompt": "Context: I'm writing SEO meta tags for a page at [URL or description of page content]. \n- Target keyword: [primary keyword]\n- Search intent: [informational / commercial / navigational / transactional]\n- Page content summary: [2–3 sentences describing what the page covers]\n- Brand name to include: [company name — include in title tag or not?]\n- Current meta description (if updating): [paste current version or \"none\"]\n- Top competitor title/meta example (optional): [paste a competitor's to differentiate from]\n\nRole: Act as an SEO specialist who treats the search result page as a conversion moment. Every character in a title tag and meta description is competing against 9 other results — you write to earn the click, not just describe the page.\n\nInstruction: Write 3 variations of each:\n1. Title Tag — 3 variations (50–60 characters each)\n   - Variation A: Leads with the keyword, benefits-focused\n   - Variation B: Question or \"how to\" format\n   - Variation C: Specificity/number format\n2. Meta Description — 3 variations (150–160 characters each)\n   - Variation A: Benefit-led\n   - Variation B: Problem/solution format\n   - Variation C: Urgency or specificity\n\nSpec:\n- Title tag: 50–60 characters max (show character count in brackets)\n- Meta description: 150–160 characters max (show character count in brackets)\n- Keyword must appear in all 6 pieces\n- Each variation uses a different click motivator (not the same opening word)\n- Show character count next to each piece\n\nPerformance bar: All pieces are within character limits. Keyword is in all 6. Each pair of title + meta variation works together. A/B testable — variations are meaningfully different, not just word-swap.", "before": {"prompt": "Write a meta description for our customer support software page.", "output": ["\"We offer customer support software for businesses of all sizes. Our platform helps you manage tickets and improve customer satisfaction. Learn more today!\""], "why": "No keyword, 147 characters but no intent match, \"businesses of all sizes\" is the broadest possible audience claim, \"learn more today\" is the most generic CTA possible. Nobody clicks this over the 9 other results."}, "after": {"fills": ["Page: Helply's main product page (helply.io/product)", "Keyword: \"customer support software for small teams\"", "Intent: Commercial (evaluating tools to buy)", "Page covers: features for centralised support, ticket management, AI automation, reporting"], "output": ["<b>TITLE TAGS</b>", "Variation A (Benefit-focused):<br><code>Customer Support Software for Small Teams | Helply</code> [49 chars]", "Variation B (Question format):<br><code>Managing Support Without a Big Team? Try Helply</code> [47 chars]", "Variation C (Specificity):<br><code>Handle 500+ Tickets/Week With a Team of 3 | Helply</code> [50 chars]", "---", "<b>META DESCRIPTIONS</b>", "Variation A (Benefit-led):<br><code>Helply gives small support teams the tools to handle high ticket volume without adding headcount. Centralised inbox, AI triage, live reporting.</code> [142 chars]", "Variation B (Problem/Solution):<br><code>Support chaos eating your team alive? Helply centralises every ticket in one place — so a 3-person team can handle what used to need 8. Free trial.</code> [148 chars]", "Variation C (Specificity):<br><code>Teams using Helply cut ticket volume by 40% in 60 days. Customer support software built for small teams who need to punch above their weight.</code> [141 chars]", "---", "<b>Recommended Pairings for A/B Testing</b>", "- Test 1: Title A + Meta C (credibility pairing — name + stat) - Test 2: Title C + Meta B (specificity + problem/solution) - Test 3: Title B + Meta A (question hook + benefit payoff)"], "why": ""}}, {"title": "Competitor Content Gap Analysis", "purpose": "Identify content topics and keywords that competitors rank for (or cover well) that you don't — and prioritise them by estimated traffic potential and conversion relevance to your ICP.", "crisp": [["Context", "Your company: [name, what you do]. Competitors: [list 2–4 competitors]. Your ICP: [who your ideal customer is]. Your current content strengths: [what topics you already cover well]."], ["Role", "You are a content strategist who runs gap analyses that produce a prioritised content roadmap — not a list of every topic competitors mention, but the 10 topics worth actually creating."], ["Instruction", "Analyse the competitor content information provided and produce: top 10 gap topics with search intent, estimated priority (high/medium/low), and a content angle that would differentiate your version from the competitor's."], ["Spec", "Gap analysis table format. Each topic: keyword or topic, current owner (which competitor), search intent, priority, your differentiated angle. 10 topics, prioritised by high to low."], ["Performance", "Content team can take this table and start briefing the top 3 pieces this week. Each differentiated angle is specific enough to be a content brief hook."]], "prompt": "Context: I'm running a content gap analysis for [Company Name] ([what you do, 1 sentence]) against these competitors: [list competitor names and URLs]. Our ICP: [describe your ideal customer — industry, role, company size, pain point]. Our existing content strengths (topics we already cover well): [list 3–5 topics or categories].\n\nCompetitor content information (paste what you know — from SEMrush, Ahrefs, manual research, or just the topics you've seen them cover):\n[Paste competitor blog topics, categories, or keyword data here]\n\nRole: Act as a content strategist who turns gap analysis data into a prioritised content roadmap — not a list of everything competitors do, but the 10 topics most worth creating for your ICP.\n\nInstruction: Based on the competitor information provided, identify the top 10 content gaps — topics or keywords that competitors are covering that you are not. For each:\n1. Topic/Keyword — the content gap\n2. Who Owns It — which competitor ranks or covers it\n3. Search Intent — informational / commercial / comparison\n4. Priority — High / Medium / Low based on ICP relevance and estimated traffic\n5. Your Angle — how you'd approach this topic differently to create something better or more specific for your ICP (not \"write a better version\" — what specifically would you do differently)\n\nSpec:\n- Table format\n- 10 gaps, sorted by priority (High first)\n- Your Angle must be specific — not \"write a comprehensive guide\"\n- Note: this analysis is based on the information provided; validate with an SEO tool before investing in production\n\nPerformance bar: Content team can brief the top 3 pieces from this table this week. Each \"Your Angle\" is a real content hook, not a generic suggestion.", "before": {"prompt": "What content should I write that my competitors are doing?", "output": ["You should look at what your competitors are doing and find topics they cover that you don't. Consider writing about common industry trends, how-to guides, and case studies. You could also do comparison posts and product reviews."], "why": "No specifics, no priority, no differentiated angles. \"Write how-to guides\" is advice you could give to any company in any industry. This adds no value."}, "after": {"fills": [], "output": ["<b>Content Gap Analysis — Helply vs. HelpScout / Intercom / Zendesk</b><br>ICP: Ops leads and founders at B2B SaaS startups (5–50 employees) who are outgrowing informal support", "| Priority | Topic/Keyword | Owner | Intent | Your Angle | |----------|---------------|-------|--------|------------| | High | \"customer support for startups\" | None ranking well | Commercial | Frame around the 20–50 employee inflection point specifically — when informal email starts breaking. Real story from a startup team, not enterprise advice scaled down | | High | \"help desk comparison for small teams\" | HelpScout | Commercial | Create a comparison that is honest about where Helply wins AND loses — trust-building content that larger vendors won't write | | High | \"CSAT alternatives\" / \"better metrics than CSAT\" | None | Informational | Own the \"CSAT is a lagging indicator\" angle — tie to Helply's usage analytics feature. This is a category-creating piece | | High | \"customer support SLA templates\" | Zendesk | Informational | Create free downloadable SLA templates specifically for startups (not enterprise), with a guide on how to set realistic SLAs when you have a 2-person team | | Medium | \"AI customer support for small teams\" | Intercom | Commercial | \"AI without the enterprise price tag\" angle — focus on what AI automation actually saves a 3-person support team (hours, not percentage abstractions) | | Medium | \"customer onboarding best practices\" | Intercom | Informational | Specific to self-serve SaaS onboarding — with a focus on how support teams reduce onboarding tickets, not just the product team's view | | Medium | \"support ticket volume reduction\" | HelpScout | Informational | Data-driven piece using Helply customer data — specific percentage reductions by use case and team size | | Medium | \"customer support metrics dashboard\" | Zendesk | Commercial | Free Notion or Google Sheets template for CS metrics that small teams can use before they buy a tool | | Low | \"scaling customer success\" | Multiple | Informational | Differentiate: CS for self-serve vs. sales-led SaaS — most content ignores this distinction | | Low | \"proactive customer support\" | Intercom | Informational | Focus specifically on email/ticket-based proactive support (not in-app messaging) — underserved angle for non-Intercom users |"], "why": ""}}, {"title": "Content Calendar Brief", "purpose": "Brief a month of content for a specific campaign or theme — providing a structured calendar with content types, angles, distribution channels, and an editorial through-line that makes the month feel cohesive rather than a random collection of posts.", "crisp": [["Context", "Month: [month and year]. Campaign/theme: [the focus for this month]. Company: [name, product]. Key launch or event: [any product launch, webinar, campaign happening this month]. Channels active: [list — blog, LinkedIn, email, etc.]."], ["Role", "You are a content director who plans monthly calendars that have an editorial theme running through them — so each piece reinforces the others, rather than being standalone isolated posts."], ["Instruction", "Create a month-long content brief with: editorial theme statement, one anchor piece, weekly content plan per channel, and a note on how each piece ladders to the anchor."], ["Spec", "Calendar format with weekly table (Week 1–4). Each week: 1 blog topic / 2 social posts / 1 email send (or adjust to channels specified). Each piece has a one-line angle, not just a topic."], ["Performance", "Content team can start briefing and producing immediately. Each piece has a clear editorial angle. The month tells a coherent story when read in sequence."]], "prompt": "Context: I'm planning content for [Company Name] for [Month + Year]. \n- Campaign/theme for this month: [the main editorial focus — e.g., \"retention month\", \"new product launch\", \"thought leadership push\"]\n- Key event or launch: [any anchor event — product launch date, webinar, conference, or \"none\"]\n- Target audience this month: [who you're primarily targeting with this content]\n- Active channels: [list — blog / LinkedIn / email newsletter / Twitter / Instagram / YouTube]\n- Content team capacity: [how many pieces can be produced — e.g., \"4 blog posts, 12 social posts, 4 email sends\"]\n\nRole: Act as a content director who builds monthly calendars with a clear editorial through-line — so each piece reinforces the others and the month tells a coherent story, not a random selection of topics.\n\nInstruction: Create a monthly content brief with:\n1. Editorial Theme Statement — one sentence that describes the month's narrative arc\n2. Anchor Piece — the most important piece of content this month (usually a long-form blog or video) that everything else can reference\n3. Weekly Plan (Weeks 1–4) — for each week:\n   - One blog/long-form topic with angle\n   - 2–3 social post topics with platform and angle\n   - 1 email topic with subject line direction\n4. How It Ladders — brief note on how each week builds on the previous one\n5. Repurpose Map — which pieces can be turned into what (e.g., blog post → 3 social posts → email section)\n\nSpec:\n- Calendar table format for the weekly plan\n- Each piece has an angle (one sentence), not just a topic title\n- Anchor piece defined upfront\n- Repurpose map at the end\n- Adapt to the channel list and capacity provided\n\nPerformance bar: Content team can start briefing the first week's pieces immediately. Each piece's angle is specific enough to be a brief. Month has a coherent narrative when consumed in sequence.", "before": {"prompt": "Plan a month of marketing content about customer support.", "output": ["Week 1: Blog post about customer support tips. Week 2: Social media posts about customer service. Week 3: Email newsletter. Week 4: Another blog post."], "why": "No angles, no editorial through-line, no channel specificity, \"tips\" and \"about customer service\" are not briefs. A writer receiving this has no idea what to produce."}, "after": {"fills": ["Company: Helply | Month: July 2025", "Theme: The CSAT myth — why retention leaders are changing what they measure", "Key event: Webinar on retention metrics, July 17", "Audience: CS leaders at B2B SaaS", "Channels: Blog (2 posts), LinkedIn (8 posts), Email (4 sends)"], "output": ["<b>July 2025 Content Brief — Helply</b><br>Editorial Theme: \"The retention metric rethink\" — July is about challenging the industry's over-reliance on CSAT and introducing a better measurement philosophy, culminating in the July 17 webinar.", "<b>Anchor Piece</b><br>Blog: \"Why Your CSAT Score Is Lying to You (And What to Measure Instead)\"<br>— 2,000-word definitive guide to the CSAT-churn paradox, with Helply's data, alternative metrics, and a framework for the transition. Publishes July 7. Everything in July references this.", "---", "<b>Weekly Plan</b>", "| | Blog | LinkedIn (2x) | Email | |-|------|---------------|-------| | <b>Week 1 (Jul 1–6)</b> | Teaser: \"The Problem With How We Measure Customer Happiness\" — 800-word opinion piece setting up the problem without solving it yet | Post 1: \"63% of our churned customers gave 5-star CSAT\" (data post) | Pre-webinar announcement: \"Something we've been meaning to say about CSAT\" | | <b>Week 2 (Jul 7–13)</b> | <b>ANCHOR: \"Why Your CSAT Is Lying to You\"</b> | Post 1: CSAT vs. intent metrics explainer (key takeaway from anchor) | Deliver anchor piece to subscribers | | | | Post 2: Quote card from anchor (\"The better question is not...\") | | | <b>Week 3 (Jul 14–20)</b> | None — webinar week | Post 1: Webinar preview — \"3 metrics we're going to challenge on Thursday\" | Webinar reminder (2 days before) + post-webinar recap with recording link | | | | Post 2: Live thread or recap from webinar | | | <b>Week 4 (Jul 21–31)</b> | \"How to Start Tracking Intent Metrics: A Practical Guide\" — actionable follow-on to anchor | Post 1: Testimonial from webinar participant | \"What we learned from the webinar — and the one thing that surprised us most\" | | | | Post 2: \"The 3 questions to ask before your next renewal call\" | |", "<b>How It Ladders</b> - Week 1: Establish the problem (creates tension, builds curiosity) - Week 2: Deliver the anchor and the argument (peak content week) - Week 3: Convert interest into webinar attendance (action week) - Week 4: Extend the conversation and drive product CTA", "<b>Repurpose Map</b> - Anchor blog → 4 LinkedIn posts (one per major section) → 2 email feature sections - Webinar → Recording clip for LinkedIn → Blog recap → Email send"], "why": ""}}, {"title": "Webinar Follow-Up Email", "purpose": "Write a post-webinar follow-up email sequence that thanks attendees, delivers the promised content, drives the intended next step, and nurtures no-shows — without being a generic \"thanks for attending\" email that everyone ignores.", "crisp": [["Context", "Webinar: [title, date, topic]. Attendees: [N attended / N registered but didn't attend]. Content to include: [recording link, slides, resources promised]. Primary next step: [what you want them to do]."], ["Role", "You are a demand generation specialist who treats post-webinar email as the highest-leverage moment in the webinar funnel — this is when interest is highest and the conversion window is short."], ["Instruction", "Write two emails: Email 1 (to attendees, same day) — thanks + recording + primary CTA. Email 2 (to no-shows, next day) — re-engage with a hook from the webinar content + recording."], ["Spec", "Two separate emails. Each 150–200 words. Attendee email: personal, specific, one CTA. No-show email: starts with the most compelling insight from the webinar (not \"sorry you missed it\")."], ["Performance", "Attendee email open rate potential: subject line references the webinar specifically. No-show email open rate potential: subject line gives them a reason to open even though they missed it. Both have one clear CTA."]], "prompt": "Context: I ran a webinar titled \"[Webinar Title]\" on [date]. Topic: [brief description of what was covered]. \n- Attendees: [N] people attended live\n- No-shows: [N] registered but didn't attend\n- Top 2–3 insights from the webinar: [list the most valuable things covered — what attendees said was most useful]\n- Resources to share: [recording link / slides / template / guide]\n- Primary next step I want people to take: [free trial / book a demo / read blog post / download resource]\n- Company: [name and brief description]\n\nRole: Act as a demand generation specialist who treats post-webinar email as the highest-conversion moment in the funnel — interest peaks right after the session, and most teams waste it with a generic \"thanks for attending\" email.\n\nInstruction: Write two emails:\n\nEmail 1 — Attendee Follow-Up (send same day or next morning)\n- Thanks them for attending (specific, not generic)\n- Delivers the most memorable/valuable moment from the webinar in 1–2 sentences\n- Provides the recording and any promised resources\n- One clear CTA\n\nEmail 2 — No-Show Re-Engagement (send 24 hours after webinar)\n- Does NOT open with \"sorry you missed it\"\n- Opens with the most compelling insight from the webinar (give them value immediately)\n- Then reveals it came from the webinar and shares the recording\n- One clear CTA (same as attendee email)\n\nSpec:\n- Two separate emails, clearly labelled\n- 150–200 words each\n- Subject lines that don't say \"Recording available\" or \"Missed the webinar?\"\n- One CTA per email\n- Attendee email: personal and specific about what was discussed\n- No-show email: leads with value, not guilt\n\nPerformance bar: Attendee subject line makes them want to open even though they were there. No-show subject line makes them want to open even though they missed it. Both have a single clear next step.", "before": {"prompt": "Write a follow-up email for our webinar.", "output": ["Subject: Thanks for attending our webinar! Hi, Thank you for attending our webinar. We hope you found it valuable. The recording is now available at [link]. Please let us know if you have any questions. Best regards."], "why": "\"Thanks for attending\" subject line gets ignored, no specific content from the webinar, no CTA direction, \"let us know if you have any questions\" is not a next step. The no-show version doesn't exist."}, "after": {"fills": ["Webinar: \"Stop Measuring CSAT — What to Track Instead\" | July 17, 2025", "83 attended, 147 no-shows", "Top insights: CSAT-churn data, intent metrics framework, 3-step transition plan", "Resources: recording, slides, intent metrics template", "CTA: Book a 30-min call to see how Helply tracks intent metrics in the product"], "output": ["--- <b>EMAIL 1 — Attendees (Send: July 17, evening)</b>", "<b>Subject:</b> The slide everyone screenshot-d today", "Hi [First Name],", "Thanks for being part of today's session — I really appreciated the quality of questions, especially the conversation about whether intent metrics work differently for PLG vs. sales-led models.", "The slide that got the most attention was the CSAT-churn correlation chart — here it is again, along with everything else from today:", "- [Watch the full recording →](https://helply.io/webinars/csat-myths) - [Download the slides →](https://helply.io/webinars/csat-slides) - [Get the Intent Metrics Template →](https://helply.io/templates/intent-metrics)", "If you want to see how Helply tracks intent metrics in practice — what it looks like in the product and how teams set up the first dashboard — I'm happy to show you in a 30-minute session.", "[Book a time that works for you →](https://helply.io/book)", "See you at the next one.<br>Sarah"], "why": ""}}, {"title": "YouTube Description", "purpose": "Write a YouTube video description optimised for search discovery (YouTube SEO), with timestamps for navigation, relevant keywords placed naturally, and a structured CTA section — because most YouTube descriptions are an afterthought that costs the video half its potential reach.", "crisp": [["Context", "Video: [title and topic]. Channel: [channel name and niche]. Target keyword: [what people would search to find this]. Video length and timestamps: [list the sections and their start times]. Links to include: [resources, products, other videos]."], ["Role", "You are a YouTube SEO specialist who knows that a description is not a transcript summary — it's a search document and a navigation tool for the viewer."], ["Instruction", "Write a YouTube description with: keyword-rich opening paragraph (first 2–3 lines visible before \"show more\"), a what-you'll-learn section, timestamped chapters, resources section, and a CTA block."], ["Spec", "YouTube description format. Opening paragraph 150 words (appears before \"show more\"). Timestamps in the standard YouTube format (0:00, 1:30, etc.). Total length: 300–400 words. Primary keyword in first 25 words."], ["Performance", "The video gets discovered by search for the target keyword. Viewers navigate using the timestamps. One resource link or CTA is clicked by at least 3% of viewers."]], "prompt": "Context: I'm writing a YouTube description for a video on [Company/Channel Name]'s channel. \n- Video title: [exact title as it appears on YouTube]\n- Topic summary: [2–3 sentences about what the video covers]\n- Target keyword: [what people would search to find this video]\n- Video length: [total minutes]\n- Timestamps and sections: [list each section with its start time — e.g., \"0:00 Intro / 2:15 The CSAT problem / 8:30 The alternative metrics / ...\"]\n- Resources to link: [blog post, template, product page, related video — give titles and URLs]\n- Subscribe/social CTA: [your channel subscribe prompt and any social handles]\n- Primary CTA goal: [what you most want viewers to do after watching]\n\nRole: Act as a YouTube SEO specialist who treats video descriptions as discovery documents, not summaries. The first 150 words are indexed by YouTube's algorithm and set viewer expectations — they're too valuable to waste.\n\nInstruction: Write a YouTube description with:\n1. Opening Paragraph (150 words, before \"show more\") — keyword in first 25 words, explain the core value prop, tell the viewer what they'll learn, written to be read (not a keyword dump)\n2. What You'll Learn — 4–6 bullet points of key takeaways\n3. Timestamps — all chapters in standard YouTube format\n4. Resources — labelled links with a one-line description of each\n5. CTA Block — subscribe ask, social follow, primary action link\n\nSpec:\n- YouTube description format\n- Opening paragraph: 150 words max (before \"show more\" fold)\n- Timestamps: standard format (0:00, 1:30, 10:45 etc.)\n- Primary keyword in first 25 words\n- Total length: 300–400 words\n- CTA block at the end (most viewers don't see it; that's okay — it's for the ones who scroll)\n\nPerformance bar: Video ranks on page 1 for the target keyword within 30 days of publish. Timestamps are accurate and cover every major section. One external link gets clicked.", "before": {"prompt": "Write a YouTube description for a video about customer support metrics.", "output": ["In this video, we talk about customer support metrics and how to improve them. Watch to learn more about how to measure customer satisfaction. Like and subscribe for more content!"], "why": "No keyword placement strategy, no timestamps, no value-specific bullet points, \"Watch to learn more\" is meaningless, \"Like and subscribe\" is the entire CTA block. This description does nothing for search discovery."}, "after": {"fills": ["Video title: \"Stop Tracking CSAT: Better Metrics for Customer Retention\"", "Target keyword: \"customer retention metrics\"", "Length: 22 minutes", "Timestamps: 0:00 intro / 2:30 the CSAT problem / 8:15 intent metrics explained / 14:00 how to set them up / 19:45 team checklist", "Resources: blog post, intent metrics template, product page"], "output": ["<b>Opening Paragraph (147 words — before \"show more\")</b>", "Customer retention metrics are broken — and CSAT is the biggest offender. In this video, I'll show you the data behind the CSAT-churn paradox (63% of churned customers gave us 5-star scores before they left), and the alternative metrics that actually predict whether a customer will renew.", "This isn't about abandoning CSAT entirely. It's about using it for what it actually measures — service quality — and adding intent-based metrics to measure what it can't: whether customers are achieving the outcome they bought your product for.", "By the end of this video, you'll have a framework for transitioning to retention-predictive metrics without rebuilding your entire CS stack, and a template you can use starting this week.", "Watch through to the end — the team checklist at 19:45 is the most downloaded resource from our webinar series.", "---", "<b>What You'll Learn</b> - Why CSAT scores are a lagging indicator of retention risk (with data) - What intent metrics are and how they differ from satisfaction scores - How to identify the \"core outcome\" each customer signed up for - A 3-step framework for transitioning your measurement approach - The exact metrics our top-retaining customers track each week - A team checklist you can use in your next CS team meeting", "---", "<b>Chapters</b> 0:00 — Why most retention metrics are wrong<br>2:30 — The CSAT-churn data that started this conversation<br>8:15 — Intent metrics: what they are and why they work<br>14:00 — How to set up intent tracking without building a custom dashboard<br>19:45 — The team checklist (most useful part — don't skip this)", "---", "<b>Resources Mentioned</b> - [Read the full blog post →](https://helply.io/blog/csat-myths) — The written version of this framework with additional data - [Download the Intent Metrics Template →](https://helply.io/templates/intent-metrics) — Free Google Sheets template, used by 400+ CS teams - [See how Helply tracks intent →](https://helply.io/product/retention) — The product page for our retention analytics feature", "---", "<b>Subscribe &amp; Connect</b><br>Subscribe for weekly videos on customer success, retention, and support leadership: [Subscribe →]<br>LinkedIn: [Helply Company Page]<br>Newsletter (10,000+ CS leaders): [The Support Brief →](https://helply.io/newsletter)", "<b>Ready to try it on your team?</b><br>[Start a free trial →](https://helply.io/trial) — no credit card required"], "why": ""}}];
+  let sel = 0, tab = 'after';
+
+  function copyPre(btn){
+    const pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function(){
+      btn.classList.add('copied');
+      const s = btn.querySelector('span'), old = s.textContent;
+      s.textContent = 'Copied';
+      setTimeout(function(){ btn.classList.remove('copied'); s.textContent = old; }, 1600);
+    });
+  }
+  window.copyPre = copyPre;
+
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const paras = a => a.map(p => '<p>' + p + '</p>').join('');
+
+  function rail(){
+    const el = document.getElementById('rail');
+    el.innerHTML = '<div class="rl">The ' + PROMPTS.length + ' prompts</div>' + PROMPTS.map(function(p, i){
+      return '<button data-i="' + i + '" class="' + (i === sel ? 'on' : '') + '">' +
+             '<span class="n">' + String(i + 1).padStart(2, '0') + '</span><span>' + esc(p.title) + '</span></button>';
+    }).join('');
+    [].forEach.call(el.querySelectorAll('button'), function(b){
+      b.onclick = function(){ sel = +b.dataset.i; tab = 'after'; render(); };
+    });
+  }
+
+  function render(){
+    const p = PROMPTS[sel];
+    const before = p.before, after = p.after;
+    const perf = (p.crisp.find(c => c[0] === 'Performance') || [null, ''])[1];
+
+    let h = '<div class="ptitle">' + esc(p.title) + '</div>' +
+            '<p class="ppurpose">' + esc(p.purpose) + '</p>';
+
+    // CRISP breakdown
+    h += '<div class="card"><div class="ch"><i data-lucide="layers"></i> The CRISP breakdown' +
+         '<span class="tag">Context · Role · Instruction · Spec · Performance</span></div><div class="crisp">';
+    p.crisp.forEach(function(c){
+      h += '<div class="cr"><span class="k">' + c[0] + '</span><span class="v">' + c[1] + '</span></div>';
+    });
+    h += '</div></div>';
+
+    // the prompt itself
+    h += '<div class="card"><div class="ch"><i data-lucide="terminal"></i> The prompt — copy it and fill the brackets</div>' +
+         '<div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button>' +
+         '<pre>' + esc(p.prompt) + '</pre></div></div>';
+
+    // before / after — the whole point
+    h += '<div class="card"><div class="ch"><i data-lucide="git-compare"></i> Same task. Two prompts. Look at the difference.</div>' +
+         '<div class="tabs">' +
+         '<button id="tb" class="bad ' + (tab === 'before' ? 'on' : '') + '"><i data-lucide="thumbs-down"></i> Lazy prompt</button>' +
+         '<button id="ta" class="good ' + (tab === 'after' ? 'on' : '') + '"><i data-lucide="thumbs-up"></i> CRISP prompt</button>' +
+         '</div>';
+
+    if (tab === 'before'){
+      // before.prompt already comes through the parser as safe HTML — escaping again would
+      // print the tags. Only raw-text fields (title, purpose, the code block) get esc().
+      h += '<div class="askedfor"><b>What you asked for:</b></div>' +
+           '<div class="quote"><p>' + before.prompt + '</p></div>' +
+           '<div class="out"><div class="ol">What you got back</div><div class="quote">' + paras(before.output) + '</div></div>' +
+           '<div class="verdict bad"><i data-lucide="thumbs-down"></i><div><b>Why it is weak.</b> ' + before.why + '</div></div>';
+    } else {
+      if (after.fills.length)
+        h += '<div class="askedfor"><b>Placeholders filled in:</b></div><div class="fills">' +
+             after.fills.map(f => '<span>' + esc(f) + '</span>').join('') + '</div>';
+      h += '<div class="out"><div class="ol">What you got back</div><div class="quote">' + paras(after.output) + '</div></div>';
+      h += '<div class="verdict good"><i data-lucide="thumbs-up"></i><div>' +
+           (after.why ? '<b>Why it works.</b> ' + after.why
+                      : '<b>The bar it had to clear.</b> ' + perf) +
+           '</div></div>';
     }
-  </script>
-  <script>lucide.createIcons();</script>
+    h += '</div>';
+
+    document.getElementById('pane').innerHTML = h;
+    document.getElementById('tb').onclick = function(){ tab = 'before'; render(); };
+    document.getElementById('ta').onclick = function(){ tab = 'after';  render(); };
+    rail();
+    lucide.createIcons();
+  }
+  render();
+</script>
 </body>
 </html>

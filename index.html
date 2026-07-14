@@ -19,7 +19,6 @@
   html,body{margin:0;height:100%;}
   body{font-family:var(--font);background:var(--pageBg);color:var(--text);}
   a{color:inherit;text-decoration:none;}
-  /* dark header — full width */
   header{height:56px;background:var(--headerBg);color:var(--headerText);display:flex;align-items:center;
     flex-shrink:0;border-bottom:1px solid var(--headerBorder);}
   .brand{width:220px;display:flex;align-items:center;gap:10px;padding-left:20px;height:100%;
@@ -28,9 +27,7 @@
   .wordmark .badge{background:var(--primary);color:#fff;padding:1px 6px;border-radius:5px;margin-left:2px;font-weight:800;}
   .header-right{margin-left:auto;padding-right:20px;color:var(--headerMuted);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;}
   .header-right .dot{width:6px;height:6px;border-radius:99px;background:var(--green);}
-  /* shell = sidebar + main */
   .shell{display:flex;height:calc(100vh - 56px);}
-  /* sidebar */
   .sidebar{width:220px;flex-shrink:0;background:var(--sidebarBg);border-right:1px solid var(--border);
     padding:16px 12px;display:flex;flex-direction:column;overflow-y:auto;}
   .side-back{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:8px;font-size:13px;font-weight:500;
@@ -47,16 +44,15 @@
   .nav a.active svg{opacity:1;}
   .side-foot{margin-top:auto;padding:14px 12px 4px;font-family:var(--mono);font-size:10px;color:var(--textMuted);
     border-top:1px solid var(--border);}
-  /* main — full width */
   main{flex:1;min-width:0;overflow-y:auto;padding:34px 44px 72px;}
-  .maxw{max-width:1180px;}
-  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
-  h1{font-size:32px;font-weight:700;margin:8px 0 14px;letter-spacing:-.01em;}
-  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;}
-  .pill{font-size:11px;font-weight:600;padding:4px 11px;border-radius:99px;font-family:var(--mono);}
-  .pill.wk{background:#E7F0FE;color:#1877F2;} .pill.mod{background:#EEEDFE;color:#3C3489;}
-  .pill.fmt{background:#E1F5EE;color:#0F6E56;} .pill.kind{background:#FAEEDA;color:#854F0B;}
+  .maxw{max-width:none;}
+  .maxw > section:first-child .section-h{margin-top:6px;}
   section{scroll-margin-top:20px;}
+  .section-h{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:600;margin:40px 0 14px;}
+  .section-h svg{width:20px;height:20px;color:var(--primary);}
+  .lead{font-size:14px;color:var(--textSec);line-height:1.75;max-width:none;}
+  .lead b{color:var(--text);}
+  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
   .done{display:flex;align-items:flex-start;gap:14px;background:var(--cardBg);border:1px solid var(--border);
     border-radius:8px;box-shadow:var(--shadowSm);padding:20px 22px;margin-bottom:8px;}
   .done .ic{width:38px;height:38px;border-radius:8px;background:#FCEBEB;color:var(--primary);display:flex;
@@ -64,12 +60,6 @@
   .done .ic svg{width:20px;height:20px;}
   .done .cap{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--textMuted);}
   .done .val{font-size:16px;font-weight:600;margin-top:4px;line-height:1.45;}
-  .section-h{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:600;margin:40px 0 14px;}
-  .section-h svg{width:20px;height:20px;color:var(--primary);}
-  .lead{font-size:14px;color:var(--textSec);line-height:1.75;max-width:900px;}
-  .lead b{color:var(--text);}
-  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
-  /* sample grid — fills the width */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:6px;}
   .sample{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);
     padding:18px 20px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .15s,transform .15s,border-color .15s;}
@@ -78,27 +68,47 @@
   .sample .num{font-family:var(--mono);font-size:11px;font-weight:500;color:#fff;background:var(--primary);
     width:24px;height:24px;border-radius:99px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .sample .st{font-size:15px;font-weight:600;}
-  .sample p{font-size:13px;line-height:1.55;color:var(--textSec);margin:0;flex:1;}
-  .sample .succ{font-size:12px;color:var(--green);font-weight:500;line-height:1.4;}
-  .sample .open{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;margin-top:2px;
-    background:#FCEBEB;color:var(--primary);font-size:12px;font-weight:600;font-family:var(--mono);
-    padding:7px 13px;border-radius:7px;transition:background .12s;}
-  .sample .open:hover{background:var(--primary);color:#fff;}
-  .sample .open svg{width:14px;height:14px;}
-  /* steps */
+  .sample .scenario{font-size:13px;line-height:1.6;color:var(--textSec);margin:0;}
+  .sample .scenario b{color:var(--text);font-weight:600;}
+  .sample .task .tlabel{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--textMuted);margin-bottom:7px;}
+  .sample .task ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.5;color:var(--text);}
+  .sample .task li{padding-left:3px;}
+  .sample .foot{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:6px;}
+  .sample .hint{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--textMuted);}
+  .sample .hint svg{width:13px;height:13px;color:var(--primary);}
   .steps{counter-reset:s;display:flex;flex-direction:column;gap:12px;background:var(--cardBg);border:1px solid var(--border);
-    border-radius:8px;box-shadow:var(--shadowSm);padding:20px 22px;max-width:900px;}
+    border-radius:8px;box-shadow:var(--shadowSm);padding:20px 22px;max-width:none;}
   .step{display:flex;gap:13px;align-items:flex-start;}
   .step .n{counter-increment:s;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--primary);
     border:1.5px solid var(--border);border-radius:99px;width:27px;height:27px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .step .n::before{content:counter(s);}
   .step p{font-size:13.5px;line-height:1.55;margin:3px 0;}
-  /* tip */
-  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 20px;margin-top:8px;max-width:900px;}
+  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 20px;margin-top:8px;max-width:none;}
   .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
   .tip .th svg{width:16px;height:16px;}
   .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.65;}
-  @media(max-width:820px){.sidebar{display:none;} main{padding:26px 22px 60px;} h1{font-size:26px;}}
+  /* the copied state is .copied, NOT .done — a bare .done rule above styles a card */
+  .pre{position:relative;background:#17171A;border:1px solid #2A2A2E;border-radius:8px;margin:8px 0 4px;}
+  .pre pre{margin:0;padding:14px 80px 14px 16px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:#E6E6E6;white-space:pre-wrap;}
+  .pre.nocopy pre{padding-right:16px;}
+  .pre .copy{position:absolute;top:8px;right:8px;font-family:var(--font);font-size:11px;font-weight:600;color:#E6E6E6;background:#2A2A2E;border:1px solid #3A3A40;border-radius:5px;padding:4px 9px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  .pre .copy:hover{background:#3A3A40;}
+  .pre .copy.copied{color:#7EE0C0;border-color:var(--green);}
+  .pre .copy svg{width:12px;height:12px;}
+  .pcard{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:16px 18px;margin-bottom:12px;}
+  .pcard .plabel{font-size:14px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px;}
+  .pcard .plabel svg{width:15px;height:15px;color:var(--primary);}
+  .pcard .psub{font-size:13px;color:var(--textSec);line-height:1.55;margin-top:3px;}
+  .pcard .pwhy{font-size:12.5px;color:var(--textSec);line-height:1.55;margin-top:6px;border-left:2px solid var(--border);padding-left:10px;}
+  .pcard .pwhy b{color:var(--text);font-weight:600;}
+  /* CRISP strip */
+  .crisp{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px;}
+  .crisp .c{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;padding:13px 15px;box-shadow:var(--shadowSm);}
+  .crisp .c .k{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#fff;background:var(--primary);padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:7px;}
+  .crisp .c p{margin:0;font-size:12.5px;line-height:1.55;color:var(--textSec);}
+  .crisp .c p b{color:var(--text);}
+  @media(max-width:820px){.sidebar{display:none;} main{padding:26px 22px 60px;}}
 </style>
 </head>
 <body>
@@ -112,104 +122,269 @@
       <a class="side-back" href="https://course.srv879786.hstgr.cloud/"><i data-lucide="grid-2x2"></i> All Hands-On</a>
       <div class="side-label">On this page</div>
       <nav class="nav">
-        <a href="#overview" class="active"><i data-lucide="target"></i> Overview</a>
-        <a href="#build"><i data-lucide="cpu"></i> What you build</a>
+        <a href="#build" class="active"><i data-lucide="cpu"></i> What this is</a>
         <a href="#samples"><i data-lucide="list-checks"></i> Problem statements</a>
-        <a href="#howto"><i data-lucide="git-branch"></i> How to use</a>
-        <a href="#tips"><i data-lucide="battery-charging"></i> Pro-plan tips</a>
+        <a href="#howto"><i data-lucide="play"></i> How it works</a>
+        <a href="#prompts"><i data-lucide="zap"></i> The three prompts</a>
+        <a href="#ship"><i data-lucide="git-branch"></i> Ship to GitHub</a>
       </nav>
       <div class="side-foot">ForgeMind AI<br>AI Productivity Essentials<br>HO3 · Module M6 · Week 2</div>
     </aside>
 
     <main>
      <div class="maxw">
-      <section id="overview">
-        <div class="eyebrow">Hands-On 3 · Week 2 · Module M6 — Prompting Mastery (CRISP)</div>
-        <h1>Prompt Library</h1>
-        <div class="pills">
-          <span class="pill wk">Week 2</span>
-          <span class="pill mod">M6 · Prompting Mastery (CRISP)</span>
-          <span class="pill fmt">Peer-reviewed</span>
-          <span class="pill kind">Doc</span>
-        </div>
+      <section id="build">
         <div class="done">
           <div class="ic"><i data-lucide="target"></i></div>
           <div>
             <div class="cap">Done when</div>
-            <div class="val">A documented, reusable prompt library (8–12 prompts).</div>
+            <div class="val">You have 8–12 CRISP prompts for the work you actually repeat — and for each one, the lazy prompt it replaces, both outputs side by side, and the proof that the structure is what made the difference.</div>
           </div>
         </div>
-      </section>
-
-      <section id="build">
-        <div class="section-h"><i data-lucide="cpu"></i> What you build</div>
-        <p class="lead">This is your <b>Week-2 CRISP prompt library</b>. You write <b>8–12 reusable prompts</b> for one real role, each built the <b>CRISP</b> way — Context, Role, Instructions, Specifics, Polish — and each shipped with a <b>before/after example</b> that proves the structured version writes a sharper output. The deliverable is a <code>README</code> index plus the prompt files organised by use-case, so you (or a teammate) can grab the right prompt and get a great result every time. It's peer-reviewed, so keep it clean and well-labelled.</p>
+        <div class="section-h"><i data-lucide="cpu"></i> What this is</div>
+        <p class="lead">A prompt library is not a folder of prompts. It is a folder of prompts <b>that you can prove are better</b> — because next to each one sits the lazy version you used to type, and the mediocre thing it gave you back. <b>Keep the bad output.</b> Without it you have a pile of text; with it you have evidence. Every prompt is written with <b>CRISP</b>, and each of the five letters is doing a job:</p>
+        <div class="crisp">
+          <div class="c"><span class="k">Context</span><p>The situation. <b>What is going on, and who for.</b></p></div>
+          <div class="c"><span class="k">Role</span><p>Who Claude is being. <b>An expert, not a generalist.</b></p></div>
+          <div class="c"><span class="k">Instruction</span><p>The task, in steps. <b>What to actually do.</b></p></div>
+          <div class="c"><span class="k">Spec</span><p>Format, length, tone, the bans. <b>What the output must look like.</b></p></div>
+          <div class="c"><span class="k">Performance</span><p>The bar. <b>How you'll know it's good enough to send.</b></p></div>
+        </div>
       </section>
 
       <section id="samples">
         <div class="section-h"><i data-lucide="list-checks"></i> Pick a problem statement</div>
-        <p class="lead" style="margin-bottom:16px;">Each sample is a real, hosted library — 10 CRISP prompts with before/after examples for one role. Open one live, or bring your own role (get it approved first).</p>
+        <p class="lead" style="margin-bottom:16px;">Pick the one closest to <b>your</b> job — the prompts only pay you back if they are for work you genuinely repeat. Each sample is a finished library of <b>10 prompts</b>, and every one shows the lazy prompt beside the CRISP one so you can see exactly what the structure buys. <b>Feel free to build a library for any other role of your own.</b> To see the finished shape, open its sample using the link on each card.</p>
         <div class="grid">
           <div class="sample">
-            <div class="top"><span class="num">1</span><span class="st">Customer Support Prompt Library</span></div>
-            <p>Handle angry customers, write escalations, analyse CSAT scores, and create knowledge base articles — faster and more consistently.</p>
-            <span class="succ">✓ 10 CRISP prompts + before/after examples</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho3-prompt-library/sample-01/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="top"><span class="num">1</span><span class="st">Customer support</span></div>
+            <div class="scenario">Your team answers the same issues in wildly different tones. One reply is warm and specific, the next reads like a form letter — and the customer can tell which one they got.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Pick <b>8–12 things you write again and again</b> — angry-customer replies, refunds, escalations, KB articles.</li>
+              <li>For each, write the <b>lazy prompt</b> you'd normally type. Run it. <b>Keep the bad output</b> — it is your evidence.</li>
+              <li>Rewrite it as a <b>CRISP</b> prompt: Context · Role · Instruction · Spec · Performance. Run it again.</li>
+              <li>Ship both outputs side by side. <b>The before/after is the deliverable</b>, not the prompt.</li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-01/"><i data-lucide="arrow-up-right"></i> Open Sample 1</a>
+            </div>
           </div>
           <div class="sample">
-            <div class="top"><span class="num">2</span><span class="st">Project Manager Prompt Library</span></div>
-            <p>Run sprints, write stakeholder updates, document risks and scope changes, and close projects with full clarity.</p>
-            <span class="succ">✓ 10 CRISP prompts + before/after examples</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho3-prompt-library/sample-02/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="top"><span class="num">2</span><span class="st">Project management</span></div>
+            <div class="scenario">Every status update, risk entry and retro summary comes out in a different shape, so nobody reads them and nothing gets actioned.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Pick <b>8–12 things you write again and again</b> — status updates, kickoff briefs, risk entries, retros.</li>
+              <li>For each, write the <b>lazy prompt</b> you'd normally type. Run it. <b>Keep the bad output.</b></li>
+              <li>Rewrite it as a <b>CRISP</b> prompt — especially <b>Spec</b> (owners, dates, format) and <b>Performance</b> (what good looks like).</li>
+              <li>Ship both outputs side by side. <b>The before/after is the deliverable.</b></li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-02/"><i data-lucide="arrow-up-right"></i> Open Sample 2</a>
+            </div>
           </div>
           <div class="sample">
-            <div class="top"><span class="num">3</span><span class="st">People Manager Prompt Library</span></div>
-            <p>Prepare 1:1s, write performance reviews, draft PIPs, run feedback conversations, and set team OKRs with confidence.</p>
-            <span class="succ">✓ 10 CRISP prompts + before/after examples</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho3-prompt-library/sample-03/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="top"><span class="num">3</span><span class="st">People management</span></div>
+            <div class="scenario">You stare at a blank page before every 1:1, review and difficult conversation — and what you finally write is inconsistent enough to be unfair.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Pick <b>8–12 things you write again and again</b> — 1:1 prep, review drafts, feedback scripts, PIP outlines.</li>
+              <li>For each, write the <b>lazy prompt</b> you'd normally type. Run it. <b>Keep the bad output.</b></li>
+              <li>Rewrite it as a <b>CRISP</b> prompt. For people work, <b>Performance</b> matters most: would HR sign this off?</li>
+              <li>Ship both outputs side by side. <b>The before/after is the deliverable.</b></li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-03/"><i data-lucide="arrow-up-right"></i> Open Sample 3</a>
+            </div>
           </div>
           <div class="sample">
-            <div class="top"><span class="num">4</span><span class="st">Content Marketer Prompt Library</span></div>
-            <p>Produce blog outlines, LinkedIn posts, newsletters, social repurpose packs, and YouTube descriptions at scale.</p>
-            <span class="succ">✓ 10 CRISP prompts + before/after examples</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho3-prompt-library/sample-04/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="top"><span class="num">4</span><span class="st">Content marketing</span></div>
+            <div class="scenario">You reinvent the wheel for every post, and the voice drifts from one piece to the next because nothing about the voice was ever written down.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Pick <b>8–12 things you write again and again</b> — blog outlines, repurposing, SEO meta, newsletters.</li>
+              <li>For each, write the <b>lazy prompt</b> you'd normally type. Run it. <b>Keep the bad output.</b></li>
+              <li>Rewrite it as a <b>CRISP</b> prompt — <b>Role</b> and <b>Spec</b> are what pin the voice and the format.</li>
+              <li>Ship both outputs side by side. <b>The before/after is the deliverable.</b></li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-04/"><i data-lucide="arrow-up-right"></i> Open Sample 4</a>
+            </div>
           </div>
           <div class="sample">
-            <div class="top"><span class="num">5</span><span class="st">Financial Analyst Prompt Library</span></div>
-            <p>Explain variances, write board narratives, draft budget commentary, build KPI cards, and prepare audit checklists.</p>
-            <span class="succ">✓ 10 CRISP prompts + before/after examples</span>
-            <a class="open" href="https://course.srv879786.hstgr.cloud/samples/ho3-prompt-library/sample-05/" target="_blank"><i data-lucide="external-link"></i> Open live sample</a>
+            <div class="top"><span class="num">5</span><span class="st">Financial analysis</span></div>
+            <div class="scenario">Variance commentary, board narratives and forecast assumptions get rewritten from scratch every cycle, and the numbers arrive without the story that makes them mean anything.</div>
+            <div class="task"><div class="tlabel">Your task</div><ol>
+              <li>Pick <b>8–12 things you write again and again</b> — variance commentary, board slides, KPI cards, forecasts.</li>
+              <li>For each, write the <b>lazy prompt</b> you'd normally type. Run it. <b>Keep the bad output.</b></li>
+              <li>Rewrite it as a <b>CRISP</b> prompt — <b>Instruction</b> and <b>Spec</b> carry the maths and the format.</li>
+              <li>Ship both outputs side by side. <b>The before/after is the deliverable.</b></li>
+            </ol></div>
+            <div class="foot">
+              <a class="hint" href="samples/sample-05/"><i data-lucide="arrow-up-right"></i> Open Sample 5</a>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="howto">
-        <div class="section-h"><i data-lucide="git-branch"></i> How to use this repo</div>
+        <div class="section-h"><i data-lucide="play"></i> How it works</div>
         <div class="steps">
-          <div class="step"><span class="n"></span><p>Click <b>Use this template</b> to create your own copy.</p></div>
-          <div class="step"><span class="n"></span><p>Open a live sample above, then write <b>8–12 CRISP prompts</b> for your own role, each with a before/after example.</p></div>
-          <div class="step"><span class="n"></span><p>Replace this README with your <b>index</b> and the prompt files organised by use-case, ready for peer review.</p></div>
+          <div class="step"><span class="n"></span><p><b>List 8–12 things you write again and again.</b> Not clever things — <i>repetitive</i> things. If you only write it twice a year, it does not belong in the library.</p></div>
+          <div class="step"><span class="n"></span><p><b>Write the lazy prompt first</b>, exactly as you'd normally type it. One line, no thought. <b>Run it, and keep the output.</b> That mediocre answer is the most valuable thing on the page — it is what proves the rest.</p></div>
+          <div class="step"><span class="n"></span><p><b>Rewrite it with CRISP</b> — Context, Role, Instruction, Spec, Performance. Leave the placeholders in square brackets so it is reusable, not a one-off.</p></div>
+          <div class="step"><span class="n"></span><p><b>Run the CRISP version on the same task.</b> Same model, same day. The only thing that changed is what you told it.</p></div>
+          <div class="step"><span class="n"></span><p><b>Save both outputs together</b>, with one line on why the first one was weak. Repeat until you have 8–12.</p></div>
+          <div class="step"><span class="n"></span><p><b>Push the library</b> to <code>ho3-prompt-library</code> — a README index, one file per prompt, before/after in each.</p></div>
         </div>
-      </section>
-
-      <section id="tips">
-        <div class="section-h"><i data-lucide="battery-charging"></i> Use your Claude.ai Pro plan wisely</div>
         <div class="tip">
-          <div class="th"><i data-lucide="badge-check"></i> Subscription-first — no API key</div>
+          <div class="th"><i data-lucide="alert-triangle"></i> The mistake everyone makes here</div>
           <ul>
-            <li>Everything runs on your normal Claude.ai login (Pro or Team) — no API key needed to write and test prompts.</li>
-            <li>Build each prompt the <b>CRISP</b> way and capture the before/after in the same chat so the upgrade is obvious.</li>
-            <li>Start a new chat per prompt use-case — long chats use your limit faster.</li>
+            <li><b>Skipping the lazy prompt</b> because you already know the CRISP one is better. Then the library is just assertions — you have shown nobody anything, least of all yourself.</li>
+            <li><b>Writing prompts you'll never use.</b> Twelve beautiful prompts for work you don't do is twelve pieces of homework. Eight for work you do weekly is a tool you'll still be using next year.</li>
+            <li><b>Leaving out Performance.</b> It's the one people drop, and it's the one that decides whether the output is <i>sendable</i> — not merely correct.</li>
           </ul>
         </div>
       </section>
+
+      <section id="prompts">
+        <div class="section-h"><i data-lucide="zap"></i> The three prompts</div>
+        <p class="lead" style="margin-bottom:16px;">You are building prompts, so naturally you should use prompts to do it. These three cover the whole hands-on — and the second one is the one people forget, because it feels like extra work right up until someone asks you <i>"is this actually better?"</i></p>
+
+        <div class="pcard">
+          <div class="plabel"><i data-lucide="wand-2"></i> 1 · Turn a task into a CRISP prompt</div>
+          <div class="psub">The workhorse. Run it once per prompt in your library.</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Help me write a reusable CRISP prompt for a task I do again and again.
+
+The task: &lt;what you write, e.g. "replying to an angry customer"&gt;
+My role:  &lt;e.g. "customer support team lead at a B2B SaaS company"&gt;
+
+Build it with all five CRISP elements, and make each one earn its place:
+- Context     — the situation and who it's for
+- Role        — who Claude should be (an expert, not a generalist)
+- Instruction — the task, as numbered steps
+- Spec        — format, length, tone, and what it must NOT do
+- Performance — the bar: how I'll know the output is good enough to send
+
+Leave every variable as a [SQUARE BRACKET] placeholder so I can reuse it.
+Then show me the finished prompt as one block I can copy.</pre></div>
+          <div class="pwhy"><b>The placeholders are what make it a library</b> rather than a one-off. A prompt with your customer's real name baked into it can only ever be used once.</div>
+        </div>
+
+        <div class="pcard">
+          <div class="plabel"><i data-lucide="git-compare"></i> 2 · Prove it — the before/after</div>
+          <div class="psub">Run this in a <b>fresh chat</b>, or the first answer will be contaminated by everything you just said.</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>I'm going to give you the same task twice, and I want to see the difference.
+
+FIRST, answer this exactly as written, with nothing added:
+&lt;paste the lazy one-line prompt&gt;
+
+Then STOP. Show me that answer.
+
+Now answer the same task again, using this instead:
+&lt;paste your CRISP prompt, placeholders filled in&gt;
+
+Finally, in 2–3 lines: what specifically is missing from the first answer that
+the second one has? Be concrete — name the things, don't just say it's "better".</pre></div>
+          <div class="pwhy"><b>Do this in a fresh chat.</b> If you ask for the lazy answer in the chat where you just designed the CRISP prompt, Claude already knows what you want — it will quietly write a good answer to a bad prompt, and your before/after proves nothing.</div>
+        </div>
+
+        <div class="pcard">
+          <div class="plabel"><i data-lucide="file-text"></i> 3 · Write the library index</div>
+          <div class="psub">Once all 8–12 are done. A library nobody can navigate is a folder.</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>Here are the prompts in my library: &lt;paste the titles and one-line purposes&gt;
+
+Write me a README.md index that a colleague could use on their first day:
+- One line on what this library is and who it's for
+- A table: prompt name | what it's for | when to reach for it
+- A short "how to use these" note — fill the [BRACKETS], run it, keep the output
+
+Keep it plain. No marketing language.</pre></div>
+          <div class="pwhy">Write this <b>last</b>, when you know what's actually in the library — not first, from what you intended to build.</div>
+        </div>
+      </section>
+
+      <section id="ship">
+        <div class="section-h"><i data-lucide="git-branch"></i> Ship it to GitHub</div>
+        <p class="lead" style="margin-bottom:16px;">One file per prompt, each one carrying its own evidence. A reviewer should be able to open any single file and see the whole story without opening anything else.</p>
+
+        <div class="pre nocopy"><pre>ho3-prompt-library/
+├─ README.md              ← the index: what each prompt is for, and when to reach for it
+├─ prompts/
+│  ├─ 01-reply-to-angry-customer.md
+│  ├─ 02-escalation-note.md       ← each file: purpose · CRISP breakdown · the prompt
+│  └─ …                              · the lazy prompt + its weak output + why
+└─ .gitignore                        · the CRISP output + the bar it had to clear</pre></div>
+
+        <div class="steps" style="margin-top:16px;">
+          <div class="step"><span class="n"></span><p>One markdown file per prompt. Inside each: <b>purpose</b>, the <b>CRISP breakdown</b>, the <b>full prompt</b>, then <b>before</b> (lazy prompt · weak output · why it's weak) and <b>after</b> (the real output · the bar it cleared).</p></div>
+          <div class="step"><span class="n"></span><p>A <code>README.md</code> index so a colleague can find the right prompt without reading all twelve.</p></div>
+          <div class="step"><span class="n"></span><p>Create the repo, then push. <code>git branch -M main</code> matters — older Git still calls the first branch <code>master</code> and the push would fail.</p></div>
+        </div>
+
+        <div class="pcard" style="margin-top:12px;">
+          <div class="plabel"><i data-lucide="terminal"></i> Push it</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre>git init
+git add .
+git commit -m "HO3: prompt library"
+git branch -M main
+git remote add origin https://github.com/&lt;your-username&gt;/ho3-prompt-library.git
+git push -u origin main</pre></div>
+        </div>
+
+        <div class="pcard">
+          <div class="plabel"><i data-lucide="file-text"></i> One prompt file — the shape</div>
+          <div class="psub">Copy this skeleton for each of your 8–12.</div>
+          <div class="pre"><button class="copy" onclick="copyPre(this)"><i data-lucide="copy"></i><span>Copy</span></button><pre># Prompt 01 — &lt;name&gt;
+
+## Purpose
+&lt;One paragraph: what this writes, and why it's worth having a prompt for.&gt;
+
+## CRISP breakdown
+| Element | Content |
+|---------|---------|
+| **Context**     | … |
+| **Role**        | … |
+| **Instruction** | … |
+| **Spec**        | … |
+| **Performance** | … |
+
+## Full prompt
+```
+&lt;the whole prompt, with [SQUARE BRACKET] placeholders&gt;
+```
+
+## Before — the lazy prompt
+**Prompt used:**
+&gt; &lt;the one-liner you used to type&gt;
+
+**Output produced:**
+&gt; &lt;paste the mediocre answer. Do not clean it up.&gt;
+
+**Why it's weak:** &lt;name the specific things missing — vague, no owner, no timeline…&gt;
+
+## After — with CRISP
+**Placeholders filled:**
+- &lt;placeholder&gt;: &lt;value&gt;
+
+**Output produced:**
+&gt; &lt;paste the good answer&gt;
+
+**Why it works:** &lt;what the structure bought you&gt;</pre></div>
+        </div>
+      </section>
+
      </div>
     </main>
   </div>
 
   <script>
+    function copyPre(btn){
+      const pre = btn.parentElement.querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(function(){
+        btn.classList.add('copied');
+        const s = btn.querySelector('span'); const old = s.textContent;
+        s.textContent = 'Copied'; setTimeout(function(){ btn.classList.remove('copied'); s.textContent = old; }, 1600);
+      });
+    }
     lucide.createIcons();
-    // scroll-spy: highlight the sidebar link for the section in view
     const links = [...document.querySelectorAll('.nav a')];
     const map = {}; links.forEach(a=>{ const id=a.getAttribute('href').slice(1); if(id) map[id]=a; });
     const obs = new IntersectionObserver((entries)=>{
